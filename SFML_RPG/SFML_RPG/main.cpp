@@ -9,6 +9,7 @@ so watching the video from 7:40 on is good to clear some stuff up.
 
 also up top there is a drop down window with x64 x86 and configuration manager left to the compile and run button.
 make sure the drop down window says x86
+
 */
 
 int main()
