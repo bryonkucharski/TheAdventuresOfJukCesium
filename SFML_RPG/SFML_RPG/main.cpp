@@ -1,4 +1,7 @@
 #include <SFML/Graphics.hpp>
+#include <iostream>
+#include <string>
+using namespace std;
 
 /*
 https://www.youtube.com/watch?v=axIgxBQVBg0
@@ -14,9 +17,13 @@ make sure the drop down window says x86
 
 int main()
 {
-	sf::RenderWindow window(sf::VideoMode(200, 200), "SFML works!");
-	sf::CircleShape shape(100.f);
-	shape.setFillColor(sf::Color::Green);
+	sf::RenderWindow window(sf::VideoMode(300, 300), "FUCK BIRDS!");
+	sf::CircleShape shape(150.f);
+	shape.setFillColor(sf::Color::Blue);
+	sf::RectangleShape rectangle;
+	rectangle.setSize(sf::Vector2f(100, 50));
+	rectangle.setFillColor(sf::Color::Magenta);
+	cout << "HAR HAR HAR";
 
 	while (window.isOpen())
 	{
@@ -29,7 +36,10 @@ int main()
 
 		window.clear();
 		window.draw(shape);
+		window.draw(rectangle);
 		window.display();
+		//string coke = "COKE";
+		//cout << coke; //bad idea to cout in a while statement
 	}
 
 	return 0;
