@@ -3,6 +3,10 @@
 #include <string>
 using namespace std;
 
+#define PIXEL_SIZE 32
+#define WIDTH      30*PIXEL_SIZE
+#define HEIGHT     22*PIXEL_SIZE 
+
 /*
 https://www.youtube.com/watch?v=axIgxBQVBg0
 
@@ -14,9 +18,14 @@ also up top there is a drop down window with x64 x86 and configuration manager l
 make sure the drop down window says x86
 
 */
+using namespace sf;
 
 int main()
 {
+<<<<<<< HEAD
+	//create main game window
+	RenderWindow window(sf::VideoMode(WIDTH, HEIGHT), "SFML works!");
+=======
 	sf::RenderWindow window(sf::VideoMode(300, 300), "FUCK BIRDS!");
 	sf::CircleShape shape(150.f);
 	shape.setFillColor(sf::Color::Blue);
@@ -24,19 +33,24 @@ int main()
 	rectangle.setSize(sf::Vector2f(100, 50));
 	rectangle.setFillColor(sf::Color::Magenta);
 	cout << "HAR HAR HAR";
+>>>>>>> master
 
 	while (window.isOpen())
 	{
-		sf::Event event;
+		//close window if X is pressed in top right
+		Event event;
 		while (window.pollEvent(event))
 		{
-			if (event.type == sf::Event::Closed)
+			if (event.type == Event::Closed)
 				window.close();
 		}
 
 		window.clear();
+<<<<<<< HEAD
+=======
 		window.draw(shape);
 		window.draw(rectangle);
+>>>>>>> master
 		window.display();
 		//string coke = "COKE";
 		//cout << coke; //bad idea to cout in a while statement
