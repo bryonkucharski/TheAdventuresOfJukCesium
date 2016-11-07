@@ -39,8 +39,6 @@ int main()
 
 		window.clear();
 		window.display();
-		//string coke = "COKE";
-		//cout << coke; //bad idea to cout in a while statement
 	}
 
 	return 0;
