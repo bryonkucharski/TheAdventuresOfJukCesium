@@ -1,4 +1,7 @@
 #include <SFML/Graphics.hpp>
+#include <iostream>
+#include <string>
+using namespace std;
 
 #define PIXEL_SIZE 32
 #define WIDTH      30*PIXEL_SIZE
@@ -19,8 +22,18 @@ using namespace sf;
 
 int main()
 {
+<<<<<<< HEAD
 	//create main game window
 	RenderWindow window(sf::VideoMode(WIDTH, HEIGHT), "SFML works!");
+=======
+	sf::RenderWindow window(sf::VideoMode(300, 300), "FUCK BIRDS!");
+	sf::CircleShape shape(150.f);
+	shape.setFillColor(sf::Color::Blue);
+	sf::RectangleShape rectangle;
+	rectangle.setSize(sf::Vector2f(100, 50));
+	rectangle.setFillColor(sf::Color::Magenta);
+	cout << "HAR HAR HAR";
+>>>>>>> master
 
 	while (window.isOpen())
 	{
@@ -33,7 +46,14 @@ int main()
 		}
 
 		window.clear();
+<<<<<<< HEAD
+=======
+		window.draw(shape);
+		window.draw(rectangle);
+>>>>>>> master
 		window.display();
+		//string coke = "COKE";
+		//cout << coke; //bad idea to cout in a while statement
 	}
 
 	return 0;
