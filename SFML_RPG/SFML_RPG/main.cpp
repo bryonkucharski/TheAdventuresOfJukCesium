@@ -1,5 +1,9 @@
 #include <SFML/Graphics.hpp>
 
+#define PIXEL_SIZE 32
+#define WIDTH      30*PIXEL_SIZE
+#define HEIGHT     22*PIXEL_SIZE 
+
 /*
 https://www.youtube.com/watch?v=axIgxBQVBg0
 
@@ -11,24 +15,24 @@ also up top there is a drop down window with x64 x86 and configuration manager l
 make sure the drop down window says x86
 
 */
+using namespace sf;
 
 int main()
 {
-	sf::RenderWindow window(sf::VideoMode(200, 200), "SFML works!");
-	sf::CircleShape shape(100.f);
-	shape.setFillColor(sf::Color::Green);
+	//create main game window
+	RenderWindow window(sf::VideoMode(WIDTH, HEIGHT), "SFML works!");
 
 	while (window.isOpen())
 	{
-		sf::Event event;
+		//close window if X is pressed in top right
+		Event event;
 		while (window.pollEvent(event))
 		{
-			if (event.type == sf::Event::Closed)
+			if (event.type == Event::Closed)
 				window.close();
 		}
 
 		window.clear();
-		window.draw(shape);
 		window.display();
 	}
 
