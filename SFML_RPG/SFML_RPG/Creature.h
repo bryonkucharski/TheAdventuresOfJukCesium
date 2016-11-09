@@ -16,6 +16,7 @@ class Creature : public Entity
 		void setSpeed(double s);
 		void setDirection(int d);
 		void setWalkingCounter(int w);
+		void setCanWalk(bool val);
 
 		int getHealth();
 		int getLevel();
@@ -23,6 +24,7 @@ class Creature : public Entity
 		double getSpeed();
 		int getDirection();
 		int getWalkingCounter();
+		bool isWalkAllowed();
 
 		void setCurrentLocation(Location l);
 		Location &getCurrentLocation();
@@ -40,6 +42,7 @@ class Creature : public Entity
 		int direction;
 		int walkingCounter;
 		std::string name;
+		bool canWalk;
 
 		Location currentLocation;
 		Vector2f currentPosition;

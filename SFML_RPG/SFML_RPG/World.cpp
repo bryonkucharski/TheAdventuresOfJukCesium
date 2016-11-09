@@ -34,15 +34,15 @@ void World::setupHome(RenderWindow &window) {
 
 	RectangleShape house(Vector2f(6 * PIXEL_SIZE, 4 * PIXEL_SIZE));
 	house.setPosition(Vector2f(32, 0));
-	house.setFillColor(Color::Blue);
+	house.setFillColor(Color::Transparent);
 
 	RectangleShape trees(Vector2f(10 * PIXEL_SIZE, 5 * PIXEL_SIZE));
 	trees.setPosition(Vector2f(PIXEL_SIZE * 19, 0));
-	trees.setFillColor(Color::Blue);
+	trees.setFillColor(Color::Transparent);
 
 	RectangleShape bigHouse(Vector2f(10 * PIXEL_SIZE, 5 * PIXEL_SIZE));
 	trees.setPosition(Vector2f(PIXEL_SIZE * 19, 0));
-	trees.setFillColor(Color::Blue);
+	trees.setFillColor(Color::Transparent);
 
 	home.addToObstacles(house);
 	home.addToObstacles(trees);

@@ -28,6 +28,9 @@ void Creature::setDirection(int d) {
 void Creature::setWalkingCounter(int w) {
 	this->walkingCounter = w;
 }
+void Creature::setCanWalk(bool val) {
+	this->canWalk = val;
+}
 
 int Creature::getHealth() {
 	return health;
@@ -46,6 +49,9 @@ int Creature::getDirection() {
 }
 int Creature::getWalkingCounter() {
 	return walkingCounter;
+}
+bool Creature::isWalkAllowed() {
+	return canWalk;
 }
 void Creature::drawCreature(RenderWindow &window) {
 	window.draw(this->getSprite());

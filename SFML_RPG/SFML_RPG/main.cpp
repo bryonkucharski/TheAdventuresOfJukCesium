@@ -47,6 +47,8 @@ int main()
 
 		world.drawWorld(window);
 		mainPlayer.updatePlayer(window);
+		
+		
 		//window.draw(home.getSprite());
 		window.display();
 	}
