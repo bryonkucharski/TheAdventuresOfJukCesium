@@ -1,6 +1,9 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include <string>
+
+#include "World.h"
+#include "Player.h"
 using namespace std;
 
 #define PIXEL_SIZE 32
@@ -26,6 +29,11 @@ int main()
 	//create main game window
 	RenderWindow window(sf::VideoMode(WIDTH, HEIGHT), "SFML works!");
 
+	//set frame rate
+	window.setFramerateLimit(60);
+
+	World world(window);
+	Player mainPlayer("Main Player", "res/Creatures/main.png",world);
 
 	while (window.isOpen())
 	{
@@ -37,7 +45,9 @@ int main()
 				window.close();
 		}
 
-		window.clear();
+		world.drawWorld(window);
+		mainPlayer.updatePlayer(window);
+		//window.draw(home.getSprite());
 		window.display();
 	}
 
