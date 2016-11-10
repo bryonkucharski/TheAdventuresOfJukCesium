@@ -9,7 +9,7 @@ Creature::Creature(std::string creatureName, std::string file) {
 Creature::~Creature() {
 
 }
-
+//setters
 void Creature::setHealth(int h) {
 	this->health = h;
 }
@@ -28,10 +28,20 @@ void Creature::setDirection(int d) {
 void Creature::setWalkingCounter(int w) {
 	this->walkingCounter = w;
 }
-void Creature::setCanWalk(bool val) {
-	this->canWalk = val;
+void Creature::setCanWalkUp(bool up) {
+	this->canWalkUp = up;
+}
+void Creature::setCanWalkDown(bool down) {
+	this->canWalkDown = down;
+}
+void Creature::setCanWalkLeft(bool left) {
+	this->canWalkLeft = left;
+}
+void Creature::setCanWalkRight(bool right) {
+	this->canWalkRight = right;
 }
 
+//getters
 int Creature::getHealth() {
 	return health;
 }
@@ -50,9 +60,19 @@ int Creature::getDirection() {
 int Creature::getWalkingCounter() {
 	return walkingCounter;
 }
-bool Creature::isWalkAllowed() {
-	return canWalk;
+bool Creature::isWalkUpAllowed() {
+	return this->canWalkUp;
 }
+bool Creature::isWalkDownAllowed() {
+	return this->canWalkDown;
+}
+bool Creature::isWalkLeftAllowed() {
+	return this->canWalkLeft;
+}
+bool Creature::isWalkRightAllowed() {
+	return this->canWalkRight;
+}
+
 void Creature::drawCreature(RenderWindow &window) {
 	window.draw(this->getSprite());
 }
@@ -67,4 +87,24 @@ void Creature::setCurrentPosition(Vector2f p) {
 }
 Vector2f& Creature::getCurrentPosition() {
 	return currentPosition;
+}
+bool Creature::checkForIntersect(std::vector<RectangleShape> &obs, RectangleShape &rect) {
+
+	//iterate through obstacles in current location and check for intersect 
+	int counter = 0;
+	for (std::vector<RectangleShape>::iterator obsIter = obs.begin(); obsIter != obs.end(); ++obsIter)
+	{
+		if (rect.getGlobalBounds().intersects(obs[counter].getGlobalBounds())) {
+			return true;
+		}
+		counter++;
+	}
+	return false;
+
+}
+void Creature::setAllWalk(bool val) {
+	this->setCanWalkUp(val);
+	this->setCanWalkDown(val);
+	this->setCanWalkLeft(val);
+	this->setCanWalkRight(val);
 }
