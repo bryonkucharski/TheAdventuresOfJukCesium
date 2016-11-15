@@ -43,19 +43,19 @@ void World::setupHome(RenderWindow &window) {
 	//Building the big house MH
 	RectangleShape bigHouse1(Vector2f(5 * PIXEL_SIZE, 9 * PIXEL_SIZE));
 	bigHouse1.setPosition(Vector2f(PIXEL_SIZE * 11, PIXEL_SIZE * 9));
-	bigHouse1.setFillColor(Color::Transparent);
+	bigHouse1.setFillColor(Color::Blue);
 	RectangleShape bigHouse2(Vector2f(1 * PIXEL_SIZE, 7 * PIXEL_SIZE));
 	bigHouse2.setPosition(Vector2f(PIXEL_SIZE * 16, PIXEL_SIZE * 9));
-	bigHouse2.setFillColor(Color::Transparent);
+	bigHouse2.setFillColor(Color::Blue);
 	RectangleShape bigHouse3(Vector2f(1 * PIXEL_SIZE, 6 * PIXEL_SIZE));
 	bigHouse3.setPosition(Vector2f(PIXEL_SIZE * 17, PIXEL_SIZE * 9));
-	bigHouse3.setFillColor(Color::Transparent);
+	bigHouse3.setFillColor(Color::Blue);
 	RectangleShape bigHouse4(Vector2f(1 * PIXEL_SIZE, 7 * PIXEL_SIZE));
 	bigHouse4.setPosition(Vector2f(PIXEL_SIZE * 18, PIXEL_SIZE * 9));
-	bigHouse4.setFillColor(Color::Transparent);
+	bigHouse4.setFillColor(Color::Blue);
 	RectangleShape bigHouse5(Vector2f(5 * PIXEL_SIZE, 9 * PIXEL_SIZE));
 	bigHouse5.setPosition(Vector2f(PIXEL_SIZE * 19, PIXEL_SIZE * 9));
-	bigHouse5.setFillColor(Color::Transparent);
+	bigHouse5.setFillColor(Color::Blue);
 	
 
 	//Add the shape to the obstacle list
