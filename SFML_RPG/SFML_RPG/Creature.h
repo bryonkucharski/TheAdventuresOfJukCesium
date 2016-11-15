@@ -34,6 +34,8 @@ class Creature : public Entity
 		bool isWalkLeftAllowed();
 		bool isWalkRightAllowed();
 
+	
+
 		void setCurrentLocation(Location l);
 		Location &getCurrentLocation();
 
@@ -62,6 +64,10 @@ class Creature : public Entity
 	protected:
 		bool checkForIntersect(std::vector<RectangleShape> &obs, RectangleShape &rect);
 		void setAllWalk(bool val);
+
+		Clock animationClock;
+		Time animationTime;
+		float animationCounter;
 
 };
 	

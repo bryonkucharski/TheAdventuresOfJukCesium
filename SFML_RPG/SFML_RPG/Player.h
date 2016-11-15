@@ -11,8 +11,9 @@ class Player : public Creature
 		{
 			this->getSprite().setTextureRect(IntRect(0, 0, 32, 32));
 			this->setWalkingCounter(0);
+			this->animationCounter = .05;
 			this->setDirection(4);
-			this->setSpeed(5);
+			this->setSpeed(3);
 			this->setCurrentLocation(world.getHome());
 			this->getRect().setSize(Vector2f(32, 32));
 			this->getSprite().setPosition(Vector2f(0, 0));
