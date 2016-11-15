@@ -15,8 +15,8 @@ class Player : public Creature
 			this->setDirection(4);
 			this->setSpeed(3);
 			this->setCurrentLocation(world.getHome());
-			this->getRect().setSize(Vector2f(32, 32));
-			this->getSprite().setPosition(Vector2f(0, 0));
+			this->getRect().setSize(Vector2f(28, 28));
+			this->getSprite().setPosition(Vector2f(2, 2));
 			this->setAllWalk(true);
 		}
 		~Player();

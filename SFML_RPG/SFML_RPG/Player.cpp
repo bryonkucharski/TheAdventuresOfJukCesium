@@ -49,7 +49,7 @@ void Player::updatePlayer(RenderWindow &window) {
 			this->setCanWalkLeft(!this->checkForIntersect(obstacles, this->getRect()));
 
 			while (this->checkForIntersect(obstacles, this->getRect())) {
-				this->getRect().move(this->getSpeed(),0);
+				this->getRect().move(1,0);
 			}
 		}
 	}
@@ -70,7 +70,7 @@ void Player::updatePlayer(RenderWindow &window) {
 			this->setCanWalkRight(!this->checkForIntersect(obstacles, this->getRect()));
 
 			while (this->checkForIntersect(obstacles, this->getRect())) {
-				this->getRect().move(-this->getSpeed(),0);
+				this->getRect().move(-1,0);
 			}
 		}
 		
@@ -91,7 +91,7 @@ void Player::updatePlayer(RenderWindow &window) {
 			this->getRect().move(0, -this->getSpeed());
 			double temp = this->getSpeed();
 			while (this->checkForIntersect(obstacles, this->getRect())) {
-			this->getRect().move(0, this->getSpeed());
+			this->getRect().move(0, 1);
 			}
 		}
 			
@@ -112,7 +112,7 @@ void Player::updatePlayer(RenderWindow &window) {
 			this->getRect().move(0, this->getSpeed());
 			this->setCanWalkDown(!this->checkForIntersect(obstacles, this->getRect()));
 			while (this->checkForIntersect(obstacles, this->getRect())) {
-				this->getRect().move(0, -this->getSpeed());
+				this->getRect().move(0, -1);
 			}
 		}
 	}
