@@ -45,7 +45,7 @@ class Creature : public Entity
 
 	private:
 		int health;
-		double speed;
+		float speed;
 		int level;
 		int direction;
 		int walkingCounter;
