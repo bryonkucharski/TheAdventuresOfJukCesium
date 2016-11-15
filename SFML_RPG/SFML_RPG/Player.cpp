@@ -33,22 +33,28 @@ void Player::updatePlayer(RenderWindow &window) {
 		this->setDirection(1);
 		//Fixed all the walking animations, MH
 		this->getSprite().setTextureRect(IntRect(this->getWalkingCounter() * 32, 32, 32, 32));
-		this->getRect().move(-this->getSpeed() - speedMod, 0);
-		this->setCanWalkLeft(!this->checkForIntersect(obstacles, this->getRect()));
-		
-		while(this->checkForIntersect(obstacles, this->getRect())){
-			this->getRect().move(this->getSpeed() + speedMod, 0);
+		if (this->getCurrentPosition().x > 0)
+		{
+			this->getRect().move(-this->getSpeed() - speedMod, 0);
+			this->setCanWalkLeft(!this->checkForIntersect(obstacles, this->getRect()));
+
+			while (this->checkForIntersect(obstacles, this->getRect())) {
+				this->getRect().move(this->getSpeed() + speedMod, 0);
+			}
 		}
 	}
 	else if (Keyboard::isKeyPressed(Keyboard::Right) || Keyboard::isKeyPressed(Keyboard::D))
 	{
 		this->setDirection(2);
 		this->getSprite().setTextureRect(IntRect(this->getWalkingCounter() * 32, 32*2, 32, 32));
-		this->getRect().move(this->getSpeed() + speedMod, 0);
-		this->setCanWalkRight(!this->checkForIntersect(obstacles, this->getRect()));
+		if (this->getCurrentPosition().x +32 < window.getSize().x)
+		{
+			this->getRect().move(this->getSpeed() + speedMod, 0);
+			this->setCanWalkRight(!this->checkForIntersect(obstacles, this->getRect()));
 
-		while (this->checkForIntersect(obstacles, this->getRect())) {
-			this->getRect().move(-this->getSpeed() - speedMod, 0);
+			while (this->checkForIntersect(obstacles, this->getRect())) {
+				this->getRect().move(-this->getSpeed() - speedMod, 0);
+			}
 		}
 		
 	}
@@ -56,10 +62,12 @@ void Player::updatePlayer(RenderWindow &window) {
 	{
 		this->setDirection(3);
 		this->getSprite().setTextureRect(IntRect(this->getWalkingCounter() * 32, 96, 32, 32));
-		this->getRect().move(0, -this->getSpeed() - speedMod);
-
-		while(this->checkForIntersect(obstacles, this->getRect())) {
-				this->getRect().move(0, this->getSpeed() + speedMod);
+		if (this->getCurrentPosition().y > 0)
+		{
+			this->getRect().move(0, -this->getSpeed() - speedMod);
+			while (this->checkForIntersect(obstacles, this->getRect())) {
+			this->getRect().move(0, this->getSpeed() + speedMod);
+			}
 		}
 			
 	}
@@ -67,11 +75,13 @@ void Player::updatePlayer(RenderWindow &window) {
 	{
 		this->setDirection(4);
 		this->getSprite().setTextureRect(IntRect(this->getWalkingCounter() * 32, 0, 32, 32));
-		this->getRect().move(0, this->getSpeed() + speedMod);
-		this->setCanWalkDown(!this->checkForIntersect(obstacles, this->getRect()));
-
-		while(this->checkForIntersect(obstacles, this->getRect())){
-			this->getRect().move(0, -this->getSpeed() - speedMod);
+		if (this->getCurrentPosition().y + 32 < window.getSize().y)
+		{
+			this->getRect().move(0, this->getSpeed() + speedMod);
+			this->setCanWalkDown(!this->checkForIntersect(obstacles, this->getRect()));
+			while (this->checkForIntersect(obstacles, this->getRect())) {
+				this->getRect().move(0, -this->getSpeed() - speedMod);
+			}
 		}
 	}
 
