@@ -7,9 +7,13 @@ Player::~Player() {
 void Player::updatePlayer(RenderWindow &window) {
 
 	//implement spriting by holding shift, MH
-	int speedMod = 0;
-	if (Keyboard::isKeyPressed(Keyboard::LShift) || Keyboard::isKeyPressed(Keyboard::RControl)) {
-		speedMod = 5;
+	if (Keyboard::isKeyPressed(Keyboard::LShift) || Keyboard::isKeyPressed(Keyboard::RControl))
+	{
+		this->setSpeed(running);
+	}
+	else
+	{
+		this->setSpeed(walking);
 	}
 
 	//allow player to walk at the start of every frame. 
@@ -41,11 +45,11 @@ void Player::updatePlayer(RenderWindow &window) {
 
 		if (this->getCurrentPosition().x > 0)
 		{
-			this->getRect().move(-this->getSpeed() - speedMod, 0);
+			this->getRect().move(-this->getSpeed(), 0);
 			this->setCanWalkLeft(!this->checkForIntersect(obstacles, this->getRect()));
 
 			while (this->checkForIntersect(obstacles, this->getRect())) {
-				this->getRect().move(this->getSpeed() + speedMod, 0);
+				this->getRect().move(this->getSpeed(),0);
 			}
 		}
 	}
@@ -62,11 +66,11 @@ void Player::updatePlayer(RenderWindow &window) {
 
 		if (this->getCurrentPosition().x +32 < window.getSize().x)
 		{
-			this->getRect().move(this->getSpeed() + speedMod, 0);
+			this->getRect().move(this->getSpeed(),0);
 			this->setCanWalkRight(!this->checkForIntersect(obstacles, this->getRect()));
 
 			while (this->checkForIntersect(obstacles, this->getRect())) {
-				this->getRect().move(-this->getSpeed() - speedMod, 0);
+				this->getRect().move(-this->getSpeed(),0);
 			}
 		}
 		
@@ -84,9 +88,10 @@ void Player::updatePlayer(RenderWindow &window) {
 
 		if (this->getCurrentPosition().y > 0)
 		{
-			this->getRect().move(0, -this->getSpeed() - speedMod);
+			this->getRect().move(0, -this->getSpeed());
+			double temp = this->getSpeed();
 			while (this->checkForIntersect(obstacles, this->getRect())) {
-			this->getRect().move(0, this->getSpeed() + speedMod);
+			this->getRect().move(0, this->getSpeed());
 			}
 		}
 			
@@ -104,10 +109,10 @@ void Player::updatePlayer(RenderWindow &window) {
 
 		if (this->getCurrentPosition().y + 32 < window.getSize().y - 66)
 		{
-			this->getRect().move(0, this->getSpeed() + speedMod);
+			this->getRect().move(0, this->getSpeed());
 			this->setCanWalkDown(!this->checkForIntersect(obstacles, this->getRect()));
 			while (this->checkForIntersect(obstacles, this->getRect())) {
-				this->getRect().move(0, -this->getSpeed() - speedMod);
+				this->getRect().move(0, -this->getSpeed());
 			}
 		}
 	}

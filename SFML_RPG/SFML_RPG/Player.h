@@ -22,6 +22,7 @@ class Player : public Creature
 		~Player();
 		void updatePlayer(RenderWindow &window);
 	private:
-
+		int running = 5;
+		int walking = 2;
 };
 #endif // !PLAYER_H
