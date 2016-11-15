@@ -102,7 +102,7 @@ void Player::updatePlayer(RenderWindow &window) {
 			animationClock.restart();
 		}
 
-		if (this->getCurrentPosition().y + 32 < window.getSize().y)
+		if (this->getCurrentPosition().y + 32 < window.getSize().y - 66)
 		{
 			this->getRect().move(0, this->getSpeed() + speedMod);
 			this->setCanWalkDown(!this->checkForIntersect(obstacles, this->getRect()));
