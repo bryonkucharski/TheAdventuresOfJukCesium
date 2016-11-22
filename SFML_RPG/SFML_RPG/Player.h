@@ -6,12 +6,13 @@
 
 class Player : public Creature
 {
-	public:
-		Player(std::string playerName, std::string file, World &world);
-		~Player();
-		void updatePlayer(RenderWindow &window);
-	private:
-		int running = 5;
-		int walking = 2;
+public:
+	Player(std::string playerName, std::string file, World &world);
+	~Player();
+	void updatePlayer(RenderWindow &window);
+private:
+	int running = 5;
+	int walking = 2;
+	World wrld;
 };
 #endif // !PLAYER_H

@@ -3,7 +3,7 @@
 Location::Location(){
 	//nothing
 }
-Location::Location(std::string locationName, std::string file, int locationID, int next1, int next2, int next3) {
+Location::Location(std::string locationName, std::string file, int locationID, int next1, int next2, int next3, Vector2f nextPos1, Vector2f nextPos2, Vector2f nextPos3){
 	
 	this->setFileName(file);
 	this->setName(locationName);
@@ -12,9 +12,14 @@ Location::Location(std::string locationName, std::string file, int locationID, i
 	this->getSprite().setPosition(Vector2f(0, 0));
 
 	this->setLocationID(locationID);
+
 	this->setLocation1(next1);
 	this->setLocation2(next2);
 	this->setLocation3(next3);
+
+	this->setNext1Position(nextPos1);
+	this->setNext2Position(nextPos2);
+	this->setNext3Position(nextPos3);
 		
 }
 void Location::setup() {
@@ -30,12 +35,7 @@ std::string Location::getName() {
 std::string Location::getFileName() {
 	return fileName;
 }
-Location* Location::getPrevious() {
-	return previousLocation;
-}
-Location * Location::getNext() {
-	return nextLocation;
-}
+
 int Location::getLocationID() {
 	return locationID;
 }
@@ -48,12 +48,6 @@ void Location::setLocationID(int ID) {
 void Location::setName(std::string name) {
 	this->name = name;
 }
-void Location::setPrevious(Location *prev) {
-	this->previousLocation = prev;
-}
-void Location::setNext(Location *next) {
-	this->nextLocation = next;
-}
 
 void Location::setEnemies() {
 
@@ -65,20 +59,15 @@ std::vector<RectangleShape>& Location::getObstacles() {
 	return obstacles;
 }
 
-
-
-
-
-
 void Location::setLocation1(int locationNum) {
-	//This will change your map location to what is left of the object.
+	this->nextLocation1 = locationNum;
 
 }
 void Location::setLocation2(int locationNum) {
-	//This will change your map location to what is right of the object.
+	this->nextLocation2 = locationNum;
 }
 void Location::setLocation3(int locationNum) {
-	//This will change your map location to what is down of the object.
+	this->nextLocation3 = locationNum;
 }
 
 int Location::getLocation1() {
@@ -89,4 +78,29 @@ int Location::getLocation2() {
 }
 int Location::getLocation3() {
 	return nextLocation3;
+}
+Vector2f Location::getNext1Position() {
+	return next1Position;
+}
+Vector2f Location::getNext2Position() {
+	return next2Position;
+}
+Vector2f Location::getNext3Position() {
+	return next3Position;
+}
+void Location::setNext1Position(Vector2f pos) {
+	this->next1Position = pos;
+}
+void Location::setNext2Position(Vector2f pos) {
+	this->next2Position = pos;
+}
+void Location::setNext3Position(Vector2f pos) {
+	this->next3Position = pos;
+}
+void Location::addToLocationChanges(RectangleShape& rectanlgeToAdd) {
+	this->locationChanges.push_back(rectanlgeToAdd);
+}
+
+std::vector<RectangleShape>& Location::getLocationChanges() {
+	return locationChanges;
 }

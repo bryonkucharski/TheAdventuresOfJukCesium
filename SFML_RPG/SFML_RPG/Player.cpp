@@ -6,21 +6,17 @@ Player::Player(std::string playerName, std::string file, World &world) : Creatur
 	this->animationCounter = .05;
 	this->setDirection(4);
 	this->setSpeed(3);
-	this->setCurrentLocation(0);
+	this->setCurrentLocation(1);
 	this->getRect().setSize(Vector2f(28, 28));
 	this->getSprite().setPosition(Vector2f(2, 2));
 	this->setAllWalk(true);
+	this->wrld = world;
 }
 Player::~Player() {
 
 }
 //handles player movements. called every frame in main.
 void Player::updatePlayer(RenderWindow &window) {
-
-	//Testing map change
-	if (Keyboard::isKeyPressed(Keyboard::U)) {
-		this->setCurrentLocation(1);
-	}
 
 	//implement spriting by holding shift, MH
 	if (Keyboard::isKeyPressed(Keyboard::LShift) || Keyboard::isKeyPressed(Keyboard::RControl))
@@ -41,9 +37,38 @@ void Player::updatePlayer(RenderWindow &window) {
 	//get the current x and y of the player every frame
 	this->setCurrentPosition(this->getRect().getPosition());
 
-	/*
 	//holds all rectangles that the player is not allowed to insersect with
-	std::vector<RectangleShape> obstacles = this->getCurrentLocation().getObstacles();
+	std::vector<RectangleShape> obstacles = wrld.getLocation(this->getCurrentLocation()).getObstacles();
+
+
+	//holds all rectangles that will change the players location if intersected with
+	std::vector<RectangleShape> changeLocationRects = wrld.getLocation(this->getCurrentLocation()).getLocationChanges();
+	
+	//iterate through location changes in current location and check for intersect
+	int counter = 0;
+	for (std::vector<RectangleShape>::iterator locsItr = changeLocationRects.begin(); locsItr != changeLocationRects.end(); ++locsItr)
+	{
+	if (this->getRect().getGlobalBounds().intersects(changeLocationRects[counter].getGlobalBounds())) {
+	Vector2f newPosition;
+	int newLocation;
+	if(counter == 0){
+		newPosition = wrld.getLocation(this->getCurrentLocation()).getNext1Position();
+		newLocation = wrld.getLocation(this->getCurrentLocation()).getLocation1();
+	}
+	if (counter == 1) {
+		newPosition = wrld.getLocation(this->getCurrentLocation()).getNext2Position();
+		newLocation = wrld.getLocation(this->getCurrentLocation()).getLocation2();
+	}
+	if (counter == 2) {
+		newPosition = wrld.getLocation(this->getCurrentLocation()).getNext3Position();
+		newLocation = wrld.getLocation(this->getCurrentLocation()).getLocation3();
+	}
+	this->getRect().setPosition(newPosition);
+	this->setCurrentLocation(newLocation);
+	break;
+	}
+	counter++;
+	}
 
 	//increment walking counter for animation 
 	this->setWalkingCounter(this->getWalkingCounter() + 1);
@@ -66,7 +91,7 @@ void Player::updatePlayer(RenderWindow &window) {
 			this->setCanWalkLeft(!this->checkForIntersect(obstacles, this->getRect()));
 
 			while (this->checkForIntersect(obstacles, this->getRect())) {
-				this->getRect().move(1,0);
+				this->getRect().move(1, 0);
 			}
 		}
 	}
@@ -81,16 +106,16 @@ void Player::updatePlayer(RenderWindow &window) {
 			animationClock.restart();
 		}
 
-		if (this->getCurrentPosition().x +32 < window.getSize().x)
+		if (this->getCurrentPosition().x + 32 < window.getSize().x)
 		{
-			this->getRect().move(this->getSpeed(),0);
+			this->getRect().move(this->getSpeed(), 0);
 			this->setCanWalkRight(!this->checkForIntersect(obstacles, this->getRect()));
 
 			while (this->checkForIntersect(obstacles, this->getRect())) {
-				this->getRect().move(-1,0);
+				this->getRect().move(-1, 0);
 			}
 		}
-		
+
 	}
 	else if (Keyboard::isKeyPressed(Keyboard::Up) || Keyboard::isKeyPressed(Keyboard::W))
 	{
@@ -108,10 +133,10 @@ void Player::updatePlayer(RenderWindow &window) {
 			this->getRect().move(0, -this->getSpeed());
 			double temp = this->getSpeed();
 			while (this->checkForIntersect(obstacles, this->getRect())) {
-			this->getRect().move(0, 1);
+				this->getRect().move(0, 1);
 			}
 		}
-			
+
 	}
 	else if (Keyboard::isKeyPressed(Keyboard::Down) || Keyboard::isKeyPressed(Keyboard::S))
 	{
@@ -120,7 +145,7 @@ void Player::updatePlayer(RenderWindow &window) {
 		animationTime = animationClock.getElapsedTime();
 		if (animationTime.asSeconds() > animationCounter)
 		{
-			this->getSprite().setTextureRect(IntRect(this->getWalkingCounter() * 32, 0, 32, 32));			
+			this->getSprite().setTextureRect(IntRect(this->getWalkingCounter() * 32, 0, 32, 32));
 			animationClock.restart();
 		}
 
@@ -134,9 +159,9 @@ void Player::updatePlayer(RenderWindow &window) {
 		}
 	}
 
-	if (this->getWalkingCounter() == 2){
+	if (this->getWalkingCounter() == 2) {
 		setWalkingCounter(0);
-	}*/
+	}
 
 	//draw create to the screen
 	this->drawCreature(window);

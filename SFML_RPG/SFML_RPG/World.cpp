@@ -1,21 +1,30 @@
 #include "World.h"
 
 #define PIXEL_SIZE 32
-
+World::World() {
+};
 World::World(RenderWindow &window) {
 	this->setupHome(window);
+	this->setupBigHouse();
+	this->setupForest();
+	this->setupTown();
 }
 Location & World::getLocation(int requested) {
 	switch (requested) {
-		case 0:
-			return home;
-		case 1:
-			return town1;
+	case 1:
+		return home;
+	case 2:
+		return town1;
+	case 3:
+		return bigHouseInterior;
+	case 4:
+		return forest;
+
 	};
 }
 
 void World::drawWorld(RenderWindow &window, Location &toDraw) {
-
+	window.clear();
 	window.draw(toDraw.getSprite());
 
 	//draw all obstacles
@@ -25,7 +34,15 @@ void World::drawWorld(RenderWindow &window, Location &toDraw) {
 		window.draw(toDraw.getObstacles()[counter]);
 		counter++;
 	}
-	
+
+	//draw all location changes
+	int counter2 = 0;
+	for (std::vector<RectangleShape>::iterator locIter = toDraw.getLocationChanges().begin(); locIter != toDraw.getLocationChanges().end(); ++locIter)
+	{
+		window.draw(toDraw.getLocationChanges()[counter2]);
+		counter2++;
+	}
+
 }
 void World::setHome(Location& h) {
 	this->home = h;
@@ -34,6 +51,8 @@ Location& World::getHome() {
 	return home;
 }
 void World::setupHome(RenderWindow &window) {
+
+	/*Add ALL obstacles for HOME*/
 
 	RectangleShape house(Vector2f(6 * PIXEL_SIZE, 4 * PIXEL_SIZE));
 	house.setPosition(Vector2f(32, 0));
@@ -59,7 +78,7 @@ void World::setupHome(RenderWindow &window) {
 	RectangleShape bigHouse5(Vector2f(5 * PIXEL_SIZE, 9 * PIXEL_SIZE));
 	bigHouse5.setPosition(Vector2f(PIXEL_SIZE * 19, PIXEL_SIZE * 9));
 	bigHouse5.setFillColor(Color::Transparent);
-	
+
 
 	//Add the shape to the obstacle list
 	home.addToObstacles(house);
@@ -69,5 +88,65 @@ void World::setupHome(RenderWindow &window) {
 	home.addToObstacles(bigHouse3);
 	home.addToObstacles(bigHouse4);
 	home.addToObstacles(bigHouse5);
-	
+
+	/*Add ALL location changes for HOME*/
+	RectangleShape next1(Vector2f(PIXEL_SIZE * 1, PIXEL_SIZE * 4));
+	next1.setPosition(Vector2f(0, PIXEL_SIZE * 8));
+	next1.setFillColor(Color::Blue);
+
+	RectangleShape next2(Vector2f(PIXEL_SIZE * 1, PIXEL_SIZE * 1));
+	next2.setPosition(Vector2f(PIXEL_SIZE * 17, PIXEL_SIZE * 15));
+	next2.setFillColor(Color::Red);
+
+	RectangleShape next3(Vector2f(PIXEL_SIZE * 1, PIXEL_SIZE * 4));
+	next3.setPosition(Vector2f(PIXEL_SIZE * 29, PIXEL_SIZE * 8));
+	next3.setFillColor(Color::Yellow);
+
+	home.addToLocationChanges(next1);
+	home.addToLocationChanges(next2);
+	home.addToLocationChanges(next3);
+
+
+}
+void World::setupBigHouse() {
+
+	//Add ALL location changes for HOMEzzzz
+	RectangleShape next1(Vector2f(PIXEL_SIZE * 2, PIXEL_SIZE * 1));
+	next1.setPosition(Vector2f(PIXEL_SIZE * 14, PIXEL_SIZE * 14));
+	next1.setFillColor(Color::Blue);
+
+	bigHouseInterior.addToLocationChanges(next1);
+}
+void World::setupForest() {
+	RectangleShape next1(Vector2f(PIXEL_SIZE * 3, PIXEL_SIZE * 1));
+	next1.setPosition(Vector2f(PIXEL_SIZE * 17, PIXEL_SIZE * 0));
+	next1.setFillColor(Color::Blue);
+
+	RectangleShape next2(Vector2f(PIXEL_SIZE * 1, PIXEL_SIZE * 3));
+	next2.setPosition(Vector2f(PIXEL_SIZE * 29, PIXEL_SIZE * 11));
+	next2.setFillColor(Color::Red);
+
+	forest.addToLocationChanges(next1);
+	forest.addToLocationChanges(next2);
+}
+void World::setupTown() {
+	RectangleShape next1(Vector2f(PIXEL_SIZE * 1, PIXEL_SIZE * 2));
+	next1.setPosition(Vector2f(0, PIXEL_SIZE * 12));
+	next1.setFillColor(Color::Blue);
+
+	RectangleShape next2(Vector2f(PIXEL_SIZE * 2, PIXEL_SIZE * 1));
+	next2.setPosition(Vector2f(PIXEL_SIZE * 12, PIXEL_SIZE * 19));
+	next2.setFillColor(Color::Red);
+
+	RectangleShape next3(Vector2f(PIXEL_SIZE * 1, PIXEL_SIZE * 2));
+	next3.setPosition(Vector2f(PIXEL_SIZE * 29, PIXEL_SIZE * 12));
+	next3.setFillColor(Color::Yellow);
+
+	town1.addToLocationChanges(next1);
+	town1.addToLocationChanges(next2);
+	town1.addToLocationChanges(next3);
+
+}
+void World::addRectangle() {
+
 }
