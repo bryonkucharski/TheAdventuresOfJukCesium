@@ -1,10 +1,26 @@
 #include "Player.h"
 
+Player::Player(std::string playerName, std::string file, World &world) : Creature(playerName, file) {
+	this->getSprite().setTextureRect(IntRect(0, 0, 32, 32));
+	this->setWalkingCounter(0);
+	this->animationCounter = .05;
+	this->setDirection(4);
+	this->setSpeed(3);
+	this->setCurrentLocation(0);
+	this->getRect().setSize(Vector2f(28, 28));
+	this->getSprite().setPosition(Vector2f(2, 2));
+	this->setAllWalk(true);
+}
 Player::~Player() {
 
 }
 //handles player movements. called every frame in main.
 void Player::updatePlayer(RenderWindow &window) {
+
+	//Testing map change
+	if (Keyboard::isKeyPressed(Keyboard::U)) {
+		this->setCurrentLocation(1);
+	}
 
 	//implement spriting by holding shift, MH
 	if (Keyboard::isKeyPressed(Keyboard::LShift) || Keyboard::isKeyPressed(Keyboard::RControl))
@@ -25,6 +41,7 @@ void Player::updatePlayer(RenderWindow &window) {
 	//get the current x and y of the player every frame
 	this->setCurrentPosition(this->getRect().getPosition());
 
+	/*
 	//holds all rectangles that the player is not allowed to insersect with
 	std::vector<RectangleShape> obstacles = this->getCurrentLocation().getObstacles();
 
@@ -119,7 +136,7 @@ void Player::updatePlayer(RenderWindow &window) {
 
 	if (this->getWalkingCounter() == 2){
 		setWalkingCounter(0);
-	}
+	}*/
 
 	//draw create to the screen
 	this->drawCreature(window);

@@ -76,10 +76,10 @@ bool Creature::isWalkRightAllowed() {
 void Creature::drawCreature(RenderWindow &window) {
 	window.draw(this->getSprite());
 }
-void Creature::setCurrentLocation(Location l) {
+void Creature::setCurrentLocation(int l) {
 	this->currentLocation = l;
 }
-Location& Creature::getCurrentLocation() {
+int Creature::getCurrentLocation() {
 	return currentLocation;
 }
 void Creature::setCurrentPosition(Vector2f p) {

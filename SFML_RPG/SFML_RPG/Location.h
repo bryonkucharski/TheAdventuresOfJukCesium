@@ -7,11 +7,12 @@
 #include "Entity.h"
 #include "Obstacle.h"
 
+
 class Location : public Entity
 {
 	public:
 		Location();
-		Location(std::string locationName, std::string file);
+		Location(std::string locationName, std::string file, int locationID, int next1, int next2, int next3);
 		~Location();
 
 		
@@ -27,6 +28,15 @@ class Location : public Entity
 		void setPrevious(Location *prev);
 		void setNext(Location *next);
 
+		void setLocation1(int locationNum);
+		void setLocation2(int locationNum);
+		void setLocation3(int locationNum);
+
+		int getLocation1();
+		int getLocation2();
+		int getLocation3();
+
+
 		void setup();
 
 		void setEnemies();
@@ -41,6 +51,10 @@ class Location : public Entity
 		std::string name;
 		std::string fileName;
 		int locationID;
+		int nextLocation1;
+		int nextLocation2;
+		int nextLocation3;
+		
 
 		Location *nextLocation;
 		Location *previousLocation;

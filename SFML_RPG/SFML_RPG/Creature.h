@@ -36,8 +36,8 @@ class Creature : public Entity
 
 	
 
-		void setCurrentLocation(Location l);
-		Location &getCurrentLocation();
+		void setCurrentLocation(int l);
+		int getCurrentLocation();
 
 		void setCurrentPosition(Vector2f p);
 		Vector2f &getCurrentPosition();
@@ -59,7 +59,7 @@ class Creature : public Entity
 		bool canWalkRight;
 
 		
-		Location currentLocation;
+		int currentLocation;
 		Vector2f currentPosition;
 	protected:
 		bool checkForIntersect(std::vector<RectangleShape> &obs, RectangleShape &rect);

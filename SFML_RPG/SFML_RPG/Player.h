@@ -7,18 +7,7 @@
 class Player : public Creature
 {
 	public:
-		Player(std::string playerName, std::string file, World &world) : Creature(playerName, file)
-		{
-			this->getSprite().setTextureRect(IntRect(0, 0, 32, 32));
-			this->setWalkingCounter(0);
-			this->animationCounter = .05;
-			this->setDirection(4);
-			this->setSpeed(3);
-			this->setCurrentLocation(world.getHome());
-			this->getRect().setSize(Vector2f(28, 28));
-			this->getSprite().setPosition(Vector2f(2, 2));
-			this->setAllWalk(true);
-		}
+		Player(std::string playerName, std::string file, World &world);
 		~Player();
 		void updatePlayer(RenderWindow &window);
 	private:

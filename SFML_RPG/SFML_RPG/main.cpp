@@ -45,7 +45,7 @@ int main()
 				window.close();
 		}
 
-		world.drawWorld(window);
+		world.drawWorld(window,world.getLocation(mainPlayer.getCurrentLocation()));
 		mainPlayer.updatePlayer(window);
 		
 		

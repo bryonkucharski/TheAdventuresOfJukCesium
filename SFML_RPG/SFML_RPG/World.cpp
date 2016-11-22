@@ -3,22 +3,26 @@
 #define PIXEL_SIZE 32
 
 World::World(RenderWindow &window) {
-	home.setFileName("res/Locations/home.png");
-	home.setName("Home Sweet Home");
-
 	this->setupHome(window);
-	
+}
+Location & World::getLocation(int requested) {
+	switch (requested) {
+		case 0:
+			return home;
+		case 1:
+			return town1;
+	};
 }
 
-void World::drawWorld(RenderWindow &window) {
+void World::drawWorld(RenderWindow &window, Location &toDraw) {
 
-	window.draw(home.getSprite());
+	window.draw(toDraw.getSprite());
 
 	//draw all obstacles
 	int counter = 0;
-	for (std::vector<RectangleShape>::iterator obsIter = home.getObstacles().begin(); obsIter != home.getObstacles().end(); ++obsIter)
+	for (std::vector<RectangleShape>::iterator obsIter = toDraw.getObstacles().begin(); obsIter != toDraw.getObstacles().end(); ++obsIter)
 	{
-		window.draw(home.getObstacles()[counter]);
+		window.draw(toDraw.getObstacles()[counter]);
 		counter++;
 	}
 	
@@ -30,7 +34,6 @@ Location& World::getHome() {
 	return home;
 }
 void World::setupHome(RenderWindow &window) {
-	home.setup();
 
 	RectangleShape house(Vector2f(6 * PIXEL_SIZE, 4 * PIXEL_SIZE));
 	house.setPosition(Vector2f(32, 0));
@@ -61,9 +64,6 @@ void World::setupHome(RenderWindow &window) {
 	//Add the shape to the obstacle list
 	home.addToObstacles(house);
 	home.addToObstacles(trees);
-	
-	
-	//many obstacles make the player stuck. why?
 	home.addToObstacles(bigHouse1);
 	home.addToObstacles(bigHouse2);
 	home.addToObstacles(bigHouse3);
