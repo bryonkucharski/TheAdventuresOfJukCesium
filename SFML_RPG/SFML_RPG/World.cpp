@@ -11,14 +11,31 @@ World::World(RenderWindow &window) {
 }
 Location & World::getLocation(int requested) {
 	switch (requested) {
+		case 1:
+			return home;
+		case 2:
+			return town1;
+		case 3:
+			return bigHouseInterior;
+		case 4:
+			return forest;
+		default:
+			return home;
+
+	};
+}
+string World::getLocationString(int requested) {
+	switch (requested) {
 	case 1:
-		return home;
+		return home.getName();
 	case 2:
-		return town1;
+		return town1.getName();
 	case 3:
-		return bigHouseInterior;
+		return bigHouseInterior.getName();
 	case 4:
-		return forest;
+		return forest.getName();
+	default:
+		return home.getName();
 
 	};
 }
@@ -147,6 +164,10 @@ void World::setupTown() {
 	town1.addToLocationChanges(next3);
 
 }
-void World::addRectangle() {
+RectangleShape & World::createRectangle(Vector2f rectSize, Vector2f rectPosition, Color rectColor) {
+	RectangleShape rectangle(rectSize);
+	rectangle.setPosition(rectPosition);
+	rectangle.setFillColor(rectColor);
+	return rectangle;
 
 }

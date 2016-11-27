@@ -162,6 +162,7 @@
   <ItemGroup>
     <ClCompile Include="Creature.cpp" />
     <ClCompile Include="Entity.cpp" />
+    <ClCompile Include="GUIBar.cpp" />
     <ClCompile Include="Item.cpp" />
     <ClCompile Include="Location.cpp" />
     <ClCompile Include="main.cpp" />
@@ -174,6 +175,7 @@
   <ItemGroup>
     <ClInclude Include="Creature.h" />
     <ClInclude Include="Entity.h" />
+    <ClInclude Include="GUIBar.h" />
     <ClInclude Include="Item.h" />
     <ClInclude Include="Location.h" />
     <ClInclude Include="NPC.h" />

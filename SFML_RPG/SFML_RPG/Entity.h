@@ -14,10 +14,8 @@ class Entity {
 		Sprite& getSprite();
 		Text& getText();
 		Texture& getTexture();
-		
 
-	private:
-		
+	protected:
 		RectangleShape rect;
 		Sprite sprite;
 		Text text;

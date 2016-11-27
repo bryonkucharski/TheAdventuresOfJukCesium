@@ -41,9 +41,6 @@ public:
 	void setNext2Position(Vector2f pos);
 	void setNext3Position(Vector2f pos);
 
-
-	void setup();
-
 	void setEnemies();
 	void addToObstacles(RectangleShape& rectanlgeToAdd);
 	void addToLocationChanges(RectangleShape& rectanlgeToAdd);

@@ -3,23 +3,32 @@
 Creature::Creature(std::string creatureName, std::string file) {
 	
 	this->setName(creatureName);
-	this->getTexture().loadFromFile(file);
-	this->getSprite().setTexture(this->getTexture());
+	this->texture.loadFromFile(file);
+	this->sprite.setTexture(this->texture);
 }
 Creature::~Creature() {
 
 }
 //setters
-void Creature::setHealth(int h) {
-	this->health = h;
+void Creature::setCurrentHealth(int h) {
+	this->currentHealth = h;
+}
+void::Creature::setDamage(int d) {
+	this->damage = d;
 }
 void Creature::setLevel(int l) {
 	this->level = l;
 }
+void Creature::setTotalExperience(int xp) {
+	this->totalExperience = xp;
+}
+void Creature::setMaxHealth(int maxH) {
+	this->maxHealth = maxH;
+}
 void Creature::setName(std::string name) {
 	this->name = name;
 }
-void Creature::setSpeed(double s) {
+void Creature::setSpeed(float s) {
 	this->speed = s;
 }
 void Creature::setDirection(int d) {
@@ -42,11 +51,20 @@ void Creature::setCanWalkRight(bool right) {
 }
 
 //getters
-int Creature::getHealth() {
-	return health;
+int Creature::getCurrentHealth() {
+	return currentHealth;
+}
+int Creature::getMaxHealth() {
+	return maxHealth;
+}
+int Creature::getDamage() {
+	return damage;
 }
 int Creature::getLevel() {
 	return level;
+}
+int Creature::getTotalExperience() {
+	return totalExperience;
 }
 std::string Creature::getName() {
 	return name;
@@ -74,7 +92,7 @@ bool Creature::isWalkRightAllowed() {
 }
 
 void Creature::drawCreature(RenderWindow &window) {
-	window.draw(this->getSprite());
+	window.draw(this->sprite);
 }
 void Creature::setCurrentLocation(int l) {
 	this->currentLocation = l;

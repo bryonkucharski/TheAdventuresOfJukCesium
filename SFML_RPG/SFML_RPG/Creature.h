@@ -10,10 +10,13 @@ class Creature : public Entity
 		Creature(std::string creatureName, std::string file);
 		~Creature();
 
-		void setHealth(int h);
+		void setCurrentHealth(int h);
+		void setMaxHealth(int maxH);
+		void setDamage(int d);
 		void setLevel(int l);
+		void setTotalExperience(int xp);
 		void setName(std::string name);
-		void setSpeed(double s);
+		void setSpeed(float s);
 		void setDirection(int d);
 		void setWalkingCounter(int w);
 
@@ -22,8 +25,11 @@ class Creature : public Entity
 		void setCanWalkLeft(bool left);
 		void setCanWalkRight(bool right);
 
-		int getHealth();
+		int getCurrentHealth();
+		int getMaxHealth();
+		int getDamage();
 		int getLevel();
+		int getTotalExperience();
 		std::string getName();
 		double getSpeed();
 		int getDirection();
@@ -46,9 +52,12 @@ class Creature : public Entity
 		void drawCreature(RenderWindow &window);
 
 	private:
-		int health;
+		int damage;
+		int currentHealth;
+		int maxHealth;
 		float speed;
 		int level;
+		int totalExperience;
 		int direction;
 		int walkingCounter;
 		std::string name;

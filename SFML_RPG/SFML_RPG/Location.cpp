@@ -7,9 +7,9 @@ Location::Location(std::string locationName, std::string file, int locationID, i
 	
 	this->setFileName(file);
 	this->setName(locationName);
-	this->getTexture().loadFromFile(fileName);
-	this->getSprite().setTexture(this->getTexture());
-	this->getSprite().setPosition(Vector2f(0, 0));
+	this->texture.loadFromFile(fileName);
+	this->sprite.setTexture(this->texture);
+	this->sprite.setPosition(Vector2f(0, 0));
 
 	this->setLocationID(locationID);
 
@@ -21,11 +21,6 @@ Location::Location(std::string locationName, std::string file, int locationID, i
 	this->setNext2Position(nextPos2);
 	this->setNext3Position(nextPos3);
 		
-}
-void Location::setup() {
-	this->getTexture().loadFromFile(fileName);
-	this->getSprite().setTexture(this->getTexture());
-	this->getSprite().setPosition(Vector2f(0, 0));
 }
 Location::~Location() {}
 
