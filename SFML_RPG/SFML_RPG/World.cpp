@@ -289,6 +289,9 @@ void World::setupBigHouse() {
 	i24.setPosition(Vector2f(6 * PIXEL_SIZE, 14 * PIXEL_SIZE));
 	i24.setFillColor(Color::Transparent);
 	
+	//makes a rectangle, size of rectangle, location of rectangle, color, and location.
+	createObstacleRectangle(RectangleShape(), Vector2f(1 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(1 * PIXEL_SIZE, 1 * PIXEL_SIZE), Color::Blue, bigHouseInterior);
+
 	//add obstacles to list
 	bigHouseInterior.addToObstacles(topWall);
 	bigHouseInterior.addToObstacles(bc);
@@ -316,6 +319,7 @@ void World::setupBigHouse() {
 	bigHouseInterior.addToObstacles(i22);
 	bigHouseInterior.addToObstacles(i23);
 	bigHouseInterior.addToObstacles(i24);
+	//bigHouseInterior.addToObstacles(i25);
 
 	//Add ALL location changes for bigHouseInterior
 	RectangleShape next1(Vector2f(PIXEL_SIZE * 2, PIXEL_SIZE * 1));
@@ -357,10 +361,19 @@ void World::setupTown() {
 	town1.addToLocationChanges(next3);
 
 }
-void World::createRectangle(RectangleShape &rectangle, Vector2f rectSize, Vector2f rectPosition, Color rectColor) {
+void World::createObstacleRectangle(RectangleShape &rectangle, Vector2f rectSize, Vector2f rectPosition, Color rectColor, Location &loc) {
 	rectangle.setSize(rectSize);
 	rectangle.setPosition(rectPosition);
 	rectangle.setFillColor(rectColor);
-	
+	//we should also add this rectangle to the add to obstacles list too.
+	loc.addToObstacles(rectangle);
 
+}
+
+void World::createLocationRectangle(RectangleShape &rectangle, Vector2f rectSize, Vector2f rectPosition, Color rectColor, Location &loc) {
+	rectangle.setSize(rectSize);
+	rectangle.setPosition(rectPosition);
+	rectangle.setFillColor(rectColor);
+	//we should also add this rectangle to the add to obstacles list too.
+	loc.addToLocationChanges(rectangle);
 }

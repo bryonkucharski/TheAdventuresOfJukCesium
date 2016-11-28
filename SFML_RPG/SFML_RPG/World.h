@@ -23,7 +23,8 @@ class World
 
 	private:
 		//used to draw obstacles/location changers
-		void createRectangle(RectangleShape &rectangle, Vector2f rectSize, Vector2f rectPosition, Color rectColor);
+		void createObstacleRectangle(RectangleShape &rectangle, Vector2f rectSize, Vector2f rectPosition, Color rectColor, Location &loc);
+		void createLocationRectangle(RectangleShape &rectangle, Vector2f rectSize, Vector2f rectPosition, Color rectColor, Location &loc);
 
 		Location home;
 		Location town1;
