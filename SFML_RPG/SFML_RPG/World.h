@@ -32,6 +32,15 @@ class World
 		Location forest;
 		Location graveyard;
 		Location dungeon;
+		Location beach;
+		Location ghostShed;
+		Location market;
+		Location port;
+		Location pub;
+		Location waterfall; // WF = waterfall.
+		Location WFbossRoom;// This is the water fall boss room.
+		Location WFcorridor;// This is the staircase that goes down from waterfall.
+
 
 };
 
