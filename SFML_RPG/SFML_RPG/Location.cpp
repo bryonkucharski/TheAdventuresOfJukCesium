@@ -9,10 +9,10 @@ Location::Location(std::string locationName, std::string file, int locationID, i
 	this->setName(locationName);
 	this->texture.loadFromFile(fileName);
 	this->sprite.setTexture(this->texture);
-	this->sprite.setPosition(Vector2f(0, 0));
+	this->sprite.setPosition(Vector2f(0, 0));//this is setting the player to the 0, 0 area.
 
 	this->setLocationID(locationID);
-
+	//we should make more locations, like a next4
 	this->setLocation1(next1);
 	this->setLocation2(next2);
 	this->setLocation3(next3);
