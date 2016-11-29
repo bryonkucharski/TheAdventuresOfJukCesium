@@ -56,6 +56,7 @@ std::vector<RectangleShape>& Location::getObstacles() {
 	return obstacles;
 }
 
+//setters
 void Location::setLocation1(int locationNum) {
 	this->nextLocation1 = locationNum;
 
@@ -66,7 +67,11 @@ void Location::setLocation2(int locationNum) {
 void Location::setLocation3(int locationNum) {
 	this->nextLocation3 = locationNum;
 }
+void Location::setLocation4(int locationNum) {
+	this->nextLocation2;
+}
 
+//getters
 int Location::getLocation1() {
 	return nextLocation1;
 }
@@ -75,6 +80,9 @@ int Location::getLocation2() {
 }
 int Location::getLocation3() {
 	return nextLocation3;
+}
+int Location::getLocation4() {
+	return nextLocation4;
 }
 Vector2f Location::getNext1Position() {
 	return next1Position;
