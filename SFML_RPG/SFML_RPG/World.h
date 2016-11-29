@@ -31,6 +31,7 @@ class World
 		//Keep this in alphabetical order. It helps me with reading the maps and verifying if a map is there or not.
 		Location beach;// below forest2
 		Location bigHouseInterior;//in home
+		Location brokenShackHouse; //in home
 		Location castle;// in townAroundCastle
 		Location dungeon;
 		Location farm;// right of market
