@@ -407,6 +407,30 @@ void World::setupForest() {
 	
 }
 void World::setupTown() {
+	// rectangle, size, location, color, name
+	createObstacleRectangle(RectangleShape(), Vector2f(1 * PIXEL_SIZE - 31, 3 * PIXEL_SIZE), Vector2f(12 * PIXEL_SIZE, 3 * PIXEL_SIZE), Color::Blue, town1);
+	createObstacleRectangle(RectangleShape(), Vector2f(3 * PIXEL_SIZE, 1 * PIXEL_SIZE - 31), Vector2f(12 * PIXEL_SIZE, 3 * PIXEL_SIZE), Color::Blue, town1);
+	createObstacleRectangle(RectangleShape(), Vector2f(12 * PIXEL_SIZE, 6 * PIXEL_SIZE), Vector2f(12 * PIXEL_SIZE, 6 * PIXEL_SIZE), Color::Blue, town1);
+	createObstacleRectangle(RectangleShape(), Vector2f(3 * PIXEL_SIZE, 2 * PIXEL_SIZE), Vector2f(0 * PIXEL_SIZE, 1 * PIXEL_SIZE), Color::Blue, town1);
+	createObstacleRectangle(RectangleShape(), Vector2f(2 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(0 * PIXEL_SIZE, 3 * PIXEL_SIZE), Color::Blue, town1);
+	createObstacleRectangle(RectangleShape(), Vector2f(1 * PIXEL_SIZE - 16, 1 * PIXEL_SIZE), Vector2f(3 * PIXEL_SIZE, 1 * PIXEL_SIZE), Color::Blue, town1);
+	createObstacleRectangle(RectangleShape(), Vector2f(1 * PIXEL_SIZE, 2 * PIXEL_SIZE), Vector2f(3 * PIXEL_SIZE, 2* PIXEL_SIZE), Color::Blue, town1);
+	createObstacleRectangle(RectangleShape(), Vector2f(1 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(4 * PIXEL_SIZE, 2 * PIXEL_SIZE), Color::Blue, town1);
+	createObstacleRectangle(RectangleShape(), Vector2f(1 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(5 * PIXEL_SIZE, 1 * PIXEL_SIZE), Color::Blue, town1);
+	createObstacleRectangle(RectangleShape(), Vector2f(1 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(12 * PIXEL_SIZE, 0 * PIXEL_SIZE), Color::Blue, town1);
+	createObstacleRectangle(RectangleShape(), Vector2f(1 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(4 * PIXEL_SIZE, 15 * PIXEL_SIZE), Color::Blue, town1);
+	createObstacleRectangle(RectangleShape(), Vector2f(1 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(0 * PIXEL_SIZE, 16 * PIXEL_SIZE), Color::Blue, town1);
+	createObstacleRectangle(RectangleShape(), Vector2f(1 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(20 * PIXEL_SIZE, 14 * PIXEL_SIZE), Color::Blue, town1);
+	createObstacleRectangle(RectangleShape(), Vector2f(1 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(21 * PIXEL_SIZE, 11 * PIXEL_SIZE), Color::Blue, town1);
+	createObstacleRectangle(RectangleShape(), Vector2f(1 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(7 * PIXEL_SIZE, 9 * PIXEL_SIZE), Color::Blue, town1);
+	createObstacleRectangle(RectangleShape(), Vector2f(1 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(29 * PIXEL_SIZE, 1 * PIXEL_SIZE), Color::Blue, town1);
+	createObstacleRectangle(RectangleShape(), Vector2f(1 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(29 * PIXEL_SIZE, 3 * PIXEL_SIZE), Color::Blue, town1);
+	createObstacleRectangle(RectangleShape(), Vector2f(1 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(28 * PIXEL_SIZE, 7 * PIXEL_SIZE), Color::Blue, town1);
+	createObstacleRectangle(RectangleShape(), Vector2f(1 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(23 * PIXEL_SIZE, 7 * PIXEL_SIZE), Color::Blue, town1);
+	createObstacleRectangle(RectangleShape(), Vector2f(1 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(12 * PIXEL_SIZE, 3 * PIXEL_SIZE), Color::Blue, town1);
+	createObstacleRectangle(RectangleShape(), Vector2f(1 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(21 * PIXEL_SIZE, 3 * PIXEL_SIZE), Color::Blue, town1);
+	createObstacleRectangle(RectangleShape(), Vector2f(1 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(21 * PIXEL_SIZE, 6 * PIXEL_SIZE), Color::Blue, town1);
+
 	RectangleShape next1(Vector2f(PIXEL_SIZE * 1, PIXEL_SIZE * 2));
 	next1.setPosition(Vector2f(0, PIXEL_SIZE * 12));
 	next1.setFillColor(Color::Blue);
@@ -439,4 +463,13 @@ void World::createLocationRectangle(RectangleShape &rectangle, Vector2f rectSize
 	rectangle.setFillColor(rectColor);
 	//we should also add this rectangle to the add to obstacles list too.
 	loc.addToLocationChanges(rectangle);
+}
+
+void World::createObstacleRectangle(Vector2f rectSize, Vector2f rectPosition, Color rectColor, Location &loc) {
+	RectangleShape rectangle;
+	rectangle.setSize(rectSize);
+	rectangle.setPosition(rectPosition);
+	rectangle.setFillColor(rectColor);
+	//we should also add this rectangle to the add to obstacles list too.
+	loc.addToObstacles(rectangle);
 }

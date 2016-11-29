@@ -25,23 +25,24 @@ class World
 		//used to draw obstacles/location changers
 		void createObstacleRectangle(RectangleShape &rectangle, Vector2f rectSize, Vector2f rectPosition, Color rectColor, Location &loc);
 		void createLocationRectangle(RectangleShape &rectangle, Vector2f rectSize, Vector2f rectPosition, Color rectColor, Location &loc);
-
+		void World::createObstacleRectangle(Vector2f rectSize, Vector2f rectPosition, Color rectColor, Location &loc);
 		
 		
 		//Keep this in alphabetical order. It helps me with reading the maps and verifying if a map is there or not.
+		//Location className; //Description of Location.
 		Location beach;// below forest2
 		Location bigHouseInterior;//in home
 		Location brokenShackHouse; //in home
 		Location castle;// in townAroundCastle
-		Location dungeon;
+		Location dungeon;//not used atm.
 		Location farm;// right of market
-		Location forest;//left oh home
-		Location forest2;//left of forest;
+		Location forest;//left of home
+		Location forest2;//left of forest
 		Location ghostShed;//in graveyard
 		Location graveyard;//below market
 		Location grotto;// right of town
 		Location hermitHouse;//inside grotto
-		Location home;// origin position of the map, right of forest, left of grotto
+		Location home;// origin position of the map, right of forest, left of town
 		Location inn;//in townAroundCastle
 		Location insideMarketTent;//in market
 		Location market;//below town1, above graveyard, left of farm
