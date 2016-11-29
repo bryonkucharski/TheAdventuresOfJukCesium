@@ -9,19 +9,19 @@ World::World(RenderWindow &window) {
 	
 
 
-	//town1 = *new Location("Mill Creek", "res/Locations/Town1.png", 2, 4, 3, 1, Vector2f(0, 0), Vector2f(0, 0), Vector2f(0, 0));
-	beach = *new Location("Home Neighborhood", "res/Locations/beach.png", 5, 4, 6, 0, 0, Vector2f(0, 0), Vector2f(0, 0), Vector2f(0, 0), Vector2f(0, 0));
-	bigHouseInterior = *new Location("Home Sweet Home", "res/Locations/BigHouseInterior.png", 2, 1, 0, 0, 0, Vector2f(0, 0), Vector2f(0, 0), Vector2f(0, 0), Vector2f(0, 0));
+	//town1 = *new Location("Mill Creek", "res/Locations/Town1.png", 2, 4, 3, 1, new location in new area Vector2f(0, 0), Vector2f(0, 0), Vector2f(0, 0));
+	beach = *new Location("Home Neighborhood", "res/Locations/beach.png", 5, 4, 6, 0, 0, Vector2f(11 * PIXEL_SIZE, 18 * PIXEL_SIZE), Vector2f(0, 0), Vector2f(0, 0), Vector2f(0, 0));
+	bigHouseInterior = *new Location("Home Sweet Home", "res/Locations/BigHouseInterior.png", 2, 1, 0, 0, 0, Vector2f(0 * PIXEL_SIZE, 0 * PIXEL_SIZE), Vector2f(0 * PIXEL_SIZE, 0 * PIXEL_SIZE), Vector2f(0 * PIXEL_SIZE, 0 * PIXEL_SIZE), Vector2f(0 * PIXEL_SIZE, 0 * PIXEL_SIZE));
 	castle = *new Location("Home Neighborhood", "res/Locations/castle.png", 10, 8, 0, 0, 0, Vector2f(0, 0), Vector2f(0, 0), Vector2f(0, 0), Vector2f(0, 0));
 	forest = *new Location("Hollow Forest", "res/Locations/Forest1.png", 3, 4, 8, 1, 0, Vector2f(0, 0), Vector2f(0, 0), Vector2f(0, 0), Vector2f(0, 0));
 	forest2 = *new Location("Hollow Forest", "res/Locations/forest2.png", 4, 5, 3, 0, 0, Vector2f(0, 0), Vector2f(0, 0), Vector2f(0, 0), Vector2f(0, 0));
 	ghostShed = *new Location("Hollow Forest", "res/Locations/ghostShed.png", 13, 12, 0, 0, 0, Vector2f(0, 0), Vector2f(0, 0), Vector2f(0, 0), Vector2f(0, 0));
 	graveyard = *new Location("Hollow Forest", "res/Locations/Graveyard.png", 12, 11, 13, 0, 0, Vector2f(0, 0), Vector2f(0, 0), Vector2f(0, 0), Vector2f(0, 0));
-	home = *new Location("Home Neighborhood", "res/Locations/home.png", 1, 3, 11, 2, 0, Vector2f(0, 0), Vector2f(0, 0), Vector2f(0, 0), Vector2f(0, 0));
+	home = *new Location("Home Neighborhood", "res/Locations/home.png", 1, 3, 2, 11, 0, Vector2f(0, 0), Vector2f(0, 0), Vector2f(0, 0), Vector2f(0, 0));
 	market = *new Location("Hollow Forest", "res/Locations/market.png", 11, 1, 12, 0, 0, Vector2f(0, 0), Vector2f(0, 0), Vector2f(0, 0), Vector2f(0, 0));
-	pub = *new Location("Hollow Forest", "res/Locations/pub.png", 9, 8, 0, 0, 0, Vector2f(0, 0), Vector2f(0, 0), Vector2f(0, 0), Vector2f(0, 0));
-	townAroundCastle = *new Location("Hollow Forest", "res/Locations/townAroundCastle.png", 8, 3, 9, 10, 0, Vector2f(0, 0), Vector2f(0, 0), Vector2f(0, 0), Vector2f(0, 0));
-	waterfall = *new Location("Hollow Forest", "res/Locations/waterfall.png", 6, 5, 14, 14, 0, Vector2f(0, 0), Vector2f(0, 0), Vector2f(0, 0), Vector2f(0, 0));
+	pub = *new Location("Pub", "res/Locations/pub.png", 9, 8, 0, 0, 0, Vector2f(3*PIXEL_SIZE, 10*PIXEL_SIZE), Vector2f(0, 0), Vector2f(0, 0), Vector2f(0, 0));
+	townAroundCastle = *new Location("Hollow Forest", "res/Locations/townAroundCastle.png", 8, 3, 9, 10, 0, Vector2f(0, 0), Vector2f(9*PIXEL_SIZE, 17*PIXEL_SIZE), Vector2f(0, 0), Vector2f(0, 0));
+	waterfall = *new Location("Hollow Forest", "res/Locations/waterfall.png", 6, 5, 14, 14, 0, Vector2f(14 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(0, 0), Vector2f(0, 0), Vector2f(0, 0));
 	WFbossRoom = *new Location("Hollow Forest", "res/Locations/WFbossRoom.png", 7, 14, 0, 0, 0, Vector2f(0, 0), Vector2f(0, 0), Vector2f(0, 0), Vector2f(0, 0));
 	WFcorridor = *new Location("Hollow Forest", "res/Locations/WFcorridor.png", 14, 6, 6, 7, 0, Vector2f(0, 0), Vector2f(0, 0), Vector2f(0, 0), Vector2f(0, 0));
 
@@ -35,6 +35,7 @@ World::World(RenderWindow &window) {
 	this->setupWaterfall();
 	this->setupWFbossRoom();
 	this->setupTownAroundCastle();
+	this->setupMarket();
 	this->setupPub();
 	this->setupCastle();
 	this->setupGraveyard();
@@ -353,7 +354,7 @@ void World::setupBigHouse() {
 	RectangleShape i24(Vector2f(1 * PIXEL_SIZE, 1 * PIXEL_SIZE));
 	i24.setPosition(Vector2f(6 * PIXEL_SIZE, 14 * PIXEL_SIZE));
 	i24.setFillColor(Color::Transparent);
-	
+
 	//makes a rectangle, size of rectangle, location of rectangle, color, and location.
 	//createObstacleRectangle(RectangleShape(), Vector2f(1 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(1 * PIXEL_SIZE, 1 * PIXEL_SIZE), Color::Blue, bigHouseInterior);
 
@@ -394,6 +395,7 @@ void World::setupBigHouse() {
 	//Add change locations to the list.
 	bigHouseInterior.addToLocationChanges(next1);
 }
+
 
 
 void World::setupForest() {
@@ -517,82 +519,56 @@ void World::setupForest2() {
 	createLocationRectangle(Vector2f(1 * PIXEL_SIZE, 3 * PIXEL_SIZE), Vector2f(29 * PIXEL_SIZE, 8 * PIXEL_SIZE), Color::Red, forest2);
 }
 void World::setupBeach() {
-
-
-
+	//creating location changes
+	createLocationRectangle(Vector2f(2 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(14 * PIXEL_SIZE, 0 * PIXEL_SIZE + 1), Color::Yellow, beach);
+	createLocationRectangle(Vector2f(1 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(6 * PIXEL_SIZE, 1 * PIXEL_SIZE + 1), Color::Yellow, beach);
 
 
 }
 void World::setupWaterfall() {
-
-
-
-
-
+	//creating Locaiton Changes
+	createLocationRectangle(Vector2f(1 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(4 * PIXEL_SIZE, 3 * PIXEL_SIZE + 1), Color::Yellow, waterfall);
+	createLocationRectangle(Vector2f(1 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(2 * PIXEL_SIZE, 14 * PIXEL_SIZE), Color::Yellow, waterfall);
+	createLocationRectangle(Vector2f(1 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(26 * PIXEL_SIZE, 3 * PIXEL_SIZE + 1), Color::Yellow, waterfall);
 
 }
 void World::setupWFbossRoom() {
-
-
-
-
+	//creating locaiton changes
+	createLocationRectangle(Vector2f(1 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(12 * PIXEL_SIZE, 0 * PIXEL_SIZE), Color::Yellow, WFbossRoom);
+	
 
 
 }
 void World::setupTownAroundCastle() {
-
-
-
-
-
-
+	createLocationRectangle(Vector2f(4 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(13 * PIXEL_SIZE, 19 * PIXEL_SIZE), Color::Red, townAroundCastle);
+	createLocationRectangle(Vector2f(1 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(3 * PIXEL_SIZE, 9 * PIXEL_SIZE), Color::Red, townAroundCastle);
+	createLocationRectangle(Vector2f(2 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(14 * PIXEL_SIZE, 10 * PIXEL_SIZE), Color::Red, townAroundCastle);
 }
 void World::setupPub() {
-
-
-
-
-
-
+	createLocationRectangle(Vector2f(2 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(9 * PIXEL_SIZE, 18 * PIXEL_SIZE), Color::Red, pub);
 }
 void World::setupCastle() {
-
-
-
-
-
-
+	createLocationRectangle(Vector2f(4 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(13 * PIXEL_SIZE, 17 * PIXEL_SIZE), Color::Red, castle);
 }
 void World::setupMarket() {
 
-
-
-
-
-
+	createLocationRectangle(Vector2f(2 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(2 * PIXEL_SIZE, 0 * PIXEL_SIZE), Color::Red, market);
+	createLocationRectangle(Vector2f(2 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(12 * PIXEL_SIZE, 19 * PIXEL_SIZE), Color::Red, market);
 }
 void World::setupGraveyard() {
 
-
-
-
-
-
+	createLocationRectangle(Vector2f(2 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(14 * PIXEL_SIZE, 0 * PIXEL_SIZE), Color::Red, graveyard);
+	createLocationRectangle(Vector2f(1 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(27 * PIXEL_SIZE, 10 * PIXEL_SIZE + 5), Color::Red, graveyard);
 }
 void World::setupGhostShed() {
 
-
-
-
-
-
+	createLocationRectangle(Vector2f(3 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(17 * PIXEL_SIZE, 18 * PIXEL_SIZE), Color::Red, ghostShed);
 }
 void World::setupWFcorridor(){
-
-
-
-
-
+	//setting up location changes
+	createLocationRectangle(Vector2f(1 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(8 * PIXEL_SIZE, 15 * PIXEL_SIZE), Color::Yellow, WFcorridor);
+	createLocationRectangle(Vector2f(1 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(26 * PIXEL_SIZE, 10 * PIXEL_SIZE), Color::Yellow, WFcorridor);
+	createLocationRectangle(Vector2f(1 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(19 * PIXEL_SIZE, 19 * PIXEL_SIZE), Color::Yellow, WFcorridor);
 
 }
 
