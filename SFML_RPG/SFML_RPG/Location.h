@@ -12,7 +12,7 @@ class Location : public Entity
 {
 public:
 	Location();
-	Location(std::string locationName, std::string file, int locationID, int next1, int next2, int next3, Vector2f nextPos1, Vector2f nextPos2, Vector2f nextPos3);
+	Location(std::string locationName, std::string file, int locationID, int next1, int next2, int next3, int next4, Vector2f nextPos1, Vector2f nextPos2, Vector2f nextPos3, Vector2f nextPos4);
 	~Location();
 
 
@@ -28,18 +28,22 @@ public:
 	void setLocation1(int locationNum);
 	void setLocation2(int locationNum);
 	void setLocation3(int locationNum);
+	void setLocation4(int locationNum);
 
 	int getLocation1();
 	int getLocation2();
 	int getLocation3();
+	int getLocation4();
 
 	Vector2f getNext1Position();
 	Vector2f getNext2Position();
 	Vector2f getNext3Position();
+	Vector2f getNext4Position();
 
 	void setNext1Position(Vector2f pos);
 	void setNext2Position(Vector2f pos);
 	void setNext3Position(Vector2f pos);
+	void setNext4Position(Vector2f pos);
 
 	void setEnemies();
 	void addToObstacles(RectangleShape& rectanlgeToAdd);
@@ -63,6 +67,8 @@ private:
 	Vector2f next2Position;
 	int nextLocation3;
 	Vector2f next3Position;
+	int nextLocation4;
+	Vector2f next4Position;
 };
 #endif // !LOCATION_H
 
