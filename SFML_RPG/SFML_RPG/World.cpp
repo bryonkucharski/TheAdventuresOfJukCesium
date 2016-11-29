@@ -518,32 +518,81 @@ void World::setupForest2() {
 }
 void World::setupBeach() {
 
+
+
+
+
 }
 void World::setupWaterfall() {
+
+
+
+
+
 
 }
 void World::setupWFbossRoom() {
 
+
+
+
+
+
 }
 void World::setupTownAroundCastle() {
+
+
+
+
+
 
 }
 void World::setupPub() {
 
+
+
+
+
+
 }
 void World::setupCastle() {
+
+
+
+
+
 
 }
 void World::setupMarket() {
 
+
+
+
+
+
 }
 void World::setupGraveyard() {
+
+
+
+
+
 
 }
 void World::setupGhostShed() {
 
+
+
+
+
+
 }
 void World::setupWFcorridor(){
+
+
+
+
+
 
 }
 
