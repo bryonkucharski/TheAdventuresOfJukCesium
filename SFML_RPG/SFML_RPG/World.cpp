@@ -410,7 +410,7 @@ void World::setupTown() {
 	// rectangle, size, location, color, name
 	createObstacleRectangle(RectangleShape(), Vector2f(1 * PIXEL_SIZE - 31, 3 * PIXEL_SIZE), Vector2f(12 * PIXEL_SIZE, 3 * PIXEL_SIZE), Color::Blue, town1);
 	createObstacleRectangle(RectangleShape(), Vector2f(3 * PIXEL_SIZE, 1 * PIXEL_SIZE - 31), Vector2f(12 * PIXEL_SIZE, 3 * PIXEL_SIZE), Color::Blue, town1);
-	createObstacleRectangle(RectangleShape(), Vector2f(12 * PIXEL_SIZE, 6 * PIXEL_SIZE), Vector2f(12 * PIXEL_SIZE, 6 * PIXEL_SIZE), Color::Blue, town1);
+	createObstacleRectangle(RectangleShape(), Vector2f(3 * PIXEL_SIZE, 2 * PIXEL_SIZE), Vector2f(12 * PIXEL_SIZE, 6 * PIXEL_SIZE), Color::Blue, town1);
 	createObstacleRectangle(RectangleShape(), Vector2f(3 * PIXEL_SIZE, 2 * PIXEL_SIZE), Vector2f(0 * PIXEL_SIZE, 1 * PIXEL_SIZE), Color::Blue, town1);
 	createObstacleRectangle(RectangleShape(), Vector2f(2 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(0 * PIXEL_SIZE, 3 * PIXEL_SIZE), Color::Blue, town1);
 	createObstacleRectangle(RectangleShape(), Vector2f(1 * PIXEL_SIZE - 16, 1 * PIXEL_SIZE), Vector2f(3 * PIXEL_SIZE, 1 * PIXEL_SIZE), Color::Blue, town1);
@@ -430,6 +430,9 @@ void World::setupTown() {
 	createObstacleRectangle(RectangleShape(), Vector2f(1 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(12 * PIXEL_SIZE, 3 * PIXEL_SIZE), Color::Blue, town1);
 	createObstacleRectangle(RectangleShape(), Vector2f(1 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(21 * PIXEL_SIZE, 3 * PIXEL_SIZE), Color::Blue, town1);
 	createObstacleRectangle(RectangleShape(), Vector2f(1 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(21 * PIXEL_SIZE, 6 * PIXEL_SIZE), Color::Blue, town1);
+	createObstacleRectangle(RectangleShape(), Vector2f(2 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(13 * PIXEL_SIZE, 8 * PIXEL_SIZE), Color::Blue, town1);
+	createObstacleRectangle(RectangleShape(), Vector2f(4 * PIXEL_SIZE, 2 * PIXEL_SIZE), Vector2f(19 * PIXEL_SIZE, 8 * PIXEL_SIZE), Color::Blue, town1);
+
 
 	RectangleShape next1(Vector2f(PIXEL_SIZE * 1, PIXEL_SIZE * 2));
 	next1.setPosition(Vector2f(0, PIXEL_SIZE * 12));
