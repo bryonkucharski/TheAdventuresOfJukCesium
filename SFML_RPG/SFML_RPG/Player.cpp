@@ -71,6 +71,10 @@ void Player::updatePlayer(RenderWindow &window) {
 				newPosition = wrld.getLocation(this->getCurrentLocation()).getNext3Position();
 				newLocation = wrld.getLocation(this->getCurrentLocation()).getLocation3();
 			}
+			if (counter == 3) {
+				//newPosition = wrld.getLocation(this->getCurrentLocation()).getNext4Position();
+				///newLocation = wrld.getLocation(this->getCurrentLocation()).getLocation4();
+			}
 			this->rect.setPosition(newPosition);
 			this->setCurrentLocation(newLocation);
 			break;
