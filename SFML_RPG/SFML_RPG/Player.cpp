@@ -8,7 +8,7 @@ Player::Player(std::string playerName, std::string file, World &world) : Creatur
 	this->setSpeed(3);
 	this->setCurrentLocation(1);
 	this->rect.setSize(Vector2f(28, 28));
-	this->sprite.setPosition(Vector2f(2, 2));
+	//this->sprite.setPosition(Vector2f(2, 2));
 	this->setAllWalk(true);
 	this->wrld = world;
 
@@ -75,9 +75,19 @@ void Player::updatePlayer(RenderWindow &window) {
 				newPosition = wrld.getLocation(this->getCurrentLocation()).getNext4Position();
 				newLocation = wrld.getLocation(this->getCurrentLocation()).getLocation4();
 			}
+			
+			//this->setCurrentPosition(newPosition);
 			this->rect.setPosition(newPosition);
+			sprite.setPosition(newPosition);
 			this->setCurrentLocation(newLocation);
-			break;
+			
+			
+			
+			cout << "Location Change to " << newLocation << " to position " << newPosition.x << " " << newPosition.y << endl;
+			//cout << "Player's current location is " << getCurrentPosition().x  << " " << getCurrentPosition().y  << endl;
+			cout << "Rectangle Position " << this->rect.getPosition().x << " " << this->rect.getPosition().y << endl;
+			cout << "Sprite's Position " << this->sprite.getPosition().x << " " << this->sprite.getPosition().y << endl;
+ 			break;
 		}
 		counter++;
 	}
