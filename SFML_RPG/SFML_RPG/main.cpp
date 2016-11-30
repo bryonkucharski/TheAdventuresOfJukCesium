@@ -5,6 +5,7 @@
 #include "World.h"
 #include "Player.h"
 #include "GUIBar.h"
+
 using namespace std;
 
 #define PIXEL_SIZE 32
@@ -36,6 +37,8 @@ int main()
 	World world(window);
 	Player mainPlayer("Main Player", "res/Creatures/main.png",world);
 	GUIBar guibar(window, "res/System/GUIbar.png","res/Fonts/Vecna.otf");
+
+
 
 	while (window.isOpen())
 	{

@@ -133,15 +133,39 @@ void World::drawWorld(RenderWindow &window, Location &toDraw) {
 		counter2++;
 	}
 
+	//draw all location enemies
+	int counter3 = 0; 
+	for (std::vector<Enemy>::iterator enemyIter = toDraw.getEnemies().begin(); enemyIter != toDraw.getEnemies().end(); ++enemyIter)
+	{
+		if (toDraw.getEnemies()[counter3].isAlive())
+		{
+			//dra and update enemy
+			toDraw.getEnemies()[counter3].updateEnemy(window);
+
+		}
+		else {
+			toDraw.getEnemies().erase(enemyIter);
+			//need this break statement so the game doesnt break
+			break;
+		}
+		counter3++;
+	}
+
 }
 
 void World::setupHome(RenderWindow &window) {
+
+	Enemy gargoyle("res/Creatures/gargoyle.png", "Gargoyle", 100, 2);
+	home.addToEnemies(gargoyle);
+
+
 
 	/*Add ALL obstacles for HOME*/
 	//making the small house
 	RectangleShape house1(Vector2f(4 * PIXEL_SIZE, 4 * PIXEL_SIZE));
 	house1.setPosition(Vector2f(1 * PIXEL_SIZE, 0 * PIXEL_SIZE));
 	house1.setFillColor(Color::Transparent);
+
 	RectangleShape house2(Vector2f(2 * PIXEL_SIZE, 3 * PIXEL_SIZE));
 	house2.setPosition(Vector2f(5 * PIXEL_SIZE, 0 * PIXEL_SIZE));
 	house2.setFillColor(Color::Transparent);

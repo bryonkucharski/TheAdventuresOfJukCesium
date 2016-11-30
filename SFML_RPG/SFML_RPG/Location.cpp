@@ -12,7 +12,7 @@ Location::Location(std::string locationName, std::string file, int locationID, i
 	this->sprite.setPosition(Vector2f(0, 0));//this is setting the player to the 0, 0 area.
 
 	this->setLocationID(locationID);
-	//we should make more locations, like a next4
+
 	this->setLocation1(next1);
 	this->setLocation2(next2);
 	this->setLocation3(next3);
@@ -111,7 +111,13 @@ void Location::setNext4Position(Vector2f pos) {
 void Location::addToLocationChanges(RectangleShape& rectanlgeToAdd) {
 	this->locationChanges.push_back(rectanlgeToAdd);
 }
+void Location::addToEnemies(Enemy &enemyToAdd) {
+	this->enemies.push_back(enemyToAdd);
+}
 
 std::vector<RectangleShape>& Location::getLocationChanges() {
 	return locationChanges;
+}
+std::vector<Enemy> & Location::getEnemies() {
+	return enemies;
 }

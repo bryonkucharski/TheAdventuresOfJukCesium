@@ -2,7 +2,6 @@
 #define CREATURE_H
 
 #include "Entity.h"
-#include "Location.h"
 
 class Creature : public Entity 
 {
