@@ -24,7 +24,7 @@ Player::~Player() {
 }
 //handles player movements. called every frame in main.
 void Player::updatePlayer(RenderWindow &window) {
-
+	
 	//implement spriting by holding shift, MH
 	if (Keyboard::isKeyPressed(Keyboard::LShift) || Keyboard::isKeyPressed(Keyboard::RControl))
 	{
@@ -80,14 +80,15 @@ void Player::updatePlayer(RenderWindow &window) {
 			this->rect.setPosition(newPosition);
 			sprite.setPosition(newPosition);
 			this->setCurrentLocation(newLocation);
+			this->setCurrentPosition(this->rect.getPosition());
 			
-			
-			
+
 			cout << "Location Change to " << newLocation << " to position " << newPosition.x << " " << newPosition.y << endl;
 			//cout << "Player's current location is " << getCurrentPosition().x  << " " << getCurrentPosition().y  << endl;
 			cout << "Rectangle Position " << this->rect.getPosition().x << " " << this->rect.getPosition().y << endl;
 			cout << "Sprite's Position " << this->sprite.getPosition().x << " " << this->sprite.getPosition().y << endl;
- 			break;
+
+			return;
 		}
 		counter++;
 	}
