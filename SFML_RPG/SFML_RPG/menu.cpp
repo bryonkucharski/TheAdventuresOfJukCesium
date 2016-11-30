@@ -1,10 +1,10 @@
 #include "menu.h"
 #include <string>
-menu::menu() {
+Menu::Menu() {
 	//nothing is here
 }
 
-menu::menu(double width, double height) {
+Menu::Menu(double width, double height) {
 	cout << "Object menu has been created." << std::endl;
 	if (!font.loadFromFile("res/IMMORTAL.ttf")) {
 		//exit
@@ -61,19 +61,19 @@ menu::menu(double width, double height) {
 
 }//end of menu class
 
-menu::~menu() {
+Menu::~Menu() {
 	cout << "Object menu has been destroyed." << std::endl;
 }
 
 
-void menu::drawMenu(RenderWindow &window) {
+void Menu::drawMenu(RenderWindow &window) {
 	for (int i = 0; i < MAX_ITEMS; i++) {
 		window.draw(menuText[i]);
 		window.draw(menuTitle);
 	}
 }//end of drawMenu()
 
-void menu::menuStart() {
+void Menu::menuStart() {
 	if (menuIndex == 0) {
 		menuText[menuIndex].setFillColor(sf::Color::Red);
 		menuText[menuIndex].setString("[" + menuArray[menuIndex] + "]");
@@ -81,14 +81,14 @@ void menu::menuStart() {
 	}
 }//end of menuStart()
 
-void menu::menuUP() {
+void Menu::menuUP() {
 	if (menuIndex != 0 ){
 		menuIndex--;
 		setColor();
 	}
 }//end of menuUP()
 
-void menu::menuDN() {
+void Menu::menuDN() {
 	if (menuIndex != MAX_ITEMS -1 ) {
 		//minus 1 becaues the array slots of MAX_ITEMS is 4, and the index only reaches 3
 		menuIndex++;
@@ -99,7 +99,7 @@ void menu::menuDN() {
 
 
 //This will change the color of the menu items
-void menu::setColor() {
+void Menu::setColor() {
 	for (int i = 0; i < MAX_ITEMS; i++) {
 		if (i == menuIndex) {
 			//if you are selecting the spot, aka index, make it red.
@@ -116,11 +116,11 @@ void menu::setColor() {
 }//end of setColor()
 
 
-void menu::menuMusicStop() {
+void Menu::menuMusicStop() {
 	menuMusic.stop();
 }//end of menuMusicStop
 
-void menu::screen1Music() {
+void Menu::screen1Music() {
 	//Loading new music for screen 1.
 	if (!screen1Mus.openFromFile("res/Town3.ogg")) {
 		cout << "screen1Music did not open" << std::endl;
