@@ -5,6 +5,8 @@
 #define PIXEL_SIZE 32
 World::World() {
 };
+World::~World() {
+}
 World::World(RenderWindow &window) {
 	
 
@@ -26,11 +28,10 @@ World::World(RenderWindow &window) {
 	WFcorridor = *new Location("Hollow Forest", "res/Locations/WFcorridor.png", 14, 6, 6, 7, 0, Vector2f(4 * PIXEL_SIZE, 14 * PIXEL_SIZE), Vector2f(26 * PIXEL_SIZE, 5 * PIXEL_SIZE), Vector2f(12 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(0 * PIXEL_SIZE, 0 * PIXEL_SIZE));
 
 
-	this->setupHome(window);
+	this->setupHome();
 	this->setupBigHouse();
 	this->setupForest();
 	this->setupForest2();
-	//this->setupTown();
 	this->setupBeach();
 	this->setupWaterfall();
 	this->setupWFbossRoom();
@@ -134,17 +135,18 @@ void World::drawWorld(RenderWindow &window, Location &toDraw) {
 	}
 
 	//draw all location enemies
+	std::vector<Enemy*> currentEnemies = toDraw.getEnemies();
 	int counter3 = 0; 
-	for (std::vector<Enemy>::iterator enemyIter = toDraw.getEnemies().begin(); enemyIter != toDraw.getEnemies().end(); ++enemyIter)
+	for (std::vector<Enemy*>::iterator enemyIter = currentEnemies.begin(); enemyIter != currentEnemies.end(); ++enemyIter)
 	{
-		if (toDraw.getEnemies()[counter3].isAlive())
+		if (currentEnemies[counter3]->isAlive())
 		{
-			//dra and update enemy
-			toDraw.getEnemies()[counter3].updateEnemy(window);
+			//draw and update enemy
+			currentEnemies[counter3]->updateEnemy(window);
 
 		}
 		else {
-			toDraw.getEnemies().erase(enemyIter);
+			currentEnemies.erase(enemyIter);
 			//need this break statement so the game doesnt break
 			break;
 		}
@@ -153,13 +155,12 @@ void World::drawWorld(RenderWindow &window, Location &toDraw) {
 
 }
 
-void World::setupHome(RenderWindow &window) {
-
-	Enemy gargoyle("res/Creatures/gargoyle.png", "Gargoyle", 100, 2);
-	home.addToEnemies(gargoyle);
-
-
-
+void World::setupHome() {
+	for (int i = 0; i < 15; i++) {
+		Enemy * gargoyle = new Enemy("res/Creatures/gargoyle.png", "Gargoyle", 100, 2);
+		home.addToEnemies(gargoyle);
+	}
+	
 	/*Add ALL obstacles for HOME*/
 	//making the small house
 	RectangleShape house1(Vector2f(4 * PIXEL_SIZE, 4 * PIXEL_SIZE));
@@ -250,8 +251,6 @@ void World::setupHome(RenderWindow &window) {
 	createLocationRectangle(Vector2f(1*PIXEL_SIZE, 4* PIXEL_SIZE), Vector2f(0*PIXEL_SIZE,8*PIXEL_SIZE), Color::Red, home);
 	createLocationRectangle(Vector2f(1 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(17 * PIXEL_SIZE, 15 * PIXEL_SIZE), Color::Red, home);
 	createLocationRectangle(Vector2f(4 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(15 * PIXEL_SIZE, 19 * PIXEL_SIZE), Color::Red, home);
-
-	
 
 }
 void World::setupBigHouse() {
@@ -400,6 +399,8 @@ void World::setupBigHouse() {
 
 	//Add change locations to the list.
 	bigHouseInterior.addToLocationChanges(next1);
+
+
 }
 
 
@@ -469,52 +470,6 @@ void World::setupForest() {
 
 	//adding enemies
 
-}
-void World::setupTown() {
-	/*
-	// rectangle, size, location, color, name
-	createObstacleRectangle(RectangleShape(), Vector2f(1 * PIXEL_SIZE - 31, 3 * PIXEL_SIZE), Vector2f(12 * PIXEL_SIZE, 3 * PIXEL_SIZE), Color::Blue, town1);
-	createObstacleRectangle(RectangleShape(), Vector2f(3 * PIXEL_SIZE, 1 * PIXEL_SIZE - 31), Vector2f(12 * PIXEL_SIZE, 3 * PIXEL_SIZE), Color::Blue, town1);
-	createObstacleRectangle(RectangleShape(), Vector2f(3 * PIXEL_SIZE, 2 * PIXEL_SIZE), Vector2f(12 * PIXEL_SIZE, 6 * PIXEL_SIZE), Color::Blue, town1);
-	createObstacleRectangle(RectangleShape(), Vector2f(3 * PIXEL_SIZE, 2 * PIXEL_SIZE), Vector2f(0 * PIXEL_SIZE, 1 * PIXEL_SIZE), Color::Blue, town1);
-	createObstacleRectangle(RectangleShape(), Vector2f(2 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(0 * PIXEL_SIZE, 3 * PIXEL_SIZE), Color::Blue, town1);
-	createObstacleRectangle(RectangleShape(), Vector2f(1 * PIXEL_SIZE - 16, 1 * PIXEL_SIZE), Vector2f(3 * PIXEL_SIZE, 1 * PIXEL_SIZE), Color::Blue, town1);
-	createObstacleRectangle(RectangleShape(), Vector2f(1 * PIXEL_SIZE, 2 * PIXEL_SIZE), Vector2f(3 * PIXEL_SIZE, 2* PIXEL_SIZE), Color::Blue, town1);
-	createObstacleRectangle(RectangleShape(), Vector2f(1 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(4 * PIXEL_SIZE, 2 * PIXEL_SIZE), Color::Blue, town1);
-	createObstacleRectangle(RectangleShape(), Vector2f(1 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(5 * PIXEL_SIZE, 1 * PIXEL_SIZE), Color::Blue, town1);
-	createObstacleRectangle(RectangleShape(), Vector2f(1 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(12 * PIXEL_SIZE, 0 * PIXEL_SIZE), Color::Blue, town1);
-	createObstacleRectangle(RectangleShape(), Vector2f(1 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(4 * PIXEL_SIZE, 15 * PIXEL_SIZE), Color::Blue, town1);
-	createObstacleRectangle(RectangleShape(), Vector2f(1 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(0 * PIXEL_SIZE, 16 * PIXEL_SIZE), Color::Blue, town1);
-	createObstacleRectangle(RectangleShape(), Vector2f(1 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(20 * PIXEL_SIZE, 14 * PIXEL_SIZE), Color::Blue, town1);
-	createObstacleRectangle(RectangleShape(), Vector2f(1 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(21 * PIXEL_SIZE, 11 * PIXEL_SIZE), Color::Blue, town1);
-	createObstacleRectangle(RectangleShape(), Vector2f(1 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(7 * PIXEL_SIZE, 9 * PIXEL_SIZE), Color::Blue, town1);
-	createObstacleRectangle(RectangleShape(), Vector2f(1 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(29 * PIXEL_SIZE, 1 * PIXEL_SIZE), Color::Blue, town1);
-	createObstacleRectangle(RectangleShape(), Vector2f(1 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(29 * PIXEL_SIZE, 3 * PIXEL_SIZE), Color::Blue, town1);
-	createObstacleRectangle(RectangleShape(), Vector2f(1 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(28 * PIXEL_SIZE, 7 * PIXEL_SIZE), Color::Blue, town1);
-	createObstacleRectangle(RectangleShape(), Vector2f(1 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(23 * PIXEL_SIZE, 7 * PIXEL_SIZE), Color::Blue, town1);
-	createObstacleRectangle(RectangleShape(), Vector2f(1 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(12 * PIXEL_SIZE, 3 * PIXEL_SIZE), Color::Blue, town1);
-	createObstacleRectangle(RectangleShape(), Vector2f(1 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(21 * PIXEL_SIZE, 3 * PIXEL_SIZE), Color::Blue, town1);
-	createObstacleRectangle(RectangleShape(), Vector2f(1 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(21 * PIXEL_SIZE, 6 * PIXEL_SIZE), Color::Blue, town1);
-	createObstacleRectangle(RectangleShape(), Vector2f(2 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(13 * PIXEL_SIZE, 8 * PIXEL_SIZE), Color::Blue, town1);
-	createObstacleRectangle(RectangleShape(), Vector2f(4 * PIXEL_SIZE, 2 * PIXEL_SIZE), Vector2f(19 * PIXEL_SIZE, 8 * PIXEL_SIZE), Color::Blue, town1);
-
-
-	RectangleShape next1(Vector2f(PIXEL_SIZE * 1, PIXEL_SIZE * 2));
-	next1.setPosition(Vector2f(0, PIXEL_SIZE * 12));
-	next1.setFillColor(Color::Blue);
-
-	RectangleShape next2(Vector2f(PIXEL_SIZE * 2, PIXEL_SIZE * 1));
-	next2.setPosition(Vector2f(PIXEL_SIZE * 12, PIXEL_SIZE * 19));
-	next2.setFillColor(Color::Red);
-
-	RectangleShape next3(Vector2f(PIXEL_SIZE * 1, PIXEL_SIZE * 2));
-	next3.setPosition(Vector2f(PIXEL_SIZE * 29, PIXEL_SIZE * 12));
-	next3.setFillColor(Color::Yellow);
-
-	town1.addToLocationChanges(next1);
-	town1.addToLocationChanges(next2);
-	town1.addToLocationChanges(next3);
-	*/
 }
 
 void World::setupForest2() {

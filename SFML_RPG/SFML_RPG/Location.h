@@ -49,17 +49,17 @@ public:
 	void setEnemies();
 	void addToObstacles(RectangleShape& rectanlgeToAdd);
 	void addToLocationChanges(RectangleShape& rectanlgeToAdd);
-	void addToEnemies(Enemy &enemyToAdd);
+	void addToEnemies(Enemy *enemyToAdd);
 
 	std::vector<RectangleShape>& getObstacles();
 	std::vector<RectangleShape>& getLocationChanges();
-	std::vector<Enemy> &getEnemies();
+	std::vector<Enemy*> getEnemies();
 
 
 private:
 	std::vector<RectangleShape> obstacles;
 	std::vector<RectangleShape> locationChanges;
-	std::vector<Enemy> enemies;
+	std::vector<Enemy*> enemies;
 	std::string name;
 	std::string fileName;
 

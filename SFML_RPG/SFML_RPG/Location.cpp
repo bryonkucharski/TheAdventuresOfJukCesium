@@ -111,13 +111,13 @@ void Location::setNext4Position(Vector2f pos) {
 void Location::addToLocationChanges(RectangleShape& rectanlgeToAdd) {
 	this->locationChanges.push_back(rectanlgeToAdd);
 }
-void Location::addToEnemies(Enemy &enemyToAdd) {
+void Location::addToEnemies(Enemy * enemyToAdd) {
 	this->enemies.push_back(enemyToAdd);
 }
 
 std::vector<RectangleShape>& Location::getLocationChanges() {
 	return locationChanges;
 }
-std::vector<Enemy> & Location::getEnemies() {
+std::vector<Enemy*> Location::getEnemies() {
 	return enemies;
 }

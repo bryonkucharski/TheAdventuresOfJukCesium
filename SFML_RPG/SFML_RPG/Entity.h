@@ -14,10 +14,12 @@ class Entity {
 		Sprite& getSprite();
 		Text& getText();
 		Texture& getTexture();
+		Font& getFont();
 
 	protected:
 		RectangleShape rect;
 		Sprite sprite;
+		Font font;
 		Text text;
 		Texture texture;
 	

@@ -11,7 +11,13 @@ class Enemy : public Creature {
 		void updateEnemy(RenderWindow &window);
 		bool isAlive();
 		void setAlive(bool a);
+		void drawText(RenderWindow &window);
 	private:
+		
+		void setRandomDirection();
 		bool alive;
+		Clock directionClock;
+		Time directionTime;
+
 };
 #endif // !ENEMY_H
