@@ -39,6 +39,8 @@ class World
 		void createLocationRectangle(RectangleShape &rectangle, Vector2f rectSize, Vector2f rectPosition, Color rectColor, Location &loc);
 		void createObstacleRectangle(Vector2f rectSize, Vector2f rectPosition, Color rectColor, Location &loc);
 		void createLocationRectangle(Vector2f rectSize, Vector2f rectPosition, Color rectColor, Location &loc);
+
+		void createBorder(Location &loc);
 		
 		//Keep this in alphabetical order. It helps me with reading the maps and verifying if a map is there or not.
 		//Location className; //Description of Location.

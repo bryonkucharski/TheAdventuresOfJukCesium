@@ -2,22 +2,18 @@
 #include <stdlib.h>     /* srand, rand */
 #include <time.h>       /* time */
 
-Enemy::Enemy(std::string file, std::string name, int health, int level) : Creature(name, file) {
+Enemy::Enemy(std::string file, std::string name,int location, int health, int level,Vector2f startingPosition, std::vector<RectangleShape> &obstacles) : Creature(name, file) {
 
 	this->sprite.setTextureRect(IntRect(0, 0, 32, 32));
-
 	this->rect.setSize(Vector2f(32, 32));
 
 	srand(time(NULL));
 
-	Vector2f sp;
-	sp.x = rand() % 800 + 150;
-	sp.y = rand() % 500 + 50;
-	this->rect.setPosition(sp);
+	this->setCurrentLocation(location);
+	this->rect.setPosition(startingPosition);
 
-	this->setWalkingCounter(0);
-	this->animationCounter = .05;
-	this->setDirection(4);
+	currentObstacles = obstacles;
+
 	this->setSpeed(1);
 	this->setAlive(true);
 
@@ -43,17 +39,63 @@ void Enemy::updateEnemy(RenderWindow &window) {
 	setRandomDirection();
 
 	//move based on direction
-	if (getDirection() == 0)
-	{
-		this->rect.move(0, getSpeed());
-	}
-	else if (getDirection() == 1)
-		this->rect.move(-getSpeed(), 0);
-	else if (getDirection() == 2)
-		this->rect.move(getSpeed(), 0);
-	else if (getDirection() == 3)
-		this->rect.move(0, -getSpeed());
+	// left is 1, right is 2, up is 3, down is 4
+	if (getDirection() == 1){
 
+		animationTime = animationClock.getElapsedTime();
+		if (animationTime.asSeconds() > animationCounter)
+		{
+			this->sprite.setTextureRect(IntRect(this->getWalkingCounter() * 32, 32, 32, 32));
+			animationClock.restart();
+		}
+
+		this->rect.move(-this->getSpeed(), 0);
+		while (this->checkForIntersect(currentObstacles, this->rect)) {
+			this->rect.move(1, 0);
+		}
+	}
+	else if (getDirection() == 2) {
+		animationTime = animationClock.getElapsedTime();
+		if (animationTime.asSeconds() > animationCounter)
+		{
+			this->sprite.setTextureRect(IntRect(this->getWalkingCounter() * 32, 32 * 2, 32, 32));
+			animationClock.restart();
+		}
+
+		this->rect.move(this->getSpeed(), 0);
+		while (this->checkForIntersect(currentObstacles, this->rect)) {
+			this->rect.move(-1, 0);
+		}
+	}
+	else if (getDirection() == 3) {
+		animationTime = animationClock.getElapsedTime();
+		if (animationTime.asSeconds() > animationCounter)
+		{
+			this->sprite.setTextureRect(IntRect(this->getWalkingCounter() * 32, 96, 32, 32));
+			animationClock.restart();
+		}
+
+		this->rect.move(0, -this->getSpeed());
+		while (this->checkForIntersect(currentObstacles, this->rect)) {
+			this->rect.move(0, 1);
+		}
+	}
+	else if (getDirection() == 4) {
+		animationTime = animationClock.getElapsedTime();
+		if (animationTime.asSeconds() > animationCounter)
+		{
+			this->sprite.setTextureRect(IntRect(this->getWalkingCounter() * 32, 0, 32, 32));
+			animationClock.restart();
+		}
+
+
+		this->rect.move(0, this->getSpeed());
+		while (this->checkForIntersect(currentObstacles, this->rect)) {
+			this->rect.move(0, -1);
+		}
+	}
+
+	this->updateAnimationCounter();
 
 	this->drawCreature(window);
 }
@@ -70,9 +112,9 @@ void Enemy::drawText(RenderWindow &window) {
 }
 void Enemy::setRandomDirection() {
 	directionTime = directionClock.getElapsedTime();
-	if (directionTime.asSeconds() > .1)
+	if (directionTime.asSeconds() > .5)
 	{
-		setDirection(rand() % 4 + 0);
+		setDirection(rand() % 4 + 1);
 		directionClock.restart();
 	}
 }

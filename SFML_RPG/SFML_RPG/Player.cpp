@@ -1,14 +1,11 @@
 #include "Player.h"
 
 Player::Player(std::string playerName, std::string file, World &world) : Creature(playerName, file) {
-	this->sprite.setTextureRect(IntRect(0, 0, 32, 32));
-	this->setWalkingCounter(0);
-	this->animationCounter = .05;
-	this->setDirection(4);
+
 	this->setSpeed(3);
 	this->setCurrentLocation(1);
-	this->rect.setSize(Vector2f(28, 28));
-	//this->sprite.setPosition(Vector2f(2, 2));
+	this->rect.setSize(Vector2f(32, 32));
+	this->rect.setPosition(Vector2f(5*32, 4*32));
 	this->setAllWalk(true);
 	this->wrld = world;
 
@@ -81,7 +78,6 @@ void Player::updatePlayer(RenderWindow &window) {
 			sprite.setPosition(newPosition);
 			this->setCurrentLocation(newLocation);
 			this->setCurrentPosition(this->rect.getPosition());
-			
 
 			cout << "Location Change to " << newLocation << " to position " << newPosition.x << " " << newPosition.y << endl;
 			//cout << "Player's current location is " << getCurrentPosition().x  << " " << getCurrentPosition().y  << endl;
@@ -92,9 +88,6 @@ void Player::updatePlayer(RenderWindow &window) {
 		}
 		counter++;
 	}
-
-	//increment walking counter for animation 
-	this->setWalkingCounter(this->getWalkingCounter() + 1);
 
 	//added WASD support MH
 	if (Keyboard::isKeyPressed(Keyboard::Left) || Keyboard::isKeyPressed(Keyboard::A))
@@ -182,9 +175,7 @@ void Player::updatePlayer(RenderWindow &window) {
 		}
 	}
 
-	if (this->getWalkingCounter() == 2) {
-		setWalkingCounter(0);
-	}
+	this->updateAnimationCounter();
 
 	//draw create to the screen
 	this->drawCreature(window);

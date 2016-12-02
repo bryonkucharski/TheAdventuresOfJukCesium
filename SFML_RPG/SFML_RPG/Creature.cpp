@@ -5,6 +5,12 @@ Creature::Creature(std::string creatureName, std::string file) {
 	this->setName(creatureName);
 	this->texture.loadFromFile(file);
 	this->sprite.setTexture(this->texture);
+
+	this->sprite.setTextureRect(IntRect(0, 0, 32, 32));
+	this->setWalkingCounter(1);
+	this->setwalkingCounterDirection(1);
+	this->animationCounter = .05;
+	this->setDirection(4);
 }
 Creature::~Creature() {
 
@@ -36,6 +42,9 @@ void Creature::setDirection(int d) {
 }
 void Creature::setWalkingCounter(int w) {
 	this->walkingCounter = w;
+}
+void Creature::setwalkingCounterDirection(int w) {
+	this->walkingCounterDirection = w;
 }
 void Creature::setCanWalkUp(bool up) {
 	this->canWalkUp = up;
@@ -77,6 +86,9 @@ int Creature::getDirection() {
 }
 int Creature::getWalkingCounter() {
 	return walkingCounter;
+}
+int Creature::getwalkingCounterDirection() {
+	return walkingCounterDirection;
 }
 bool Creature::isWalkUpAllowed() {
 	return this->canWalkUp;
@@ -125,4 +137,14 @@ void Creature::setAllWalk(bool val) {
 	this->setCanWalkDown(val);
 	this->setCanWalkLeft(val);
 	this->setCanWalkRight(val);
+}
+void Creature::updateAnimationCounter() {
+
+	//increment walking counter for animation 
+	this->setWalkingCounter(this->getWalkingCounter() + this->getwalkingCounterDirection());
+
+	//used to display the proper image of the spritesheet
+	if ((this->getWalkingCounter() == 0) || (this->getWalkingCounter() == 2)) {
+		setwalkingCounterDirection(this->getwalkingCounterDirection() * -1);
+	}
 }
