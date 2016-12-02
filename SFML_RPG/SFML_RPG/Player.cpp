@@ -21,7 +21,7 @@ Player::~Player() {
 }
 //handles player movements. called every frame in main.
 void Player::updatePlayer(RenderWindow &window) {
-	
+
 	//implement spriting by holding shift, MH
 	if (Keyboard::isKeyPressed(Keyboard::LShift) || Keyboard::isKeyPressed(Keyboard::RControl))
 	{
@@ -88,6 +88,19 @@ void Player::updatePlayer(RenderWindow &window) {
 		}
 		counter++;
 	}
+	std::vector<Enemy*> currentEnemies = wrld.getLocation(getCurrentLocation()).getEnemies();
+	//checking for enemy intersection
+
+	int counter3 = 0;
+	for (std::vector<Enemy*>::iterator enemyIter = currentEnemies.begin(); enemyIter != currentEnemies.end(); ++enemyIter)
+	{
+		if (this->rect.getGlobalBounds().intersects(currentEnemies[counter3]-> getRect().getGlobalBounds())) {
+			this->setCurrentHealth(getCurrentHealth() - 1);
+		}
+		counter3++;
+	}
+
+
 
 	//added WASD support MH
 	if (Keyboard::isKeyPressed(Keyboard::Left) || Keyboard::isKeyPressed(Keyboard::A))

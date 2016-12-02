@@ -3,6 +3,7 @@
 
 #include "Entity.h"
 
+
 class Creature : public Entity 
 {
 	public:
@@ -75,8 +76,10 @@ class Creature : public Entity
 		Vector2f currentPosition;
 	protected:
 		bool checkForIntersect(std::vector<RectangleShape> &obs, RectangleShape &rect);
+		//bool checkForEnemyIntersect(std::vector<Enemy*> enemies, RectangleShape &rect);
 		void updateAnimationCounter();
 		void setAllWalk(bool val);
+	
 
 		Clock animationClock;
 		Time animationTime;
