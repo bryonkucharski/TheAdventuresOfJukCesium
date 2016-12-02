@@ -3,6 +3,7 @@
 
 #include "Entity.h"
 
+
 class Creature : public Entity 
 {
 	public:
@@ -17,7 +18,9 @@ class Creature : public Entity
 		void setName(std::string name);
 		void setSpeed(float s);
 		void setDirection(int d);
+
 		void setWalkingCounter(int w);
+		void setwalkingCounterDirection(int w);
 
 		void setCanWalkUp(bool up);
 		void setCanWalkDown(bool down);
@@ -33,6 +36,7 @@ class Creature : public Entity
 		double getSpeed();
 		int getDirection();
 		int getWalkingCounter();
+		int getwalkingCounterDirection();
 
 		bool isWalkUpAllowed();
 		bool isWalkDownAllowed();
@@ -57,8 +61,9 @@ class Creature : public Entity
 		float speed;
 		int level;
 		int totalExperience;
-		int direction;
+		int direction; // left is 1, right is 2, up is 3, down is 4
 		int walkingCounter;
+		int walkingCounterDirection;
 		std::string name;
 
 		bool canWalkUp;
@@ -71,7 +76,10 @@ class Creature : public Entity
 		Vector2f currentPosition;
 	protected:
 		bool checkForIntersect(std::vector<RectangleShape> &obs, RectangleShape &rect);
+		//bool checkForEnemyIntersect(std::vector<Enemy*> enemies, RectangleShape &rect);
+		void updateAnimationCounter();
 		void setAllWalk(bool val);
+	
 
 		Clock animationClock;
 		Time animationTime;
