@@ -96,6 +96,7 @@ void Player::updatePlayer(RenderWindow &window) {
 	{
 		if (this->rect.getGlobalBounds().intersects(currentEnemies[counter3]-> getRect().getGlobalBounds())) {
 			this->setCurrentHealth(getCurrentHealth() - 1);
+			
 		}
 		counter3++;
 	}

@@ -37,8 +37,11 @@ int main()
 	World world(window);
 	Player mainPlayer("Main Player", "res/Creatures/main.png",world);
 	GUIBar guibar(window, "res/System/GUIbar.png","res/Fonts/Vecna.otf");
-
-
+	Sprite gameOverSprite;
+	Texture gameOverTexture;
+	gameOverTexture.loadFromFile("res/System/GameOver.png");
+	gameOverSprite.setTexture(gameOverTexture);
+	bool gameOver = false;
 
 	while (window.isOpen())
 	{
@@ -49,13 +52,21 @@ int main()
 			if (event.type == Event::Closed)
 				window.close();
 		}
+		if (mainPlayer.getCurrentHealth() <= 0) {
+			window.clear();
+			gameOver = true;
 
-		
-		world.drawWorld(window,world.getLocation(mainPlayer.getCurrentLocation()));
-		guibar.drawAll(window,mainPlayer,world);
-		mainPlayer.updatePlayer(window);
-	
+		}
+		if (!gameOver) {
+			world.drawWorld(window, world.getLocation(mainPlayer.getCurrentLocation()));
+			guibar.drawAll(window, mainPlayer, world);
+			mainPlayer.updatePlayer(window);
+		}
+		else {
+			window.draw(gameOverSprite);
+		}
 		window.display();
+		
 	}
 
 	return 0;
