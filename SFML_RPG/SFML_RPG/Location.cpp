@@ -24,7 +24,14 @@ Location::Location(std::string locationName, std::string file, int locationID, i
 	this->setNext4Position(nextPos4);
 		
 }
-Location::~Location() {}
+Location::~Location() {
+	/*
+	std::vector<Enemy*> enemies = this->getEnemies();
+	for (std::vector<Enemy*>::iterator enemyIter = enemies.begin(); enemyIter != enemies.end(); ++enemyIter) {
+		std::cout << this->getName() + " Enemy deleted\n";
+		delete *enemyIter;
+	}*/
+}
 
 std::string Location::getName() {
 	return name;

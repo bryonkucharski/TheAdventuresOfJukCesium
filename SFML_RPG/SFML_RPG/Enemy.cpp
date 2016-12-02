@@ -2,6 +2,7 @@
 #include <stdlib.h>     /* srand, rand */
 #include <time.h>       /* time */
 
+
 Enemy::Enemy(std::string file, std::string name,int location, int health, int level,Vector2f startingPosition, std::vector<RectangleShape> &obstacles) : Creature(name, file) {
 
 	this->sprite.setTextureRect(IntRect(0, 0, 32, 32));
@@ -32,7 +33,12 @@ Enemy::~Enemy() {
 
 }
 void Enemy::updateEnemy(RenderWindow &window) {
-	this->drawText(window);
+	//killing enemies
+	if (this->getCurrentHealth() <= 0) {
+		this->setAlive(false);
+		return;//so you dont update his position.
+	}
+
 	this->sprite.setPosition(Vector2f(this->rect.getPosition().x + 10, this->rect.getPosition().y + 10));
 
 	//get random direction
@@ -95,9 +101,7 @@ void Enemy::updateEnemy(RenderWindow &window) {
 		}
 	}
 
-	this->updateAnimationCounter();
-
-	this->drawCreature(window);
+    this->updateAnimationCounter();
 }
 bool Enemy::isAlive() {
 	return this->alive;
@@ -117,4 +121,6 @@ void Enemy::setRandomDirection() {
 		setDirection(rand() % 4 + 1);
 		directionClock.restart();
 	}
+	//Player mainPlayerPointer = *theMainPlayer;
+	//cout << mainPlayerPointer.getCurrentPosition().x << "\n";
 }

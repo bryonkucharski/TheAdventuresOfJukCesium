@@ -2,6 +2,7 @@
 #define ENEMY_H
 
 #include "Creature.h"
+//#include "globals.h"
 #include <string>
 
 class Enemy : public Creature {
