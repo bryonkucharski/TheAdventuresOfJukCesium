@@ -33,6 +33,12 @@ Enemy::~Enemy() {
 
 }
 void Enemy::updateEnemy(RenderWindow &window) {
+	//killing enemies
+	if (this->getCurrentHealth() == 0) {
+		this->setAlive(0);
+		return;//so you dont update his position.
+	}
+
 	this->drawText(window);
 	this->sprite.setPosition(Vector2f(this->rect.getPosition().x + 10, this->rect.getPosition().y + 10));
 
