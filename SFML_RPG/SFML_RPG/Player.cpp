@@ -44,7 +44,6 @@ void Player::updatePlayer(RenderWindow &window) {
 	//holds all rectangles that the player is not allowed to insersect with
 	std::vector<RectangleShape> obstacles = wrld.getLocation(this->getCurrentLocation()).getObstacles();
 
-
 	//holds all rectangles that will change the players location if intersected with
 	std::vector<RectangleShape> changeLocationRects = wrld.getLocation(this->getCurrentLocation()).getLocationChanges();
 	
@@ -88,20 +87,18 @@ void Player::updatePlayer(RenderWindow &window) {
 		}
 		counter++;
 	}
+	/*
 	std::vector<Enemy*> currentEnemies = wrld.getLocation(getCurrentLocation()).getEnemies();
 	//checking for enemy intersection
-
 	int counter3 = 0;
 	for (std::vector<Enemy*>::iterator enemyIter = currentEnemies.begin(); enemyIter != currentEnemies.end(); ++enemyIter)
 	{
-		if (this->rect.getGlobalBounds().intersects(currentEnemies[counter3]-> getRect().getGlobalBounds())) {
+		if (this->rect.getGlobalBounds().intersects(currentEnemies[counter3]->getRect().getGlobalBounds())) {
 			this->setCurrentHealth(getCurrentHealth() - 1);
-			
+
 		}
 		counter3++;
-	}
-
-
+	}*/
 
 	//added WASD support MH
 	if (Keyboard::isKeyPressed(Keyboard::Left) || Keyboard::isKeyPressed(Keyboard::A))
@@ -191,6 +188,4 @@ void Player::updatePlayer(RenderWindow &window) {
 
 	this->updateAnimationCounter();
 
-	//draw create to the screen
-	this->drawCreature(window);
 }

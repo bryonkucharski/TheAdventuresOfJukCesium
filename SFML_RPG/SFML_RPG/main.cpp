@@ -4,6 +4,7 @@
 
 #include "World.h"
 #include "Player.h"
+#include "Enemy.h"
 #include "GUIBar.h"
 #include "globals.h"
 
@@ -37,6 +38,8 @@ int main()
 
 	World world(window);
 	Player mainPlayer("Main Player", "res/Creatures/main.png",world);
+	std::vector<Enemy*> currentEnemies;
+
 	theMainPlayer = &mainPlayer;
 	GUIBar guibar(window, "res/System/GUIbar.png","res/Fonts/Vecna.otf");
 	Sprite gameOverSprite;
@@ -54,22 +57,81 @@ int main()
 			if (event.type == Event::Closed)
 				window.close();
 		}
+
+		//check for a game over
 		if (mainPlayer.getCurrentHealth() <= 0) {
 			window.clear();
 			gameOver = true;
-
 		}
+
+		//get all enemies in current location
+		currentEnemies = world.getLocation(mainPlayer.getCurrentLocation()).getEnemies();
+
+		//--------------------------------ALL THE INTERSECTIONS------------------------
+		//checking for player intersection with enemy
+		int intersectionCounter = 0;
+		for (std::vector<Enemy*>::iterator enemyIntersectIter = currentEnemies.begin(); enemyIntersectIter != currentEnemies.end(); ++enemyIntersectIter){
+			if (mainPlayer.getRect().getGlobalBounds().intersects(currentEnemies[intersectionCounter]->getRect().getGlobalBounds())) {
+				mainPlayer.setCurrentHealth(mainPlayer.getCurrentHealth() - 1);
+			}
+			intersectionCounter++;
+		}
+		//--------------------------------END INTERSECTIONS-------------------------
+
+		//--------------------------------ALL THE UPDATING------------------------
+		
+		//update player
+		mainPlayer.updatePlayer(window);
+
+		//update enemies in current location
+		int enemyUpdateCounter = 0;
+		for (std::vector<Enemy*>::iterator enemyUpdateIter = currentEnemies.begin(); enemyUpdateIter != currentEnemies.end(); ++enemyUpdateIter)
+		{
+			if (currentEnemies[enemyUpdateCounter]->isAlive())
+			{
+				//draw and update enemy
+				currentEnemies[enemyUpdateCounter]->updateEnemy(window);
+			}
+			else {
+				currentEnemies.erase(enemyUpdateIter);
+				//need this break statement so the game doesnt break
+				break;
+			}
+			enemyUpdateCounter++;
+		}
+		//---------------------------------END UPDATING---------------------------
+
+
+		//--------------------------------ALL THE DRAWING------------------------
+		//draw to screen
 		if (!gameOver) {
+			//draw world and location
 			world.drawWorld(window, world.getLocation(mainPlayer.getCurrentLocation()));
+
+			//graph graphic bar
 			guibar.drawAll(window, mainPlayer, world);
-			mainPlayer.updatePlayer(window);
+
+			//draw main player
+			mainPlayer.drawCreature(window);
+
+			//draw enemies
+			int enemyDrawCounter = 0;
+			for (std::vector<Enemy*>::iterator enemyDrawIter = currentEnemies.begin(); enemyDrawIter != currentEnemies.end(); ++enemyDrawIter) {
+				currentEnemies[enemyDrawCounter]->drawCreature(window);
+				currentEnemies[enemyDrawCounter]->drawText(window);
+				enemyDrawCounter++;
+			}
 		}
 		else {
+			//kill all enemies
+			window.clear();
 			window.draw(gameOverSprite);
 		}
+		//------------------------------------------------------------------------------
+
+
 		window.display();
 		
 	}
-
 	return 0;
 }

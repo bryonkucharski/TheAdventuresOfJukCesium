@@ -34,12 +34,11 @@ Enemy::~Enemy() {
 }
 void Enemy::updateEnemy(RenderWindow &window) {
 	//killing enemies
-	if (this->getCurrentHealth() == 0) {
-		this->setAlive(0);
+	if (this->getCurrentHealth() <= 0) {
+		this->setAlive(false);
 		return;//so you dont update his position.
 	}
 
-	this->drawText(window);
 	this->sprite.setPosition(Vector2f(this->rect.getPosition().x + 10, this->rect.getPosition().y + 10));
 
 	//get random direction
@@ -102,9 +101,7 @@ void Enemy::updateEnemy(RenderWindow &window) {
 		}
 	}
 
-	this->updateAnimationCounter();
-
-	this->drawCreature(window);
+    this->updateAnimationCounter();
 }
 bool Enemy::isAlive() {
 	return this->alive;

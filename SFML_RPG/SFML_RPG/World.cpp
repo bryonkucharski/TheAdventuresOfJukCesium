@@ -6,6 +6,7 @@
 World::World() {
 };
 World::~World() {
+
 }
 World::World(RenderWindow &window) {
 	
@@ -132,26 +133,6 @@ void World::drawWorld(RenderWindow &window, Location &toDraw) {
 	{
 		window.draw(toDraw.getLocationChanges()[counter2]);
 		counter2++;
-	}
-
-	//draw all location enemies
-	std::vector<Enemy*> currentEnemies = toDraw.getEnemies();
-	int counter3 = 0; 
-	for (std::vector<Enemy*>::iterator enemyIter = currentEnemies.begin(); enemyIter != currentEnemies.end(); ++enemyIter)
-	{
-		if (currentEnemies[counter3]->isAlive())
-		{
-			//draw and update enemy
-			currentEnemies[counter3]->updateEnemy(window);
-
-		}
-		else {
-			currentEnemies.erase(enemyIter);
-			//delete currentEnemies[counter3];
-			//need this break statement so the game doesnt break
-			break;
-		}
-		counter3++;
 	}
 
 }
