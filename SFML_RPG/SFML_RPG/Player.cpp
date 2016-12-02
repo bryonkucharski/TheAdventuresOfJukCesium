@@ -7,6 +7,7 @@ Player::Player(std::string playerName, std::string file, World &world) : Creatur
 	this->setDirection(4);
 	this->setSpeed(3);
 	this->setCurrentLocation(1);
+	this->setCurrentPosition(Vector2f(3, 3));
 	this->rect.setSize(Vector2f(28, 28));
 	//this->sprite.setPosition(Vector2f(2, 2));
 	this->setAllWalk(true);
