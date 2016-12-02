@@ -5,7 +5,6 @@
 #include <vector>
 
 #include "Entity.h"
-#include "Obstacle.h"
 #include "Enemy.h"
 
 

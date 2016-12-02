@@ -2,6 +2,7 @@
 #include <stdlib.h>     /* srand, rand */
 #include <time.h>       /* time */
 
+
 Enemy::Enemy(std::string file, std::string name,int location, int health, int level,Vector2f startingPosition, std::vector<RectangleShape> &obstacles) : Creature(name, file) {
 
 	this->sprite.setTextureRect(IntRect(0, 0, 32, 32));
@@ -117,4 +118,6 @@ void Enemy::setRandomDirection() {
 		setDirection(rand() % 4 + 1);
 		directionClock.restart();
 	}
+	//Player mainPlayerPointer = *theMainPlayer;
+	//cout << mainPlayerPointer.getCurrentPosition().x << "\n";
 }

@@ -5,6 +5,7 @@
 #include "World.h"
 #include "Player.h"
 #include "GUIBar.h"
+#include "globals.h"
 
 using namespace std;
 
@@ -36,6 +37,7 @@ int main()
 
 	World world(window);
 	Player mainPlayer("Main Player", "res/Creatures/main.png",world);
+	theMainPlayer = &mainPlayer;
 	GUIBar guibar(window, "res/System/GUIbar.png","res/Fonts/Vecna.otf");
 	Sprite gameOverSprite;
 	Texture gameOverTexture;

@@ -113,7 +113,7 @@ void GUIBar::drawHealth(RenderWindow &window, Player &player) {
 	draws main player's damage text at rectangle's position
 */
 void GUIBar::drawDamage(RenderWindow &window, Player &player) {
-	setUpText(GUIDamageText, "Damage: " + std::to_string(player.getDamage()), this->GUIDamageRect.getPosition());
+	setUpText(GUIDamageText, "Damage Level: " + std::to_string(player.getDamage()), this->GUIDamageRect.getPosition());
 	window.draw(GUIDamageText);
 }
 /*

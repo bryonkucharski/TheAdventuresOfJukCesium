@@ -250,11 +250,14 @@ void World::setupHome() {
 	createLocationRectangle(Vector2f(1 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(17 * PIXEL_SIZE, 15 * PIXEL_SIZE), Color::Red, home);
 	createLocationRectangle(Vector2f(4 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(15 * PIXEL_SIZE, 19 * PIXEL_SIZE), Color::Red, home);
 
-	for (int i = 0; i < 15; i++) {
+	
 
-		Enemy * gargoyle = new Enemy("res/Creatures/gargoyle.png", "Gargoyle", 1, 100, 2, Vector2f(15 * PIXEL_SIZE, 1 * PIXEL_SIZE), home.getObstacles());
-		home.addToEnemies(gargoyle);
-	}
+	Enemy * gargoyle1 = new Enemy("res/Creatures/gargoyle.png", "Gargoyle", 1, 100, 2, Vector2f(15 * PIXEL_SIZE, 1 * PIXEL_SIZE), home.getObstacles());
+	home.addToEnemies(gargoyle1);
+	Enemy * gargoyle2 = new Enemy("res/Creatures/gargoyle.png", "Gargoyle", 1, 100, 2, Vector2f(5 * PIXEL_SIZE, 11 * PIXEL_SIZE), home.getObstacles());
+	home.addToEnemies(gargoyle2);
+	Enemy * gargoyle3 = new Enemy("res/Creatures/gargoyle.png", "Gargoyle", 1, 100, 2, Vector2f(27 * PIXEL_SIZE, 12 * PIXEL_SIZE), home.getObstacles());
+	home.addToEnemies(gargoyle3);
 
 }
 void World::setupBigHouse() {
@@ -476,8 +479,16 @@ void World::setupForest() {
 	createLocationRectangle(Vector2f(3 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(17 * PIXEL_SIZE, 0 * PIXEL_SIZE), Color::Yellow, forest);
 	createLocationRectangle(Vector2f(1 * PIXEL_SIZE, 3 * PIXEL_SIZE), Vector2f(29 * PIXEL_SIZE, 11 * PIXEL_SIZE), Color::Yellow, forest);
 
-	//adding enemies
-
+	//adding enemies to forest
+	//file path, name of creature, map location id, health, level, location vector, location.getObstacles
+	Enemy * flower1 = new Enemy("res/Creatures/flower.png", "flower", 2, 100, 2, Vector2f(16 * PIXEL_SIZE, 14 * PIXEL_SIZE), forest.getObstacles());
+	Enemy * flower2 = new Enemy("res/Creatures/flower.png", "flower", 2, 100, 2, Vector2f(8 * PIXEL_SIZE, 7 * PIXEL_SIZE), forest.getObstacles());
+	Enemy * flower3 = new Enemy("res/Creatures/flower.png", "flower", 2, 100, 2, Vector2f(10 * PIXEL_SIZE, 12 * PIXEL_SIZE), forest.getObstacles());
+	
+	//adding the enemies to the list
+	forest.addToEnemies(flower1);
+	forest.addToEnemies(flower2);
+	forest.addToEnemies(flower3);
 }
 
 void World::setupForest2() {
@@ -764,13 +775,13 @@ void World::createObstacleRectangle(Vector2f rectSize, Vector2f rectPosition, Co
 }
 void World::createBorder(Location &loc) {
 	//left
-	createObstacleRectangle(Vector2f(1, 20 * PIXEL_SIZE), Vector2f(0, 0), Color::Transparent, loc);
+	createObstacleRectangle(Vector2f(1, 20 * PIXEL_SIZE), Vector2f(-1, -1), Color::Transparent, loc);
 	//right
-	createObstacleRectangle(Vector2f(1, 20 * PIXEL_SIZE), Vector2f(30*PIXEL_SIZE - 1, 0), Color::Transparent, loc);
+	createObstacleRectangle(Vector2f(1, 20 * PIXEL_SIZE), Vector2f(30*PIXEL_SIZE, -1), Color::Transparent, loc);
 	//up
-	createObstacleRectangle(Vector2f(30*PIXEL_SIZE, 1), Vector2f(0, 0), Color::Transparent, loc);
+	createObstacleRectangle(Vector2f(30*PIXEL_SIZE, 1), Vector2f(-1, -1), Color::Transparent, loc);
 	//down
-	createObstacleRectangle(Vector2f(30 * PIXEL_SIZE, 1 ), Vector2f(0, 20*PIXEL_SIZE-1), Color::Transparent, loc);
+	createObstacleRectangle(Vector2f(30 * PIXEL_SIZE, 1 ), Vector2f(-1, 20*PIXEL_SIZE), Color::Transparent, loc);
 
 }
 

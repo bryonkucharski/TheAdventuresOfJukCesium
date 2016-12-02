@@ -9,8 +9,8 @@ Player::Player(std::string playerName, std::string file, World &world) : Creatur
 	this->setAllWalk(true);
 	this->wrld = world;
 
-	this->setCurrentHealth(100);
-	this->setMaxHealth(100);
+	this->setCurrentHealth(300);
+	this->setMaxHealth(300);
 	this->setLevel(1);
 	this->setTotalExperience(1);
 	this->setDamage(this->getLevel()*2);
