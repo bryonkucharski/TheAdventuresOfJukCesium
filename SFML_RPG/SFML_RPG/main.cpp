@@ -39,6 +39,7 @@ int main()
 	World world(window);
 	Player mainPlayer("Main Player", "res/Creatures/main.png",world);
 	std::vector<Enemy*> currentEnemies;
+	std::vector<Projectile*> currentPlayerBullets;
 
 	theMainPlayer = &mainPlayer;
 	GUIBar guibar(window, "res/System/GUIbar.png","res/Fonts/Vecna.otf");
@@ -66,11 +67,15 @@ int main()
 
 		//get all enemies in current location
 		currentEnemies = world.getLocation(mainPlayer.getCurrentLocation()).getEnemies();
+	    currentEnemies[0]->setCurrentHealth(currentEnemies[0]->getCurrentHealth() - 1);
+
+		//all bullets in player's vector
+		currentPlayerBullets = mainPlayer.getBullets();
 
 		//--------------------------------ALL THE INTERSECTIONS------------------------
 		//checking for player intersection with enemy
 		int intersectionCounter = 0;
-		for (std::vector<Enemy*>::iterator enemyIntersectIter = currentEnemies.begin(); enemyIntersectIter != currentEnemies.end(); ++enemyIntersectIter){
+		for (std::vector<Enemy*>::iterator enemyIntersectIter = currentEnemies.begin(); enemyIntersectIter != currentEnemies.end(); ++enemyIntersectIter) {
 			if (mainPlayer.getRect().getGlobalBounds().intersects(currentEnemies[intersectionCounter]->getRect().getGlobalBounds())) {
 				mainPlayer.setCurrentHealth(mainPlayer.getCurrentHealth() - 1);
 			}
@@ -79,26 +84,26 @@ int main()
 		//--------------------------------END INTERSECTIONS-------------------------
 
 		//--------------------------------ALL THE UPDATING------------------------
-		
+
 		//update player
 		mainPlayer.updatePlayer(window);
 
 		//update enemies in current location
 		int enemyUpdateCounter = 0;
-		for (std::vector<Enemy*>::iterator enemyUpdateIter = currentEnemies.begin(); enemyUpdateIter != currentEnemies.end(); ++enemyUpdateIter)
+		for (std::vector<Enemy*>::iterator enemyUpdateIter = currentEnemies.begin(); enemyUpdateIter != currentEnemies.end(); ++enemyUpdateIter) 
 		{
-			if (currentEnemies[enemyUpdateCounter]->isAlive())
-			{
-				//draw and update enemy
-				currentEnemies[enemyUpdateCounter]->updateEnemy(window);
-			}
-			else {
-				currentEnemies.erase(enemyUpdateIter);
-				//need this break statement so the game doesnt break
-				break;
-			}
+			//update enemy
+			currentEnemies[enemyUpdateCounter]->updateEnemy(window);
 			enemyUpdateCounter++;
 		}
+
+		//update player Projectiles
+		int playerBulletUpdate = 0;
+		for (std::vector<Projectile *>::iterator playerBulletsUpdateIter = currentPlayerBullets.begin(); playerBulletsUpdateIter != currentPlayerBullets.end(); ++playerBulletsUpdateIter) {
+			currentPlayerBullets[playerBulletUpdate]->update();
+			playerBulletUpdate++;
+		}
+	
 		//---------------------------------END UPDATING---------------------------
 
 
@@ -116,14 +121,30 @@ int main()
 
 			//draw enemies
 			int enemyDrawCounter = 0;
-			for (std::vector<Enemy*>::iterator enemyDrawIter = currentEnemies.begin(); enemyDrawIter != currentEnemies.end(); ++enemyDrawIter) {
-				currentEnemies[enemyDrawCounter]->drawCreature(window);
-				currentEnemies[enemyDrawCounter]->drawText(window);
+			for (std::vector<Enemy*>::iterator enemyDrawIter = currentEnemies.begin(); enemyDrawIter != currentEnemies.end(); ++enemyDrawIter) 
+			{
+				
+				if (currentEnemies[enemyDrawCounter]->isAlive())
+				{
+					currentEnemies[enemyDrawCounter]->drawCreature(window);
+					currentEnemies[enemyDrawCounter]->drawText(window);
+				}
+				else {
+					//delete currentEnemies[enemyDrawCounter];
+					//delete *enemyDrawIter;
+ 					//enemyDrawIter = currentEnemies.erase(enemyDrawIter);
+				}
 				enemyDrawCounter++;
+			}
+
+			//draw player Projectiles
+			int playerBulletCounter = 0;
+			for (std::vector<Projectile *>::iterator playerBulletsIter = currentPlayerBullets.begin(); playerBulletsIter != currentPlayerBullets.end(); ++playerBulletsIter) {
+				window.draw(currentPlayerBullets[playerBulletCounter]->getSprite());
+				playerBulletCounter++;
 			}
 		}
 		else {
-			//kill all enemies
 			window.clear();
 			window.draw(gameOverSprite);
 		}

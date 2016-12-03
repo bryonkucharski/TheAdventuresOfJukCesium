@@ -148,3 +148,9 @@ void Creature::updateAnimationCounter() {
 		setwalkingCounterDirection(this->getwalkingCounterDirection() * -1);
 	}
 }
+std::vector<Projectile*>  Creature::getBullets() {
+	return bullets;
+}
+void Creature::addToBullets(Projectile *bullet) {
+	this->bullets.push_back(bullet);
+}

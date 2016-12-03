@@ -2,6 +2,7 @@
 #define CREATURE_H
 
 #include "Entity.h"
+#include "Projectile.h"
 
 
 class Creature : public Entity 
@@ -43,16 +44,16 @@ class Creature : public Entity
 		bool isWalkLeftAllowed();
 		bool isWalkRightAllowed();
 
-	
-
 		void setCurrentLocation(int l);
 		int getCurrentLocation();
-
 		void setCurrentPosition(Vector2f p);
 		Vector2f &getCurrentPosition();
 
 		
 		void drawCreature(RenderWindow &window);
+
+		std::vector<Projectile*> getBullets();
+		void addToBullets(Projectile *bullet);
 
 	private:
 		int damage;
@@ -66,6 +67,8 @@ class Creature : public Entity
 		int walkingCounterDirection;
 		std::string name;
 
+		std::vector<Projectile *> bullets;
+
 		bool canWalkUp;
 		bool canWalkDown;
 		bool canWalkLeft;
@@ -76,7 +79,7 @@ class Creature : public Entity
 		Vector2f currentPosition;
 	protected:
 		bool checkForIntersect(std::vector<RectangleShape> &obs, RectangleShape &rect);
-		//bool checkForEnemyIntersect(std::vector<Enemy*> enemies, RectangleShape &rect);
+		
 		void updateAnimationCounter();
 		void setAllWalk(bool val);
 	

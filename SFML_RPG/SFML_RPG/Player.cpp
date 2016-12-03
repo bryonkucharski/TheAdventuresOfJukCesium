@@ -4,9 +4,9 @@ Player::Player(std::string playerName, std::string file, World &world) : Creatur
 
 	this->setSpeed(3);
 	this->rect.setSize(Vector2f(28, 28));
-	//this->setCurrentLocation(1);
-	//this->rect.setSize(Vector2f(28, 28));
-	//this->rect.setPosition(Vector2f(5*32, 4*32));
+	this->setCurrentLocation(1);
+	this->rect.setSize(Vector2f(28, 28));
+	this->rect.setPosition(Vector2f(5*32, 4*32));
 	this->setAllWalk(true);
 	this->wrld = world;
 
@@ -15,8 +15,9 @@ Player::Player(std::string playerName, std::string file, World &world) : Creatur
 	this->setLevel(1);
 	this->setTotalExperience(1);
 	this->setDamage(this->getLevel()*2);
+
+	}
 	
-}
 Player::~Player() {
 
 }
@@ -88,18 +89,12 @@ void Player::updatePlayer(RenderWindow &window) {
 		}
 		counter++;
 	}
-	/*
-	std::vector<Enemy*> currentEnemies = wrld.getLocation(getCurrentLocation()).getEnemies();
-	//checking for enemy intersection
-	int counter3 = 0;
-	for (std::vector<Enemy*>::iterator enemyIter = currentEnemies.begin(); enemyIter != currentEnemies.end(); ++enemyIter)
-	{
-		if (this->rect.getGlobalBounds().intersects(currentEnemies[counter3]->getRect().getGlobalBounds())) {
-			this->setCurrentHealth(getCurrentHealth() - 1);
-
-		}
-		counter3++;
-	}*/
+	if (Keyboard::isKeyPressed(Keyboard::Space)) {
+	
+		Projectile * newProjectile = new Projectile("res/Projectiles/fireball.png",Vector2f(100,45), Vector2f(18, 18), this->getDirection(), 5);
+		this->addToBullets(newProjectile);
+		cout << "ADDED A FUCKING PROJECTILE\n";
+     }
 
 	//added WASD support MH
 	if (Keyboard::isKeyPressed(Keyboard::Left) || Keyboard::isKeyPressed(Keyboard::A))
