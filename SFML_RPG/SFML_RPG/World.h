@@ -39,6 +39,7 @@ class World
 		void createLocationRectangle(RectangleShape &rectangle, Vector2f rectSize, Vector2f rectPosition, Color rectColor, Location &loc);
 		void createObstacleRectangle(Vector2f rectSize, Vector2f rectPosition, Color rectColor, Location &loc);
 		void createLocationRectangle(Vector2f rectSize, Vector2f rectPosition, Color rectColor, Location &loc);
+		void createEnemy(std::string file, std::string name, int location, int health, int level, Vector2f startingPosition, Location &loc);
 
 		void createBorder(Location &loc);
 		
