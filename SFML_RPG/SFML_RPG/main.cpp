@@ -5,6 +5,7 @@
 #include "World.h"
 #include "Player.h"
 #include "Enemy.h"
+#include "NPC.h"
 #include "GUIBar.h"
 #include "globals.h"
 #include <fstream>
@@ -14,8 +15,8 @@ void saveGame();
 void loadGame();
 
 #define PIXEL_SIZE 32
-#define WIDTH      30*PIXEL_SIZE
-#define HEIGHT     22*PIXEL_SIZE 
+#define WIDTH      30*PIXEL_SIZE//Don't change this.
+#define HEIGHT     22*PIXEL_SIZE//Don't change this.
 
 /*
 https://www.youtube.com/watch?v=axIgxBQVBg0
@@ -42,6 +43,7 @@ int main()
 	World world(window);
 	Player mainPlayer("Main Player", "res/Creatures/main.png",world);
 	std::vector<Enemy*> currentEnemies;
+	std::vector<NPC*> currentNPCs;
 	std::vector<Projectile*> currentPlayerBullets;
 
 	theMainPlayer = &mainPlayer;
@@ -68,9 +70,12 @@ int main()
 			gameOver = true;
 		}
 
+		//get all NPCs in current location
+		currentNPCs = world.getLocation(mainPlayer.getCurrentLocation()).getNPCs();
+
 		//get all enemies in current location
 		currentEnemies = world.getLocation(mainPlayer.getCurrentLocation()).getEnemies();
-	    currentEnemies[0]->setCurrentHealth(currentEnemies[0]->getCurrentHealth() - 1);
+	    //currentEnemies[0]->setCurrentHealth(currentEnemies[0]->getCurrentHealth() - 1);// makes crash
 
 		//all bullets in player's vector
 		currentPlayerBullets.swap(mainPlayer.getBullets());
@@ -99,6 +104,14 @@ int main()
 			//update enemy
 			currentEnemies[enemyUpdateCounter]->updateEnemy(window);
 			enemyUpdateCounter++;
+		}
+
+		//update NPCs
+		int NPCUpdateCounter = 0;
+		for (std::vector<NPC*>::iterator NPCUpdateIter = currentNPCs.begin(); NPCUpdateIter != currentNPCs.end(); ++NPCUpdateIter){
+			//update NPC
+			currentNPCs[NPCUpdateCounter]->updateNPC(window);
+			NPCUpdateCounter++;
 		}
 
 		//update player Projectiles
@@ -139,6 +152,13 @@ int main()
  					//enemyDrawIter = currentEnemies.erase(enemyDrawIter);
 				}
 				enemyDrawCounter++;
+			}
+			//draw NPS's
+			int NPCdrawCounter = 0;
+			for (std::vector<NPC*>::iterator NPCDrawIter = currentNPCs.begin(); NPCDrawIter != currentNPCs.end(); ++NPCDrawIter) {
+				currentNPCs[NPCdrawCounter]->drawCreature(window);
+				//currentNPCs[NPCdrawCounter]->drawText(window);
+				NPCdrawCounter++;
 			}
 
 			//draw player Projectiles

@@ -27,8 +27,6 @@ Enemy::Enemy(std::string file, std::string name,int location, int health, int le
 	text.setFont(font);
 	text.setCharacterSize(10);
 	text.setFillColor(Color::White);
-
-
 }
 Enemy::~Enemy() {
 

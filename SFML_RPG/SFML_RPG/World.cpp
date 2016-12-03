@@ -239,7 +239,7 @@ void World::setupHome() {
 	this->createEnemy("res/Creatures/gargoyle.png", "Gargoyle", 1, 100, 2, Vector2f(15 * PIXEL_SIZE, 2 * PIXEL_SIZE), home);
 	
 	//adding NPC's
-	this->createNPC("res/Creatures/nun.png", "nun", home.getLocationID(), 2, Vector2f(27 * PIXEL_SIZE, 8 * PIXEL_SIZE), home);
+	this->createNPC("res/Creatures/nun.png", "Nun", home.getLocationID(), 2, Vector2f(27 * PIXEL_SIZE, 8 * PIXEL_SIZE), home);
 
 }
 void World::setupBigHouse() {
