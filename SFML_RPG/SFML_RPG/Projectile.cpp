@@ -22,11 +22,10 @@ void Projectile::update() {
 
 	this->sprite.setPosition(this->rect.getPosition());
 
-	/*
 	time = clock.getElapsedTime();
 	if (time.asSeconds() > 1) {
 		setActive(false);
-	}*/
+	}
 
 	//update spritesheet every .5 seconds
 	animationTime = animationClock.getElapsedTime();

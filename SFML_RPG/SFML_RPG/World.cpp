@@ -9,9 +9,6 @@ World::~World() {
 
 }
 World::World(RenderWindow &window) {
-	
-
-
 	//town1 = *new Location("Mill Creek", "res/Locations/Town1.png", 2, 4, 3, 1, new location in new area Vector2f(0 * PIXEL_SIZE, 0 * PIXEL_SIZE), Vector2f(0 * PIXEL_SIZE, 0 * PIXEL_SIZE), Vector2f(0 * PIXEL_SIZE, 0 * PIXEL_SIZE));
 	beach = *new Location("Beach", "res/Locations/beach.png", 5, 4, 6, 0, 0, Vector2f(11 * PIXEL_SIZE, 18 * PIXEL_SIZE), Vector2f(1 * PIXEL_SIZE, 4 * PIXEL_SIZE), Vector2f(0 * PIXEL_SIZE, 0 * PIXEL_SIZE), Vector2f(0 * PIXEL_SIZE, 0 * PIXEL_SIZE));
 	bigHouseInterior = *new Location("Home Sweet Home", "res/Locations/BigHouseInterior.png", 2, 1, 0, 0, 0, Vector2f(17 * PIXEL_SIZE, 17 * PIXEL_SIZE), Vector2f(0 * PIXEL_SIZE, 0 * PIXEL_SIZE), Vector2f(0 * PIXEL_SIZE, 0 * PIXEL_SIZE), Vector2f(0 * PIXEL_SIZE, 0 * PIXEL_SIZE));
@@ -232,7 +229,7 @@ void World::setupHome() {
 	createLocationRectangle(Vector2f(4 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(15 * PIXEL_SIZE, 19 * PIXEL_SIZE), Color::Red, home);
 
 	
-
+	//adding enemies
 	Enemy * gargoyle1 = new Enemy("res/Creatures/gargoyle.png", "Gargoyle", 1, 100, 2, Vector2f(15 * PIXEL_SIZE, 1 * PIXEL_SIZE), home.getObstacles());
 	home.addToEnemies(gargoyle1);
 	Enemy * gargoyle2 = new Enemy("res/Creatures/gargoyle.png", "Gargoyle", 1, 100, 2, Vector2f(5 * PIXEL_SIZE, 11 * PIXEL_SIZE), home.getObstacles());
@@ -240,6 +237,10 @@ void World::setupHome() {
 	Enemy * gargoyle3 = new Enemy("res/Creatures/gargoyle.png", "Gargoyle", 1, 100, 2, Vector2f(27 * PIXEL_SIZE, 12 * PIXEL_SIZE), home.getObstacles());
 	home.addToEnemies(gargoyle3);
 	this->createEnemy("res/Creatures/gargoyle.png", "Gargoyle", 1, 100, 2, Vector2f(15 * PIXEL_SIZE, 2 * PIXEL_SIZE), home);
+	
+	//adding NPC's
+	this->createNPC("res/Creatures/nun.png", "nun", home.getLocationID(), 2, Vector2f(27 * PIXEL_SIZE, 8 * PIXEL_SIZE), home);
+
 }
 void World::setupBigHouse() {
 	//make obstacles
@@ -972,10 +973,13 @@ void World::createBorder(Location &loc) {
 	createObstacleRectangle(Vector2f(30*PIXEL_SIZE, 1), Vector2f(-1, -1), Color::Transparent, loc);
 	//down
 	createObstacleRectangle(Vector2f(30 * PIXEL_SIZE, 1 ), Vector2f(-1, 20*PIXEL_SIZE), Color::Transparent, loc);
-
 }
 void World::createEnemy(std::string file, std::string name, int location, int health, int level, Vector2f startingPosition, Location &loc) {
 	Enemy * enemy = new Enemy(file, name, location, health, level, startingPosition, loc.getObstacles());
 	loc.addToEnemies(enemy);
 }
 
+void World::createNPC(std::string file, std::string name, int location, int AI_ID, Vector2f startingPosition, Location &loc) {
+	NPC *npc1 = new NPC(file, name, location, AI_ID, startingPosition, loc.getObstacles());
+	loc.addToNPCs(npc1);
+}

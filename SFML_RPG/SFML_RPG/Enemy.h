@@ -18,6 +18,5 @@ class Enemy : public Creature {
 		bool alive;
 		Clock directionClock;
 		Time directionTime;
-
 };
 #endif // !ENEMY_H

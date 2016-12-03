@@ -6,7 +6,7 @@
 
 #include "Entity.h"
 #include "Enemy.h"
-
+#include "NPC.h"
 
 class Location : public Entity
 {
@@ -49,16 +49,19 @@ public:
 	void addToObstacles(RectangleShape& rectanlgeToAdd);
 	void addToLocationChanges(RectangleShape& rectanlgeToAdd);
 	void addToEnemies(Enemy *enemyToAdd);
+	void addToNPCs(NPC *NPCToAdd);
 
 	std::vector<RectangleShape>& getObstacles();
 	std::vector<RectangleShape>& getLocationChanges();
 	std::vector<Enemy*> getEnemies();
+	std::vector<NPC*> getNPCs();
 
 
 private:
 	std::vector<RectangleShape> obstacles;
 	std::vector<RectangleShape> locationChanges;
 	std::vector<Enemy*> enemies;
+	std::vector<NPC*> NPCs;
 	std::string name;
 	std::string fileName;
 
