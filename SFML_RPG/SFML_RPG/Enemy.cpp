@@ -28,6 +28,7 @@ Enemy::Enemy(std::string file, std::string name,int location, int health, int le
 	text.setCharacterSize(10);
 	text.setFillColor(Color::Red);
 
+
 }
 Enemy::~Enemy() {
 
@@ -110,8 +111,8 @@ void Enemy::setAlive(bool a) {
 	this->alive = a;
 }
 void Enemy::drawText(RenderWindow &window) {
-	text.setString("Level " + std::to_string(this->getLevel()) + " " + this->getName() + " " + std::to_string(this->getCurrentHealth()) + " / " + std::to_string(this->getMaxHealth()));
-	text.setPosition(this->rect.getPosition());
+	text.setString("Level " + std::to_string(this->getLevel()) + "\n" + this->getName() + "  " + std::to_string(this->getCurrentHealth()) + " / " + std::to_string(this->getMaxHealth()));
+	text.setPosition(this->rect.getPosition().x, this->rect.getPosition().y-text.getCharacterSize());
 	window.draw(text);
 }
 void Enemy::setRandomDirection() {

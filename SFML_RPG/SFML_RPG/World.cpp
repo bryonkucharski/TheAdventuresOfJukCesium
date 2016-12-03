@@ -792,7 +792,8 @@ void World::setupGraveyard() {
 	//first one size, second one position
 	//x left right, y top down
 	//12
-	createObstacleRectangle(Vector2f(1 * PIXEL_SIZE, 19 * PIXEL_SIZE), Vector2f(0 * PIXEL_SIZE, 0 * PIXEL_SIZE), Color::Transparent, graveyard);
+	this->createBorder(graveyard);
+	createObstacleRectangle(Vector2f(1 * PIXEL_SIZE, 7 * PIXEL_SIZE), Vector2f(0 * PIXEL_SIZE, 0 * PIXEL_SIZE), Color::Transparent, graveyard);
 	createObstacleRectangle(Vector2f(12 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(1 * PIXEL_SIZE, 0 * PIXEL_SIZE), Color::Transparent, graveyard);
 	createObstacleRectangle(Vector2f((5 * PIXEL_SIZE)-10, 1 * PIXEL_SIZE), Vector2f(1 * PIXEL_SIZE, 4 * PIXEL_SIZE), Color::Transparent, graveyard);
 	createObstacleRectangle(Vector2f((6 * PIXEL_SIZE)-10, 1 * PIXEL_SIZE), Vector2f((7 * PIXEL_SIZE)+10, 4 * PIXEL_SIZE), Color::Transparent, graveyard);
@@ -857,11 +858,25 @@ void World::setupGraveyard() {
 	createObstacleRectangle(Vector2f(1 * PIXEL_SIZE, 5 * PIXEL_SIZE), Vector2f(17 * PIXEL_SIZE, 0 * PIXEL_SIZE), Color::Transparent, graveyard);
 	createObstacleRectangle(Vector2f(11 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(18 * PIXEL_SIZE, 0 * PIXEL_SIZE), Color::Transparent, graveyard);
 	createObstacleRectangle(Vector2f(1 * PIXEL_SIZE, 5 * PIXEL_SIZE), Vector2f(29 * PIXEL_SIZE, 0 * PIXEL_SIZE), Color::Transparent, graveyard);
-
-
+	createObstacleRectangle(Vector2f(1 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(0 * PIXEL_SIZE, 8 * PIXEL_SIZE), Color::Transparent, graveyard);
+	createObstacleRectangle(Vector2f(1 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(0 * PIXEL_SIZE, 10 * PIXEL_SIZE), Color::Transparent, graveyard);
+	createObstacleRectangle(Vector2f(1 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(0 * PIXEL_SIZE, 12 * PIXEL_SIZE), Color::Transparent, graveyard);
+	createObstacleRectangle(Vector2f(1 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(0 * PIXEL_SIZE, 14 * PIXEL_SIZE), Color::Transparent, graveyard);
+	createObstacleRectangle(Vector2f(1 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(0 * PIXEL_SIZE, 16 * PIXEL_SIZE), Color::Transparent, graveyard);
+	createObstacleRectangle(Vector2f(1 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(0 * PIXEL_SIZE, 18 * PIXEL_SIZE), Color::Transparent, graveyard);
+	//adding enemies
+	this->createEnemy("res/Creatures/nun.png", "Crazy Nun", 2, 300, 4, Vector2f(25 * PIXEL_SIZE, 11 * PIXEL_SIZE), graveyard);
+	this->createEnemy("res/Creatures/skeleton.png", "Skeleton", 1, 200, 2, Vector2f(26 * PIXEL_SIZE, 2 * PIXEL_SIZE), graveyard);
+	this->createEnemy("res/Creatures/skeleton.png", "Withered Skeleton", 2, 400, 6, Vector2f(19 * PIXEL_SIZE, 13 * PIXEL_SIZE), graveyard);
+	this->createEnemy("res/Creatures/skeleton.png", "Skeleton", 1, 200, 2, Vector2f(7 * PIXEL_SIZE, 11 * PIXEL_SIZE), graveyard);
+	this->createEnemy("res/Creatures/gargoyle.png", "Gargoyle", 1, 200, 2, Vector2f(9 * PIXEL_SIZE, 3 * PIXEL_SIZE), graveyard);
+	this->createEnemy("res/Creatures/bat.png", "Decaying Bat", 1, 75, 2, Vector2f(4 * PIXEL_SIZE, 2 * PIXEL_SIZE), graveyard);
+	this->createEnemy("res/Creatures/bat.png", "Bat", 1, 50, 2, Vector2f(15 * PIXEL_SIZE, 7 * PIXEL_SIZE), graveyard);
+	this->createEnemy("res/Creatures/bat.png", "Vampire Bat", 1, 200, 4, Vector2f(9 * PIXEL_SIZE, 17 * PIXEL_SIZE), graveyard);
+	//location change
 	createLocationRectangle(Vector2f(2 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(14 * PIXEL_SIZE, 0 * PIXEL_SIZE), Color::Red, graveyard);
 	createLocationRectangle(Vector2f(1 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(27 * PIXEL_SIZE, 10 * PIXEL_SIZE + 5), Color::Red, graveyard);
-	this->createBorder(graveyard);
+	
 }
 void World::setupGhostShed() {
 	//first one size, second one position
