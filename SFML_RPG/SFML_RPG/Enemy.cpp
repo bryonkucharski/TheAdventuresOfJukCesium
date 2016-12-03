@@ -26,7 +26,7 @@ Enemy::Enemy(std::string file, std::string name,int location, int health, int le
 	font.loadFromFile("res/Fonts/Vecna.otf");
 	text.setFont(font);
 	text.setCharacterSize(10);
-	text.setFillColor(Color::White);
+	text.setFillColor(Color::Red);
 
 }
 Enemy::~Enemy() {
@@ -110,7 +110,7 @@ void Enemy::setAlive(bool a) {
 	this->alive = a;
 }
 void Enemy::drawText(RenderWindow &window) {
-	text.setString(std::to_string(this->getLevel()) + " " + this->getName() + " " + std::to_string(this->getCurrentHealth()) + " / " + std::to_string(this->getMaxHealth()));
+	text.setString("Level " + std::to_string(this->getLevel()) + " " + this->getName() + " " + std::to_string(this->getCurrentHealth()) + " / " + std::to_string(this->getMaxHealth()));
 	text.setPosition(this->rect.getPosition());
 	window.draw(text);
 }
@@ -121,6 +121,5 @@ void Enemy::setRandomDirection() {
 		setDirection(rand() % 4 + 1);
 		directionClock.restart();
 	}
-	//Player mainPlayerPointer = *theMainPlayer;
-	//cout << mainPlayerPointer.getCurrentPosition().x << "\n";
+
 }
