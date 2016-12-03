@@ -7,8 +7,11 @@
 #include "Enemy.h"
 #include "GUIBar.h"
 #include "globals.h"
+#include <fstream>
 
 using namespace std;
+void saveGame();
+void loadGame();
 
 #define PIXEL_SIZE 32
 #define WIDTH      30*PIXEL_SIZE
@@ -29,7 +32,7 @@ using namespace sf;
 
 int main()
 {
-
+	
 	//create main game window
 	RenderWindow window(sf::VideoMode(WIDTH, HEIGHT), "SFML works!");
 
@@ -47,7 +50,7 @@ int main()
 	gameOverTexture.loadFromFile("res/System/GameOver.png");
 	gameOverSprite.setTexture(gameOverTexture);
 	bool gameOver = false;
-
+	int temp = 0;
 	while (window.isOpen())
 	{
 		//close window if X is pressed in top right
@@ -131,7 +134,118 @@ int main()
 
 
 		window.display();
-		
+		if (temp == 0)
+		{
+			if (Keyboard::isKeyPressed(Keyboard::RAlt) || Keyboard::isKeyPressed(Keyboard::LAlt))
+			{
+				if (Keyboard::isKeyPressed(Keyboard::F2))
+				{
+					temp = 20;
+					saveGame();
+				}
+
+				if (Keyboard::isKeyPressed(Keyboard::F3))
+				{
+					temp = 20;
+					loadGame();
+				}
+			}
+		}
+		if (temp > 0)
+		temp--;
+		//cout << temp << "\n";
 	}
 	return 0;
+}
+void saveGame()
+{
+	//save the file
+	ofstream theFile;
+	theFile.open("saveFile.txt", ios::out);
+	//write stuff
+	/*
+	position
+	location
+	total experience
+	level
+	damage
+	current health
+	max health
+	*/
+	if (theFile.is_open())
+	{
+		theFile << theMainPlayer->getCurrentPosition().x << "\n" <<
+			theMainPlayer->getCurrentPosition().y << "\n" <<
+			theMainPlayer->getCurrentLocation() << "\n" <<
+			theMainPlayer->getTotalExperience() << "\n" <<
+			theMainPlayer->getLevel() << "\n" <<
+			theMainPlayer->getDamage() << "\n" <<
+			theMainPlayer->getCurrentHealth() << "\n" <<
+			theMainPlayer->getMaxHealth();
+	}
+	theFile.close();
+	cout << "save command pressed\n";
+}
+
+
+void loadGame()
+{
+	cout << "load command pressed\n";
+	ifstream theFile;
+	string line;
+	theFile.open("saveFile.txt", ios::in);
+	float positionx = 0;//0
+	float positiony = 0;//1
+	int location = 0;//2
+	int xp = 2003;//3
+	int level = 0;//4
+	int damage = 0;//5
+	int currentHealth = 0;//6
+	int maxHealth = 0;//7
+	int counter = 0;
+	if (theFile.is_open())
+	{
+		while (getline(theFile, line))
+		{
+			//cout << line << '\n';
+			switch (counter)
+			{
+			case 0:
+				positionx = stof(line);
+				break;
+			case 1:
+				positiony = stof(line);
+				break;
+			case 2:
+				location = stoi(line);
+				break;
+			case 3:
+				xp = stoi(line);
+				break;
+			case 4:
+				level = stoi(line);
+				break;
+			case 5:
+				damage = stoi(line);
+				break;
+			case 6:
+				currentHealth = stoi(line);
+				break;
+			case 7:
+				maxHealth = stoi(line);
+				break;
+			}
+			counter++;
+		}
+		theFile.close();
+		//write values to player
+		theMainPlayer->setCurrentPosition(Vector2f(positionx, positiony));
+		theMainPlayer->getRect().setPosition(Vector2f(positionx, positiony));
+		theMainPlayer->setCurrentLocation(location);
+		theMainPlayer->setTotalExperience(xp);
+		theMainPlayer->setLevel(level);
+		theMainPlayer->setDamage(damage);
+		theMainPlayer->setCurrentHealth(currentHealth);
+		theMainPlayer->setMaxHealth(maxHealth);
+	}
 }
