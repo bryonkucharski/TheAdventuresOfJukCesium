@@ -73,7 +73,8 @@ int main()
 	    currentEnemies[0]->setCurrentHealth(currentEnemies[0]->getCurrentHealth() - 1);
 
 		//all bullets in player's vector
-		currentPlayerBullets = mainPlayer.getBullets();
+		currentPlayerBullets.swap(mainPlayer.getBullets());
+		//currentPlayerBullets = mainPlayer.getBullets();
 
 		//--------------------------------ALL THE INTERSECTIONS------------------------
 		//checking for player intersection with enemy
