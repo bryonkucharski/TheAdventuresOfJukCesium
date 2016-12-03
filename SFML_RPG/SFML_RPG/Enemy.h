@@ -11,7 +11,6 @@ class Enemy : public Creature {
 		void updateEnemy(RenderWindow &window);
 		bool isAlive();
 		void setAlive(bool a);
-		void drawText(RenderWindow &window);
 	private:
 		std::vector<RectangleShape> currentObstacles;
 		void setRandomDirection();

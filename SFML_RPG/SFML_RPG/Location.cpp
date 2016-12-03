@@ -129,6 +129,12 @@ void Location::addToEnemies(Enemy * enemyToAdd) {
 std::vector<Enemy*> Location::getEnemies() {
 	return enemies;
 }
+void Location::removeEnemies() {
+	/*Using a "Remove-Erase Idiom  https://en.wikipedia.org/wiki/Erase%E2%80%93remove_idiom
+	Used http://stackoverflow.com/questions/22729906/stdremove-if-not-working-properly for help writing a lambda function
+	*/
+	enemies.erase(std::remove_if(enemies.begin(), enemies.end(), [](Enemy *e) { return !e->isAlive(); }), enemies.end());
+}
 
 //NPCs
 void Location::addToNPCs(NPC *NPCToAdd) {

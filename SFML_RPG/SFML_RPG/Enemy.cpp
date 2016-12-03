@@ -40,6 +40,10 @@ void Enemy::updateEnemy(RenderWindow &window) {
 
 	this->sprite.setPosition(Vector2f(this->rect.getPosition().x + 10, this->rect.getPosition().y + 10));
 
+	//update text above enemy
+	text.setString("Level " + std::to_string(this->getLevel()) + "\n" + this->getName() + "  " + std::to_string(this->getCurrentHealth()) + " / " + std::to_string(this->getMaxHealth()));
+	text.setPosition(this->rect.getPosition().x, this->rect.getPosition().y - text.getCharacterSize());
+
 	//get random direction
 	setRandomDirection();
 
@@ -108,11 +112,6 @@ bool Enemy::isAlive() {
 }
 void Enemy::setAlive(bool a) {
 	this->alive = a;
-}
-void Enemy::drawText(RenderWindow &window) {
-	text.setString("Level " + std::to_string(this->getLevel()) + "\n" + this->getName() + "  " + std::to_string(this->getCurrentHealth()) + " / " + std::to_string(this->getMaxHealth()));
-	text.setPosition(this->rect.getPosition().x, this->rect.getPosition().y-text.getCharacterSize());
-	window.draw(text);
 }
 void Enemy::setRandomDirection() {
 	directionTime = directionClock.getElapsedTime();

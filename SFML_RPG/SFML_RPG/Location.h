@@ -3,6 +3,7 @@
 
 #include <string>
 #include <vector>
+#include <algorithm>
 
 #include "Entity.h"
 #include "Enemy.h"
@@ -55,6 +56,9 @@ public:
 	std::vector<RectangleShape>& getLocationChanges();
 	std::vector<Enemy*> getEnemies();
 	std::vector<NPC*> getNPCs();
+
+	/* Removes any enemies from the enemy vector that are not alive */
+	void removeEnemies();
 
 
 private:
