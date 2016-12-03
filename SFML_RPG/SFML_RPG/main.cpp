@@ -68,11 +68,15 @@ int main()
 			window.clear();
 			gameOver = true;
 		}
+		//------------------------------- ALL THE VECTOR COPIES------------------------
+		//vector1.swap(vector2) is more efficient than vector1 = vector2
 
 		//get all enemies in current location
 		currentEnemies.swap(world.getLocation(mainPlayer.getCurrentLocation()).getEnemies());
 		//all bullets in player's vector
 		currentPlayerBullets.swap(mainPlayer.getBullets());
+
+		//----------------------------------END VECTOR COPIES----------------------------
 
 	
 		//------------------------------- ALL THE VECTOR REMOVES------------------------
@@ -80,7 +84,7 @@ int main()
 		mainPlayer.removeBullets();
 		world.getLocation(mainPlayer.getCurrentLocation()).removeEnemies();
 
-		//------------------------------------------------------------------------------
+		//-------------------------------END VECTOR REMOVALS ----------------------------
 
 
 		//--------------------------------ALL THE INTERSECSTIONS------------------------
@@ -88,6 +92,8 @@ int main()
 		int intersectionCounter = 0;
 		for (std::vector<Enemy*>::iterator enemyIntersectIter = currentEnemies.begin(); enemyIntersectIter != currentEnemies.end(); ++enemyIntersectIter) {
 			if (mainPlayer.getRect().getGlobalBounds().intersects(currentEnemies[intersectionCounter]->getRect().getGlobalBounds())) {
+				Enemy *e = currentEnemies[intersectionCounter];
+				mainPlayer.onPlayerIntersect<Enemy>(*e);
 				mainPlayer.setCurrentHealth(mainPlayer.getCurrentHealth() - 1);
 				currentEnemies[intersectionCounter]->setCurrentHealth(currentEnemies[intersectionCounter]->getCurrentHealth() - 50);
 			}
@@ -150,7 +156,7 @@ int main()
 			window.clear();
 			window.draw(gameOverSprite);
 		}
-		//------------------------------------------------------------------------------
+		//-------------------------------------END DRAWING----------------------------
 
 		window.display();
 		//--------------------------------------SAVE STATE--------------------------------
@@ -177,7 +183,7 @@ int main()
 		//cout << temp << "\n";
 	}
 
-	//------------------------------------------------------------------------------
+	//-----------------------------------------END SAVE-----------------------------------
 	return 0;
 }
 void saveGame()

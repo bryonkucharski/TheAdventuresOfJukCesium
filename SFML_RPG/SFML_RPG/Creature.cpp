@@ -163,7 +163,11 @@ bool Creature::canShoot() {
 void Creature::removeBullets() {
 	/*Using a "Remove-Erase Idiom  https://en.wikipedia.org/wiki/Erase%E2%80%93remove_idiom
 	  Used http://stackoverflow.com/questions/22729906/stdremove-if-not-working-properly for help writing a lambda function
+
+	  Lambda funtion same as 
+	  bool isInactive(Projectile *p) {return !p->isActive()}
 	*/
 	bullets.erase(std::remove_if(bullets.begin(), bullets.end(), [](Projectile *p) { return !p->isActive(); }), bullets.end());
 }
+
 
