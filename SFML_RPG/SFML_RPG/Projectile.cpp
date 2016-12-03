@@ -1,14 +1,12 @@
 #include "Projectile.h"
 
-Projectile::Projectile(std::string file,Vector2f pos,Vector2f size,int dir, int speed) {
-	
+Projectile::Projectile(std::string file, Vector2f size, Vector2f pos, int dir, int speed) {
+
 	texture.loadFromFile(file);
-	this->sprite.setTexture(texture);
-	this->sprite.setTextureRect(IntRect(0, 0, 18,18));
+	this->sprite.setTexture(this->texture);
+	//this->sprite.setTextureRect(IntRect(0, 0, 18, 18));
 	this->rect.setPosition(pos);
-
 	this->rect.setSize(size);
-
 
 	this->setDirection(dir);
 	this->setSpeed(speed);
@@ -22,17 +20,18 @@ void Projectile::update() {
 
 	this->sprite.setPosition(this->rect.getPosition());
 
+	this->sprite.setTextureRect(IntRect(0,0, 18, 18));
+
+	//kill bullet if active too long
 	time = clock.getElapsedTime();
 	if (time.asSeconds() > 1) {
 		setActive(false);
 	}
 
-	//update spritesheet every .5 seconds
-	animationTime = animationClock.getElapsedTime();
-	if (animationTime.asSeconds() > .5) {
-		this->updateAnimation();
-	}
+	//update the sprite
+	this->updateAnimation();
 
+	//move the bullet
 	if (this->isActive())
 	{
 		if (direction == 1){
@@ -80,9 +79,16 @@ void Projectile::updateAnimation() {
 	this->setAnimationCounter(this->getAnimationCounter() + 1);
 	
 	//reset counter if 3
-	if (this->getAnimationCounter() == 3) {
+    if (this->getAnimationCounter() == 3) {
 		this->setAnimationCounter(0);
 	}
-	//set the texture
-	this->sprite.setTextureRect( IntRect(0,0,18,18) );
+
+	//update spritesheet every .5 seconds
+	animationTime = animationClock.getElapsedTime();
+	if (animationTime.asSeconds() > .1) {
+
+		//set the texture
+		this->sprite.setTextureRect(IntRect(this->getAnimationCounter() * 18, 0, 18, 18));
+	}
 }
+

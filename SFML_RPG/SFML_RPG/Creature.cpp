@@ -102,10 +102,6 @@ bool Creature::isWalkLeftAllowed() {
 bool Creature::isWalkRightAllowed() {
 	return this->canWalkRight;
 }
-
-void Creature::drawCreature(RenderWindow &window) {
-	window.draw(this->sprite);
-}
 void Creature::setCurrentLocation(int l) {
 	this->currentLocation = l;
 }
@@ -154,3 +150,20 @@ std::vector<Projectile*>  Creature::getBullets() {
 void Creature::addToBullets(Projectile *bullet) {
 	this->bullets.push_back(bullet);
 }
+
+bool Creature::canShoot() {
+	bulletTime = bulletClock.getElapsedTime();
+	if((bullets.size() < 3) && (bulletTime.asSeconds() > .3))
+	{
+		bulletClock.restart();
+		return true;
+	}
+	return false;
+}
+void Creature::removeBullets() {
+	/*Using a "Remove-Erase Idiom  https://en.wikipedia.org/wiki/Erase%E2%80%93remove_idiom
+	  Used http://stackoverflow.com/questions/22729906/stdremove-if-not-working-properly for help writing a lambda function
+	*/
+	bullets.erase(std::remove_if(bullets.begin(), bullets.end(), [](Projectile *p) { return !p->isActive(); }), bullets.end());
+}
+

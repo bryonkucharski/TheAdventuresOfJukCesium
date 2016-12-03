@@ -13,6 +13,7 @@ public:
 private:
 	int running = 5;
 	int walking = 2;
+	Projectile * newProjectile;
 	World wrld;
 };
 #endif // !PLAYER_H

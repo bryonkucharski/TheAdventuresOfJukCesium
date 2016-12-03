@@ -1,13 +1,14 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include <string>
+#include <fstream>
 
 #include "World.h"
 #include "Player.h"
 #include "Enemy.h"
 #include "GUIBar.h"
 #include "globals.h"
-#include <fstream>
+
 
 using namespace std;
 void saveGame();
@@ -69,19 +70,26 @@ int main()
 		}
 
 		//get all enemies in current location
-		currentEnemies = world.getLocation(mainPlayer.getCurrentLocation()).getEnemies();
-	    currentEnemies[0]->setCurrentHealth(currentEnemies[0]->getCurrentHealth() - 1);
-
+		currentEnemies.swap(world.getLocation(mainPlayer.getCurrentLocation()).getEnemies());
 		//all bullets in player's vector
 		currentPlayerBullets.swap(mainPlayer.getBullets());
-		//currentPlayerBullets = mainPlayer.getBullets();
 
-		//--------------------------------ALL THE INTERSECTIONS------------------------
+	
+		//------------------------------- ALL THE VECTOR REMOVES------------------------
+		
+		mainPlayer.removeBullets();
+		world.getLocation(mainPlayer.getCurrentLocation()).removeEnemies();
+
+		//------------------------------------------------------------------------------
+
+
+		//--------------------------------ALL THE INTERSECSTIONS------------------------
 		//checking for player intersection with enemy
 		int intersectionCounter = 0;
 		for (std::vector<Enemy*>::iterator enemyIntersectIter = currentEnemies.begin(); enemyIntersectIter != currentEnemies.end(); ++enemyIntersectIter) {
 			if (mainPlayer.getRect().getGlobalBounds().intersects(currentEnemies[intersectionCounter]->getRect().getGlobalBounds())) {
 				mainPlayer.setCurrentHealth(mainPlayer.getCurrentHealth() - 1);
+				currentEnemies[intersectionCounter]->setCurrentHealth(currentEnemies[intersectionCounter]->getCurrentHealth() - 50);
 			}
 			intersectionCounter++;
 		}
@@ -89,13 +97,13 @@ int main()
 
 		//--------------------------------ALL THE UPDATING------------------------
 
+
 		//update player
 		mainPlayer.updatePlayer(window);
 
 		//update enemies in current location
 		int enemyUpdateCounter = 0;
-		for (std::vector<Enemy*>::iterator enemyUpdateIter = currentEnemies.begin(); enemyUpdateIter != currentEnemies.end(); ++enemyUpdateIter) 
-		{
+		for (std::vector<Enemy*>::iterator enemyUpdateIter = currentEnemies.begin(); enemyUpdateIter != currentEnemies.end(); ++enemyUpdateIter) {
 			//update enemy
 			currentEnemies[enemyUpdateCounter]->updateEnemy(window);
 			enemyUpdateCounter++;
@@ -121,23 +129,13 @@ int main()
 			guibar.drawAll(window, mainPlayer, world);
 
 			//draw main player
-			mainPlayer.drawCreature(window);
+			window.draw(mainPlayer.getSprite());
 
 			//draw enemies
 			int enemyDrawCounter = 0;
-			for (std::vector<Enemy*>::iterator enemyDrawIter = currentEnemies.begin(); enemyDrawIter != currentEnemies.end(); ++enemyDrawIter) 
-			{
-				
-				if (currentEnemies[enemyDrawCounter]->isAlive())
-				{
-					currentEnemies[enemyDrawCounter]->drawCreature(window);
-					currentEnemies[enemyDrawCounter]->drawText(window);
-				}
-				else {
-					//delete currentEnemies[enemyDrawCounter];
-					//delete *enemyDrawIter;
- 					//enemyDrawIter = currentEnemies.erase(enemyDrawIter);
-				}
+			for (std::vector<Enemy*>::iterator enemyDrawIter = currentEnemies.begin(); enemyDrawIter != currentEnemies.end(); ++enemyDrawIter) {
+				window.draw(currentEnemies[enemyDrawCounter]->getSprite());
+				window.draw(currentEnemies[enemyDrawCounter]->getText());
 				enemyDrawCounter++;
 			}
 
@@ -154,8 +152,9 @@ int main()
 		}
 		//------------------------------------------------------------------------------
 
-
 		window.display();
+		//--------------------------------------SAVE STATE--------------------------------
+
 		if (temp == 0)
 		{
 			if (Keyboard::isKeyPressed(Keyboard::RAlt) || Keyboard::isKeyPressed(Keyboard::LAlt))
@@ -177,6 +176,8 @@ int main()
 		temp--;
 		//cout << temp << "\n";
 	}
+
+	//------------------------------------------------------------------------------
 	return 0;
 }
 void saveGame()

@@ -89,12 +89,13 @@ void Player::updatePlayer(RenderWindow &window) {
 		}
 		counter++;
 	}
-	if (Keyboard::isKeyPressed(Keyboard::Space)) {
 	
-		Projectile * newProjectile = new Projectile("res/Projectiles/fireball.png",Vector2f(100,45), Vector2f(18, 18), this->getDirection(), 5);
-		this->addToBullets(newProjectile);
-		cout << "ADDED A FUCKING PROJECTILE\n";
-     }
+	if (Keyboard::isKeyPressed(Keyboard::Space)) {
+		if (this->canShoot()) {
+			Projectile * newProjectile = new Projectile("res/Projectiles/fireProjectile.png", Vector2f(18, 18), this->getCurrentPosition(), this->getDirection(), 5);
+			this->addToBullets(newProjectile);
+		}
+	}
 
 	//added WASD support MH
 	if (Keyboard::isKeyPressed(Keyboard::Left) || Keyboard::isKeyPressed(Keyboard::A))
