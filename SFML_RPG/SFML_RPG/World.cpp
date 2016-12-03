@@ -682,9 +682,79 @@ void World::setupMarket() {
 	createLocationRectangle(Vector2f(2 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(12 * PIXEL_SIZE, 19 * PIXEL_SIZE), Color::Red, market);
 }
 void World::setupGraveyard() {
+	//first one size, second one position
+	//x left right, y top down
+	//12
+	createObstacleRectangle(Vector2f(1 * PIXEL_SIZE, 19 * PIXEL_SIZE), Vector2f(0 * PIXEL_SIZE, 0 * PIXEL_SIZE), Color::Blue, graveyard);
+	createObstacleRectangle(Vector2f(12 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(1 * PIXEL_SIZE, 0 * PIXEL_SIZE), Color::Blue, graveyard);
+	createObstacleRectangle(Vector2f((5 * PIXEL_SIZE)-10, 1 * PIXEL_SIZE), Vector2f(1 * PIXEL_SIZE, 4 * PIXEL_SIZE), Color::Blue, graveyard);
+	createObstacleRectangle(Vector2f((6 * PIXEL_SIZE)-10, 1 * PIXEL_SIZE), Vector2f((7 * PIXEL_SIZE)+10, 4 * PIXEL_SIZE), Color::Blue, graveyard);
+	createObstacleRectangle(Vector2f(1 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(13 * PIXEL_SIZE, 3 * PIXEL_SIZE), Color::Blue, graveyard);
+	createObstacleRectangle(Vector2f(1 * PIXEL_SIZE, 2 * PIXEL_SIZE), Vector2f(6 * PIXEL_SIZE, 7 * PIXEL_SIZE), Color::Blue, graveyard);
+	createObstacleRectangle(Vector2f(1 * PIXEL_SIZE, 2 * PIXEL_SIZE), Vector2f(16 * PIXEL_SIZE, 3 * PIXEL_SIZE), Color::Blue, graveyard);
+	createObstacleRectangle(Vector2f(3 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(26 * PIXEL_SIZE, 1 * PIXEL_SIZE), Color::Blue, graveyard);
+	createObstacleRectangle(Vector2f(1 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(18 * PIXEL_SIZE, 1 * PIXEL_SIZE), Color::Blue, graveyard);
+	createObstacleRectangle(Vector2f(1 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(20 * PIXEL_SIZE, 1 * PIXEL_SIZE), Color::Blue, graveyard);
+	createObstacleRectangle(Vector2f(1 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(22 * PIXEL_SIZE, 1 * PIXEL_SIZE), Color::Blue, graveyard);
+	createObstacleRectangle(Vector2f(1 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(24 * PIXEL_SIZE, 1 * PIXEL_SIZE), Color::Blue, graveyard);
+	createObstacleRectangle(Vector2f(1 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(7 * PIXEL_SIZE, 1 * PIXEL_SIZE), Color::Blue, graveyard);
+	createObstacleRectangle(Vector2f(1 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(9 * PIXEL_SIZE, 1 * PIXEL_SIZE), Color::Blue, graveyard);
+	createObstacleRectangle(Vector2f(1 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(11 * PIXEL_SIZE, 1 * PIXEL_SIZE), Color::Blue, graveyard);
+	createObstacleRectangle(Vector2f(1 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(29 * PIXEL_SIZE, 6 * PIXEL_SIZE), Color::Blue, graveyard);
+	createObstacleRectangle(Vector2f(1 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(28 * PIXEL_SIZE, 13 * PIXEL_SIZE), Color::Blue, graveyard);
+	createObstacleRectangle(Vector2f(1 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(1 * PIXEL_SIZE, 1 * PIXEL_SIZE), Color::Blue, graveyard);
+	createObstacleRectangle(Vector2f(1 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(28 * PIXEL_SIZE, 2 * PIXEL_SIZE), Color::Blue, graveyard);
+	createObstacleRectangle(Vector2f(1 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(8 * PIXEL_SIZE, 15 * PIXEL_SIZE), Color::Blue, graveyard);
+	createObstacleRectangle(Vector2f(1 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(22 * PIXEL_SIZE, 17 * PIXEL_SIZE), Color::Blue, graveyard);
+	createObstacleRectangle(Vector2f(8 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(16 * PIXEL_SIZE, 16 * PIXEL_SIZE), Color::Blue, graveyard);
+	createObstacleRectangle(Vector2f(1 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(24 * PIXEL_SIZE, 13 * PIXEL_SIZE), Color::Blue, graveyard);
+	createObstacleRectangle(Vector2f(1 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(26 * PIXEL_SIZE, 10 * PIXEL_SIZE), Color::Blue, graveyard);
+	createObstacleRectangle(Vector2f(1 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(28 * PIXEL_SIZE, 10 * PIXEL_SIZE), Color::Blue, graveyard);
+	createObstacleRectangle(Vector2f(1 * PIXEL_SIZE, 3 * PIXEL_SIZE), Vector2f(5 * PIXEL_SIZE, 14 * PIXEL_SIZE), Color::Blue, graveyard);
+	createObstacleRectangle(Vector2f(3 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(6 * PIXEL_SIZE, 16 * PIXEL_SIZE), Color::Blue, graveyard);
+	createObstacleRectangle(Vector2f(1 * PIXEL_SIZE, 2 * PIXEL_SIZE), Vector2f(13 * PIXEL_SIZE, 8 * PIXEL_SIZE), Color::Blue, graveyard);
+	createObstacleRectangle(Vector2f(1 * PIXEL_SIZE, 9 * PIXEL_SIZE), Vector2f(16 * PIXEL_SIZE, 8 * PIXEL_SIZE), Color::Blue, graveyard);
+	createObstacleRectangle(Vector2f(1 * PIXEL_SIZE, 8 * PIXEL_SIZE), Vector2f(22 * PIXEL_SIZE, 8 * PIXEL_SIZE), Color::Blue, graveyard);
+	createObstacleRectangle(Vector2f(5 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(16 * PIXEL_SIZE, 12 * PIXEL_SIZE), Color::Blue, graveyard);
+	createObstacleRectangle(Vector2f(4 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(17 * PIXEL_SIZE, 11 * PIXEL_SIZE), Color::Blue, graveyard);
+	createObstacleRectangle(Vector2f(2 * PIXEL_SIZE, 2 * PIXEL_SIZE), Vector2f(17 * PIXEL_SIZE, 13 * PIXEL_SIZE), Color::Blue, graveyard);
+	createObstacleRectangle(Vector2f(1 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(20 * PIXEL_SIZE, 13 * PIXEL_SIZE), Color::Blue, graveyard);
+	createObstacleRectangle(Vector2f(4 * PIXEL_SIZE, 4 * PIXEL_SIZE), Vector2f(26 * PIXEL_SIZE, 7 * PIXEL_SIZE), Color::Blue, graveyard);
+	createObstacleRectangle(Vector2f(1 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(19 * PIXEL_SIZE, 9 * PIXEL_SIZE), Color::Blue, graveyard);
+	createObstacleRectangle(Vector2f(1 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(21 * PIXEL_SIZE, 9 * PIXEL_SIZE), Color::Blue, graveyard);
+	createObstacleRectangle(Vector2f(1 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(1 * PIXEL_SIZE, 13 * PIXEL_SIZE), Color::Blue, graveyard);
+	createObstacleRectangle(Vector2f(1 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(1 * PIXEL_SIZE, 15 * PIXEL_SIZE), Color::Blue, graveyard);
+	createObstacleRectangle(Vector2f(4 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(18 * PIXEL_SIZE, 8 * PIXEL_SIZE), Color::Blue, graveyard);
+	createObstacleRectangle(Vector2f(3 * PIXEL_SIZE, 3 * PIXEL_SIZE), Vector2f(8 * PIXEL_SIZE, 10 * PIXEL_SIZE), Color::Blue, graveyard);
+	createObstacleRectangle(Vector2f(1 * PIXEL_SIZE, 3 * PIXEL_SIZE), Vector2f(12 * PIXEL_SIZE, 1 * PIXEL_SIZE), Color::Blue, graveyard);
+	createObstacleRectangle(Vector2f(3 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(1 * PIXEL_SIZE, 6 * PIXEL_SIZE), Color::Blue, graveyard);
+	createObstacleRectangle(Vector2f(3 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(1 * PIXEL_SIZE, 8 * PIXEL_SIZE), Color::Blue, graveyard);
+	createObstacleRectangle(Vector2f(3 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(1 * PIXEL_SIZE, 10 * PIXEL_SIZE), Color::Blue, graveyard);
+	createObstacleRectangle(Vector2f(3 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(1 * PIXEL_SIZE, 12 * PIXEL_SIZE), Color::Blue, graveyard);
+	createObstacleRectangle(Vector2f(3 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(1 * PIXEL_SIZE, 14 * PIXEL_SIZE), Color::Blue, graveyard);
+	createObstacleRectangle(Vector2f(3 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(1 * PIXEL_SIZE, 16 * PIXEL_SIZE), Color::Blue, graveyard);
+	createObstacleRectangle(Vector2f(3 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(1 * PIXEL_SIZE, 18 * PIXEL_SIZE), Color::Blue, graveyard);
+	createObstacleRectangle(Vector2f(4 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(5 * PIXEL_SIZE, 16 * PIXEL_SIZE), Color::Blue, graveyard);
+	createObstacleRectangle(Vector2f(4 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(5 * PIXEL_SIZE, 18 * PIXEL_SIZE), Color::Blue, graveyard);
+	createObstacleRectangle(Vector2f(4 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(10 * PIXEL_SIZE, 16 * PIXEL_SIZE), Color::Blue, graveyard);
+	createObstacleRectangle(Vector2f(4 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(10 * PIXEL_SIZE, 18 * PIXEL_SIZE), Color::Blue, graveyard);
+	createObstacleRectangle(Vector2f(4 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(15 * PIXEL_SIZE, 18 * PIXEL_SIZE), Color::Blue, graveyard);
+	createObstacleRectangle(Vector2f(4 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(20 * PIXEL_SIZE, 18 * PIXEL_SIZE), Color::Blue, graveyard);
+	createObstacleRectangle(Vector2f(3 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(3 * PIXEL_SIZE, 1 * PIXEL_SIZE), Color::Blue, graveyard);
+	createObstacleRectangle(Vector2f(1 * PIXEL_SIZE, 3 * PIXEL_SIZE), Vector2f(25 * PIXEL_SIZE, 13 * PIXEL_SIZE), Color::Blue, graveyard);
+	createObstacleRectangle(Vector2f(1 * PIXEL_SIZE, 4 * PIXEL_SIZE), Vector2f(26 * PIXEL_SIZE, 14 * PIXEL_SIZE), Color::Blue, graveyard);
+	createObstacleRectangle(Vector2f(1 * PIXEL_SIZE, 2 * PIXEL_SIZE), Vector2f(27 * PIXEL_SIZE, 15 * PIXEL_SIZE), Color::Blue, graveyard);
+	createObstacleRectangle(Vector2f(1 * PIXEL_SIZE, 3 * PIXEL_SIZE), Vector2f(29 * PIXEL_SIZE, 12 * PIXEL_SIZE), Color::Blue, graveyard);
+	createObstacleRectangle(Vector2f(5 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(18 * PIXEL_SIZE, 4 * PIXEL_SIZE), Color::Blue, graveyard);
+	createObstacleRectangle(Vector2f(5 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(24 * PIXEL_SIZE, 4 * PIXEL_SIZE), Color::Blue, graveyard);
+	createObstacleRectangle(Vector2f(1 * PIXEL_SIZE, 5 * PIXEL_SIZE), Vector2f(17 * PIXEL_SIZE, 0 * PIXEL_SIZE), Color::Blue, graveyard);
+	createObstacleRectangle(Vector2f(11 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(18 * PIXEL_SIZE, 0 * PIXEL_SIZE), Color::Blue, graveyard);
+	createObstacleRectangle(Vector2f(1 * PIXEL_SIZE, 5 * PIXEL_SIZE), Vector2f(29 * PIXEL_SIZE, 0 * PIXEL_SIZE), Color::Blue, graveyard);
+
 
 	createLocationRectangle(Vector2f(2 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(14 * PIXEL_SIZE, 0 * PIXEL_SIZE), Color::Red, graveyard);
 	createLocationRectangle(Vector2f(1 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(27 * PIXEL_SIZE, 10 * PIXEL_SIZE + 5), Color::Red, graveyard);
+	this->createBorder(graveyard);
 }
 void World::setupGhostShed() {
 	//first one size, second one position
@@ -696,11 +766,13 @@ void World::setupGhostShed() {
 	createObstacleRectangle(Vector2f(1 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(5 * PIXEL_SIZE, 4 * PIXEL_SIZE), Color::Blue, ghostShed);
 	createObstacleRectangle(Vector2f(13 * PIXEL_SIZE, 3 * PIXEL_SIZE), Vector2f(4 * PIXEL_SIZE, 16 * PIXEL_SIZE), Color::Blue, ghostShed);
 	createObstacleRectangle(Vector2f(4 * PIXEL_SIZE, 3 * PIXEL_SIZE), Vector2f(20 * PIXEL_SIZE, 16 * PIXEL_SIZE), Color::Blue, ghostShed);
-	createObstacleRectangle(Vector2f(4 * PIXEL_SIZE, 20 * PIXEL_SIZE), Vector2f(0 * PIXEL_SIZE, 0 * PIXEL_SIZE), Color::Blue, ghostShed);
-	createObstacleRectangle(Vector2f(4 * PIXEL_SIZE, 20 * PIXEL_SIZE), Vector2f(0 * PIXEL_SIZE, 0 * PIXEL_SIZE), Color::Blue, ghostShed);
-	createObstacleRectangle(Vector2f(4 * PIXEL_SIZE, 20 * PIXEL_SIZE), Vector2f(0 * PIXEL_SIZE, 0 * PIXEL_SIZE), Color::Blue, ghostShed);
+	createObstacleRectangle(Vector2f(1 * PIXEL_SIZE, 14 * PIXEL_SIZE), Vector2f(26 * PIXEL_SIZE, 1 * PIXEL_SIZE), Color::Blue, ghostShed);
+	createObstacleRectangle(Vector2f(1 * PIXEL_SIZE, 7 * PIXEL_SIZE), Vector2f(23 * PIXEL_SIZE, 12 * PIXEL_SIZE), Color::Blue, ghostShed);
+	createObstacleRectangle(Vector2f(2 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(24 * PIXEL_SIZE, 12 * PIXEL_SIZE), Color::Blue, ghostShed);
+	createObstacleRectangle(Vector2f(1 * PIXEL_SIZE, 2 * PIXEL_SIZE), Vector2f(22 * PIXEL_SIZE, 14 * PIXEL_SIZE), Color::Blue, ghostShed);
 
 	createLocationRectangle(Vector2f(3 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(17 * PIXEL_SIZE, 18 * PIXEL_SIZE), Color::Red, ghostShed);
+	this->createBorder(ghostShed);
 }
 void World::setupWFcorridor(){
 	//Set up collisions
