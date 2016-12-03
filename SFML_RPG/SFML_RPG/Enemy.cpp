@@ -26,7 +26,7 @@ Enemy::Enemy(std::string file, std::string name,int location, int health, int le
 	font.loadFromFile("res/Fonts/Vecna.otf");
 	text.setFont(font);
 	text.setCharacterSize(10);
-	text.setFillColor(Color::Red);
+	text.setFillColor(Color::White);
 
 
 }
@@ -103,7 +103,8 @@ void Enemy::updateEnemy(RenderWindow &window) {
 	}
 
     this->updateAnimationCounter();
-}
+}//end of update enemy
+
 bool Enemy::isAlive() {
 	return this->alive;
 }

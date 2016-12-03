@@ -33,13 +33,13 @@ Location::~Location() {
 	}*/
 }
 
+//Getting the current locaitons needed information
 std::string Location::getName() {
 	return name;
 }
 std::string Location::getFileName() {
 	return fileName;
 }
-
 int Location::getLocationID() {
 	return locationID;
 }
@@ -52,7 +52,6 @@ void Location::setLocationID(int ID) {
 void Location::setName(std::string name) {
 	this->name = name;
 }
-
 void Location::setEnemies() {
 
 }
@@ -63,10 +62,9 @@ std::vector<RectangleShape>& Location::getObstacles() {
 	return obstacles;
 }
 
-//setters
+//Setting the current locations next possible location
 void Location::setLocation1(int locationNum) {
 	this->nextLocation1 = locationNum;
-
 }
 void Location::setLocation2(int locationNum) {
 	this->nextLocation2 = locationNum;
@@ -115,16 +113,27 @@ void Location::setNext3Position(Vector2f pos) {
 void Location::setNext4Position(Vector2f pos) {
 	this->next4Position = pos;
 }
+
+//Location Changes
 void Location::addToLocationChanges(RectangleShape& rectanlgeToAdd) {
 	this->locationChanges.push_back(rectanlgeToAdd);
 }
-void Location::addToEnemies(Enemy * enemyToAdd) {
-	this->enemies.push_back(enemyToAdd);
-}
-
 std::vector<RectangleShape>& Location::getLocationChanges() {
 	return locationChanges;
 }
+
+//Enemies
+void Location::addToEnemies(Enemy * enemyToAdd) {
+	this->enemies.push_back(enemyToAdd);
+}
 std::vector<Enemy*> Location::getEnemies() {
 	return enemies;
+}
+
+//NPCs
+void Location::addToNPCs(NPC *NPCToAdd) {
+	this->NPCs.push_back(NPCToAdd);
+}
+std::vector<NPC*> Location::getNPCs() {
+	return NPCs;
 }
