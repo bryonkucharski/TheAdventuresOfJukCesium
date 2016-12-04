@@ -41,8 +41,8 @@ class World
 		void createLocationRectangle(Vector2f rectSize, Vector2f rectPosition, Color rectColor, Location &loc);
 		
 		//Enemies, NPCs, Bosses
-		void createEnemy(std::string file, std::string name, int location, int AI_ID,int health, int level, Vector2f startingPosition, Location &loc);
-		void createNPC(std::string file, std::string name, std::string intersectionText, int location, int AI_ID, Vector2f startingPosition, Location &loc);
+		void createEnemy(std::string file, std::string name, int AI_ID, int health, int level, Vector2f startingPosition, Location &loc);
+		void createNPC(std::string file, std::string name, std::string intersectionText, int AI_ID, Vector2f startingPosition, Location &loc);
 
 		void createBorder(Location &loc);
 		

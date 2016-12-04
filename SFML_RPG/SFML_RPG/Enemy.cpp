@@ -4,7 +4,7 @@
 #include <cmath>
 
 
-Enemy::Enemy(std::string file, std::string name,int location, int health, int AI_ID ,int level,Vector2f startingPosition, std::vector<RectangleShape> &obstacles) : Creature(name, file) {
+Enemy::Enemy(std::string file, std::string name,int location, int AI_ID, int health, int level,Vector2f startingPosition, std::vector<RectangleShape> &obstacles) : Creature(name, file) {
 
 	this->sprite.setTextureRect(IntRect(0, 0, 32, 32));
 	this->rect.setSize(Vector2f(32, 32));
