@@ -226,7 +226,7 @@ void World::setupHome() {
 
 	createLocationRectangle(Vector2f(1*PIXEL_SIZE, 4* PIXEL_SIZE), Vector2f(0*PIXEL_SIZE,8*PIXEL_SIZE), Color::Red, home);
 	createLocationRectangle(Vector2f(1 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(17 * PIXEL_SIZE, 15 * PIXEL_SIZE), Color::Red, home);
-	createLocationRectangle(Vector2f(4 * PIXEL_SIZE, 16), Vector2f(15 * PIXEL_SIZE, (19 * PIXEL_SIZE) + 16), Color::Red, home);
+	createLocationRectangle(Vector2f(4 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(15 * PIXEL_SIZE, 19 * PIXEL_SIZE), Color::Red, home);
 
 	
 	//adding enemies
@@ -982,4 +982,5 @@ void World::createEnemy(std::string file, std::string name, int location, int he
 void World::createNPC(std::string file, std::string name, int location, int AI_ID, Vector2f startingPosition, Location &loc) {
 	NPC *npc1 = new NPC(file, name, location, AI_ID, startingPosition, loc.getObstacles());
 	loc.addToNPCs(npc1);
+	loc.addToObstacles(npc1->getRect());
 }

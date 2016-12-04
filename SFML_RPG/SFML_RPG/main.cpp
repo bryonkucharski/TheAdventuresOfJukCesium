@@ -115,7 +115,7 @@ int main()
 		int NPCUpdateCounter = 0;
 		for (std::vector<NPC*>::iterator NPCUpdateIter = currentNPCs.begin(); NPCUpdateIter != currentNPCs.end(); ++NPCUpdateIter){
 			//update NPC
-			currentNPCs[NPCUpdateCounter]->updateNPC(window);
+			currentNPCs[NPCUpdateCounter]->updateNPC();
 			NPCUpdateCounter++;
 		}
 

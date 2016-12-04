@@ -9,8 +9,8 @@ class NPC : public Creature
 public:
 	NPC::NPC(std::string file, std::string name, int location, int AI_ID, Vector2f startingPosition, std::vector<RectangleShape> &obstacles);
 	~NPC();
-	void updateNPC(RenderWindow &window);
-	void drawText(RenderWindow &window);
+	void updateNPC();
+	void drawText();
 
 	//AI Paths for NPC's
 	void selectAI(int aID);

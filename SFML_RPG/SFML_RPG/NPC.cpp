@@ -8,9 +8,10 @@ NPC::NPC(std::string file, std::string name, int location, int AI_ID,Vector2f st
 	this->rect.setSize(Vector2f(32, 32));
 	this->setCurrentLocation(location);
 	this->rect.setPosition(startingPosition);
+	this->rect.setFillColor(Color::Transparent);
 	this->setSpeed(1);
 	
-	int aID = AI_ID;
+	aID = AI_ID;
 
 	srand(time(NULL));
 	currentObstacles = obstacles;
@@ -23,14 +24,13 @@ NPC::NPC(std::string file, std::string name, int location, int AI_ID,Vector2f st
 NPC::~NPC() {
 	std::cout << "An NPC has been destroyed." << std::endl;
 }
-void NPC::updateNPC(RenderWindow &window) {
-	
+void NPC::updateNPC() {
+	this->sprite.setPosition(this->rect.getPosition());
 }//end of updateNPC()
 
-void NPC::drawText(RenderWindow &window) {
+void NPC::drawText() {
 	text.setString("Level " + std::to_string(this->getLevel()) + "\n" + this->getName() + "  " + std::to_string(this->getCurrentHealth()) + " / " + std::to_string(this->getMaxHealth()));
 	text.setPosition(this->rect.getPosition().x, this->rect.getPosition().y - text.getCharacterSize());
-	window.draw(text);
 }//end of drawText()
 
 void NPC::setRandomDirection() {
