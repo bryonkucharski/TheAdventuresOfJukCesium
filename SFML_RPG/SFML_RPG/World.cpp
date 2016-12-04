@@ -774,6 +774,25 @@ void World::setupMarket() {
 	//location change
 	createLocationRectangle(Vector2f(2 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(2 * PIXEL_SIZE, 0 * PIXEL_SIZE), Color::Red, market);
 	createLocationRectangle(Vector2f(2 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(12 * PIXEL_SIZE, 19 * PIXEL_SIZE), Color::Red, market);
+
+	//NPCs
+	this->createNPC("res/Creatures/darkKnight.png", "Sir Eden", "Buy some swords, lad", /*AI_ID*/1, Vector2f(11 * PIXEL_SIZE, 4 * PIXEL_SIZE), market);
+	this->createNPC("res/Creatures/darkKnight.png", "Sir Eden II", "Buy some armour, lad", /*AI_ID*/1, Vector2f(13 * PIXEL_SIZE, 4 * PIXEL_SIZE), market);
+	this->createNPC("res/Creatures/gothGirl.png", "Mary the Witch", "Double Double Toil and Trouble!", /*AI_ID*/1, Vector2f(17 * PIXEL_SIZE, 4 * PIXEL_SIZE), market);
+	this->createNPC("res/Creatures/blondeGirl.png", "Jenny the Jeweler", "I'm So Pretty!", /*AI_ID*/1, Vector2f(22 * PIXEL_SIZE, 4 * PIXEL_SIZE), market);
+	this->createNPC("res/Creatures/redHairMan.png", "Lord Farquaad", "Another Day Another Dollar", /*AI_ID*/1, Vector2f(9 * PIXEL_SIZE, 10 * PIXEL_SIZE), market);
+	this->createNPC("res/Creatures/whiteHairMan.png", "Thor", "Hammer Hammer", /*AI_ID*/1, Vector2f(16 * PIXEL_SIZE, 10 * PIXEL_SIZE), market);
+	this->createNPC("res/Creatures/merchant.png", "Money Bags", "$$$$$$$", /*AI_ID*/1, Vector2f(8 * PIXEL_SIZE, 16 * PIXEL_SIZE), market);
+	this->createNPC("res/Creatures/merchant.png", "Jerry Thomson", "Hey How Are You?!", /*AI_ID*/5, Vector2f(2 * PIXEL_SIZE, 8 * PIXEL_SIZE), market);
+	this->createNPC("res/Creatures/fireHairGirl.png", "Jenny Thomson", "Watch Out For My Hair, Kid", /*AI_ID*/3, Vector2f(5 * PIXEL_SIZE, 17 * PIXEL_SIZE), market);
+	this->createNPC("res/Creatures/aipronLady.png", "Helga the Baker", "Dinner is Served", /*AI_ID*/4, Vector2f(23 * PIXEL_SIZE, 13 * PIXEL_SIZE), market);
+	this->createNPC("res/Creatures/greenHairSoldier.png", "Dough Roundface", "This Market Serves No Purpose!", /*AI_ID*/1, Vector2f(25* PIXEL_SIZE, 4 * PIXEL_SIZE), market);
+
+	for (int i = 0; i < 5; i++) {
+		this->createNPC("res/Creatures/Sheep.png", "Sheepy", "BAAAAAAAAAA", /*AI_ID*/2, Vector2f(27 * PIXEL_SIZE, (15 + i) * PIXEL_SIZE), market);
+	}
+
+
 }
 void World::setupGraveyard() {
 	//first one size, second one position
