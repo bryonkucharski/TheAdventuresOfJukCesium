@@ -93,8 +93,20 @@ int main()
 
 		//--------------------------------ALL REMOVALS------------------------
 
+		//remove inactive player bullets
 		mainPlayer.removeBullets();
+
+		//remove dead enemies
 		world.getLocation(mainPlayer.getCurrentLocation()).removeEnemies();
+
+		//remove inactive enemy bullets
+		int enemyRemoveCounter = 0;
+		for (std::vector<Enemy*>::iterator enemyIntersectIter = currentEnemies.begin(); enemyIntersectIter != currentEnemies.end(); ++enemyIntersectIter)
+		{
+			Enemy *e = currentEnemies[enemyRemoveCounter];
+			e->removeBullets();
+			enemyRemoveCounter++;
+		}
 
 		//--------------------------------END REMOVALS------------------------
 
@@ -200,7 +212,7 @@ int main()
 		for (std::vector<Enemy*>::iterator enemyUpdateIter = currentEnemies.begin(); enemyUpdateIter != currentEnemies.end(); ++enemyUpdateIter) 
 		{
 			//update enemy
-			currentEnemies[enemyUpdateCounter]->updateEnemy(window);
+			currentEnemies[enemyUpdateCounter]->updateEnemy( mainPlayer.getRect().getPosition() );
 			enemyUpdateCounter++;
 		}
 
@@ -218,7 +230,23 @@ int main()
 			currentPlayerBullets[playerBulletUpdate]->update();
 			playerBulletUpdate++;
 		}
-	
+
+		//upate enemy projectiles
+		int updateCounter = 0;
+		for (std::vector<Enemy*>::iterator enemyIntersectIter = currentEnemies.begin(); enemyIntersectIter != currentEnemies.end(); ++enemyIntersectIter)
+		{
+			int updateCounter2 = 0;
+			Enemy *e = currentEnemies[updateCounter];
+			vector<Projectile*> enemyBullets = e->getBullets();
+			for (vector<Projectile*>::iterator bulletIteratah = enemyBullets.begin(); bulletIteratah != enemyBullets.end(); ++bulletIteratah)
+			{
+				Projectile* p = enemyBullets[updateCounter2];
+				p->update();
+				updateCounter2++;
+			}
+			updateCounter++;
+		}
+
 		//---------------------------------END UPDATING---------------------------
 
 
@@ -256,6 +284,22 @@ int main()
 			for (std::vector<Projectile *>::iterator playerBulletsIter = currentPlayerBullets.begin(); playerBulletsIter != currentPlayerBullets.end(); ++playerBulletsIter) {
 				window.draw(currentPlayerBullets[playerBulletCounter]->getSprite());
 				playerBulletCounter++;
+			}
+
+			//draw enemy projectiles
+			int bryonsDrawCounter = 0;
+			for (std::vector<Enemy*>::iterator enemyIntersectIter = currentEnemies.begin(); enemyIntersectIter != currentEnemies.end(); ++enemyIntersectIter)
+			{
+				int bryonsDrawCounter2 = 0;
+				Enemy *e = currentEnemies[bryonsDrawCounter];
+				vector<Projectile*> enemyBullets = e->getBullets();
+				for (vector<Projectile*>::iterator bulletIteratah = enemyBullets.begin(); bulletIteratah != enemyBullets.end(); ++bulletIteratah)
+				{
+					Projectile* p = enemyBullets[bryonsDrawCounter2];
+					window.draw(p->getSprite());
+					bryonsDrawCounter2++;
+				}
+				bryonsDrawCounter++;
 			}
 		}
 		else {

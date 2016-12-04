@@ -8,7 +8,7 @@ class Enemy : public Creature {
 	public:
 		Enemy::Enemy(std::string file, std::string name, int location, int health, int level, Vector2f startingPosition, std::vector<RectangleShape> &obstacles);
 		~Enemy();
-		void updateEnemy(RenderWindow &window);
+		void updateEnemy(Vector2f playerPos);
 		bool isAlive();
 		void setAlive(bool a);
 		void onPlayerBulletIntersect(int damage);

@@ -1,6 +1,7 @@
 #include "Enemy.h"
 #include <stdlib.h>     /* srand, rand */
 #include <time.h>       /* time */
+#include <cmath>
 
 
 Enemy::Enemy(std::string file, std::string name,int location, int health, int level,Vector2f startingPosition, std::vector<RectangleShape> &obstacles) : Creature(name, file) {
@@ -31,12 +32,28 @@ Enemy::Enemy(std::string file, std::string name,int location, int health, int le
 Enemy::~Enemy() {
 
 }
-void Enemy::updateEnemy(RenderWindow &window) {
+void Enemy::updateEnemy(Vector2f playerPos){
 	//killing enemies
 	if (this->getCurrentHealth() <= 0) {
 		this->setAlive(false);
 		return;//so you dont update his position.
 	}
+
+
+	if (canShoot()) {
+		float distX = this->getRect().getPosition().x - playerPos.x;
+		float distY = this->getRect().getPosition().y - playerPos.y;
+		distX = distX*distX;
+		distY = distY*distY;
+		float distance = sqrt(distX + distY);
+		std::cout << "Player distance from me: " << distance << std::endl;
+		if (distance < 100){
+			Projectile * newProjectile = new Projectile("res/Projectiles/fireProjectile.png", Vector2f(18, 18), this->rect.getPosition(), this->getDirection(), 5);
+			this->addToBullets(newProjectile);
+		}
+	}
+	
+
 
 	this->sprite.setPosition(Vector2f(this->rect.getPosition().x + 10, this->rect.getPosition().y + 10));
 
