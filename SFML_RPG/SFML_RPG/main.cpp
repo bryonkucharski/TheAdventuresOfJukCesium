@@ -70,6 +70,8 @@ int main()
 			gameOver = true;
 		}
 
+
+
 		//get all NPCs in current location
 		currentNPCs = world.getLocation(mainPlayer.getCurrentLocation()).getNPCs();
 
@@ -80,6 +82,9 @@ int main()
 		//all bullets in player's vector
 		currentPlayerBullets.swap(mainPlayer.getBullets());
 		//currentPlayerBullets = mainPlayer.getBullets();
+
+		mainPlayer.removeBullets();
+		world.getLocation(mainPlayer.getCurrentLocation()).removeEnemies();
 
 		//--------------------------------ALL THE INTERSECTIONS------------------------
 		//checking for player intersection with enemy
@@ -134,30 +139,22 @@ int main()
 			guibar.drawAll(window, mainPlayer, world);
 
 			//draw main player
-			mainPlayer.drawCreature(window);
+			window.draw(mainPlayer.getSprite());
 
 			//draw enemies
 			int enemyDrawCounter = 0;
 			for (std::vector<Enemy*>::iterator enemyDrawIter = currentEnemies.begin(); enemyDrawIter != currentEnemies.end(); ++enemyDrawIter) 
 			{
-				
-				if (currentEnemies[enemyDrawCounter]->isAlive())
-				{
-					currentEnemies[enemyDrawCounter]->drawCreature(window);
-					currentEnemies[enemyDrawCounter]->drawText(window);
-				}
-				else {
-					//delete currentEnemies[enemyDrawCounter];
-					//delete *enemyDrawIter;
- 					//enemyDrawIter = currentEnemies.erase(enemyDrawIter);
-				}
+			
+				window.draw(currentEnemies[enemyDrawCounter]->getSprite());
+				window.draw(currentEnemies[enemyDrawCounter]->getText());
 				enemyDrawCounter++;
 			}
 			//draw NPS's
 			int NPCdrawCounter = 0;
 			for (std::vector<NPC*>::iterator NPCDrawIter = currentNPCs.begin(); NPCDrawIter != currentNPCs.end(); ++NPCDrawIter) {
-				currentNPCs[NPCdrawCounter]->drawCreature(window);
-				//currentNPCs[NPCdrawCounter]->drawText(window);
+				window.draw(currentNPCs[NPCdrawCounter]->getSprite());
+				//window.draw(currentNPCs[NPCdrawCounter].getText());
 				NPCdrawCounter++;
 			}
 
