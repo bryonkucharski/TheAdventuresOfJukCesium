@@ -237,7 +237,7 @@ void World::setupHome() {
 	this->createEnemy("res/Creatures/gargoyle.png", "Gargoyle", 1, 100, 2, Vector2f(15 * PIXEL_SIZE, 2 * PIXEL_SIZE), home);
 	
 	//adding NPC's
-	this->createNPC("res/Creatures/nun.png", "Nun", "Ouch!", home.getLocationID(), /*AI_ID*/3, Vector2f(27 * PIXEL_SIZE, 8 * PIXEL_SIZE), home);
+	this->createNPC("res/Creatures/oldMan.png", "Old Man Jensen", "Kill The Monsters!", home.getLocationID(), /*AI_ID*/3, Vector2f(17 * PIXEL_SIZE, 5 * PIXEL_SIZE), home);
 
 }
 void World::setupBigHouse() {
@@ -872,9 +872,13 @@ void World::setupGraveyard() {
 	this->createEnemy("res/Creatures/bat.png", "Decaying Bat", 1, 75, 2, Vector2f(4 * PIXEL_SIZE, 2 * PIXEL_SIZE), graveyard);
 	this->createEnemy("res/Creatures/bat.png", "Bat", 1, 50, 2, Vector2f(15 * PIXEL_SIZE, 7 * PIXEL_SIZE), graveyard);
 	this->createEnemy("res/Creatures/bat.png", "Vampire Bat", 1, 200, 4, Vector2f(9 * PIXEL_SIZE, 17 * PIXEL_SIZE), graveyard);
+	
 	//location change
 	createLocationRectangle(Vector2f(2 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(14 * PIXEL_SIZE, 0 * PIXEL_SIZE), Color::Red, graveyard);
 	createLocationRectangle(Vector2f(1 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(27 * PIXEL_SIZE, 10 * PIXEL_SIZE + 5), Color::Red, graveyard);
+
+	//adding NPCs
+	this->createNPC("res/Creatures/nun.png", "Nun", "Ouch!", graveyard.getLocationID(), /*AI_ID*/6, Vector2f(7 * PIXEL_SIZE, 17 * PIXEL_SIZE), graveyard);
 	
 }
 void World::setupGhostShed() {
