@@ -226,9 +226,7 @@ void World::setupHome() {
 
 	createLocationRectangle(Vector2f(1*PIXEL_SIZE, 4* PIXEL_SIZE), Vector2f(0*PIXEL_SIZE,8*PIXEL_SIZE), Color::Red, home);
 	createLocationRectangle(Vector2f(1 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(17 * PIXEL_SIZE, 15 * PIXEL_SIZE), Color::Red, home);
-	createLocationRectangle(Vector2f(4 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(15 * PIXEL_SIZE, 19 * PIXEL_SIZE), Color::Red, home);
-
-	
+	createLocationRectangle(Vector2f(4 * PIXEL_SIZE, 16), Vector2f(15 * PIXEL_SIZE, (19 * PIXEL_SIZE) + 16), Color::Red, home);
 	//adding enemies
 	Enemy * gargoyle1 = new Enemy("res/Creatures/gargoyle.png", "Gargoyle", 1, 100, 2, Vector2f(15 * PIXEL_SIZE, 1 * PIXEL_SIZE), home.getObstacles());
 	home.addToEnemies(gargoyle1);
