@@ -32,10 +32,6 @@ void NPC::updateNPC() {
 	this->text.setPosition(this->rect.getPosition().x, this->rect.getPosition().y - text.getCharacterSize());
 }//end of updateNPC()
 
-void NPC::drawText() {
-	text.setString(" " + this->getIntersectionText() );
-	text.setPosition(this->rect.getPosition().x, this->rect.getPosition().y - text.getCharacterSize());
-}//end of drawText()
 
 void NPC::setRandomDirection() {
 	directionTime = directionClock.getElapsedTime();

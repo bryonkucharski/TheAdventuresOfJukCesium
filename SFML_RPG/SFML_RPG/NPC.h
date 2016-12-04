@@ -10,7 +10,6 @@ public:
 	NPC::NPC(std::string file, std::string name, std::string intersectionText, int location, int AI_ID, Vector2f startingPosition, std::vector<RectangleShape> &obstacles);
 	~NPC();
 	void updateNPC();
-	void drawText();
 	void setIntersectionText(std::string intText);
 	std::string getIntersectionText();
 
