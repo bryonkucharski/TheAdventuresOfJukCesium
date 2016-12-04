@@ -228,10 +228,10 @@ void World::setupHome() {
 	createLocationRectangle(Vector2f(1 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(17 * PIXEL_SIZE, 15 * PIXEL_SIZE), Color::Red, home);
 	createLocationRectangle(Vector2f(4 * PIXEL_SIZE, 16), Vector2f(15 * PIXEL_SIZE, (19 * PIXEL_SIZE) + 16), Color::Red, home);
 	//adding enemies
-	this->createEnemy("res/Creatures/gargoyle.png", "Gargoyle", /*AI_ID*/ 7, /*HP*/10, /*Level*/10, Vector2f(15 * PIXEL_SIZE, 4 * PIXEL_SIZE), home);
+	this->createEnemy("res/Creatures/gargoyle.png", "Gargoyle", /*AI_ID*/ 2, /*HP*/10, /*Level*/10, Vector2f(15 * PIXEL_SIZE, 4 * PIXEL_SIZE), home);
 
 	//adding NPC's
-	this->createNPC("res/Creatures/oldMan.png", "Old Man Jensen", "Kill The Monsters!", /*AI_ID*/7, Vector2f(17 * PIXEL_SIZE, 5 * PIXEL_SIZE), home);
+	this->createNPC("res/Creatures/oldMan.png", "Old Man Jensen", "Kill The Monsters!", /*AI_ID*/1, Vector2f(17 * PIXEL_SIZE, 5 * PIXEL_SIZE), home);
 
 }
 void World::setupBigHouse() {
