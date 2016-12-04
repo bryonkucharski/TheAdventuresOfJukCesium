@@ -73,14 +73,14 @@ int main()
 			gameOver = true;
 		}
 
-<<<<<<< HEAD
+
 		//get all NPCs in current location
 		currentNPCs = world.getLocation(mainPlayer.getCurrentLocation()).getNPCs();
 
 		//get all enemies in current location
 		currentEnemies = world.getLocation(mainPlayer.getCurrentLocation()).getEnemies();
 	    //currentEnemies[0]->setCurrentHealth(currentEnemies[0]->getCurrentHealth() - 1);// makes crash
-=======
+
 		//--------------------------------ALL VECTORS------------------------
 
 	
@@ -89,7 +89,7 @@ int main()
 		currentPlayerBullets.swap(mainPlayer.getBullets());
 
 		//-------------------------------END VECTORS-----------------------
->>>>>>> origin/master
+
 
 		//--------------------------------ALL REMOVALS------------------------
 

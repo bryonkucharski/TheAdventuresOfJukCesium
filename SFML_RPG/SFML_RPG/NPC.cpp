@@ -155,7 +155,7 @@ void NPC::ai3() {
 		setDirection(1);
 		animationTime = animationClock.getElapsedTime();
 		if (animationTime.asSeconds() > animationCounter) {
-			this->sprite.setTextureRect(IntRect(this->getWalkingCounter() * 32, 32, 32, 32));//this changes png
+			this->sprite.setTextureRect(IntRect(this->getWalkingCounter() * 32, 32, 32, 32));//this changes png left
 			animationClock.restart();
 		}
 		this->rect.move(-this->getSpeed(), 0);//going left
@@ -168,7 +168,7 @@ void NPC::ai3() {
 		setDirection(2);
 		animationTime = animationClock.getElapsedTime();
 		if (animationTime.asSeconds() > animationCounter) {
-			this->sprite.setTextureRect(IntRect(this->getWalkingCounter() * 32, 32 * 2, 32, 32));//changing png
+			this->sprite.setTextureRect(IntRect(this->getWalkingCounter() * 32, 96, 32, 32));//changing png up
 			animationClock.restart();
 		}
 		this->rect.move(0, -this->getSpeed());//going up
@@ -180,7 +180,7 @@ void NPC::ai3() {
 		setDirection(3);
 		animationTime = animationClock.getElapsedTime();
 		if (animationTime.asSeconds() > animationCounter) {
-			this->sprite.setTextureRect(IntRect(this->getWalkingCounter() * 32, 32 * 2, 32, 32));//changing png
+			this->sprite.setTextureRect(IntRect(this->getWalkingCounter() * 32, 32 * 2, 32, 32));//changing png right
 			animationClock.restart();
 		}
 		this->rect.move(this->getSpeed(), 0);//going right
@@ -193,7 +193,7 @@ void NPC::ai3() {
 		setDirection(4);
 		animationTime = animationClock.getElapsedTime();
 		if (animationTime.asSeconds() > animationCounter) {
-			this->sprite.setTextureRect(IntRect(this->getWalkingCounter() * 32, 0, 32, 32));//changing png
+			this->sprite.setTextureRect(IntRect(this->getWalkingCounter() * 32, 0, 32, 32));//changing png down
 			animationClock.restart();
 		}
 		this->rect.move(0, this->getSpeed());//going down
