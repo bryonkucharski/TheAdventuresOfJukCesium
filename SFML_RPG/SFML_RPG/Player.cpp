@@ -187,15 +187,13 @@ void Player::updatePlayer(RenderWindow &window) {
 
 }
 //what happends to the player on intersection with an enemy
-void Player::onEnemyIntersect()
-{
+void Player::onEnemyIntersect(){
 	//decrease the health
 	this->setCurrentHealth(this->getCurrentHealth() - 1);
 }
 
 //what happends to the player on the intersection with an enemy projecetile
-void Player::onEnemyBulletIntersect()
-{
+void Player::onEnemyBulletIntersect(){
 	//decrease the health
 	this->setCurrentHealth(this->getCurrentHealth() - 1);
 }

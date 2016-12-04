@@ -10,7 +10,7 @@
 class Creature : public Entity 
 {
 	public:
-		Creature(std::string creatureName, std::string file);
+		Creature::Creature(std::string creatureName, std::string file);
 		~Creature();
 		 //-----setters------
 
@@ -28,6 +28,7 @@ class Creature : public Entity
 		void setCanWalkDown(bool down);
 		void setCanWalkLeft(bool left);
 		void setCanWalkRight(bool right);
+		void setAI_ID(int a);
 
 		//----Getters -----
 
@@ -41,6 +42,7 @@ class Creature : public Entity
 		int getDirection();
 		int getWalkingCounter();
 		int getwalkingCounterDirection();
+		int getAI_ID();
 
 		bool isWalkUpAllowed();
 		bool isWalkDownAllowed();
@@ -63,6 +65,8 @@ class Creature : public Entity
 
 		/*return true if a bullet allowed to be added to the vector */
 		bool canShoot();
+		//create a projectile 
+		void shootPlayer(Vector2f playerPos);
 		
 		//all intersection handling
 		void onEnemyIntersect();
@@ -70,6 +74,24 @@ class Creature : public Entity
 		void onEnemyBulletIntersect();
 		void onPlayerBulletIntersect();
 		void onPlayerIntersect();
+
+		void selectAI(int aID);
+		//Stand still.
+		void ai1(); 
+		//random direction
+		void ai2(); 
+		//square
+		void ai3(); 
+		//horizontal
+		void ai4(); 
+		//vertical
+		void ai5();
+		//spinning
+		void ai6();
+		//Boss AI
+		void ai7();
+
+		void setRandomDirection();
 
 	private:
 		int damage;
@@ -82,6 +104,7 @@ class Creature : public Entity
 		int walkingCounter;
 		int walkingCounterDirection;
 		std::string name;
+		int aID;
 
 		std::vector<Projectile *> bullets;
 
@@ -90,15 +113,15 @@ class Creature : public Entity
 		bool canWalkLeft;
 		bool canWalkRight;
 
-		
 		int currentLocation;
 		Vector2f currentPosition;
+		
 	protected:
 		bool checkForIntersect(std::vector<RectangleShape> &obs, RectangleShape &rect);
+		std::vector<RectangleShape> currentObstacles;
 		
 		void updateAnimationCounter();
 		void setAllWalk(bool val);
-	
 
 		Clock animationClock,bulletClock,textClock,genericClock;
 		Time animationTime,bulletTime,textTime,genericTime;

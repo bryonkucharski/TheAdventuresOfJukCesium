@@ -61,6 +61,7 @@ public:
 	void removeEnemies();
 
 
+
 private:
 	std::vector<RectangleShape> obstacles;
 	std::vector<RectangleShape> locationChanges;

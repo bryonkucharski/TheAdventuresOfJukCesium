@@ -6,7 +6,7 @@
 
 class Enemy : public Creature {
 	public:
-		Enemy::Enemy(std::string file, std::string name, int location, int health, int level, Vector2f startingPosition, std::vector<RectangleShape> &obstacles);
+		Enemy(std::string file, std::string name, int location, int health, int AI_ID, int level, Vector2f startingPosition, std::vector<RectangleShape> &obstacles);
 		~Enemy();
 		void updateEnemy(Vector2f playerPos);
 		bool isAlive();
@@ -14,8 +14,6 @@ class Enemy : public Creature {
 		void onPlayerBulletIntersect(int damage);
 
 	private:
-		std::vector<RectangleShape> currentObstacles;
-		void setRandomDirection();
 		bool alive;
 		Clock directionClock;
 		Time directionTime;

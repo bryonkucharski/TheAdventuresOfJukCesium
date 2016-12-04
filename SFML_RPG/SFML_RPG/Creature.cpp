@@ -58,6 +58,9 @@ void Creature::setCanWalkLeft(bool left) {
 void Creature::setCanWalkRight(bool right) {
 	this->canWalkRight = right;
 }
+void Creature::setAI_ID(int a) {
+	this->aID = a;
+}
 
 //getters
 int Creature::getCurrentHealth() {
@@ -89,6 +92,9 @@ int Creature::getWalkingCounter() {
 }
 int Creature::getwalkingCounterDirection() {
 	return walkingCounterDirection;
+}
+int Creature::getAI_ID() {
+	return aID;
 }
 bool Creature::isWalkUpAllowed() {
 	return this->canWalkUp;
@@ -160,6 +166,17 @@ bool Creature::canShoot() {
 	}
 	return false;
 }
+void Creature::shootPlayer(Vector2f playerPos) {
+	float distX = this->getRect().getPosition().x - playerPos.x;
+	float distY = this->getRect().getPosition().y - playerPos.y;
+	distX = distX*distX;
+	distY = distY*distY;
+	float distance = sqrt(distX + distY);
+	if (distance < 100) {
+		Projectile * newProjectile = new Projectile("res/Projectiles/enemyProjectile.png", Vector2f(18, 18), this->rect.getPosition(), this->getDirection(), 5);
+		this->addToBullets(newProjectile);
+	}
+}
 void Creature::removeBullets() {
 	/*Using a "Remove-Erase Idiom  https://en.wikipedia.org/wiki/Erase%E2%80%93remove_idiom
 	  Used http://stackoverflow.com/questions/22729906/stdremove-if-not-working-properly for help writing a lambda function
@@ -192,5 +209,423 @@ void Creature::onPlayerBulletIntersect()
 
 void Creature::onPlayerIntersect()
 {
+
+}
+
+//AI Selector
+void Creature::selectAI(int AI_ID) {
+	switch (AI_ID) {
+	case 1:
+		//Stand Still.
+		ai1();
+		break;
+	case 2:
+		//Move random direction.
+		ai2();
+		break;
+	case 3:
+		//Move in a 3 x 3 loop.
+		ai3();
+		break;
+	case 4:
+		//Move in a horizontal line back and forth 5 spaces.
+		ai4();
+		break;
+	case 5:
+		//Move in a vertical line back and forth 3 spaces.
+		ai5();
+		break;
+	case 6:
+		//Spin
+		ai6();
+		break;
+	case 7:
+		//Move in a U shape. "[_]" ish
+		ai7();
+		break;
+	default:
+		//defaults to standing still.
+
+		break;
+	};//end of switch case
+}//end of selectAI()
+
+void Creature::ai1() {
+	//Stants still.
+	//iLmao.
+}//end of ai1()
+
+void Creature::ai2() {
+	//Move like monsters.
+	setRandomDirection();
+	if (getDirection() == 1) {
+		//left
+		animationTime = animationClock.getElapsedTime();
+		if (animationTime.asSeconds() > animationCounter) {
+			this->sprite.setTextureRect(IntRect(this->getWalkingCounter() * 32, 32, 32, 32));
+			animationClock.restart();
+		}
+		this->rect.move(-this->getSpeed(), 0);
+
+		while (this->checkForIntersect(currentObstacles, this->rect)) {
+			this->rect.move(1, 0);
+		}
+	}
+	else if (getDirection() == 2) {
+		//right
+		animationTime = animationClock.getElapsedTime();
+		if (animationTime.asSeconds() > animationCounter) {
+			this->sprite.setTextureRect(IntRect(this->getWalkingCounter() * 32, 32 * 2, 32, 32));
+			animationClock.restart();
+		}
+		this->rect.move(this->getSpeed(), 0);
+
+		while (this->checkForIntersect(currentObstacles, this->rect)) {
+			this->rect.move(-1, 0);
+		}
+	}
+	else if (getDirection() == 3) {
+		//up
+		animationTime = animationClock.getElapsedTime();
+		if (animationTime.asSeconds() > animationCounter) {
+			this->sprite.setTextureRect(IntRect(this->getWalkingCounter() * 32, 96, 32, 32));
+			animationClock.restart();
+		}
+		this->rect.move(0, -this->getSpeed());
+
+		while (this->checkForIntersect(currentObstacles, this->rect)) {
+			this->rect.move(0, 1);
+		}
+	}
+	else if (getDirection() == 4) {
+		//down
+		animationTime = animationClock.getElapsedTime();
+		if (animationTime.asSeconds() > animationCounter) {
+			this->sprite.setTextureRect(IntRect(this->getWalkingCounter() * 32, 0, 32, 32));
+			animationClock.restart();
+		}
+		this->rect.move(0, this->getSpeed());
+		while (this->checkForIntersect(currentObstacles, this->rect)) {
+			this->rect.move(0, -1);
+		}
+	}//end of all the elseif
+}//end of ai2()
+
+void Creature::ai3() {
+	//Move in a 3 x 3 loop.
+	genericTime = genericClock.getElapsedTime();
+	int timeToWalk = 1;//how many seconds you want the ai to move.
+	static int wayToMove = 1;
+	if (wayToMove == 1) {
+		setDirection(1);
+		animationTime = animationClock.getElapsedTime();
+		if (animationTime.asSeconds() > animationCounter) {
+			this->sprite.setTextureRect(IntRect(this->getWalkingCounter() * 32, 32, 32, 32));//this changes png left
+			animationClock.restart();
+		}
+		this->rect.move(-this->getSpeed(), 0);//going left
+
+		while (this->checkForIntersect(currentObstacles, this->rect)) {
+			this->rect.move(1, 0);
+		}
+	}
+	if (wayToMove == 2) {
+		setDirection(2);
+		animationTime = animationClock.getElapsedTime();
+		if (animationTime.asSeconds() > animationCounter) {
+			this->sprite.setTextureRect(IntRect(this->getWalkingCounter() * 32, 96, 32, 32));//changing png up
+			animationClock.restart();
+		}
+		this->rect.move(0, -this->getSpeed());//going up
+		while (this->checkForIntersect(currentObstacles, this->rect)) {
+			this->rect.move(0, 1);
+		}
+	}
+	if (wayToMove == 3) {
+		setDirection(3);
+		animationTime = animationClock.getElapsedTime();
+		if (animationTime.asSeconds() > animationCounter) {
+			this->sprite.setTextureRect(IntRect(this->getWalkingCounter() * 32, 32 * 2, 32, 32));//changing png right
+			animationClock.restart();
+		}
+		this->rect.move(this->getSpeed(), 0);//going right
+
+		while (this->checkForIntersect(currentObstacles, this->rect)) {
+			this->rect.move(-1, 0);
+		}
+	}
+	if (wayToMove == 4) {
+		setDirection(4);
+		animationTime = animationClock.getElapsedTime();
+		if (animationTime.asSeconds() > animationCounter) {
+			this->sprite.setTextureRect(IntRect(this->getWalkingCounter() * 32, 0, 32, 32));//changing png down
+			animationClock.restart();
+		}
+		this->rect.move(0, this->getSpeed());//going down
+
+		while (this->checkForIntersect(currentObstacles, this->rect)) {
+			this->rect.move(0, -1);
+		}
+	}
+	//resetting the clock
+	if (genericTime.asSeconds() > timeToWalk) {
+		genericClock.restart();
+		wayToMove++;
+		if (wayToMove == 5) {
+			wayToMove = 1;
+		}
+	}
+	this->updateAnimationCounter();
+}//end of ai3()
+
+void Creature::ai4() {
+	//Move in a horizontal line back and forth for an ammount of time.
+	genericTime = genericClock.getElapsedTime();
+	int timeToWalk = 1;//how many seconds you want the ai to move.
+	static int wayToMove = -1;
+	if (wayToMove == -1) {
+		setDirection(1);
+		animationTime = animationClock.getElapsedTime();
+		if (animationTime.asSeconds() > animationCounter) {
+			this->sprite.setTextureRect(IntRect(this->getWalkingCounter() * 32, 32, 32, 32));//this changes png left
+			animationClock.restart();
+		}
+		this->rect.move(wayToMove * this->getSpeed(), 0);//going left
+
+		while (this->checkForIntersect(currentObstacles, this->rect)) {
+			this->rect.move(-wayToMove * 1, 0);
+		}
+	}
+	if(wayToMove == 1 ){
+		setDirection(2);
+		animationTime = animationClock.getElapsedTime();
+		if (animationTime.asSeconds() > animationCounter) {
+			this->sprite.setTextureRect(IntRect(this->getWalkingCounter() * 32, 32 * 2, 32, 32));//changing png right
+			animationClock.restart();
+		}
+		this->rect.move(wayToMove * this->getSpeed(), 0);//going right
+
+		while (this->checkForIntersect(currentObstacles, this->rect)) {
+			this->rect.move(-wayToMove * 1, 0);
+		}
+	}
+	if (genericTime.asSeconds() > timeToWalk) {
+		genericClock.restart();
+		wayToMove *= -1;
+	}
+	this->updateAnimationCounter();
+
+}//end of ai4()
+
+void Creature::ai5() {
+	//Move in a vertical line back and forth 3 spaces.
+	genericTime = genericClock.getElapsedTime();
+	int timeToWalk = 1;//how many seconds you want the ai to move.
+	static int wayToMove = -1;
+	if (wayToMove == -1) {
+		setDirection(3);
+		animationTime = animationClock.getElapsedTime();
+		if (animationTime.asSeconds() > animationCounter) {
+			this->sprite.setTextureRect(IntRect(this->getWalkingCounter() * 32, 96, 32, 32));//this changes png up
+			animationClock.restart();
+		}
+		this->rect.move(0, wayToMove * this->getSpeed());//going up
+
+		while (this->checkForIntersect(currentObstacles, this->rect)) {
+			this->rect.move(0, -wayToMove);
+		}
+	}
+	else {
+		setDirection(4);
+		animationTime = animationClock.getElapsedTime();
+		if (animationTime.asSeconds() > animationCounter) {
+			this->sprite.setTextureRect(IntRect(this->getWalkingCounter() * 32, 0, 32, 32));//changing png down
+			animationClock.restart();
+		}
+		this->rect.move(0, wayToMove * this->getSpeed());//going down
+
+		while (this->checkForIntersect(currentObstacles, this->rect)) {
+			this->rect.move(0, -wayToMove);
+		}
+	}
+	if (genericTime.asSeconds() > timeToWalk) {
+		genericClock.restart();
+		wayToMove *= -1;
+	}
+	this->updateAnimationCounter();
+}//end of ai5()
+
+void Creature::ai6() {
+	//spin
+	genericTime = genericClock.getElapsedTime();
+	float timeToWalk = .08;//how many seconds you want the ai to move.
+	static int wayToMove = 1;
+	if (wayToMove == 1) {
+		setDirection(1);
+		animationTime = animationClock.getElapsedTime();
+		if (animationTime.asSeconds() > animationCounter) {
+			this->sprite.setTextureRect(IntRect(this->getWalkingCounter() * 32, 32, 32, 32));//this changes png left
+			animationClock.restart();
+		}
+		this->rect.move(0, 0);//going left
+
+		while (this->checkForIntersect(currentObstacles, this->rect)) {
+			this->rect.move(0, 0);
+		}
+	}
+	if (wayToMove == 2) {
+		setDirection(2);
+		animationTime = animationClock.getElapsedTime();
+		if (animationTime.asSeconds() > animationCounter) {
+			this->sprite.setTextureRect(IntRect(this->getWalkingCounter() * 32, 96, 32, 32));//changing png up
+			animationClock.restart();
+		}
+		this->rect.move(0, 0);//going up
+		while (this->checkForIntersect(currentObstacles, this->rect)) {
+			this->rect.move(0, 0);
+		}
+	}
+	if (wayToMove == 3) {
+		setDirection(3);
+		animationTime = animationClock.getElapsedTime();
+		if (animationTime.asSeconds() > animationCounter) {
+			this->sprite.setTextureRect(IntRect(this->getWalkingCounter() * 32, 32 * 2, 32, 32));//changing png right
+			animationClock.restart();
+		}
+		this->rect.move(0, 0);//going right
+
+		while (this->checkForIntersect(currentObstacles, this->rect)) {
+			this->rect.move(0, 0);
+		}
+	}
+	if (wayToMove == 4) {
+		setDirection(4);
+		animationTime = animationClock.getElapsedTime();
+		if (animationTime.asSeconds() > animationCounter) {
+			this->sprite.setTextureRect(IntRect(this->getWalkingCounter() * 32, 0, 32, 32));//changing png down
+			animationClock.restart();
+		}
+		this->rect.move(0, 0);//going down
+
+		while (this->checkForIntersect(currentObstacles, this->rect)) {
+			this->rect.move(0, -1);
+		}
+	}
+	//resetting the clock
+	if (genericTime.asSeconds() > timeToWalk) {
+		genericClock.restart();
+		wayToMove++;
+		if (wayToMove == 5) {
+			wayToMove = 1;
+		}
+	}
+	this->updateAnimationCounter();
+}//end of ai6()
+
+void Creature::ai7() {
+	//Moves in a [_} shape.
+	genericTime = genericClock.getElapsedTime();
+	int timeToWalk = 1;//how many seconds you want the ai to move.
+	static int wayToMove = 3;
+
+	if (wayToMove == 1) {
+		setDirection(4);//setting it to down
+		animationTime = animationClock.getElapsedTime();
+		if (animationTime.asSeconds() > animationCounter) {
+			this->sprite.setTextureRect(IntRect(this->getWalkingCounter() * 80, 80, 80, 80));//this changes png middle
+			animationClock.restart();
+		}
+		this->rect.move(0, this->getSpeed());//going down
+
+		while (this->checkForIntersect(currentObstacles, this->rect)) {
+			this->rect.move(0, -1);
+		}
+	}//end of if wayToMove == 1
+	if (wayToMove == 2) {
+		setDirection(2);//setting direction to right
+		animationTime = animationClock.getElapsedTime();
+		if (animationTime.asSeconds() > animationCounter) {
+			this->sprite.setTextureRect(IntRect(this->getWalkingCounter() * 160, 160, 80, 80));//this changes png left
+			animationClock.restart();
+		}
+		this->rect.move(this->getSpeed(), 0);//going right
+
+		while (this->checkForIntersect(currentObstacles, this->rect)) {
+			this->rect.move(-1, 0);
+		}
+	}//end of if wayToMove == 2
+	if (wayToMove == 3) {
+		setDirection(3);//setting direction to up, this might be a problem later. we might need to make one for Creaturees. this is for character png sheet
+		animationTime = animationClock.getElapsedTime();
+		if (animationTime.asSeconds() > animationCounter) {
+			this->sprite.setTextureRect(IntRect(this->getWalkingCounter() * 80, 80, 80, 80));//this changes png middle
+			animationClock.restart();
+		}
+		this->rect.move(0, -this->getSpeed());//going up
+
+		while (this->checkForIntersect(currentObstacles, this->rect)) {
+			this->rect.move(0, 1);
+		}
+	}//end of if wayToMove == 3
+	if (wayToMove == 4) {
+		setDirection(4);//setting it to down
+		animationTime = animationClock.getElapsedTime();
+		if (animationTime.asSeconds() > animationCounter) {
+			this->sprite.setTextureRect(IntRect(this->getWalkingCounter() * 80, 80, 80, 80));//this changes png middle
+			animationClock.restart();
+		}
+		this->rect.move(0, this->getSpeed());//going down
+
+		while (this->checkForIntersect(currentObstacles, this->rect)) {
+			this->rect.move(0, -1);
+		}
+	}//end of if wayToMove == 4
+	if (wayToMove == 5) {
+		setDirection(1);//setting direction to left
+		animationTime = animationClock.getElapsedTime();
+		if (animationTime.asSeconds() > animationCounter) {
+			this->sprite.setTextureRect(IntRect(this->getWalkingCounter() * 160, 160, 80, 80));//this changes png left
+			animationClock.restart();
+		}
+		this->rect.move(-this->getSpeed(), 0);//going left
+
+		while (this->checkForIntersect(currentObstacles, this->rect)) {
+			this->rect.move(1, 0);
+		}
+	}//end of if wayToMove == 5
+	if (wayToMove == 6) {
+		setDirection(3);//setting it to up
+		animationTime = animationClock.getElapsedTime();
+		if (animationTime.asSeconds() > animationCounter) {
+			this->sprite.setTextureRect(IntRect(this->getWalkingCounter() * 80, 80, 80, 80));//this changes png middle
+			animationClock.restart();
+		}
+		this->rect.move(0, -this->getSpeed());//going up
+
+		while (this->checkForIntersect(currentObstacles, this->rect)) {
+			this->rect.move(0, 1);
+		}
+	}//end of if wayToMove == 6
+
+
+	 //resetting the clock
+	if (genericTime.asSeconds() > timeToWalk) {
+		genericClock.restart();
+		wayToMove++;
+		//way to move is 2+ the number of movements you have.
+		if (wayToMove == 8) {
+			wayToMove = 1;
+		}
+	}
+	this->updateAnimationCounter();
+}//end of ai7()
+
+void Creature::setRandomDirection() {
+	genericTime = genericClock.getElapsedTime();
+	if (genericTime.asSeconds() > .5)
+	{
+		setDirection(rand() % 4 + 1);
+		genericClock.restart();
+	}
 
 }

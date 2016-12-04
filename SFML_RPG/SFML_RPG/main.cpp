@@ -200,9 +200,10 @@ int main()
 			intersectionCounter++;
 		}
 
+
 		//--------------------------------END INTERSECTIONS-------------------------
 
-		//--------------------------------ALL THE UPDATING------------------------
+		//--------------------------------ALL THE UPDATING--------------------------
 
 		//update player
 		mainPlayer.updatePlayer(window);
@@ -247,10 +248,12 @@ int main()
 			updateCounter++;
 		}
 
+		
+
 		//---------------------------------END UPDATING---------------------------
 
 
-		//--------------------------------ALL THE DRAWING------------------------
+		//--------------------------------ALL THE DRAWING-------------------------
 		//draw to screen
 		if (!gameOver) {
 			//draw world and location
