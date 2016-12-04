@@ -185,7 +185,7 @@ void Creature::onEnemyBulletIntersect()
 
 }
 
-void Creature::onBulletIntersect()
+void Creature::onPlayerBulletIntersect()
 {
 
 }

@@ -11,6 +11,8 @@ class Enemy : public Creature {
 		void updateEnemy(RenderWindow &window);
 		bool isAlive();
 		void setAlive(bool a);
+		void onPlayerBulletIntersect(int damage);
+
 	private:
 		std::vector<RectangleShape> currentObstacles;
 		void setRandomDirection();

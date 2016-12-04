@@ -122,3 +122,10 @@ void Enemy::setRandomDirection() {
 	}
 
 }
+
+//what to do when the enemy is hit by a player buttet
+void Enemy::onPlayerBulletIntersect(int damage)
+{
+	//loose health
+	this->setCurrentHealth(this->getCurrentHealth() - damage);
+}

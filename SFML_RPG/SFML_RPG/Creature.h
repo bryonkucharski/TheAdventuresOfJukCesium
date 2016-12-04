@@ -68,7 +68,7 @@ class Creature : public Entity
 		void onEnemyIntersect();
 		void onNPCIntersect();
 		void onEnemyBulletIntersect();
-		void onBulletIntersect();
+		void onPlayerBulletIntersect();
 		void onPlayerIntersect();
 
 	private:

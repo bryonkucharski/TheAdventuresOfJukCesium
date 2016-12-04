@@ -89,9 +89,12 @@ int main()
 		//--------------------------------ALL THE INTERSECTIONS------------------------
 		//checking for player intersection with enemy
 		int intersectionCounter = 0;
-		for (std::vector<Enemy*>::iterator enemyIntersectIter = currentEnemies.begin(); enemyIntersectIter != currentEnemies.end(); ++enemyIntersectIter) {
-			if (mainPlayer.getRect().getGlobalBounds().intersects(currentEnemies[intersectionCounter]->getRect().getGlobalBounds())) {
-				mainPlayer.setCurrentHealth(mainPlayer.getCurrentHealth() - 1);
+		for (std::vector<Enemy*>::iterator enemyIntersectIter = currentEnemies.begin(); enemyIntersectIter != currentEnemies.end(); ++enemyIntersectIter)
+		{
+			if (mainPlayer.getRect().getGlobalBounds().intersects(currentEnemies[intersectionCounter]->getRect().getGlobalBounds()))
+			{
+				mainPlayer.onEnemyIntersect();
+				currentEnemies[intersectionCounter]->onPlayerIntersect();
 			}
 			intersectionCounter++;
 		}

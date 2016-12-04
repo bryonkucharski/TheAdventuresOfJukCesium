@@ -18,7 +18,7 @@ class Projectile : public Entity
 		int getSpeed();
 		bool isActive();
 		int getAnimationCounter();
-		
+
 		void onCollision();
 		
 	private:

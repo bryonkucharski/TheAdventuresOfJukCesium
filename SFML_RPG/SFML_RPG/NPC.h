@@ -21,6 +21,10 @@ public:
 	void ai5();
 	void ai6();
 	void ai7();
+	void onPlayerBulletIntersect();
+	void onPlayerIntersect();
+	void onEnemyBulletIntersect();
+
 private:
 	std::vector<RectangleShape> currentObstacles;
 	void setRandomDirection();

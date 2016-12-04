@@ -94,5 +94,6 @@ void Projectile::updateAnimation() {
 //colision handling
 void Projectile::onCollision()
 {
-	//delete it
+	//delete it by setting it to inactive
+	this->active = false;
 }

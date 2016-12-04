@@ -145,3 +145,18 @@ void NPC::ai5() {
 	//Move in a vertical line back and forth 3 spaces.
 
 }//end of ai5()
+
+void NPC::onPlayerBulletIntersect()
+{
+	//say fuck off XDDDD
+}
+
+void NPC::onPlayerIntersect()
+{
+	//say watch where you're shooting fgt
+}
+
+void NPC::onEnemyBulletIntersect()
+{
+	//say ouch
+}

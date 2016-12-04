@@ -10,6 +10,9 @@ public:
 	Player(std::string playerName, std::string file, World &world);
 	~Player();
 	void updatePlayer(RenderWindow &window);
+	void onEnemyIntersect();
+	void onEnemyBulletIntersect();
+	
 private:
 	int running = 5;
 	int walking = 2;
