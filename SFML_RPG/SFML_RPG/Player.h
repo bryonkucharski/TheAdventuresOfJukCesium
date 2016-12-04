@@ -12,6 +12,7 @@ public:
 	void updatePlayer(RenderWindow &window);
 	void onEnemyIntersect();
 	void onEnemyBulletIntersect();
+	void onIncreaseXPEvent(int amount);
 	
 private:
 	int running = 5;

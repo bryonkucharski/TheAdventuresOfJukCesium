@@ -264,7 +264,7 @@ void NPC::onPlayerBulletIntersect(){
 
 void NPC::onPlayerIntersect(){
 	//say watch where you're shooting fgt
-	this->setIntersectionText(this->getIntersectionText());
+	this->text.setString(this->getIntersectionText());
 	textTime = textClock.getElapsedTime();
 	if (textTime.asSeconds() > 2) {
 		this->text.setString(" ");

@@ -199,3 +199,11 @@ void Player::onEnemyBulletIntersect()
 	//decrease the health
 	this->setCurrentHealth(this->getCurrentHealth() - 1);
 }
+
+void Player::onIncreaseXPEvent(int amount)
+{
+	this->setTotalExperience(this->getTotalExperience() + amount);
+	//update the xp
+	int level = this->getTotalExperience() / 5;
+	this->setLevel(level);
+}
