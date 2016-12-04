@@ -105,6 +105,7 @@ class Creature : public Entity
 		int walkingCounterDirection;
 		std::string name;
 		int aID;
+		int wayToMove;
 
 		std::vector<Projectile *> bullets;
 

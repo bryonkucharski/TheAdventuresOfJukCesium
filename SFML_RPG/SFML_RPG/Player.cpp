@@ -92,7 +92,9 @@ void Player::updatePlayer(RenderWindow &window) {
 	
 	if (Keyboard::isKeyPressed(Keyboard::Space)) {
 		if (this->canShoot()) {
-			Projectile * newProjectile = new Projectile("res/Projectiles/fireProjectile.png", Vector2f(18, 18), this->getCurrentPosition(), this->getDirection(), 5);
+			Projectile * newProjectile = new Projectile("res/Projectiles/fireProjectile.png", Vector2f(18, 18), 
+				Vector2f(this->rect.getPosition().x + (this->rect.getGlobalBounds().width / 2), this->rect.getPosition().y + (this->rect.getGlobalBounds().height / 2))
+				,this->getDirection(), 5);
 			this->addToBullets(newProjectile);
 		}
 	}

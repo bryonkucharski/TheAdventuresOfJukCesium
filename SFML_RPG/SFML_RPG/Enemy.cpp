@@ -53,6 +53,7 @@ void Enemy::updateEnemy(Vector2f playerPos){
 	text.setPosition(this->rect.getPosition().x, this->rect.getPosition().y - text.getCharacterSize());
 
 	this->selectAI(this->getAI_ID());
+
 	
 }//end of update enemy
 
