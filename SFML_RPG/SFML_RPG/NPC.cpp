@@ -10,7 +10,8 @@ NPC::NPC(std::string file, std::string name, std::string intersectionText, int l
 	this->rect.setPosition(startingPosition);
 	this->rect.setFillColor(Color::Transparent);
 	this->setSpeed(1);
-	
+	this->text.setString("");
+	this->text.setPosition(this->rect.getPosition().x, this->rect.getPosition().y - text.getCharacterSize());
 	
 	aID = AI_ID;
 	intText = intersectionText;
@@ -28,8 +29,6 @@ NPC::~NPC() {
 }
 void NPC::updateNPC() {
 	this->sprite.setPosition(this->rect.getPosition());
-	this->text.setString(" " + this->getIntersectionText());
-	this->text.setPosition(this->rect.getPosition().x, this->rect.getPosition().y - text.getCharacterSize());
 }//end of updateNPC()
 
 
@@ -155,17 +154,22 @@ void NPC::ai5() {
 
 }//end of ai5()
 
-void NPC::onPlayerBulletIntersect()
-{
+void NPC::onPlayerBulletIntersect(){
 	//say fuck off XDDDD
+
 }
 
-void NPC::onPlayerIntersect()
-{
+void NPC::onPlayerIntersect(){
 	//say watch where you're shooting fgt
+	this->setIntersectionText(this->getIntersectionText());
+	textTime = textClock.getElapsedTime();
+	if (textTime.asSeconds() > 2) {
+		this->text.setString(" ");
+		textClock.restart();
+	}
 }
 
-void NPC::onEnemyBulletIntersect()
-{
+void NPC::onEnemyBulletIntersect(){
 	//say ouch
+	onPlayerIntersect();
 }
