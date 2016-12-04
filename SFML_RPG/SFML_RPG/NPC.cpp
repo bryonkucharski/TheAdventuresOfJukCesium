@@ -31,6 +31,13 @@ NPC::~NPC() {
 }
 void NPC::updateNPC() {
 	this->sprite.setPosition(this->rect.getPosition());
+	text.setPosition(this->rect.getPosition().x, this->rect.getPosition().y - text.getCharacterSize());
+
+	textTime = textClock.getElapsedTime();
+	if (textTime.asSeconds() > 1) {
+		this->text.setString(" ");
+	}
+
 	selectAI(this->getAI_ID());
 }//end of updateNPC()
 
@@ -42,18 +49,12 @@ std::string NPC::getIntersectionText() {
 }
 
 void NPC::onPlayerBulletIntersect(){
+	textClock.restart();
+	this->text.setString("OUCH!!");
 }
 
 void NPC::onPlayerIntersect(){
-	//say watch where you're shooting fgt
+	//give player a message
+	textClock.restart();
 	this->text.setString(this->getIntersectionText());
-	textTime = textClock.getElapsedTime();
-	if (textTime.asSeconds() > 2) {
-		this->text.setString(" ");
-		textClock.restart();
-	}
-}
-void NPC::onEnemyBulletIntersect(){
-	//say ouch
-	onPlayerIntersect();
 }
