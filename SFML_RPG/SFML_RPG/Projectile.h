@@ -19,7 +19,7 @@ class Projectile : public Entity
 		bool isActive();
 		int getAnimationCounter();
 		
-		
+		void onCollision();
 		
 	private:
 		void updateAnimation();

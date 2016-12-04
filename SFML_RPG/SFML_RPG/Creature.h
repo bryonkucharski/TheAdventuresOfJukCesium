@@ -64,6 +64,12 @@ class Creature : public Entity
 		/*return true if a bullet allowed to be added to the vector */
 		bool canShoot();
 		
+		//all intersection handling
+		void onEnemyIntersect();
+		void onNPCIntersect();
+		void onEnemyBulletIntersect();
+		void onBulletIntersect();
+		void onPlayerIntersect();
 
 	private:
 		int damage;

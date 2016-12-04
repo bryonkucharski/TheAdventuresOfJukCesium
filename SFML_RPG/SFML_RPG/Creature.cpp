@@ -170,4 +170,27 @@ void Creature::removeBullets() {
 	bullets.erase(std::remove_if(bullets.begin(), bullets.end(), [](Projectile *p) { return !p->isActive(); }), bullets.end());
 }
 
+void Creature::onEnemyIntersect()
+{
 
+}
+
+void Creature::onNPCIntersect()
+{
+
+}
+
+void Creature::onEnemyBulletIntersect()
+{
+
+}
+
+void Creature::onBulletIntersect()
+{
+
+}
+
+void Creature::onPlayerIntersect()
+{
+
+}

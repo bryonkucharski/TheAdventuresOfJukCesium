@@ -91,4 +91,8 @@ void Projectile::updateAnimation() {
 		this->sprite.setTextureRect(IntRect(this->getAnimationCounter() * 18, 0, 18, 18));
 	}
 }
-
+//colision handling
+void Projectile::onCollision()
+{
+	//delete it
+}
