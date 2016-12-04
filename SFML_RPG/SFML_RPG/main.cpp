@@ -157,7 +157,7 @@ int main()
 			int NPCdrawCounter = 0;
 			for (std::vector<NPC*>::iterator NPCDrawIter = currentNPCs.begin(); NPCDrawIter != currentNPCs.end(); ++NPCDrawIter) {
 				window.draw(currentNPCs[NPCdrawCounter]->getSprite());
-				//window.draw(currentNPCs[NPCdrawCounter].getText());
+				window.draw(currentNPCs[NPCdrawCounter]->getText());
 				NPCdrawCounter++;
 			}
 

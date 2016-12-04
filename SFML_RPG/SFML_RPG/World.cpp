@@ -239,7 +239,7 @@ void World::setupHome() {
 	this->createEnemy("res/Creatures/gargoyle.png", "Gargoyle", 1, 100, 2, Vector2f(15 * PIXEL_SIZE, 2 * PIXEL_SIZE), home);
 	
 	//adding NPC's
-	this->createNPC("res/Creatures/nun.png", "Nun", home.getLocationID(), 2, Vector2f(27 * PIXEL_SIZE, 8 * PIXEL_SIZE), home);
+	this->createNPC("res/Creatures/nun.png", "Nun", "Ouch!", home.getLocationID(), 2, Vector2f(27 * PIXEL_SIZE, 8 * PIXEL_SIZE), home);
 
 }
 void World::setupBigHouse() {
@@ -979,8 +979,8 @@ void World::createEnemy(std::string file, std::string name, int location, int he
 	loc.addToEnemies(enemy);
 }
 
-void World::createNPC(std::string file, std::string name, int location, int AI_ID, Vector2f startingPosition, Location &loc) {
-	NPC *npc1 = new NPC(file, name, location, AI_ID, startingPosition, loc.getObstacles());
+void World::createNPC(std::string file, std::string name, std::string intersectionText, int location, int AI_ID, Vector2f startingPosition, Location &loc) {
+	NPC *npc1 = new NPC(file, name, intersectionText, location, AI_ID, startingPosition, loc.getObstacles());
 	loc.addToNPCs(npc1);
 	loc.addToObstacles(npc1->getRect());
 }

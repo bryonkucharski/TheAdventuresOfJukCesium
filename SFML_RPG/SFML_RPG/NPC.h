@@ -7,10 +7,12 @@
 class NPC : public Creature
 {
 public:
-	NPC::NPC(std::string file, std::string name, int location, int AI_ID, Vector2f startingPosition, std::vector<RectangleShape> &obstacles);
+	NPC::NPC(std::string file, std::string name, std::string intersectionText, int location, int AI_ID, Vector2f startingPosition, std::vector<RectangleShape> &obstacles);
 	~NPC();
 	void updateNPC();
 	void drawText();
+	void setIntersectionText(std::string intText);
+	std::string getIntersectionText();
 
 	//AI Paths for NPC's
 	void selectAI(int aID);
@@ -32,6 +34,7 @@ private:
 	Clock directionClock;
 	Time directionTime;
 	int aID;
+	std::string intText;//intersection text
 };
 
 #endif // !NPC_H

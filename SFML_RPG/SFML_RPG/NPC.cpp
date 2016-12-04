@@ -3,7 +3,7 @@
 #include <time.h>       /* time */
 #define PIXEL_SIZE 32
 
-NPC::NPC(std::string file, std::string name, int location, int AI_ID,Vector2f startingPosition, std::vector<RectangleShape> &obstacles) : Creature(name, file) {
+NPC::NPC(std::string file, std::string name, std::string intersectionText, int location, int AI_ID,Vector2f startingPosition, std::vector<RectangleShape> &obstacles) : Creature(name, file) {
 	this->sprite.setTextureRect(IntRect(0, 0, 32, 32));
 	this->rect.setSize(Vector2f(32, 32));
 	this->setCurrentLocation(location);
@@ -11,14 +11,16 @@ NPC::NPC(std::string file, std::string name, int location, int AI_ID,Vector2f st
 	this->rect.setFillColor(Color::Transparent);
 	this->setSpeed(1);
 	
+	
 	aID = AI_ID;
+	intText = intersectionText;
 
 	srand(time(NULL));
 	currentObstacles = obstacles;
 	font.loadFromFile("res/Fonts/Vecna.otf");
 	text.setFont(font);
 	text.setCharacterSize(10);
-	text.setFillColor(Color::White);
+	text.setFillColor(Color::Yellow);
 }//end of NPC constructor
 
 NPC::~NPC() {
@@ -26,10 +28,12 @@ NPC::~NPC() {
 }
 void NPC::updateNPC() {
 	this->sprite.setPosition(this->rect.getPosition());
+	this->text.setString(" " + this->getIntersectionText());
+	this->text.setPosition(this->rect.getPosition().x, this->rect.getPosition().y - text.getCharacterSize());
 }//end of updateNPC()
 
 void NPC::drawText() {
-	text.setString("Level " + std::to_string(this->getLevel()) + "\n" + this->getName() + "  " + std::to_string(this->getCurrentHealth()) + " / " + std::to_string(this->getMaxHealth()));
+	text.setString(" " + this->getIntersectionText() );
 	text.setPosition(this->rect.getPosition().x, this->rect.getPosition().y - text.getCharacterSize());
 }//end of drawText()
 
@@ -41,6 +45,15 @@ void NPC::setRandomDirection() {
 		directionClock.restart();
 	}
 }//end of setRandomDirection()
+
+
+void NPC::setIntersectionText(std::string s) {
+	this->intText = s;
+}
+std::string NPC::getIntersectionText() {
+	return this->intText;
+}
+
 
 //AI Selector
 void NPC::selectAI(int AI_ID) {
