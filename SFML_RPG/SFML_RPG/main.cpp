@@ -64,13 +64,12 @@ int main()
 				window.close();
 		}
 
+
 		//check for a game over
 		if (mainPlayer.getCurrentHealth() <= 0) {
 			window.clear();
 			gameOver = true;
 		}
-
-
 
 		//get all NPCs in current location
 		currentNPCs = world.getLocation(mainPlayer.getCurrentLocation()).getNPCs();
@@ -291,3 +290,4 @@ void loadGame()
 		theMainPlayer->setMaxHealth(maxHealth);
 	}
 }
+

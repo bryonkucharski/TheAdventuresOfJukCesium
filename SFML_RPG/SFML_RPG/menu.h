@@ -7,7 +7,7 @@ using namespace sf;
 
 #define MAX_ITEMS 4
 
-class Menu{
+class Menu {
 private:
 	int menuIndex = 0;
 	Font font;
@@ -18,7 +18,7 @@ public:
 	Menu(double width, double height);
 	~Menu();
 	Menu();
-	
+
 
 	Music menuMusic;
 	Music screen1Mus;
@@ -30,5 +30,6 @@ public:
 	void setColor();
 	void menuMusicStop();
 	void screen1Music();
-	
+	void displayMenu();
+
 };//end of class menu

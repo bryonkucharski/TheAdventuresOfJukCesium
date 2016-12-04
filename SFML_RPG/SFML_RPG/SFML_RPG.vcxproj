@@ -168,6 +168,7 @@
     <ClCompile Include="ItemList.cpp" />
     <ClCompile Include="Location.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Menu.cpp" />
     <ClCompile Include="NPC.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Projectile.cpp" />
@@ -182,6 +183,7 @@
     <ClInclude Include="Item.h" />
     <ClInclude Include="ItemList.h" />
     <ClInclude Include="Location.h" />
+    <ClInclude Include="Menu.h" />
     <ClInclude Include="NPC.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Projectile.h" />

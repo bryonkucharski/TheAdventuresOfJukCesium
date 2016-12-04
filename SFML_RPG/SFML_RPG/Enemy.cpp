@@ -52,13 +52,12 @@ void Enemy::updateEnemy(RenderWindow &window) {
 	if (getDirection() == 1){
 
 		animationTime = animationClock.getElapsedTime();
-		if (animationTime.asSeconds() > animationCounter)
-		{
+		if (animationTime.asSeconds() > animationCounter){
 			this->sprite.setTextureRect(IntRect(this->getWalkingCounter() * 32, 32, 32, 32));
 			animationClock.restart();
 		}
-
 		this->rect.move(-this->getSpeed(), 0);
+
 		while (this->checkForIntersect(currentObstacles, this->rect)) {
 			this->rect.move(1, 0);
 		}

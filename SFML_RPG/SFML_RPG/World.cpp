@@ -237,7 +237,7 @@ void World::setupHome() {
 	this->createEnemy("res/Creatures/gargoyle.png", "Gargoyle", 1, 100, 2, Vector2f(15 * PIXEL_SIZE, 2 * PIXEL_SIZE), home);
 	
 	//adding NPC's
-	this->createNPC("res/Creatures/nun.png", "Nun", "Ouch!", home.getLocationID(), 2, Vector2f(27 * PIXEL_SIZE, 8 * PIXEL_SIZE), home);
+	this->createNPC("res/Creatures/nun.png", "Nun", "Ouch!", home.getLocationID(), /*AI_ID*/3, Vector2f(27 * PIXEL_SIZE, 8 * PIXEL_SIZE), home);
 
 }
 void World::setupBigHouse() {
@@ -922,6 +922,9 @@ void World::setupWFcorridor(){
 	this->createEnemy("res/Creatures/bat.png", "Bat", 1, 50, 3, Vector2f(3 * PIXEL_SIZE, 12 * PIXEL_SIZE), WFcorridor);
 	this->createEnemy("res/Creatures/bat.png", "Bat", 1, 50, 3, Vector2f(12 * PIXEL_SIZE, 4 * PIXEL_SIZE), WFcorridor);
 	this->createEnemy("res/Creatures/bat.png", "Bat", 1, 50, 3, Vector2f(20 * PIXEL_SIZE, 4 * PIXEL_SIZE), WFcorridor);
+
+	//adding NPC
+	this->createNPC("res/Creatures/oldMan.png", "Old Man", "There is a big monster down there.", WFcorridor.getLocationID(), /*AI*/4, Vector2f(19 * PIXEL_SIZE, 4 * PIXEL_SIZE), WFcorridor);
 
 }
 

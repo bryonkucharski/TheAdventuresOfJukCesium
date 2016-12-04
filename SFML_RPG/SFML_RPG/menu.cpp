@@ -77,19 +77,19 @@ void Menu::menuStart() {
 	if (menuIndex == 0) {
 		menuText[menuIndex].setFillColor(sf::Color::Red);
 		menuText[menuIndex].setString("[" + menuArray[menuIndex] + "]");
-		
+
 	}
 }//end of menuStart()
 
 void Menu::menuUP() {
-	if (menuIndex != 0 ){
+	if (menuIndex != 0) {
 		menuIndex--;
 		setColor();
 	}
 }//end of menuUP()
 
 void Menu::menuDN() {
-	if (menuIndex != MAX_ITEMS -1 ) {
+	if (menuIndex != MAX_ITEMS - 1) {
 		//minus 1 becaues the array slots of MAX_ITEMS is 4, and the index only reaches 3
 		menuIndex++;
 		setColor();
@@ -130,3 +130,4 @@ void Menu::screen1Music() {
 	screen1Mus.setPitch(.75);
 	screen1Mus.setLoop(true);
 }
+

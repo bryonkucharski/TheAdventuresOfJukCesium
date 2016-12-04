@@ -100,8 +100,8 @@ class Creature : public Entity
 		void setAllWalk(bool val);
 	
 
-		Clock animationClock,bulletClock,textClock;
-		Time animationTime,bulletTime,textTime;
+		Clock animationClock,bulletClock,textClock,genericClock;
+		Time animationTime,bulletTime,textTime,genericTime;
 		float animationCounter;
 
 };

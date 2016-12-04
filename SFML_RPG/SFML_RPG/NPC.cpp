@@ -12,6 +12,7 @@ NPC::NPC(std::string file, std::string name, std::string intersectionText, int l
 	this->setSpeed(1);
 	this->text.setString("");
 	this->text.setPosition(this->rect.getPosition().x, this->rect.getPosition().y - text.getCharacterSize());
+	this->setWalkingCounter(0);
 	
 	aID = AI_ID;
 	intText = intersectionText;
@@ -29,6 +30,7 @@ NPC::~NPC() {
 }
 void NPC::updateNPC() {
 	this->sprite.setPosition(this->rect.getPosition());
+	selectAI(this->aID);
 }//end of updateNPC()
 
 
@@ -59,7 +61,7 @@ void NPC::selectAI(int AI_ID) {
 			break;
 		case 2:
 			//Move like monsters.
-			ai1();
+			ai2();
 			break;
 		case 3:
 			//Move in a 3 x 3 loop.
@@ -74,7 +76,7 @@ void NPC::selectAI(int AI_ID) {
 			ai5();
 			break;
 		case 6:
-			//[NOT USED YET]
+			//Spin
 			break;
 		case 7:
 			//[NOT USED YET]
@@ -93,7 +95,9 @@ void NPC::ai1() {
 
 void NPC::ai2() {
 	//Move like monsters.
+	setRandomDirection();
 	if (getDirection() == 1) {
+		//left
 		animationTime = animationClock.getElapsedTime();
 		if (animationTime.asSeconds() > animationCounter) {
 			this->sprite.setTextureRect(IntRect(this->getWalkingCounter() * 32, 32, 32, 32));
@@ -105,6 +109,7 @@ void NPC::ai2() {
 			this->rect.move(1, 0);
 		}
 	}else if (getDirection() == 2) {
+		//right
 		animationTime = animationClock.getElapsedTime();
 		if (animationTime.asSeconds() > animationCounter) {
 			this->sprite.setTextureRect(IntRect(this->getWalkingCounter() * 32, 32 * 2, 32, 32));
@@ -116,6 +121,7 @@ void NPC::ai2() {
 			this->rect.move(-1, 0);
 		}
 	}else if (getDirection() == 3) {
+		//up
 		animationTime = animationClock.getElapsedTime();
 		if (animationTime.asSeconds() > animationCounter) {
 			this->sprite.setTextureRect(IntRect(this->getWalkingCounter() * 32, 96, 32, 32));
@@ -127,6 +133,7 @@ void NPC::ai2() {
 			this->rect.move(0, 1);
 		}
 	}else if (getDirection() == 4) {
+		//down
 		animationTime = animationClock.getElapsedTime();
 		if (animationTime.asSeconds() > animationCounter) {
 			this->sprite.setTextureRect(IntRect(this->getWalkingCounter() * 32, 0, 32, 32));
@@ -141,12 +148,108 @@ void NPC::ai2() {
 
 void NPC::ai3() {
 	//Move in a 3 x 3 loop.
+	genericTime = genericClock.getElapsedTime();
+	int timeToWalk = 1;//how many seconds you want the ai to move.
+	static int wayToMove = 1;
+	if (wayToMove == 1) {
+		setDirection(1);
+		animationTime = animationClock.getElapsedTime();
+		if (animationTime.asSeconds() > animationCounter) {
+			this->sprite.setTextureRect(IntRect(this->getWalkingCounter() * 32, 32, 32, 32));//this changes png
+			animationClock.restart();
+		}
+		this->rect.move(-this->getSpeed(), 0);//going left
 
+		while (this->checkForIntersect(currentObstacles, this->rect)) {
+			this->rect.move(1, 0);
+		}
+	}
+	if(wayToMove == 2) {
+		setDirection(2);
+		animationTime = animationClock.getElapsedTime();
+		if (animationTime.asSeconds() > animationCounter) {
+			this->sprite.setTextureRect(IntRect(this->getWalkingCounter() * 32, 32 * 2, 32, 32));//changing png
+			animationClock.restart();
+		}
+		this->rect.move(0, -this->getSpeed());//going up
+		while (this->checkForIntersect(currentObstacles, this->rect)) {
+			this->rect.move(0, 1);
+		}
+	}
+	if (wayToMove == 3) {
+		setDirection(3);
+		animationTime = animationClock.getElapsedTime();
+		if (animationTime.asSeconds() > animationCounter) {
+			this->sprite.setTextureRect(IntRect(this->getWalkingCounter() * 32, 32 * 2, 32, 32));//changing png
+			animationClock.restart();
+		}
+		this->rect.move(this->getSpeed(), 0);//going right
+
+		while (this->checkForIntersect(currentObstacles, this->rect)) {
+			this->rect.move(-1, 0);
+		}
+	}
+	if (wayToMove == 4) {
+		setDirection(4);
+		animationTime = animationClock.getElapsedTime();
+		if (animationTime.asSeconds() > animationCounter) {
+			this->sprite.setTextureRect(IntRect(this->getWalkingCounter() * 32, 0, 32, 32));//changing png
+			animationClock.restart();
+		}
+		this->rect.move(0, this->getSpeed());//going down
+
+		while (this->checkForIntersect(currentObstacles, this->rect)) {
+			this->rect.move(0, -1);
+		}
+	}
+
+	if (genericTime.asSeconds() > timeToWalk) {
+		genericClock.restart();
+		wayToMove++;
+		if (wayToMove == 5) {
+			wayToMove = 1;
+		}
+	}
+	this->updateAnimationCounter();
 }//end of ai3()
 
 void NPC::ai4() {
-	//Move in a horizontal line back and forth 5 spaces.
+	//Move in a horizontal line back and forth for an ammount of time.
+	genericTime = genericClock.getElapsedTime();
+	int timeToWalk = 1;//how many seconds you want the ai to move.
+	static int wayToMove = -1;
+	if (wayToMove == -1) {
+		setDirection(1);
+		animationTime = animationClock.getElapsedTime();
+		if (animationTime.asSeconds() > animationCounter) {
+			this->sprite.setTextureRect(IntRect(this->getWalkingCounter() * 32, 32, 32, 32));//this changes png
+			animationClock.restart();
+		}
+		this->rect.move(wayToMove * this->getSpeed(), 0);//going left
 
+		while (this->checkForIntersect(currentObstacles, this->rect)) {
+			this->rect.move(-wayToMove * 1, 0);
+		}
+	}
+	else {
+		setDirection(2);
+		animationTime = animationClock.getElapsedTime();
+		if (animationTime.asSeconds() > animationCounter) {
+			this->sprite.setTextureRect(IntRect(this->getWalkingCounter() * 32, 32 * 2, 32, 32));//changing png
+			animationClock.restart();
+		}
+		this->rect.move(wayToMove * this->getSpeed(), 0);//going right
+
+		while (this->checkForIntersect(currentObstacles, this->rect)) {
+			this->rect.move(-wayToMove * 1, 0);
+		}
+	}
+	if (genericTime.asSeconds() > timeToWalk) {
+		genericClock.restart();
+		wayToMove *= -1;
+	}
+	this->updateAnimationCounter();
+	
 }//end of ai4()
 
 void NPC::ai5() {
