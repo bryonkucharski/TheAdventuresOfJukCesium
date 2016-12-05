@@ -505,10 +505,9 @@ void World::setupForest2() {
 	createLocationRectangle(Vector2f(1 * PIXEL_SIZE, 3 * PIXEL_SIZE), Vector2f(29 * PIXEL_SIZE, 8 * PIXEL_SIZE), Color::Transparent, forest2);
 
 	//adding enemies to forest 2
-	this->createEnemy("res/Creatures/flower.png", "Killer Flower", 1, 100, 2, Vector2f(21 * PIXEL_SIZE, 8 * PIXEL_SIZE), forest2);
-	this->createEnemy("res/Creatures/flower.png", "Killer Flower", 1, 100, 2, Vector2f(10 * PIXEL_SIZE, 13 * PIXEL_SIZE), forest2);
-
-
+	this->createEnemy("res/Creatures/flower.png", "Killer Flower", 1, 175, 3, Vector2f(21 * PIXEL_SIZE, 8 * PIXEL_SIZE), forest2);
+	this->createEnemy("res/Creatures/flower.png", "Killer Flower", 1, 175, 3, Vector2f(10 * PIXEL_SIZE, 13 * PIXEL_SIZE), forest2);
+	this->createEnemy("res/Creatures/flower.png", "Poison Flower", 1, 200, 4, Vector2f(7 * PIXEL_SIZE, 5 * PIXEL_SIZE), forest2);
 }
 void World::setupBeach() {
 	//Create obstacles
@@ -759,6 +758,11 @@ void World::setupCastle() {
 	for (int i = 0; i < 6; i++) {
 		this->createNPC("res/Creatures/darkKnight.png", "Knight of the Palace", "All Hail King Carpenter", /*AI_ID*/1, Vector2f(17 * PIXEL_SIZE, (14 - i) * PIXEL_SIZE), castle);
 	}
+	this->createNPC("res/Creatures/king.png", "King Carpenter", "You get an A.", 1, Vector2f(13 * PIXEL_SIZE, 6 * PIXEL_SIZE - 10), castle);
+	this->createNPC("res/Creatures/queen.png", "Queenie", "I like to cook eggs.", 1, Vector2f(16 * PIXEL_SIZE, 6 * PIXEL_SIZE - 10), castle);
+	this->createNPC("res/Creatures/aipronLady.png", "Cookie", "The guests will be here soon!", 1, Vector2f(8 * PIXEL_SIZE, 6 * PIXEL_SIZE), castle);
+	this->createNPC("res/Creatures/merchant.png", "Nervious Wreck", "I am nervious.", 3, Vector2f(8 * PIXEL_SIZE, 4 * PIXEL_SIZE), castle);
+	this->createNPC("res/Creatures/greenHairGirl.png", "Sally", "I am setting the table.", 5, Vector2f(22 * PIXEL_SIZE, 8 * PIXEL_SIZE), castle);
 }
 void World::setupMarket() {
 	//first one size, second one position
