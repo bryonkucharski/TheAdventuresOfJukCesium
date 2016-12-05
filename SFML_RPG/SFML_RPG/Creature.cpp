@@ -12,6 +12,8 @@ Creature::Creature(std::string creatureName, std::string file) {
 	this->animationCounter = .05;
 	this->setDirection(4);
 	this->wayToMove = 1;
+
+
 }
 Creature::~Creature() {
 

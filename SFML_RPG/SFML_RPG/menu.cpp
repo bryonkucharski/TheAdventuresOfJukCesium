@@ -1,8 +1,6 @@
 #include "menu.h"
 
-Menu::Menu() {
-	//nothing is here
-}
+Menu::Menu() {}
 
 Menu::Menu(std::string file, std::string title, std::string music, std::string menuString[MAX_ITEMS], int textSize,Vector2f titlePosition, Vector2f startingPosition) {
 	texture.loadFromFile(file);
@@ -24,8 +22,7 @@ Menu::Menu(std::string file, std::string title, std::string music, std::string m
 
 }//end of menu class
 
-Menu::~Menu() {
-}
+Menu::~Menu() {}
 
 
 void Menu::drawMenu(RenderWindow &window) {

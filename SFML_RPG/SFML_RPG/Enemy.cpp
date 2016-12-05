@@ -3,11 +3,15 @@
 #include <time.h>       /* time */
 #include <cmath>
 
-
 Enemy::Enemy(std::string file, std::string name,int location, int AI_ID, int health, int level,Vector2f startingPosition, std::vector<RectangleShape> &obstacles) : Creature(name, file) {
 
 	this->sprite.setTextureRect(IntRect(0, 0, 32, 32));
 	this->rect.setSize(Vector2f(32, 32));
+
+	this->bOnDeath.loadFromFile("res/Sounds/Attack3.ogg");
+	this->bOnHit.loadFromFile("res/Sounds/Attack2.ogg");
+	this->soundOnDeath.setBuffer(bOnDeath);
+	this->soundOnHit.setBuffer(bOnHit);
 
 	srand(time(NULL));
 
@@ -67,9 +71,12 @@ void Enemy::setAlive(bool a) {
 void Enemy::onPlayerBulletIntersect(int damage){
 	//loose health
 	this->setCurrentHealth(this->getCurrentHealth() - damage);
+	this->soundOnHit.play();
+	
 }
 
 int Enemy::dropExp() {
+	this->soundOnDeath.play();
 	int exp = this->getMaxHealth() / 20 + this->getLevel();
 	return exp;
 }
