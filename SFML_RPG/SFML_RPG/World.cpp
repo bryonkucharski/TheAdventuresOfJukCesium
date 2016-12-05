@@ -10,7 +10,7 @@ World::~World() {
 }
 World::World(RenderWindow &window) {
 	//town1 = *new Location("Mill Creek", "res/Locations/Town1.png", 2, 4, 3, 1, new location in new area Vector2f(0 * PIXEL_SIZE, 0 * PIXEL_SIZE), Vector2f(0 * PIXEL_SIZE, 0 * PIXEL_SIZE), Vector2f(0 * PIXEL_SIZE, 0 * PIXEL_SIZE));
-	beach = *new Location("Beach", "res/Locations/beach.png", 5, 4, 6, 0, 0, Vector2f(11 * PIXEL_SIZE, 18 * PIXEL_SIZE), Vector2f(1 * PIXEL_SIZE, 4 * PIXEL_SIZE), Vector2f(0 * PIXEL_SIZE, 0 * PIXEL_SIZE), Vector2f(0 * PIXEL_SIZE, 0 * PIXEL_SIZE));
+	beach = *new Location("Beach", "res/Locations/beach.png", 5, 4, 6, 15, 0, Vector2f(11 * PIXEL_SIZE, 18 * PIXEL_SIZE), Vector2f(1 * PIXEL_SIZE, 4 * PIXEL_SIZE), Vector2f(9 * PIXEL_SIZE, 6 * PIXEL_SIZE), Vector2f(0 * PIXEL_SIZE, 0 * PIXEL_SIZE));
 	bigHouseInterior = *new Location("Home Sweet Home", "res/Locations/BigHouseInterior.png", 2, 1, 0, 0, 0, Vector2f(17 * PIXEL_SIZE, 17 * PIXEL_SIZE), Vector2f(0 * PIXEL_SIZE, 0 * PIXEL_SIZE), Vector2f(0 * PIXEL_SIZE, 0 * PIXEL_SIZE), Vector2f(0 * PIXEL_SIZE, 0 * PIXEL_SIZE));
 	castle = *new Location("Royal Palace", "res/Locations/castle.png", 10, 8, 0, 0, 0, Vector2f(14 * PIXEL_SIZE, 11 * PIXEL_SIZE), Vector2f(0 * PIXEL_SIZE, 0 * PIXEL_SIZE), Vector2f(0 * PIXEL_SIZE, 0 * PIXEL_SIZE), Vector2f(0 * PIXEL_SIZE, 0 * PIXEL_SIZE));
 	forest = *new Location("Hollow Forest", "res/Locations/Forest1.png", 3, 4, 8, 1, 0, Vector2f(28 * PIXEL_SIZE, 8 * PIXEL_SIZE), Vector2f(14 * PIXEL_SIZE, 18 * PIXEL_SIZE), Vector2f(1 * PIXEL_SIZE, 9 * PIXEL_SIZE), Vector2f(0 * PIXEL_SIZE, 0 * PIXEL_SIZE));
@@ -24,7 +24,7 @@ World::World(RenderWindow &window) {
 	waterfall = *new Location("Mine Falls", "res/Locations/waterfall.png", 6, 5, 14, 14, 0, Vector2f(6 * PIXEL_SIZE, 2 * PIXEL_SIZE), Vector2f(7 * PIXEL_SIZE, 15 * PIXEL_SIZE), Vector2f(26 * PIXEL_SIZE, 9 * PIXEL_SIZE), Vector2f(0 * PIXEL_SIZE, 0 * PIXEL_SIZE));
 	WFbossRoom = *new Location("Shadow's Lair", "res/Locations/WFbossRoom.png", 7, 14, 0, 0, 0, Vector2f(19 * PIXEL_SIZE, 18 * PIXEL_SIZE), Vector2f(0 * PIXEL_SIZE, 0 * PIXEL_SIZE), Vector2f(0 * PIXEL_SIZE, 0 * PIXEL_SIZE), Vector2f(0 * PIXEL_SIZE, 0 * PIXEL_SIZE));
 	WFcorridor = *new Location("Shadow's Corfidor", "res/Locations/WFcorridor.png", 14, 6, 6, 7, 0, Vector2f(4 * PIXEL_SIZE, 14 * PIXEL_SIZE), Vector2f(26 * PIXEL_SIZE, 5 * PIXEL_SIZE), Vector2f(12 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(0 * PIXEL_SIZE, 0 * PIXEL_SIZE));
-
+	port = *new Location("Port Sarim", "res/Locations/port.png", 15, 5, 0, 0, 0, Vector2f(24 * PIXEL_SIZE, 8 * PIXEL_SIZE), Vector2f(0 * PIXEL_SIZE, 0 * PIXEL_SIZE), Vector2f(0 * PIXEL_SIZE, 0 * PIXEL_SIZE), Vector2f(0 * PIXEL_SIZE, 0 * PIXEL_SIZE));
 
 	this->setupHome();
 	this->setupBigHouse();
@@ -40,6 +40,7 @@ World::World(RenderWindow &window) {
 	this->setupGraveyard();
 	this->setupGhostShed();
 	this->setupWFcorridor();
+	this->setupPort();
 }
 Location & World::getLocation(int requested) {
 	switch (requested) {
@@ -71,6 +72,8 @@ Location & World::getLocation(int requested) {
 			return ghostShed;
 		case 14:
 			return WFcorridor;
+		case 15:
+			return port;
 		default:
 			return home;
 
@@ -106,6 +109,8 @@ string World::getLocationString(int requested) {
 		return ghostShed.getName();
 	case 14:
 		return WFcorridor.getName();
+	case 15:
+		return port.getName();
 	default:
 		return home.getName();
 
@@ -126,8 +131,7 @@ void World::drawWorld(RenderWindow &window, Location &toDraw) {
 
 	//draw all location changes
 	int counter2 = 0;
-	for (std::vector<RectangleShape>::iterator locIter = toDraw.getLocationChanges().begin(); locIter != toDraw.getLocationChanges().end(); ++locIter)
-	{
+	for (std::vector<RectangleShape>::iterator locIter = toDraw.getLocationChanges().begin(); locIter != toDraw.getLocationChanges().end(); ++locIter){
 		window.draw(toDraw.getLocationChanges()[counter2]);
 		counter2++;
 	}
@@ -572,7 +576,7 @@ void World::setupBeach() {
 	//creating location changes
 	createLocationRectangle(Vector2f(2 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(14 * PIXEL_SIZE, 0 * PIXEL_SIZE ), Color::Transparent, beach);
 	createLocationRectangle(Vector2f(1 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(6 * PIXEL_SIZE, 1 * PIXEL_SIZE ), Color::Transparent, beach);
-
+	createLocationRectangle(Vector2f(1 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(24 * PIXEL_SIZE, 9 * PIXEL_SIZE), Color::Transparent, beach);
 
 	//adding enemies to beach
 	this->createEnemy("res/Creatures/jellyfish.png", "Jellyfish", 2, 100, 2, Vector2f(18 * PIXEL_SIZE, 17 * PIXEL_SIZE), beach);
@@ -735,7 +739,7 @@ void World::setupPub() {
 	this->createNPC("res/Creatures/merchant.png", "Morty", "Ohh, I don't know Rick...", 1, Vector2f(10* PIXEL_SIZE, 7 * PIXEL_SIZE), pub);
 	this->createNPC("res/Creatures/aipronLady.png", "Deborah", "I serve beer and whiskey.", 4, Vector2f(10 * PIXEL_SIZE, 4 * PIXEL_SIZE), pub);
 	this->createNPC("res/Creatures/oldMan.png", "Old Man Eugine", "I had to walk 5000 miles to school every day.", 1, Vector2f(5 * PIXEL_SIZE, 10 * PIXEL_SIZE), pub);
-	this->createNPC("res/Creatures/flowerGirl.png", "Flower Dancer", "Dance with me!", 3, Vector2f(19 * PIXEL_SIZE, 10 * PIXEL_SIZE), pub);
+	this->createNPC("res/Creatures/blondeGirl.png", "Flower Dancer", "Dance with me!", 3, Vector2f(19 * PIXEL_SIZE, 10 * PIXEL_SIZE), pub);
 	this->createNPC("res/Creatures/whiteHairKid.png", "Drunk Doug", "I'm going to hurl!!!", 6, Vector2f(26 * PIXEL_SIZE, 6 * PIXEL_SIZE), pub);
 	this->createNPC("res/Creatures/gothGirl.png", "Grape", "I pick grapes.", 5, Vector2f(23 * PIXEL_SIZE, 9 * PIXEL_SIZE), pub);
 	this->createNPC("res/Creatures/greenHairGirl.png", "Velma", "", 1, Vector2f(14 * PIXEL_SIZE, 11 * PIXEL_SIZE), pub);
@@ -985,6 +989,64 @@ void World::setupWFcorridor(){
 
 }
 
+void World::setupPort() {
+	//Obstacles
+	//	createObstacleRectangle(Vector2f(1 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(0 * PIXEL_SIZE, 0 * PIXEL_SIZE), Color::Blue, port);
+	this->createBorder(port);
+	createObstacleRectangle(Vector2f(2 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(0 * PIXEL_SIZE, 8 * PIXEL_SIZE), Color::Transparent, port);
+	createObstacleRectangle(Vector2f(1 * PIXEL_SIZE, 2 * PIXEL_SIZE), Vector2f(2 * PIXEL_SIZE, 6 * PIXEL_SIZE), Color::Transparent, port);
+	createObstacleRectangle(Vector2f(1 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(3 * PIXEL_SIZE, 5 * PIXEL_SIZE), Color::Transparent, port);
+	createObstacleRectangle(Vector2f(5 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(4 * PIXEL_SIZE, 4 * PIXEL_SIZE), Color::Transparent, port);
+	createObstacleRectangle(Vector2f(3 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(6 * PIXEL_SIZE, 3 * PIXEL_SIZE), Color::Transparent, port);
+	createObstacleRectangle(Vector2f(1 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(8 * PIXEL_SIZE, 2 * PIXEL_SIZE), Color::Transparent, port);
+	createObstacleRectangle(Vector2f(1 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(8 * PIXEL_SIZE, 5 * PIXEL_SIZE), Color::Transparent, port);
+	createObstacleRectangle(Vector2f(1 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(7 * PIXEL_SIZE, 6 * PIXEL_SIZE), Color::Transparent, port);
+	createObstacleRectangle(Vector2f(1 * PIXEL_SIZE, 2 * PIXEL_SIZE), Vector2f(8 * PIXEL_SIZE, 7 * PIXEL_SIZE), Color::Transparent, port);
+	createObstacleRectangle(Vector2f(2 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(6 * PIXEL_SIZE, 8 * PIXEL_SIZE), Color::Transparent, port);
+	createObstacleRectangle(Vector2f(1 * PIXEL_SIZE, 2 * PIXEL_SIZE), Vector2f(5 * PIXEL_SIZE, 9 * PIXEL_SIZE), Color::Transparent, port);
+	createObstacleRectangle(Vector2f(1 * PIXEL_SIZE, 8 * PIXEL_SIZE), Vector2f(5 * PIXEL_SIZE, 11 * PIXEL_SIZE), Color::Transparent, port);
+	createObstacleRectangle(Vector2f(1 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(6 * PIXEL_SIZE, 18 * PIXEL_SIZE), Color::Transparent, port);
+	createObstacleRectangle(Vector2f(1 * PIXEL_SIZE, 7 * PIXEL_SIZE), Vector2f(7 * PIXEL_SIZE, 11 * PIXEL_SIZE), Color::Transparent, port);
+	createObstacleRectangle(Vector2f(1 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(8 * PIXEL_SIZE, 11 * PIXEL_SIZE), Color::Transparent, port);
+	createObstacleRectangle(Vector2f(2 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(9 * PIXEL_SIZE, 12 * PIXEL_SIZE), Color::Transparent, port);
+	createObstacleRectangle(Vector2f(1 * PIXEL_SIZE, 10 * PIXEL_SIZE), Vector2f(11 * PIXEL_SIZE, 2 * PIXEL_SIZE), Color::Transparent, port);
+	createObstacleRectangle(Vector2f(4 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(12 * PIXEL_SIZE, 5 * PIXEL_SIZE), Color::Transparent, port);
+	createObstacleRectangle(Vector2f(2 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(16 * PIXEL_SIZE, 6 * PIXEL_SIZE), Color::Transparent, port);
+	createObstacleRectangle(Vector2f(2 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(18 * PIXEL_SIZE, 7 * PIXEL_SIZE), Color::Transparent, port);
+	createObstacleRectangle(Vector2f(1 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(20 * PIXEL_SIZE, 8 * PIXEL_SIZE), Color::Transparent, port);
+	createObstacleRectangle(Vector2f(1 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(21 * PIXEL_SIZE, 9 * PIXEL_SIZE), Color::Transparent, port);
+	createObstacleRectangle(Vector2f(3 * PIXEL_SIZE, 2 * PIXEL_SIZE), Vector2f(22 * PIXEL_SIZE, 10 * PIXEL_SIZE), Color::Transparent, port);
+	createObstacleRectangle(Vector2f(2 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(25 * PIXEL_SIZE, 11 * PIXEL_SIZE), Color::Transparent, port);
+	createObstacleRectangle(Vector2f(3 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(19 * PIXEL_SIZE, 11 * PIXEL_SIZE), Color::Transparent, port);
+	createObstacleRectangle(Vector2f(1 * PIXEL_SIZE, 2 * PIXEL_SIZE), Vector2f(18 * PIXEL_SIZE, 12 * PIXEL_SIZE), Color::Transparent, port);
+	createObstacleRectangle(Vector2f(10 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(19 * PIXEL_SIZE, 14 * PIXEL_SIZE), Color::Transparent, port);
+	createObstacleRectangle(Vector2f(1 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(25 * PIXEL_SIZE, 15 * PIXEL_SIZE), Color::Transparent, port);
+	createObstacleRectangle(Vector2f(5 * PIXEL_SIZE, 4 * PIXEL_SIZE), Vector2f(25 * PIXEL_SIZE, 4 * PIXEL_SIZE), Color::Transparent, port);
+	createObstacleRectangle(Vector2f(1 * PIXEL_SIZE, 2 * PIXEL_SIZE), Vector2f(24 * PIXEL_SIZE, 2 * PIXEL_SIZE), Color::Transparent, port);
+	createObstacleRectangle(Vector2f(7 * PIXEL_SIZE, 2 * PIXEL_SIZE), Vector2f(17 * PIXEL_SIZE, 0 * PIXEL_SIZE), Color::Transparent, port);
+	createObstacleRectangle(Vector2f(4 * PIXEL_SIZE, 2 * PIXEL_SIZE), Vector2f(19 * PIXEL_SIZE, 2 * PIXEL_SIZE), Color::Transparent, port);
+	createObstacleRectangle(Vector2f(2 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(21 * PIXEL_SIZE, 4 * PIXEL_SIZE), Color::Transparent, port);
+	createObstacleRectangle(Vector2f(1 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(14 * PIXEL_SIZE, 1 * PIXEL_SIZE), Color::Transparent, port);
+	createObstacleRectangle(Vector2f(1 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(0 * PIXEL_SIZE, 2 * PIXEL_SIZE), Color::Transparent, port);
+	createObstacleRectangle(Vector2f(2 * PIXEL_SIZE, 2 * PIXEL_SIZE), Vector2f(1 * PIXEL_SIZE, 0 * PIXEL_SIZE), Color::Transparent, port);
+	createObstacleRectangle(Vector2f(2 * PIXEL_SIZE, 2 * PIXEL_SIZE), Vector2f(29 * PIXEL_SIZE, 15 * PIXEL_SIZE), Color::Transparent, port);
+	createObstacleRectangle(Vector2f(1 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(26 * PIXEL_SIZE, 18 * PIXEL_SIZE), Color::Transparent, port);
+	createObstacleRectangle(Vector2f(2 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(26 * PIXEL_SIZE, 19 * PIXEL_SIZE), Color::Transparent, port);
+	createObstacleRectangle(Vector2f(5 * PIXEL_SIZE, 3 * PIXEL_SIZE), Vector2f(12 * PIXEL_SIZE, 15 * PIXEL_SIZE), Color::Transparent, port);
+	createObstacleRectangle(Vector2f(2 * PIXEL_SIZE, 3 * PIXEL_SIZE), Vector2f(13 * PIXEL_SIZE, 12 * PIXEL_SIZE), Color::Transparent, port);
+
+	//location change
+	this->createLocationRectangle(Vector2f(1 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(8 * PIXEL_SIZE, 6 * PIXEL_SIZE), Color::Transparent, port);
+	//enemies
+	for(int i = 0; i < 35; i++){
+		this->createEnemy("res/Creatures/sheep.png", "Escaping Sheep", 2, 50, 2, Vector2f(18 * PIXEL_SIZE, 4 * PIXEL_SIZE), port);	
+	}
+	for (int i = 0; i < 35; i++) {
+		this->createEnemy("res/Creatures/sheep.png", "Escaping Sheep", 2, 50, 2, Vector2f(7 * PIXEL_SIZE, 2 * PIXEL_SIZE), port);
+	}
+	//npcs
+	this->createNPC("res/Creatures/oldMan.png", "Really Bad Animal Merchant", "Please slaughter any sheep that tries to escape.", /*AI*/1, Vector2f(9 * PIXEL_SIZE, 7 * PIXEL_SIZE), port);
+}
 
 void World::createObstacleRectangle(RectangleShape &rectangle, Vector2f rectSize, Vector2f rectPosition, Color rectColor, Location &loc) {
 	rectangle.setSize(rectSize);

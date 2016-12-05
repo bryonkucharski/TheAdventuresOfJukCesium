@@ -29,6 +29,7 @@ class World
 		void setupGraveyard();
 		void setupGhostShed();
 		void setupWFcorridor();
+		void setupPort();
 
 		Location &getLocation(int requested);
 		string getLocationString(int requested);
@@ -69,6 +70,7 @@ class World
 		Location waterfall; // in beach, WF = waterfall. 
 		Location WFbossRoom;// in WFcorridor
 		Location WFcorridor;// in waterFall, corridor will also change location to a different part to waterfall.png
+		Location port;
 
 
 };
