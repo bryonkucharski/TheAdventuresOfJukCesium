@@ -1,4 +1,5 @@
 #include "Projectile.h"
+#include "Player.h"
 
 Projectile::Projectile(std::string file, Vector2f size, Vector2f pos, int dir, int speed) {
 

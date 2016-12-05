@@ -70,6 +70,6 @@ void Enemy::onPlayerBulletIntersect(int damage){
 }
 
 int Enemy::dropExp() {
-	int exp = this->getMaxHealth() / 20 + this->getLevel() * 2 + this->getDamage();
+	int exp = this->getMaxHealth() / 20 + this->getLevel();
 	return exp;
 }

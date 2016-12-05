@@ -56,7 +56,7 @@ class World
 		//Keep this in alphabetical order. It helps me with reading the maps and verifying if a map is there or not.
 		//Location className; //Description of Location.
 
-		Location beach;// below forest2
+		Location beach;// below forest2, ID 5
 		Location bigHouseInterior;//in home
 		Location castle;// in townAroundCastle
 		Location forest;//left of home
@@ -65,13 +65,12 @@ class World
 		Location graveyard;//below market
 		Location home;// origin position of the map, right of forest, left of town
 		Location market;//below town1, above graveyard, left of farm
-		Location pub;// Win townAroundCastle
+		Location port;//ID 15
+		Location pub;// in townAroundCastle
 		Location townAroundCastle;// above forest
 		Location waterfall; // in beach, WF = waterfall. 
 		Location WFbossRoom;// in WFcorridor
 		Location WFcorridor;// in waterFall, corridor will also change location to a different part to waterfall.png
-		Location port;
-
 
 };
 

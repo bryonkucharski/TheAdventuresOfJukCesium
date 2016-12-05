@@ -15,6 +15,8 @@ Player::Player(std::string playerName, std::string file, World &world) : Creatur
 	this->setLevel(1);
 	this->setTotalExperience(10);
 	this->setDamage(this->getLevel()*2);
+	this->setBulletSpeed(6);
+	this->setBulletPng("res/Projectiles/fireProjectile.png");
 
 	}
 	
@@ -74,12 +76,7 @@ void Player::updatePlayer(RenderWindow &window) {
 			sprite.setPosition(newPosition);
 			this->setCurrentLocation(newLocation);
 			this->setCurrentPosition(this->rect.getPosition());
-
-			cout << "Location Change to " << newLocation << " to position " << newPosition.x << " " << newPosition.y << endl;
-			//cout << "Player's current location is " << getCurrentPosition().x  << " " << getCurrentPosition().y  << endl;
-			cout << "Rectangle Position " << this->rect.getPosition().x << " " << this->rect.getPosition().y << endl;
-			cout << "Sprite's Position " << this->sprite.getPosition().x << " " << this->sprite.getPosition().y << endl;
-
+			//dont update player when you change locations, so break out of the loop
 			return;
 		}
 		counter++;
@@ -87,9 +84,9 @@ void Player::updatePlayer(RenderWindow &window) {
 	
 	if (Keyboard::isKeyPressed(Keyboard::Space)) {
 		if (this->canShoot()) {
-			Projectile * newProjectile = new Projectile("res/Projectiles/fireProjectile.png", Vector2f(18, 18), 
+			Projectile * newProjectile = new Projectile(this->getBulletPng(), Vector2f(this->getBulletWidth(), this->getBulletHeight()), 
 				Vector2f(this->rect.getPosition().x + (this->rect.getGlobalBounds().width / 2), this->rect.getPosition().y + (this->rect.getGlobalBounds().height / 2))
-				,this->getDirection(), 5);
+				,this->getDirection(), this->getBulletSpeed());
 			this->addToBullets(newProjectile);
 		}
 	}// end of if space was pressed do a projectile
@@ -190,14 +187,86 @@ void Player::onIncreaseXPEvent(int amount){
 		this->setDamage(this->getDamage() + 1);
 		this->setMaxHealth(this->getMaxHealth() + 10);
 		this->setCurrentHealth(this->getMaxHealth());
+
+		std::cout << "You have leveled up. Current level is: " << this->getLevel() << std::endl;
+		std::cout << "Damage level has been increased. Current damage level is: " << this->getDamage() + 8 << std::endl;
+		std::cout << "Max health has been increased. Current max health is: " << this->getMaxHealth() << std::endl;
+		checkForUpgrades();
+		std::cout << std::endl;
 	}
 }
 
 bool Player::didPlayerLevel() {
-	if (this->getTotalExperience() / 10 > this->getLevel() || this->getTotalExperience() % 10 == 0) {
+	int expNeeded = 100;//exp needed to level up
+	if (this->getTotalExperience() / expNeeded > this->getLevel() || this->getTotalExperience() % expNeeded == 0) {
 		return true;
 	}
 	else {
 		return false;
 	}
 }
+
+void Player::setBulletSpeed(int sp) {
+	bulletSpeed = sp;
+}
+
+int Player::getBulletSpeed() {
+	return bulletSpeed;
+}
+
+void Player::setBulletPng(string png) {
+	bulletPng = png;
+}
+
+string Player::getBulletPng() {
+	return bulletPng;
+}
+
+void Player::setBulletWidth(int w) {
+	bulletWidth = w;
+}
+void Player::setBulletHeight(int h) {
+	bulletHeight = h;
+}
+int Player::getBulletWidth() {
+	return bulletWidth;
+}
+int Player::getBulletHeight() {
+	return bulletHeight;
+}
+
+void Player::checkForUpgrades() {
+	//only check for upgrades when you level up.
+
+	//what if we made a vector of upgrades and instantiated upgrades from a class when you level.
+	//of a forloop to instantiate a case statement.
+	switch (this->getLevel()) {
+	case 3:
+		std::cout << "Bullet speed has been increased." << std::endl;
+		this->setBulletSpeed(this->getBulletSpeed() + 1);
+		break;
+	case 6:
+		std::cout << "Bullet speed has been increased." << std::endl;
+		std::cout << "You have learned Fire Shuriken." << std::endl;
+		this->setBulletSpeed(this->getBulletSpeed() + 1);
+		this->setBulletPng("res/Projectiles/fire2.png");
+		break;
+	case 9:
+		break;
+	case 12:
+		break;
+	case 15:
+		break;
+	case 18:
+		break;
+	case 21:
+		break;
+	case 24:
+		break;
+	case 27:
+		break;
+	case 30:
+		break;
+	};
+
+}//end of checkForUpgrades();
