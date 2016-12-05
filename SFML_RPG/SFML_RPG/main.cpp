@@ -18,22 +18,9 @@ void loadGame();
 #define WIDTH      30*PIXEL_SIZE//Don't change this.
 #define HEIGHT     22*PIXEL_SIZE//Don't change this.
 
-/*
-https://www.youtube.com/watch?v=axIgxBQVBg0
-
-time stamp 7:40 is important
-you may need to copy some .dll files from one place to another inside where your git project is located.
-so watching the video from 7:40 on is good to clear some stuff up.
-
-also up top there is a drop down window with x64 x86 and configuration manager left to the compile and run button.
-make sure the drop down window says x86
-
-*/
 using namespace sf;
 
-int main()
-{
-	
+int main(){
 	//create main game window
 	RenderWindow window(sf::VideoMode(WIDTH, HEIGHT), "SFML works!");
 
@@ -56,16 +43,13 @@ int main()
 	bool gameOver = false;
 	int temp = 0;
 
-	while (window.isOpen())
-	{
+	while (window.isOpen()){
 		//close window if X is pressed in top right
 		Event event;
-		while (window.pollEvent(event))
-		{
+		while (window.pollEvent(event)){
 			if (event.type == Event::Closed)
 				window.close();
 		}
-
 
 		//check for a game over
 		if (mainPlayer.getCurrentHealth() <= 0) {
@@ -73,17 +57,15 @@ int main()
 			gameOver = true;
 		}
 
-
 		//get all NPCs in current location
 		currentNPCs = world.getLocation(mainPlayer.getCurrentLocation()).getNPCs();
 
 		//get all enemies in current location
 		currentEnemies = world.getLocation(mainPlayer.getCurrentLocation()).getEnemies();
-	    //currentEnemies[0]->setCurrentHealth(currentEnemies[0]->getCurrentHealth() - 1);// makes crash
+
+
 
 		//--------------------------------ALL VECTORS------------------------
-
-	
 		currentNPCs.swap(world.getLocation(mainPlayer.getCurrentLocation()).getNPCs());
 		currentEnemies.swap(world.getLocation(mainPlayer.getCurrentLocation()).getEnemies());
 		currentPlayerBullets.swap(mainPlayer.getBullets());
@@ -91,8 +73,8 @@ int main()
 		//-------------------------------END VECTORS-----------------------
 
 
-		//--------------------------------ALL REMOVALS------------------------
 
+		//--------------------------------ALL REMOVALS------------------------
 		//remove inactive player bullets
 		mainPlayer.removeBullets();
 
@@ -101,8 +83,7 @@ int main()
 
 		//remove inactive enemy bullets
 		int enemyRemoveCounter = 0;
-		for (std::vector<Enemy*>::iterator enemyIntersectIter = currentEnemies.begin(); enemyIntersectIter != currentEnemies.end(); ++enemyIntersectIter)
-		{
+		for (std::vector<Enemy*>::iterator enemyIntersectIter = currentEnemies.begin(); enemyIntersectIter != currentEnemies.end(); ++enemyIntersectIter){
 			Enemy *e = currentEnemies[enemyRemoveCounter];
 			e->removeBullets();
 			enemyRemoveCounter++;
@@ -111,12 +92,11 @@ int main()
 		//--------------------------------END REMOVALS------------------------
 
 
-		//--------------------------------ALL THE INTERSECTIONS------------------------
 
+		//--------------------------------ALL THE INTERSECTIONS------------------------
 		//player intersect with enemy
 		int intersectionCounter = 0;
-		for (std::vector<Enemy*>::iterator enemyIntersectIter = currentEnemies.begin(); enemyIntersectIter != currentEnemies.end(); ++enemyIntersectIter)
-		{
+		for (std::vector<Enemy*>::iterator enemyIntersectIter = currentEnemies.begin(); enemyIntersectIter != currentEnemies.end(); ++enemyIntersectIter){
 			if (mainPlayer.getRect().getGlobalBounds().intersects(currentEnemies[intersectionCounter]->getRect().getGlobalBounds())){
 				mainPlayer.onEnemyIntersect();
 			}
@@ -125,61 +105,51 @@ int main()
 
 		//player intersect with enemy bullet
 		intersectionCounter = 0;
-		for (std::vector<Enemy*>::iterator enemyIntersectIter = currentEnemies.begin(); enemyIntersectIter != currentEnemies.end(); ++enemyIntersectIter)
-		{
+		for (std::vector<Enemy*>::iterator enemyIntersectIter = currentEnemies.begin(); enemyIntersectIter != currentEnemies.end(); ++enemyIntersectIter){
 			int intersectionCounter2 = 0;
 			Enemy *e = currentEnemies[intersectionCounter];
 			vector<Projectile*> enemyBullets = e->getBullets();
-			for (vector<Projectile*>::iterator bulletIteratah = enemyBullets.begin(); bulletIteratah != enemyBullets.end(); ++bulletIteratah)
-			{
+			for (vector<Projectile*>::iterator bulletIterator = enemyBullets.begin(); bulletIterator != enemyBullets.end(); ++bulletIterator){
 				Projectile* p = enemyBullets[intersectionCounter2];
-				if (p->getRect().getGlobalBounds().intersects(mainPlayer.getRect().getGlobalBounds()))
-				{
+				if (p->getRect().getGlobalBounds().intersects(mainPlayer.getRect().getGlobalBounds())){
 					mainPlayer.onEnemyBulletIntersect();
 					p->onCollision();
 				}
 				intersectionCounter2++;
 			}
 			intersectionCounter++;
-		}
+		}//end of forloop to check if a player intersects with enemy bullet
 
 		//enemy intersect with player bullet
 		intersectionCounter = 0;
-		for (std::vector<Enemy*>::iterator enemyIntersectIter = currentEnemies.begin(); enemyIntersectIter != currentEnemies.end(); ++enemyIntersectIter)
-		{
+		for (std::vector<Enemy*>::iterator enemyIntersectIter = currentEnemies.begin(); enemyIntersectIter != currentEnemies.end(); ++enemyIntersectIter){
 			int intersectionCounter2 = 0;
 			Enemy *e = currentEnemies[intersectionCounter];
 			
-			for (vector<Projectile*>::iterator bulletIteratah = currentPlayerBullets.begin(); bulletIteratah != currentPlayerBullets.end(); ++bulletIteratah)
-			{
+			for (vector<Projectile*>::iterator bulletIterator = currentPlayerBullets.begin(); bulletIterator != currentPlayerBullets.end(); ++bulletIterator){
 				Projectile* p = currentPlayerBullets[intersectionCounter2];
-				if (p->getRect().getGlobalBounds().intersects(e->getRect().getGlobalBounds()))
-				{
+				if (p->getRect().getGlobalBounds().intersects(e->getRect().getGlobalBounds())){
 					e->onPlayerBulletIntersect(mainPlayer.getDamage());
 					p->onCollision();
-					if (e->getCurrentHealth() <= 0)
-					{
+					if (e->getCurrentHealth() <= 0){
 						//increase player's xp
-						mainPlayer.onIncreaseXPEvent(3);
+						mainPlayer.onIncreaseXPEvent(e->dropExp());
 					}
 				}
 				intersectionCounter2++;
 			}
 			intersectionCounter++;
-		}
+		}//end of enemy intersecting with a player's bullet
 
 		//NPC intersect with player bullet
 		intersectionCounter = 0;
-		for (std::vector<NPC*>::iterator NPCIntersectIter = currentNPCs.begin(); NPCIntersectIter != currentNPCs.end(); ++NPCIntersectIter)
-		{
+		for (std::vector<NPC*>::iterator NPCIntersectIter = currentNPCs.begin(); NPCIntersectIter != currentNPCs.end(); ++NPCIntersectIter){
 			int intersectionCounter2 = 0;
 			NPC *n = currentNPCs[intersectionCounter];
 
-			for (vector<Projectile*>::iterator bulletIteratah = currentPlayerBullets.begin(); bulletIteratah != currentPlayerBullets.end(); ++bulletIteratah)
-			{
+			for (vector<Projectile*>::iterator bulletIterator = currentPlayerBullets.begin(); bulletIterator != currentPlayerBullets.end(); ++bulletIterator){
 				Projectile* p = currentPlayerBullets[intersectionCounter2];
-				if (p->getRect().getGlobalBounds().intersects(n->getRect().getGlobalBounds()))
-				{
+				if (p->getRect().getGlobalBounds().intersects(n->getRect().getGlobalBounds())){
 					n->onPlayerBulletIntersect();
 					p->onCollision();
 				}
@@ -189,12 +159,10 @@ int main()
 		}
 		//NPC intersect with player
 		intersectionCounter = 0;
-		for (std::vector<NPC*>::iterator NPCIntersectIter = currentNPCs.begin(); NPCIntersectIter != currentNPCs.end(); ++NPCIntersectIter)
-		{
+		for (std::vector<NPC*>::iterator NPCIntersectIter = currentNPCs.begin(); NPCIntersectIter != currentNPCs.end(); ++NPCIntersectIter){
 			int intersectionCounter2 = 0;
 			NPC *n = currentNPCs[intersectionCounter];
-			if (n->getRect().getGlobalBounds().intersects(mainPlayer.getRect().getGlobalBounds()))
-			{
+			if (n->getRect().getGlobalBounds().intersects(mainPlayer.getRect().getGlobalBounds())){
 				n->onPlayerIntersect();
 			}
 			intersectionCounter++;
@@ -210,8 +178,7 @@ int main()
 
 		//update enemies in current location
 		int enemyUpdateCounter = 0;
-		for (std::vector<Enemy*>::iterator enemyUpdateIter = currentEnemies.begin(); enemyUpdateIter != currentEnemies.end(); ++enemyUpdateIter) 
-		{
+		for (std::vector<Enemy*>::iterator enemyUpdateIter = currentEnemies.begin(); enemyUpdateIter != currentEnemies.end(); ++enemyUpdateIter) {
 			//update enemy
 			currentEnemies[enemyUpdateCounter]->updateEnemy( mainPlayer.getRect().getPosition() );
 			enemyUpdateCounter++;
@@ -234,22 +201,17 @@ int main()
 
 		//upate enemy projectiles
 		int updateCounter = 0;
-		for (std::vector<Enemy*>::iterator enemyIntersectIter = currentEnemies.begin(); enemyIntersectIter != currentEnemies.end(); ++enemyIntersectIter)
-		{
+		for (std::vector<Enemy*>::iterator enemyIntersectIter = currentEnemies.begin(); enemyIntersectIter != currentEnemies.end(); ++enemyIntersectIter){
 			int updateCounter2 = 0;
 			Enemy *e = currentEnemies[updateCounter];
 			vector<Projectile*> enemyBullets = e->getBullets();
-			for (vector<Projectile*>::iterator bulletIteratah = enemyBullets.begin(); bulletIteratah != enemyBullets.end(); ++bulletIteratah)
-			{
+			for (vector<Projectile*>::iterator bulletIterator = enemyBullets.begin(); bulletIterator != enemyBullets.end(); ++bulletIterator){
 				Projectile* p = enemyBullets[updateCounter2];
 				p->update();
 				updateCounter2++;
 			}
 			updateCounter++;
 		}
-
-		
-
 		//---------------------------------END UPDATING---------------------------
 
 
@@ -267,8 +229,7 @@ int main()
 
 			//draw enemies
 			int enemyDrawCounter = 0;
-			for (std::vector<Enemy*>::iterator enemyDrawIter = currentEnemies.begin(); enemyDrawIter != currentEnemies.end(); ++enemyDrawIter) 
-			{
+			for (std::vector<Enemy*>::iterator enemyDrawIter = currentEnemies.begin(); enemyDrawIter != currentEnemies.end(); ++enemyDrawIter) {
 			
 				window.draw(currentEnemies[enemyDrawCounter]->getSprite());
 				window.draw(currentEnemies[enemyDrawCounter]->getText());
@@ -291,13 +252,11 @@ int main()
 
 			//draw enemy projectiles
 			int bryonsDrawCounter = 0;
-			for (std::vector<Enemy*>::iterator enemyIntersectIter = currentEnemies.begin(); enemyIntersectIter != currentEnemies.end(); ++enemyIntersectIter)
-			{
+			for (std::vector<Enemy*>::iterator enemyIntersectIter = currentEnemies.begin(); enemyIntersectIter != currentEnemies.end(); ++enemyIntersectIter){
 				int bryonsDrawCounter2 = 0;
 				Enemy *e = currentEnemies[bryonsDrawCounter];
 				vector<Projectile*> enemyBullets = e->getBullets();
-				for (vector<Projectile*>::iterator bulletIteratah = enemyBullets.begin(); bulletIteratah != enemyBullets.end(); ++bulletIteratah)
-				{
+				for (vector<Projectile*>::iterator bulletIterator = enemyBullets.begin(); bulletIterator != enemyBullets.end(); ++bulletIterator){
 					Projectile* p = enemyBullets[bryonsDrawCounter2];
 					window.draw(p->getSprite());
 					bryonsDrawCounter2++;
@@ -313,18 +272,13 @@ int main()
 
 
 		window.display();
-		if (temp == 0)
-		{
-			if (Keyboard::isKeyPressed(Keyboard::RAlt) || Keyboard::isKeyPressed(Keyboard::LAlt))
-			{
-				if (Keyboard::isKeyPressed(Keyboard::F2))
-				{
+		if (temp == 0){
+			if (Keyboard::isKeyPressed(Keyboard::RAlt) || Keyboard::isKeyPressed(Keyboard::LAlt)){
+				if (Keyboard::isKeyPressed(Keyboard::F2)){
 					temp = 20;
 					saveGame();
 				}
-
-				if (Keyboard::isKeyPressed(Keyboard::F3))
-				{
+				if (Keyboard::isKeyPressed(Keyboard::F3)){
 					temp = 20;
 					loadGame();
 				}
@@ -332,12 +286,11 @@ int main()
 		}
 		if (temp > 0)
 		temp--;
-		//cout << temp << "\n";
-	}
+	}//end of while window is open loop
 	return 0;
-}
-void saveGame()
-{
+}//end of main();
+
+void saveGame(){
 	//save the file
 	ofstream theFile;
 	theFile.open("saveFile.txt", ios::out);
@@ -351,24 +304,22 @@ void saveGame()
 	current health
 	max health
 	*/
-	if (theFile.is_open())
-	{
+	if (theFile.is_open()){
 		theFile << theMainPlayer->getCurrentPosition().x << "\n" <<
-			theMainPlayer->getCurrentPosition().y << "\n" <<
-			theMainPlayer->getCurrentLocation() << "\n" <<
-			theMainPlayer->getTotalExperience() << "\n" <<
-			theMainPlayer->getLevel() << "\n" <<
-			theMainPlayer->getDamage() << "\n" <<
-			theMainPlayer->getCurrentHealth() << "\n" <<
-			theMainPlayer->getMaxHealth();
+		theMainPlayer->getCurrentPosition().y << "\n" <<
+		theMainPlayer->getCurrentLocation() << "\n" <<
+		theMainPlayer->getTotalExperience() << "\n" <<
+		theMainPlayer->getLevel() << "\n" <<
+		theMainPlayer->getDamage() << "\n" <<
+		theMainPlayer->getCurrentHealth() << "\n" <<
+		theMainPlayer->getMaxHealth();
 	}
 	theFile.close();
 	cout << "save command pressed\n";
 }
 
 
-void loadGame()
-{
+void loadGame(){
 	cout << "load command pressed\n";
 	ifstream theFile;
 	string line;
@@ -382,13 +333,10 @@ void loadGame()
 	int currentHealth = 0;//6
 	int maxHealth = 0;//7
 	int counter = 0;
-	if (theFile.is_open())
-	{
-		while (getline(theFile, line))
-		{
+	if (theFile.is_open()){
+		while (getline(theFile, line)){
 			//cout << line << '\n';
-			switch (counter)
-			{
+			switch (counter){
 			case 0:
 				positionx = stof(line);
 				break;
@@ -427,5 +375,4 @@ void loadGame()
 		theMainPlayer->setCurrentHealth(currentHealth);
 		theMainPlayer->setMaxHealth(maxHealth);
 	}
-}
-
+}//end of loadGame()

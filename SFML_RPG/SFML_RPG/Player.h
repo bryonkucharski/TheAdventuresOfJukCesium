@@ -13,6 +13,7 @@ public:
 	void onEnemyIntersect();
 	void onEnemyBulletIntersect();
 	void onIncreaseXPEvent(int amount);
+	bool didPlayerLevel();
 	
 private:
 	int running = 5;

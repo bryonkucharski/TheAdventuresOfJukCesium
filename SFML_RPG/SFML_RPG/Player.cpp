@@ -13,7 +13,7 @@ Player::Player(std::string playerName, std::string file, World &world) : Creatur
 	this->setCurrentHealth(300);
 	this->setMaxHealth(300);
 	this->setLevel(1);
-	this->setTotalExperience(1);
+	this->setTotalExperience(10);
 	this->setDamage(this->getLevel()*2);
 
 	}
@@ -23,14 +23,11 @@ Player::~Player() {
 }
 //handles player movements. called every frame in main.
 void Player::updatePlayer(RenderWindow &window) {
-
 	//implement spriting by holding shift, MH
-	if (Keyboard::isKeyPressed(Keyboard::LShift) || Keyboard::isKeyPressed(Keyboard::RControl))
-	{
+	if (Keyboard::isKeyPressed(Keyboard::LShift) || Keyboard::isKeyPressed(Keyboard::RControl)){
 		this->setSpeed(running);
 	}
-	else
-	{
+	else{
 		this->setSpeed(walking);
 	}
 
@@ -51,10 +48,8 @@ void Player::updatePlayer(RenderWindow &window) {
 	
 	//iterate through location changes in current location and check for intersect
 	int counter = 0;
-	for (std::vector<RectangleShape>::iterator locsItr = changeLocationRects.begin(); locsItr != changeLocationRects.end(); ++locsItr)
-	{
-		if (this->rect.getGlobalBounds().intersects(changeLocationRects[counter].getGlobalBounds()))
-		{
+	for (std::vector<RectangleShape>::iterator locsItr = changeLocationRects.begin(); locsItr != changeLocationRects.end(); ++locsItr){
+		if (this->rect.getGlobalBounds().intersects(changeLocationRects[counter].getGlobalBounds())){
 			Vector2f newPosition;
 			int newLocation;
 			if(counter == 0){
@@ -88,7 +83,7 @@ void Player::updatePlayer(RenderWindow &window) {
 			return;
 		}
 		counter++;
-	}
+	}//end of forloop to change locations
 	
 	if (Keyboard::isKeyPressed(Keyboard::Space)) {
 		if (this->canShoot()) {
@@ -97,22 +92,18 @@ void Player::updatePlayer(RenderWindow &window) {
 				,this->getDirection(), 5);
 			this->addToBullets(newProjectile);
 		}
-	}
+	}// end of if space was pressed do a projectile
 
 	//added WASD support MH
-	if (Keyboard::isKeyPressed(Keyboard::Left) || Keyboard::isKeyPressed(Keyboard::A))
-	{
+	if (Keyboard::isKeyPressed(Keyboard::Left) || Keyboard::isKeyPressed(Keyboard::A)){
 		this->setDirection(1);
-
 		animationTime = animationClock.getElapsedTime();
-		if (animationTime.asSeconds() > animationCounter)
-		{
+		if (animationTime.asSeconds() > animationCounter){
 			this->sprite.setTextureRect(IntRect(this->getWalkingCounter() * 32, 32, 32, 32));
 			animationClock.restart();
 		}
 
-		if (this->getCurrentPosition().x > 0)
-		{
+		if (this->getCurrentPosition().x > 0){
 			this->rect.move(-this->getSpeed(), 0);
 			this->setCanWalkLeft(!this->checkForIntersect(obstacles, this->rect));
 
@@ -121,19 +112,15 @@ void Player::updatePlayer(RenderWindow &window) {
 			}
 		}
 	}
-	else if (Keyboard::isKeyPressed(Keyboard::Right) || Keyboard::isKeyPressed(Keyboard::D))
-	{
+	else if (Keyboard::isKeyPressed(Keyboard::Right) || Keyboard::isKeyPressed(Keyboard::D)){
 		this->setDirection(2);
-
 		animationTime = animationClock.getElapsedTime();
-		if (animationTime.asSeconds() > animationCounter)
-		{
+		if (animationTime.asSeconds() > animationCounter){
 			this->sprite.setTextureRect(IntRect(this->getWalkingCounter() * 32, 32 * 2, 32, 32));
 			animationClock.restart();
 		}
 
-		if (this->getCurrentPosition().x + 32 < window.getSize().x)
-		{
+		if (this->getCurrentPosition().x + 32 < window.getSize().x){
 			this->rect.move(this->getSpeed(), 0);
 			this->setCanWalkRight(!this->checkForIntersect(obstacles, this->rect));
 
@@ -143,19 +130,15 @@ void Player::updatePlayer(RenderWindow &window) {
 		}
 
 	}
-	else if (Keyboard::isKeyPressed(Keyboard::Up) || Keyboard::isKeyPressed(Keyboard::W))
-	{
+	else if (Keyboard::isKeyPressed(Keyboard::Up) || Keyboard::isKeyPressed(Keyboard::W)){
 		this->setDirection(3);
-
 		animationTime = animationClock.getElapsedTime();
-		if (animationTime.asSeconds() > animationCounter)
-		{
+		if (animationTime.asSeconds() > animationCounter){
 			this->sprite.setTextureRect(IntRect(this->getWalkingCounter() * 32, 96, 32, 32));
 			animationClock.restart();
 		}
 
-		if (this->getCurrentPosition().y > 0)
-		{
+		if (this->getCurrentPosition().y > 0){
 			this->rect.move(0, -this->getSpeed());
 			double temp = this->getSpeed();
 			while (this->checkForIntersect(obstacles, this->rect)) {
@@ -164,19 +147,15 @@ void Player::updatePlayer(RenderWindow &window) {
 		}
 
 	}
-	else if (Keyboard::isKeyPressed(Keyboard::Down) || Keyboard::isKeyPressed(Keyboard::S))
-	{
+	else if (Keyboard::isKeyPressed(Keyboard::Down) || Keyboard::isKeyPressed(Keyboard::S)){
 		this->setDirection(4);
-
 		animationTime = animationClock.getElapsedTime();
-		if (animationTime.asSeconds() > animationCounter)
-		{
+		if (animationTime.asSeconds() > animationCounter){
 			this->sprite.setTextureRect(IntRect(this->getWalkingCounter() * 32, 0, 32, 32));
 			animationClock.restart();
 		}
 
-		if (this->getCurrentPosition().y + 32 < window.getSize().y - 66)
-		{
+		if (this->getCurrentPosition().y + 32 < window.getSize().y - 66){
 			this->rect.move(0, this->getSpeed());
 			this->setCanWalkDown(!this->checkForIntersect(obstacles, this->rect));
 			while (this->checkForIntersect(obstacles, this->rect)) {
@@ -184,10 +163,9 @@ void Player::updatePlayer(RenderWindow &window) {
 			}
 		}
 	}
-
 	this->updateAnimationCounter();
+}//end of keyboard input
 
-}
 //what happends to the player on intersection with an enemy
 void Player::onEnemyIntersect(){
 	//decrease the health
@@ -200,10 +178,26 @@ void Player::onEnemyBulletIntersect(){
 	this->setCurrentHealth(this->getCurrentHealth() - 1);
 }
 
-void Player::onIncreaseXPEvent(int amount)
-{
+//what happens when experience is gained.
+void Player::onIncreaseXPEvent(int amount){
+	//update experience
 	this->setTotalExperience(this->getTotalExperience() + amount);
-	//update the xp
-	int level = this->getTotalExperience() / 5;
-	this->setLevel(level);
+	
+	//when you level up do stuff.
+	if (this->didPlayerLevel()) {
+		int level = this->getLevel() + 1;
+		this->setLevel(level);
+		this->setDamage(this->getDamage() + 1);
+		this->setMaxHealth(this->getMaxHealth() + 10);
+		this->setCurrentHealth(this->getMaxHealth());
+	}
+}
+
+bool Player::didPlayerLevel() {
+	if (this->getTotalExperience() / 10 > this->getLevel() || this->getTotalExperience() % 10 == 0) {
+		return true;
+	}
+	else {
+		return false;
+	}
 }

@@ -54,7 +54,6 @@ void Enemy::updateEnemy(Vector2f playerPos){
 
 	this->selectAI(this->getAI_ID());
 
-	
 }//end of update enemy
 
 bool Enemy::isAlive() {
@@ -64,9 +63,13 @@ void Enemy::setAlive(bool a) {
 	this->alive = a;
 }
 
-//what to do when the enemy is hit by a player buttet
-void Enemy::onPlayerBulletIntersect(int damage)
-{
+//what to do when the enemy is hit by a player bullet
+void Enemy::onPlayerBulletIntersect(int damage){
 	//loose health
 	this->setCurrentHealth(this->getCurrentHealth() - damage);
+}
+
+int Enemy::dropExp() {
+	int exp = this->getMaxHealth() / 20 + this->getLevel() * 2 + this->getDamage();
+	return exp;
 }

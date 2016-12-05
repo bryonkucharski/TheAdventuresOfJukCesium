@@ -12,6 +12,7 @@ class Enemy : public Creature {
 		bool isAlive();
 		void setAlive(bool a);
 		void onPlayerBulletIntersect(int damage);
+		int dropExp();
 
 	private:
 		bool alive;

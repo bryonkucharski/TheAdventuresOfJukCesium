@@ -34,16 +34,22 @@ class World
 		string getLocationString(int requested);
 
 	private:
-		//used to draw obstacles/location changers
+		//Create an obstacle rectangle.
 		void createObstacleRectangle(RectangleShape &rectangle, Vector2f rectSize, Vector2f rectPosition, Color rectColor, Location &loc);
+		//Create a location change rectangle.
 		void createLocationRectangle(RectangleShape &rectangle, Vector2f rectSize, Vector2f rectPosition, Color rectColor, Location &loc);
+		//Create an obstacle.
 		void createObstacleRectangle(Vector2f rectSize, Vector2f rectPosition, Color rectColor, Location &loc);
+		//Create a location change rectangle.
 		void createLocationRectangle(Vector2f rectSize, Vector2f rectPosition, Color rectColor, Location &loc);
 		
-		//Enemies, NPCs, Bosses
+		//Create an instance of an Enemy.
 		void createEnemy(std::string file, std::string name, int AI_ID, int health, int level, Vector2f startingPosition, Location &loc);
+		//Create an instance of an NPC.
 		void createNPC(std::string file, std::string name, std::string intersectionText, int AI_ID, Vector2f startingPosition, Location &loc);
-
+		//Create 5 test enemies of different levels with AI_ID == 0
+		void createTestEnemies();
+		//Create a border around the map so enemies and NPCs do not walk off the screen.
 		void createBorder(Location &loc);
 		
 		//Keep this in alphabetical order. It helps me with reading the maps and verifying if a map is there or not.

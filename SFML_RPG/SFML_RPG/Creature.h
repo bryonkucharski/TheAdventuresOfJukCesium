@@ -44,17 +44,12 @@ class Creature : public Entity
 		int getwalkingCounterDirection();
 		int getAI_ID();
 
-		bool isWalkUpAllowed();
-		bool isWalkDownAllowed();
-		bool isWalkLeftAllowed();
-		bool isWalkRightAllowed();
-
 		void setCurrentLocation(int l);
 		int getCurrentLocation();
 		void setCurrentPosition(Vector2f p);
 		Vector2f &getCurrentPosition();
-
-
+		
+		//vector of bullets
 		std::vector<Projectile*> getBullets();
 
 		/* Removes any bullet from the bullet vector that is not active */

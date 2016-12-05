@@ -97,18 +97,7 @@ int Creature::getwalkingCounterDirection() {
 int Creature::getAI_ID() {
 	return aID;
 }
-bool Creature::isWalkUpAllowed() {
-	return this->canWalkUp;
-}
-bool Creature::isWalkDownAllowed() {
-	return this->canWalkDown;
-}
-bool Creature::isWalkLeftAllowed() {
-	return this->canWalkLeft;
-}
-bool Creature::isWalkRightAllowed() {
-	return this->canWalkRight;
-}
+
 void Creature::setCurrentLocation(int l) {
 	this->currentLocation = l;
 }
