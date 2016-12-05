@@ -685,6 +685,10 @@ void World::setupTownAroundCastle() {
 	createLocationRectangle(Vector2f(4 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(13 * PIXEL_SIZE, 19 * PIXEL_SIZE), Color::Red, townAroundCastle);
 	createLocationRectangle(Vector2f(1 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(3 * PIXEL_SIZE, 9 * PIXEL_SIZE), Color::Red, townAroundCastle);
 	createLocationRectangle(Vector2f(2 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(14 * PIXEL_SIZE, 10 * PIXEL_SIZE), Color::Red, townAroundCastle);
+
+	//NPCs
+	this->createNPC("res/Creatures/dwarfKnight.png", "Knight of the Palace", "All Hail King Carpenter", /*AI_ID*/1, Vector2f(17 * PIXEL_SIZE, 15 * PIXEL_SIZE), townAroundCastle);
+	this->createNPC("res/Creatures/dwarfKnight.png", "Knight of the Palace", "All Hail King Carpenter", /*AI_ID*/1, Vector2f(12 * PIXEL_SIZE, 15 * PIXEL_SIZE), townAroundCastle);
 }
 void World::setupPub() {
 	this->createBorder(pub);
@@ -740,6 +744,15 @@ void World::setupCastle() {
 	
 	//location change
 	createLocationRectangle(Vector2f(4 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(13 * PIXEL_SIZE, 17 * PIXEL_SIZE), Color::Red, castle);
+
+	//NPCs
+	for (int i = 0; i < 6; i++) {
+		this->createNPC("res/Creatures/darkKnight.png", "Knight of the Palace", "All Hail King Carpenter", /*AI_ID*/1, Vector2f(12 * PIXEL_SIZE, (14 - i) * PIXEL_SIZE), castle);
+	}
+
+	for (int i = 0; i < 6; i++) {
+		this->createNPC("res/Creatures/darkKnight.png", "Knight of the Palace", "All Hail King Carpenter", /*AI_ID*/1, Vector2f(17 * PIXEL_SIZE, (14 - i) * PIXEL_SIZE), castle);
+	}
 }
 void World::setupMarket() {
 	//first one size, second one position
@@ -774,6 +787,9 @@ void World::setupMarket() {
 	//location change
 	createLocationRectangle(Vector2f(2 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(2 * PIXEL_SIZE, 0 * PIXEL_SIZE), Color::Red, market);
 	createLocationRectangle(Vector2f(2 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(12 * PIXEL_SIZE, 19 * PIXEL_SIZE), Color::Red, market);
+
+	//NPCS
+
 
 	//NPCs
 	this->createNPC("res/Creatures/darkKnight.png", "Sir Eden", "Buy some swords, lad", /*AI_ID*/1, Vector2f(11 * PIXEL_SIZE, 4 * PIXEL_SIZE), market);
