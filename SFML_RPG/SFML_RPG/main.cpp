@@ -8,6 +8,7 @@
 #include "NPC.h"
 #include "GUIBar.h"
 #include "globals.h"
+#include "Menu.h"
 #include <fstream>
 
 using namespace std;
@@ -29,18 +30,21 @@ int main(){
 
 	World world(window);
 	Player mainPlayer("Main Player", "res/Creatures/main.png",world);
+	std::string menuString[4] = { "New Game", "Load Game"," About", "Exit" };
+	Menu mainMenu("res/Locations/port.png","Main Menu", "res/Sounds/Town3.ogg", menuString, 50 ,Vector2f(100,100),Vector2f(400,400));
+	Menu gameOverMenu("res/System/GameOver.png","Game Over", "res/Sounds/Town3.ogg",menuString, 50, Vector2f(100, 100), Vector2f(400, 400));
 
 	std::vector<Enemy*> currentEnemies;
 	std::vector<NPC*> currentNPCs;
 	std::vector<Projectile*> currentPlayerBullets;
 
-	theMainPlayer = &mainPlayer;
+	//theMainPlayer = &mainPlayer;
 	GUIBar guibar(window, "res/System/GUIbar.png","res/Fonts/Vecna.otf");
-	Sprite gameOverSprite;
-	Texture gameOverTexture;
-	gameOverTexture.loadFromFile("res/System/GameOver.png");
-	gameOverSprite.setTexture(gameOverTexture);
+
 	bool gameOver = false;
+	bool menuMain = true;
+	bool mainGame = false;
+	int gameOption = -1;
 	int temp = 0;
 
 	while (window.isOpen()){
@@ -51,173 +55,202 @@ int main(){
 				window.close();
 		}
 
+		if (menuMain || gameOver) {
+
+			if (menuMain) { gameOption = mainMenu.selectOption(); }
+			else if (gameOver) { gameOption = gameOverMenu.selectOption(); }
+
+			if (gameOption == 0) {
+				mainGame = true;
+				menuMain = false;
+				gameOver = false;
+			}
+			else if (gameOption == 1) {
+				loadGame();
+				mainGame = true;
+				menuMain = false;
+				gameOver = false;
+			}
+			else if (gameOption == 2) {
+				//some credit screen
+				menuMain = false;
+				gameOver = false;
+			}
+			else if(gameOption == 3){
+				window.close();
+			}
+		}
+
+
 		//check for a game over
 		if (mainPlayer.getCurrentHealth() <= 0) {
 			window.clear();
 			gameOver = true;
+			mainGame = false;
 		}
 
-		//get all NPCs in current location
-		currentNPCs = world.getLocation(mainPlayer.getCurrentLocation()).getNPCs();
+		if (mainGame)
+		{
+			//get all NPCs in current location
+			currentNPCs = world.getLocation(mainPlayer.getCurrentLocation()).getNPCs();
 
-		//get all enemies in current location
-		currentEnemies = world.getLocation(mainPlayer.getCurrentLocation()).getEnemies();
-
-
-
-		//--------------------------------ALL VECTORS------------------------
-		currentNPCs.swap(world.getLocation(mainPlayer.getCurrentLocation()).getNPCs());
-		currentEnemies.swap(world.getLocation(mainPlayer.getCurrentLocation()).getEnemies());
-		currentPlayerBullets.swap(mainPlayer.getBullets());
-
-		//-------------------------------END VECTORS-----------------------
+			//get all enemies in current location
+			currentEnemies = world.getLocation(mainPlayer.getCurrentLocation()).getEnemies();
 
 
+			//--------------------------------ALL VECTORS------------------------
+			currentNPCs.swap(world.getLocation(mainPlayer.getCurrentLocation()).getNPCs());
+			currentEnemies.swap(world.getLocation(mainPlayer.getCurrentLocation()).getEnemies());
+			currentPlayerBullets.swap(mainPlayer.getBullets());
 
-		//--------------------------------ALL REMOVALS------------------------
-		//remove inactive player bullets
-		mainPlayer.removeBullets();
-
-		//remove dead enemies
-		world.getLocation(mainPlayer.getCurrentLocation()).removeEnemies();
-
-		//remove inactive enemy bullets
-		int enemyRemoveCounter = 0;
-		for (std::vector<Enemy*>::iterator enemyIntersectIter = currentEnemies.begin(); enemyIntersectIter != currentEnemies.end(); ++enemyIntersectIter){
-			Enemy *e = currentEnemies[enemyRemoveCounter];
-			e->removeBullets();
-			enemyRemoveCounter++;
-		}
-
-		//--------------------------------END REMOVALS------------------------
+			//-------------------------------END VECTORS-----------------------
 
 
 
-		//--------------------------------ALL THE INTERSECTIONS------------------------
-		//player intersect with enemy
-		int intersectionCounter = 0;
-		for (std::vector<Enemy*>::iterator enemyIntersectIter = currentEnemies.begin(); enemyIntersectIter != currentEnemies.end(); ++enemyIntersectIter){
-			if (mainPlayer.getRect().getGlobalBounds().intersects(currentEnemies[intersectionCounter]->getRect().getGlobalBounds())){
-				mainPlayer.onEnemyIntersect();
+			//--------------------------------ALL REMOVALS------------------------
+			//remove inactive player bullets
+			mainPlayer.removeBullets();
+
+			//remove dead enemies
+			world.getLocation(mainPlayer.getCurrentLocation()).removeEnemies();
+
+			//remove inactive enemy bullets
+			int enemyRemoveCounter = 0;
+			for (std::vector<Enemy*>::iterator enemyIntersectIter = currentEnemies.begin(); enemyIntersectIter != currentEnemies.end(); ++enemyIntersectIter) {
+				Enemy *e = currentEnemies[enemyRemoveCounter];
+				e->removeBullets();
+				enemyRemoveCounter++;
 			}
-			intersectionCounter++;
-		}
 
-		//player intersect with enemy bullet
-		intersectionCounter = 0;
-		for (std::vector<Enemy*>::iterator enemyIntersectIter = currentEnemies.begin(); enemyIntersectIter != currentEnemies.end(); ++enemyIntersectIter){
-			int intersectionCounter2 = 0;
-			Enemy *e = currentEnemies[intersectionCounter];
-			vector<Projectile*> enemyBullets = e->getBullets();
-			for (vector<Projectile*>::iterator bulletIterator = enemyBullets.begin(); bulletIterator != enemyBullets.end(); ++bulletIterator){
-				Projectile* p = enemyBullets[intersectionCounter2];
-				if (p->getRect().getGlobalBounds().intersects(mainPlayer.getRect().getGlobalBounds())){
-					mainPlayer.onEnemyBulletIntersect();
-					p->onCollision();
+			//--------------------------------END REMOVALS------------------------
+
+
+
+			//--------------------------------ALL THE INTERSECTIONS------------------------
+			//player intersect with enemy
+			int intersectionCounter = 0;
+			for (std::vector<Enemy*>::iterator enemyIntersectIter = currentEnemies.begin(); enemyIntersectIter != currentEnemies.end(); ++enemyIntersectIter) {
+				if (mainPlayer.getRect().getGlobalBounds().intersects(currentEnemies[intersectionCounter]->getRect().getGlobalBounds())) {
+					mainPlayer.onEnemyIntersect();
 				}
-				intersectionCounter2++;
+				intersectionCounter++;
 			}
-			intersectionCounter++;
-		}//end of forloop to check if a player intersects with enemy bullet
 
-		//enemy intersect with player bullet
-		intersectionCounter = 0;
-		for (std::vector<Enemy*>::iterator enemyIntersectIter = currentEnemies.begin(); enemyIntersectIter != currentEnemies.end(); ++enemyIntersectIter){
-			int intersectionCounter2 = 0;
-			Enemy *e = currentEnemies[intersectionCounter];
-			
-			for (vector<Projectile*>::iterator bulletIterator = currentPlayerBullets.begin(); bulletIterator != currentPlayerBullets.end(); ++bulletIterator){
-				Projectile* p = currentPlayerBullets[intersectionCounter2];
-				if (p->getRect().getGlobalBounds().intersects(e->getRect().getGlobalBounds())){
-					e->onPlayerBulletIntersect(mainPlayer.getDamage());
-					p->onCollision();
-					if (e->getCurrentHealth() <= 0){
-						//increase player's xp
-						mainPlayer.onIncreaseXPEvent(e->dropExp());
+			//player intersect with enemy bullet
+			intersectionCounter = 0;
+			for (std::vector<Enemy*>::iterator enemyIntersectIter = currentEnemies.begin(); enemyIntersectIter != currentEnemies.end(); ++enemyIntersectIter) {
+				int intersectionCounter2 = 0;
+				Enemy *e = currentEnemies[intersectionCounter];
+				vector<Projectile*> enemyBullets = e->getBullets();
+				for (vector<Projectile*>::iterator bulletIterator = enemyBullets.begin(); bulletIterator != enemyBullets.end(); ++bulletIterator) {
+					Projectile* p = enemyBullets[intersectionCounter2];
+					if (p->getRect().getGlobalBounds().intersects(mainPlayer.getRect().getGlobalBounds())) {
+						mainPlayer.onEnemyBulletIntersect();
+						p->onCollision();
 					}
+					intersectionCounter2++;
 				}
-				intersectionCounter2++;
-			}
-			intersectionCounter++;
-		}//end of enemy intersecting with a player's bullet
+				intersectionCounter++;
+			}//end of forloop to check if a player intersects with enemy bullet
 
-		//NPC intersect with player bullet
-		intersectionCounter = 0;
-		for (std::vector<NPC*>::iterator NPCIntersectIter = currentNPCs.begin(); NPCIntersectIter != currentNPCs.end(); ++NPCIntersectIter){
-			int intersectionCounter2 = 0;
-			NPC *n = currentNPCs[intersectionCounter];
+			//enemy intersect with player bullet
+			intersectionCounter = 0;
+			for (std::vector<Enemy*>::iterator enemyIntersectIter = currentEnemies.begin(); enemyIntersectIter != currentEnemies.end(); ++enemyIntersectIter) {
+				int intersectionCounter2 = 0;
+				Enemy *e = currentEnemies[intersectionCounter];
 
-			for (vector<Projectile*>::iterator bulletIterator = currentPlayerBullets.begin(); bulletIterator != currentPlayerBullets.end(); ++bulletIterator){
-				Projectile* p = currentPlayerBullets[intersectionCounter2];
-				if (p->getRect().getGlobalBounds().intersects(n->getRect().getGlobalBounds())){
-					n->onPlayerBulletIntersect();
-					p->onCollision();
+				for (vector<Projectile*>::iterator bulletIterator = currentPlayerBullets.begin(); bulletIterator != currentPlayerBullets.end(); ++bulletIterator) {
+					Projectile* p = currentPlayerBullets[intersectionCounter2];
+					if (p->getRect().getGlobalBounds().intersects(e->getRect().getGlobalBounds())) {
+						e->onPlayerBulletIntersect(mainPlayer.getDamage());
+						p->onCollision();
+						if (e->getCurrentHealth() <= 0) {
+							//increase player's xp
+							mainPlayer.onIncreaseXPEvent(e->dropExp());
+						}
+					}
+					intersectionCounter2++;
 				}
-				intersectionCounter2++;
+				intersectionCounter++;
+			}//end of enemy intersecting with a player's bullet
+
+			//NPC intersect with player bullet
+			intersectionCounter = 0;
+			for (std::vector<NPC*>::iterator NPCIntersectIter = currentNPCs.begin(); NPCIntersectIter != currentNPCs.end(); ++NPCIntersectIter) {
+				int intersectionCounter2 = 0;
+				NPC *n = currentNPCs[intersectionCounter];
+
+				for (vector<Projectile*>::iterator bulletIterator = currentPlayerBullets.begin(); bulletIterator != currentPlayerBullets.end(); ++bulletIterator) {
+					Projectile* p = currentPlayerBullets[intersectionCounter2];
+					if (p->getRect().getGlobalBounds().intersects(n->getRect().getGlobalBounds())) {
+						n->onPlayerBulletIntersect();
+						p->onCollision();
+					}
+					intersectionCounter2++;
+				}
+				intersectionCounter++;
 			}
-			intersectionCounter++;
-		}
-		//NPC intersect with player
-		intersectionCounter = 0;
-		for (std::vector<NPC*>::iterator NPCIntersectIter = currentNPCs.begin(); NPCIntersectIter != currentNPCs.end(); ++NPCIntersectIter){
-			int intersectionCounter2 = 0;
-			NPC *n = currentNPCs[intersectionCounter];
-			if (n->getRect().getGlobalBounds().intersects(mainPlayer.getRect().getGlobalBounds())){
-				n->onPlayerIntersect();
+			//NPC intersect with player
+			intersectionCounter = 0;
+			for (std::vector<NPC*>::iterator NPCIntersectIter = currentNPCs.begin(); NPCIntersectIter != currentNPCs.end(); ++NPCIntersectIter) {
+				int intersectionCounter2 = 0;
+				NPC *n = currentNPCs[intersectionCounter];
+				if (n->getRect().getGlobalBounds().intersects(mainPlayer.getRect().getGlobalBounds())) {
+					n->onPlayerIntersect();
+				}
+				intersectionCounter++;
 			}
-			intersectionCounter++;
-		}
 
 
-		//--------------------------------END INTERSECTIONS-------------------------
+			//--------------------------------END INTERSECTIONS-------------------------
 
-		//--------------------------------ALL THE UPDATING--------------------------
+			//--------------------------------ALL THE UPDATING--------------------------
 
-		//update player
-		mainPlayer.updatePlayer(window);
+			//update player
+			mainPlayer.updatePlayer(window);
 
-		//update enemies in current location
-		int enemyUpdateCounter = 0;
-		for (std::vector<Enemy*>::iterator enemyUpdateIter = currentEnemies.begin(); enemyUpdateIter != currentEnemies.end(); ++enemyUpdateIter) {
-			//update enemy
-			currentEnemies[enemyUpdateCounter]->updateEnemy( mainPlayer.getRect().getPosition() );
-			enemyUpdateCounter++;
-		}
-
-		//update NPCs
-		int NPCUpdateCounter = 0;
-		for (std::vector<NPC*>::iterator NPCUpdateIter = currentNPCs.begin(); NPCUpdateIter != currentNPCs.end(); ++NPCUpdateIter){
-			//update NPC
-			currentNPCs[NPCUpdateCounter]->updateNPC();
-			NPCUpdateCounter++;
-		}
-
-		//update player Projectiles
-		int playerBulletUpdate = 0;
-		for (std::vector<Projectile *>::iterator playerBulletsUpdateIter = currentPlayerBullets.begin(); playerBulletsUpdateIter != currentPlayerBullets.end(); ++playerBulletsUpdateIter) {
-			currentPlayerBullets[playerBulletUpdate]->update();
-			playerBulletUpdate++;
-		}
-
-		//upate enemy projectiles
-		int updateCounter = 0;
-		for (std::vector<Enemy*>::iterator enemyIntersectIter = currentEnemies.begin(); enemyIntersectIter != currentEnemies.end(); ++enemyIntersectIter){
-			int updateCounter2 = 0;
-			Enemy *e = currentEnemies[updateCounter];
-			vector<Projectile*> enemyBullets = e->getBullets();
-			for (vector<Projectile*>::iterator bulletIterator = enemyBullets.begin(); bulletIterator != enemyBullets.end(); ++bulletIterator){
-				Projectile* p = enemyBullets[updateCounter2];
-				p->update();
-				updateCounter2++;
+			//update enemies in current location
+			int enemyUpdateCounter = 0;
+			for (std::vector<Enemy*>::iterator enemyUpdateIter = currentEnemies.begin(); enemyUpdateIter != currentEnemies.end(); ++enemyUpdateIter) {
+				//update enemy
+				currentEnemies[enemyUpdateCounter]->updateEnemy(mainPlayer.getRect().getPosition());
+				enemyUpdateCounter++;
 			}
-			updateCounter++;
-		}
-		//---------------------------------END UPDATING---------------------------
 
+			//update NPCs
+			int NPCUpdateCounter = 0;
+			for (std::vector<NPC*>::iterator NPCUpdateIter = currentNPCs.begin(); NPCUpdateIter != currentNPCs.end(); ++NPCUpdateIter) {
+				//update NPC
+				currentNPCs[NPCUpdateCounter]->updateNPC();
+				NPCUpdateCounter++;
+			}
+
+			//update player Projectiles
+			int playerBulletUpdate = 0;
+			for (std::vector<Projectile *>::iterator playerBulletsUpdateIter = currentPlayerBullets.begin(); playerBulletsUpdateIter != currentPlayerBullets.end(); ++playerBulletsUpdateIter) {
+				currentPlayerBullets[playerBulletUpdate]->update();
+				playerBulletUpdate++;
+			}
+
+			//upate enemy projectiles
+			int updateCounter = 0;
+			for (std::vector<Enemy*>::iterator enemyIntersectIter = currentEnemies.begin(); enemyIntersectIter != currentEnemies.end(); ++enemyIntersectIter) {
+				int updateCounter2 = 0;
+				Enemy *e = currentEnemies[updateCounter];
+				vector<Projectile*> enemyBullets = e->getBullets();
+				for (vector<Projectile*>::iterator bulletIterator = enemyBullets.begin(); bulletIterator != enemyBullets.end(); ++bulletIterator) {
+					Projectile* p = enemyBullets[updateCounter2];
+					p->update();
+					updateCounter2++;
+				}
+				updateCounter++;
+			}
+			//---------------------------------END UPDATING---------------------------
+		}
 
 		//--------------------------------ALL THE DRAWING-------------------------
 		//draw to screen
-		if (!gameOver) {
+		if (mainGame) {
 			//draw world and location
 			world.drawWorld(window, world.getLocation(mainPlayer.getCurrentLocation()));
 
@@ -264,12 +297,15 @@ int main(){
 				bryonsDrawCounter++;
 			}
 		}
-		else {
+		else if (gameOver) {
 			window.clear();
-			window.draw(gameOverSprite);
+			gameOverMenu.drawMenu(window);
+		}
+		else if (menuMain) {
+			mainMenu.drawMenu(window);
 		}
 		//------------------------------------------------------------------------------
-
+		
 
 		window.display();
 		if (temp == 0){
@@ -289,6 +325,7 @@ int main(){
 	}//end of while window is open loop
 	return 0;
 }//end of main();
+
 
 void saveGame(){
 	//save the file

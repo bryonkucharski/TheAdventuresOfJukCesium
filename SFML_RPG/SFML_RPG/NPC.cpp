@@ -35,7 +35,7 @@ void NPC::updateNPC() {
 
 	textTime = textClock.getElapsedTime();
 	if (textTime.asSeconds() > 1) {
-		this->text.setString(" ");
+		this->text.setString(this->getName());
 	}
 
 	selectAI(this->getAI_ID());
@@ -49,8 +49,8 @@ std::string NPC::getIntersectionText() {
 }
 
 void NPC::onPlayerBulletIntersect(){
-	textClock.restart();
 	this->text.setString("OUCH!!");
+	textClock.restart();
 }
 
 void NPC::onPlayerIntersect(){
