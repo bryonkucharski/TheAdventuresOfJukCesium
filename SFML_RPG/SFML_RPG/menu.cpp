@@ -112,15 +112,15 @@ int Menu::selectOption() {
 	
 	selectionTime = selectionClock.getElapsedTime();
 	cout << selectionTime.asSeconds() << std::endl;
-	if ( (Keyboard::isKeyPressed(Keyboard::Up)) && (selectionTime.asSeconds() > .25) ) {
+	if ( (Keyboard::isKeyPressed(Keyboard::Up)) && (selectionTime.asSeconds() > .18) || (Keyboard::isKeyPressed(Keyboard::W)) && (selectionTime.asSeconds() > .18) ) {
 		menuUP();
 		selectionClock.restart();
 	}
-	else if ((Keyboard::isKeyPressed(Keyboard::Down)) && (selectionTime.asSeconds() > .25)) {
+	else if ((Keyboard::isKeyPressed(Keyboard::Down)) && (selectionTime.asSeconds() > .18) || (Keyboard::isKeyPressed(Keyboard::S)) && (selectionTime.asSeconds() > .18)) {
 		menuDN();
 		selectionClock.restart();
 	}
-	else if ((Keyboard::isKeyPressed(Keyboard::A)) && (selectionTime.asSeconds() > .25)) {
+	else if ((Keyboard::isKeyPressed(Keyboard::Return)) && (selectionTime.asSeconds() > .18) || (Keyboard::isKeyPressed(Keyboard::LShift)) && (selectionTime.asSeconds() > .18)) {
 		return menuIndex;
 	}
 	return -1;

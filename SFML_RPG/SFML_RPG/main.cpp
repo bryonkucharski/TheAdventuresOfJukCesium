@@ -23,15 +23,15 @@ using namespace sf;
 
 int main(){
 	//create main game window
-	RenderWindow window(sf::VideoMode(WIDTH, HEIGHT), "SFML works!");
+	RenderWindow window(sf::VideoMode(WIDTH, HEIGHT), "Supreme Agent Juk");
 
 	//set frame rate
 	window.setFramerateLimit(60);
 
 	World world(window);
-	Player mainPlayer("Main Player", "res/Creatures/main.png",world);
-	std::string menuString[4] = { "New Game", "Load Game"," About", "Exit" };
-	Menu mainMenu("res/Locations/port.png","Main Menu", "res/Sounds/Town3.ogg", menuString, 50 ,Vector2f(100,100),Vector2f(400,400));
+	Player mainPlayer("Juk Caesium", "res/Creatures/main.png",world);
+	std::string menuString[4] = { "New Game", "Load Game","About", "Exit" };
+	Menu mainMenu("res/Locations/GameMap.png","Supreme Agent Juk\n", "res/Sounds/Town3.ogg", menuString, 50 ,Vector2f(100,100),Vector2f(400,400));
 	Menu gameOverMenu("res/System/GameOver.png","Game Over", "res/Sounds/Town3.ogg",menuString, 50, Vector2f(100, 100), Vector2f(400, 400));
 
 	std::vector<Enemy*> currentEnemies;
