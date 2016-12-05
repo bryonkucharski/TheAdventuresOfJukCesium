@@ -111,7 +111,7 @@ void Menu::menuMusicStart() {
 int Menu::selectOption() {
 	
 	selectionTime = selectionClock.getElapsedTime();
-	cout << selectionTime.asSeconds() << std::endl;
+	
 	if ( (Keyboard::isKeyPressed(Keyboard::Up)) && (selectionTime.asSeconds() > .18) || (Keyboard::isKeyPressed(Keyboard::W)) && (selectionTime.asSeconds() > .18) ) {
 		menuUP();
 		selectionClock.restart();

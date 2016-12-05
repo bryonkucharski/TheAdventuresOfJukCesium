@@ -252,8 +252,16 @@ void Player::checkForUpgrades() {
 		this->setBulletPng("res/Projectiles/fire2.png");
 		break;
 	case 9:
+		std::cout << "Bullet speed has been increased." << std::endl;
+		std::cout << "You have learned Stone Hurl." << std::endl;
+		this->setBulletSpeed(this->getBulletSpeed() + 1);
+		this->setBulletPng("res/Projectiles/stone1.png");
 		break;
 	case 12:
+		std::cout << "Bullet speed has been increased." << std::endl;
+		std::cout << "You have learned Rocket Spin." << std::endl;
+		this->setBulletSpeed(this->getBulletSpeed() + 1);
+		this->setBulletPng("res/Projectiles/fire3.png");
 		break;
 	case 15:
 		break;
