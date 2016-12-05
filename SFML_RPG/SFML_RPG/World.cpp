@@ -553,7 +553,9 @@ void World::setupBeach() {
 	createObstacleRectangle(Vector2f(1 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(28 * PIXEL_SIZE, 6 * PIXEL_SIZE), Color::Transparent, beach);
 	createObstacleRectangle(Vector2f(1 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(27 * PIXEL_SIZE, 7 * PIXEL_SIZE), Color::Transparent, beach);
 	createObstacleRectangle(Vector2f(2 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(25 * PIXEL_SIZE, 8 * PIXEL_SIZE), Color::Transparent, beach);
-	createObstacleRectangle(Vector2f(2 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(23 * PIXEL_SIZE, 9 * PIXEL_SIZE), Color::Transparent, beach);
+	createObstacleRectangle(Vector2f(1 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(23 * PIXEL_SIZE, 9 * PIXEL_SIZE), Color::Transparent, beach);
+	createObstacleRectangle(Vector2f(1 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(24 * PIXEL_SIZE, 10 * PIXEL_SIZE), Color::Transparent, beach);
+	createObstacleRectangle(Vector2f(1 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(25 * PIXEL_SIZE, 9 * PIXEL_SIZE), Color::Transparent, beach);
 	createObstacleRectangle(Vector2f(2 * PIXEL_SIZE, 2 * PIXEL_SIZE), Vector2f(21 * PIXEL_SIZE, 10 * PIXEL_SIZE), Color::Transparent, beach);
 	createObstacleRectangle(Vector2f(2 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(19 * PIXEL_SIZE, 12 * PIXEL_SIZE), Color::Transparent, beach);
 	createObstacleRectangle(Vector2f(2 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(17 * PIXEL_SIZE, 13 * PIXEL_SIZE), Color::Transparent, beach);
@@ -724,9 +726,19 @@ void World::setupPub() {
 	createObstacleRectangle(Vector2f(10 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(17 * PIXEL_SIZE, 11 * PIXEL_SIZE), Color::Transparent, pub);
 	createObstacleRectangle(Vector2f(1 * PIXEL_SIZE, 2 * PIXEL_SIZE), Vector2f(27 * PIXEL_SIZE, 9 * PIXEL_SIZE), Color::Transparent, pub);
 
-
 	//location change
 	createLocationRectangle(Vector2f(2 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(9 * PIXEL_SIZE, 18 * PIXEL_SIZE), Color::Transparent, pub);
+
+	//creating NPCs
+	this->createNPC("res/Creatures/greenHairGirl.png", "Velma", "I eat pasta for breakfast.", 1, Vector2f(7 * PIXEL_SIZE, 7 * PIXEL_SIZE), pub);
+	this->createNPC("res/Creatures/blueHairCloakMan.png", "Rick Sanchez", "*Burp* M..Mm.. Morty, we got, we gotta get to the ship Morty.", 1, Vector2f(9 * PIXEL_SIZE, 7 * PIXEL_SIZE), pub);
+	this->createNPC("res/Creatures/merchant.png", "Morty", "Ohh, I don't know Rick...", 1, Vector2f(10* PIXEL_SIZE, 7 * PIXEL_SIZE), pub);
+	this->createNPC("res/Creatures/aipronLady.png", "Deborah", "I serve beer and whiskey.", 4, Vector2f(10 * PIXEL_SIZE, 4 * PIXEL_SIZE), pub);
+	this->createNPC("res/Creatures/oldMan.png", "Old Man Eugine", "I had to walk 5000 miles to school every day.", 1, Vector2f(5 * PIXEL_SIZE, 10 * PIXEL_SIZE), pub);
+	this->createNPC("res/Creatures/flowerGirl.png", "Flower Dancer", "Dance with me!", 3, Vector2f(19 * PIXEL_SIZE, 10 * PIXEL_SIZE), pub);
+	this->createNPC("res/Creatures/whiteHairKid.png", "Drunk Doug", "I'm going to hurl!!!", 6, Vector2f(26 * PIXEL_SIZE, 6 * PIXEL_SIZE), pub);
+	this->createNPC("res/Creatures/gothGirl.png", "Grape", "I pick grapes.", 5, Vector2f(23 * PIXEL_SIZE, 9 * PIXEL_SIZE), pub);
+	this->createNPC("res/Creatures/greenHairGirl.png", "Velma", "", 1, Vector2f(14 * PIXEL_SIZE, 11 * PIXEL_SIZE), pub);
 }
 void World::setupCastle() {
 	this->createBorder(castle);
