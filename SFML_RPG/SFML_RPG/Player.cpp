@@ -115,12 +115,78 @@ void Player::updatePlayer(RenderWindow &window) {
 					break;
 			};
 
-			Projectile * newProjectile = new Projectile(this->getBulletPng(), Vector2f(this->getBulletWidth(), this->getBulletHeight()), 
-				Vector2f(this->rect.getPosition().x + (this->rect.getGlobalBounds().width / 2), this->rect.getPosition().y + (this->rect.getGlobalBounds().height / 2))
-				,offX,offY,this->getDirection(), this->getBulletSpeed());
+			if (this->getLevel() > 20) {
+				Projectile *newProjectile1 = new Projectile(this->getBulletPng(), Vector2f(this->getBulletWidth(), this->getBulletHeight()),
+					Vector2f(this->rect.getPosition().x + (this->rect.getGlobalBounds().width / 2) + 10, this->rect.getPosition().y + (this->rect.getGlobalBounds().height / 2) + 10)
+					, offX, offY, this->getDirection(), this->getBulletSpeed());
+				Projectile *newProjectile2 = new Projectile(this->getBulletPng(), Vector2f(this->getBulletWidth(), this->getBulletHeight()),
+					Vector2f(this->rect.getPosition().x + (this->rect.getGlobalBounds().width / 2) + 10, this->rect.getPosition().y + (this->rect.getGlobalBounds().height / 2) + 10)
+					, offX, offY, this->getDirection(), this->getBulletSpeed());
+				Projectile *newProjectile3 = new Projectile(this->getBulletPng(), Vector2f(this->getBulletWidth(), this->getBulletHeight()),
+					Vector2f(this->rect.getPosition().x + (this->rect.getGlobalBounds().width / 2) + 10, this->rect.getPosition().y + (this->rect.getGlobalBounds().height / 2) + 10)
+					, offX, offY, this->getDirection(), this->getBulletSpeed());
+				switch(this->getDirection()){
+					case 1://left
+						newProjectile1 = new Projectile(this->getBulletPng(), Vector2f(this->getBulletWidth(), this->getBulletHeight()),
+							Vector2f(this->rect.getPosition().x + (this->rect.getGlobalBounds().width / 2) + 10, this->rect.getPosition().y + (this->rect.getGlobalBounds().height / 2) + 10)
+							, offX, offY, this->getDirection(), this->getBulletSpeed());
+						newProjectile2 = new Projectile(this->getBulletPng(), Vector2f(this->getBulletWidth(), this->getBulletHeight()),
+							Vector2f(this->rect.getPosition().x + (this->rect.getGlobalBounds().width / 2), this->rect.getPosition().y + (this->rect.getGlobalBounds().height / 2))
+							, offX, offY, this->getDirection(), this->getBulletSpeed());
+						newProjectile3 = new Projectile(this->getBulletPng(), Vector2f(this->getBulletWidth(), this->getBulletHeight()),
+							Vector2f(this->rect.getPosition().x + (this->rect.getGlobalBounds().width / 2) + 10, this->rect.getPosition().y + (this->rect.getGlobalBounds().height / 2) - 10)
+							, offX, offY, this->getDirection(), this->getBulletSpeed());
+						break;
 
-			this->addToBullets(newProjectile);
-			soundOnShoot.play();
+					case 2://right
+						newProjectile1 = new Projectile(this->getBulletPng(), Vector2f(this->getBulletWidth(), this->getBulletHeight()),
+							Vector2f(this->rect.getPosition().x + (this->rect.getGlobalBounds().width / 2) - 10, this->rect.getPosition().y + (this->rect.getGlobalBounds().height / 2) + 10)
+							, offX, offY, this->getDirection(), this->getBulletSpeed());
+						newProjectile2 = new Projectile(this->getBulletPng(), Vector2f(this->getBulletWidth(), this->getBulletHeight()),
+							Vector2f(this->rect.getPosition().x + (this->rect.getGlobalBounds().width / 2), this->rect.getPosition().y + (this->rect.getGlobalBounds().height / 2))
+							, offX, offY, this->getDirection(), this->getBulletSpeed());
+						newProjectile3 = new Projectile(this->getBulletPng(), Vector2f(this->getBulletWidth(), this->getBulletHeight()),
+							Vector2f(this->rect.getPosition().x + (this->rect.getGlobalBounds().width / 2) - 10, this->rect.getPosition().y + (this->rect.getGlobalBounds().height / 2) - 10)
+							, offX, offY, this->getDirection(), this->getBulletSpeed());
+						break;
+
+					case 3://up
+						newProjectile1 = new Projectile(this->getBulletPng(), Vector2f(this->getBulletWidth(), this->getBulletHeight()),
+							Vector2f(this->rect.getPosition().x + (this->rect.getGlobalBounds().width / 2) + 10, this->rect.getPosition().y + (this->rect.getGlobalBounds().height / 2) + 10)
+							, offX, offY, this->getDirection(), this->getBulletSpeed());
+						newProjectile2 = new Projectile(this->getBulletPng(), Vector2f(this->getBulletWidth(), this->getBulletHeight()),
+							Vector2f(this->rect.getPosition().x + (this->rect.getGlobalBounds().width / 2), this->rect.getPosition().y + (this->rect.getGlobalBounds().height / 2))
+							, offX, offY, this->getDirection(), this->getBulletSpeed());
+						newProjectile3 = new Projectile(this->getBulletPng(), Vector2f(this->getBulletWidth(), this->getBulletHeight()),
+							Vector2f(this->rect.getPosition().x + (this->rect.getGlobalBounds().width / 2) - 10, this->rect.getPosition().y + (this->rect.getGlobalBounds().height / 2) + 10)
+							, offX, offY, this->getDirection(), this->getBulletSpeed());
+						break;
+
+					case 4://down
+						newProjectile1 = new Projectile(this->getBulletPng(), Vector2f(this->getBulletWidth(), this->getBulletHeight()),
+							Vector2f(this->rect.getPosition().x + (this->rect.getGlobalBounds().width / 2) + 10, this->rect.getPosition().y + (this->rect.getGlobalBounds().height / 2) - 10)
+							, offX, offY, this->getDirection(), this->getBulletSpeed());
+						newProjectile2 = new Projectile(this->getBulletPng(), Vector2f(this->getBulletWidth(), this->getBulletHeight()),
+							Vector2f(this->rect.getPosition().x + (this->rect.getGlobalBounds().width / 2), this->rect.getPosition().y + (this->rect.getGlobalBounds().height / 2))
+							, offX, offY, this->getDirection(), this->getBulletSpeed());
+						newProjectile3 = new Projectile(this->getBulletPng(), Vector2f(this->getBulletWidth(), this->getBulletHeight()),
+							Vector2f(this->rect.getPosition().x + (this->rect.getGlobalBounds().width / 2) - 10, this->rect.getPosition().y + (this->rect.getGlobalBounds().height / 2) - 10)
+							, offX, offY, this->getDirection(), this->getBulletSpeed());
+						break;
+				};
+				this->addToBullets(newProjectile1);
+				this->addToBullets(newProjectile2);
+				this->addToBullets(newProjectile3);
+				soundOnShoot.play();
+			}
+			else {
+				Projectile * newProjectile = new Projectile(this->getBulletPng(), Vector2f(this->getBulletWidth(), this->getBulletHeight()),
+					Vector2f(this->rect.getPosition().x + (this->rect.getGlobalBounds().width / 2), this->rect.getPosition().y + (this->rect.getGlobalBounds().height / 2))
+					, offX, offY, this->getDirection(), this->getBulletSpeed());
+
+				this->addToBullets(newProjectile);
+				soundOnShoot.play();
+			}
 		}
 	}// end of if space was pressed do a projectile
 

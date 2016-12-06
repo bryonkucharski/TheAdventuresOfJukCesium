@@ -151,7 +151,10 @@ void Creature::addToBullets(Projectile *bullet) {
 
 bool Creature::canShoot(int timeForShoot) {
 	bulletTime = bulletClock.getElapsedTime();
-	if((bullets.size() < 3) && (bulletTime.asSeconds() > .3)){
+	if ((bullets.size() < 9) && (bulletTime.asSeconds() > .3 && getLevel() > 20)) {
+		bulletClock.restart();
+		return true;
+	}else if((bullets.size() < 3) && (bulletTime.asSeconds() > .3)){
 		bulletClock.restart();
 		return true;
 	}
