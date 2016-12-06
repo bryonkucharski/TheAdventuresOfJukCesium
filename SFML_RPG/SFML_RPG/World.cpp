@@ -785,7 +785,7 @@ void World::setupCastle() {
 	this->createNPC("res/Creatures/king.png", "King Carpenter", "You get an A.", 1, Vector2f(13 * PIXEL_SIZE, 6 * PIXEL_SIZE - 10), castle);
 	this->createNPC("res/Creatures/queen.png", "Queenie", "I like to cook eggs.", 1, Vector2f(16 * PIXEL_SIZE, 6 * PIXEL_SIZE - 10), castle);
 	this->createNPC("res/Creatures/aipronLady.png", "Cookie", "The guests will be here soon!", 1, Vector2f(8 * PIXEL_SIZE, 6 * PIXEL_SIZE), castle);
-	this->createNPC("res/Creatures/merchant.png", "Nervious Wreck", "I am nervious.", 3, Vector2f(8 * PIXEL_SIZE, 4 * PIXEL_SIZE), castle);
+	this->createNPC("res/Creatures/merchant.png", "Nervious Wreck", "I am nervious.", 3, Vector2f(8 * PIXEL_SIZE, 14 * PIXEL_SIZE), castle);
 	this->createNPC("res/Creatures/greenHairGirl.png", "Sally", "I am setting the table.", 5, Vector2f(22 * PIXEL_SIZE, 8 * PIXEL_SIZE), castle);
 }//end of castle
 
