@@ -166,7 +166,7 @@ int main(){
 				for (vector<Projectile*>::iterator bulletIterator = enemyBullets.begin(); bulletIterator != enemyBullets.end(); ++bulletIterator) {
 					Projectile* p = enemyBullets[intersectionCounter2];
 					if (p->getRect().getGlobalBounds().intersects(mainPlayer.getRect().getGlobalBounds())) {
-						mainPlayer.onEnemyBulletIntersect();
+						mainPlayer.onEnemyBulletIntersect(e->getDamage());
 						p->onCollision();
 					}
 					intersectionCounter2++;

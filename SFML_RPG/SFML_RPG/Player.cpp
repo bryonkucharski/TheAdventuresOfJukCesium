@@ -198,6 +198,7 @@ void Player::updatePlayer(RenderWindow &window) {
 				this->addToBullets(newProjectile3);
 				soundOnShoot.play();
 			}
+			//if level is < 20
 			else {
 				Projectile * newProjectile = new Projectile(this->getBulletPng(), Vector2f(this->getBulletWidth(), this->getBulletHeight()),
 					Vector2f(this->rect.getPosition().x + (this->rect.getGlobalBounds().width / 2), this->rect.getPosition().y + (this->rect.getGlobalBounds().height / 2))
@@ -284,13 +285,13 @@ void Player::updatePlayer(RenderWindow &window) {
 //what happends to the player on intersection with an enemy
 void Player::onEnemyIntersect(){
 	//decrease the health
-	this->setCurrentHealth(this->getCurrentHealth() - 1);
+	this->setCurrentHealth(this->getCurrentHealth() - 10);
 }
 
 //what happends to the player on the intersection with an enemy projecetile
-void Player::onEnemyBulletIntersect(){
+void Player::onEnemyBulletIntersect(int damage){
 	//decrease the health
-	this->setCurrentHealth(this->getCurrentHealth() - 1);
+	this->setCurrentHealth(this->getCurrentHealth() - damage);
 	this->soundOnHit.play();
 }
 

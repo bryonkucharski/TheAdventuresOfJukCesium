@@ -12,7 +12,7 @@ public:
 	~Player();
 	void updatePlayer(RenderWindow &window);
 	void onEnemyIntersect();
-	void onEnemyBulletIntersect();
+	void onEnemyBulletIntersect(int damage);
 	void onIncreaseXPEvent(int amount);
 	bool didPlayerLevel();
 	void setBulletSpeed(int sp);
