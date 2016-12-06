@@ -209,7 +209,7 @@ void Creature::onPlayerIntersect()
 }
 
 //AI Selector
-void Creature::selectAI(int AI_ID) {
+void Creature::selectMovementAI(int AI_ID) {
 	switch (AI_ID) {
 	case 1:
 		//Stand Still.

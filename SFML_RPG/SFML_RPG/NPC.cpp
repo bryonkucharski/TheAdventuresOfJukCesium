@@ -44,7 +44,7 @@ void NPC::updateNPC() {
 		this->text.setString(this->getName());
 	}
 
-	selectAI(this->getAI_ID());
+	selectMovementAI(this->getAI_ID());
 }//end of updateNPC()
 
 void NPC::setIntersectionText(std::string s) {

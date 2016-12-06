@@ -56,7 +56,7 @@ void Enemy::updateEnemy(Vector2f playerPos){
 	text.setString("Level " + std::to_string(this->getLevel()) + "\n" + this->getName() + "  " + std::to_string(this->getCurrentHealth()) + " / " + std::to_string(this->getMaxHealth()));
 	text.setPosition(this->rect.getPosition().x, this->rect.getPosition().y - text.getCharacterSize());
 
-	this->selectAI(this->getAI_ID());
+	this->selectMovementAI(this->getAI_ID());
 
 }//end of update enemy
 

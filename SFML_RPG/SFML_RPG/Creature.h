@@ -70,7 +70,7 @@ class Creature : public Entity
 		void onPlayerBulletIntersect();
 		void onPlayerIntersect();
 
-		void selectAI(int aID);
+		void selectMovementAI(int aID);
 		//Stand still.
 		void ai1(); 
 		//random direction
