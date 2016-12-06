@@ -233,7 +233,7 @@ void World::setupHome() {
 
 	//Create Boss
 	// int AI_ID, int aiShoot, int health, int level,
-	this->createBoss("res/Creatures/bigRedMonster.png", "Sliske The Void", /*AI_ID*/ 7, /*aiShoot*/ 6, /*Health*/ 360, /*Level*/ 5, /*Location*/ Vector2f(24 * PIXEL_SIZE, 11 * PIXEL_SIZE), home, /*PixelSize*/ Vector2f(80,80));
+	//this->createBoss("res/Creatures/bigRedMonster.png", "Sliske The Void", /*AI_ID*/ 7, /*aiShoot*/ 6, /*Health*/ 360, /*Level*/ 5, /*Location*/ Vector2f(24 * PIXEL_SIZE, 11 * PIXEL_SIZE), home, /*PixelSize*/ Vector2f(80,80));
 
 	//NPC's
 	this->createNPC("res/Creatures/oldMan.png", "Old Man Jensen", "Kill The Monsters!", /*AI_ID*/2, Vector2f(17 * PIXEL_SIZE, 5 * PIXEL_SIZE), home);

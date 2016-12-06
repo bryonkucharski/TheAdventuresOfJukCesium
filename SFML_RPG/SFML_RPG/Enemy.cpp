@@ -312,22 +312,22 @@ void Enemy::shootAI6(Vector2f playerPos, int distanceLimit) {
 	float distX = distanceX*distanceX;
 	float distY = distanceY*distanceY;
 	float distance = sqrt(distX + distY);
-	if (distance < distanceLimit) {
-		Projectile * newProjectile1 = new Projectile("res/Projectiles/enemyProjectile.png", Vector2f(18, 18),
-			Vector2f(this->rect.getPosition().x + (this->rect.getGlobalBounds().width / 2), this->rect.getPosition().y + (this->rect.getGlobalBounds().height / 2))
-			, 0, -1, this->getDirection(), 5);
-		Projectile * newProjectile2 = new Projectile("res/Projectiles/enemyProjectile.png", Vector2f(18, 18),
-			Vector2f(this->rect.getPosition().x + (this->rect.getGlobalBounds().width / 2), this->rect.getPosition().y + (this->rect.getGlobalBounds().height / 2))
-			, 0, 1, this->getDirection(), 5);
-		Projectile * newProjectile3 = new Projectile("res/Projectiles/enemyProjectile.png", Vector2f(18, 18),
-			Vector2f(this->rect.getPosition().x + (this->rect.getGlobalBounds().width / 2), this->rect.getPosition().y + (this->rect.getGlobalBounds().height / 2))
-			, -1, 0, this->getDirection(), 5);
-		Projectile * newProjectile4 = new Projectile("res/Projectiles/enemyProjectile.png", Vector2f(18, 18),
-			Vector2f(this->rect.getPosition().x + (this->rect.getGlobalBounds().width / 2), this->rect.getPosition().y + (this->rect.getGlobalBounds().height / 2))
-			, 1, 0, this->getDirection(), 5);
-		this->addToBullets(newProjectile1);
-		this->addToBullets(newProjectile2);
-		this->addToBullets(newProjectile3);
-		this->addToBullets(newProjectile4);
-	}
+		if (distance < distanceLimit) {
+			Projectile * newProjectile1 = new Projectile("res/Projectiles/enemyProjectile.png", Vector2f(18, 18),
+				Vector2f(this->rect.getPosition().x + (this->rect.getGlobalBounds().width / 2), this->rect.getPosition().y + (this->rect.getGlobalBounds().height / 2))
+				, 0, -1, this->getDirection(), 5);
+			Projectile * newProjectile2 = new Projectile("res/Projectiles/enemyProjectile.png", Vector2f(18, 18),
+				Vector2f(this->rect.getPosition().x + (this->rect.getGlobalBounds().width / 2), this->rect.getPosition().y + (this->rect.getGlobalBounds().height / 2))
+				, 0, 1, this->getDirection(), 5);
+			Projectile * newProjectile3 = new Projectile("res/Projectiles/enemyProjectile.png", Vector2f(18, 18),
+				Vector2f(this->rect.getPosition().x + (this->rect.getGlobalBounds().width / 2), this->rect.getPosition().y + (this->rect.getGlobalBounds().height / 2))
+				, -1, 0, this->getDirection(), 5);
+			Projectile * newProjectile4 = new Projectile("res/Projectiles/enemyProjectile.png", Vector2f(18, 18),
+				Vector2f(this->rect.getPosition().x + (this->rect.getGlobalBounds().width / 2), this->rect.getPosition().y + (this->rect.getGlobalBounds().height / 2))
+				, 1, 0, this->getDirection(), 5);
+			this->addToBullets(newProjectile1);
+			this->addToBullets(newProjectile2);
+			this->addToBullets(newProjectile3);
+			this->addToBullets(newProjectile4);
+		}
 }

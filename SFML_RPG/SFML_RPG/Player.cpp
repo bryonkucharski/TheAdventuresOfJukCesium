@@ -231,7 +231,7 @@ void Player::onIncreaseXPEvent(int amount){
 }
 
 bool Player::didPlayerLevel() {
-	int expNeeded = 100;//exp needed to level up
+	int expNeeded = 50;//exp needed to level up
 	if (this->getTotalExperience() / expNeeded > this->getLevel() || this->getTotalExperience() % expNeeded == 0) {
 		this->soundOnLevel.play();
 		return true;
