@@ -130,6 +130,8 @@ void Enemy::selectShootAI(int aiShoot, Vector2f playerPos) {
 			break;
 		case 5: this->shootAI5(playerPos);
 			break;
+		case 6: this->shootAI6(playerPos);
+			break;
 		default:
 			//no ai
 			break;
@@ -294,12 +296,38 @@ void Enemy::shootAI5(Vector2f playerPos)
 		{
 			//ai 4
 			//std::cout << "starting ai 4\n";
-			this->shootAI4(playerPos,250);
+			this->shootAI4(playerPos, 250);
 		}
 		else
 		{
 			//ai 2
 			//std::cout << "starting ai 2\n";
-			this->shootAI2(playerPos,250);
+			this->shootAI2(playerPos, 250);
 		}
 }//end of shootAI5
+
+void Enemy::shootAI6(Vector2f playerPos, int distanceLimit) {
+	float distanceX = (playerPos.x) - (this->rect.getPosition().x);
+	float distanceY = (playerPos.y) - (this->rect.getPosition().y);
+	float distX = distanceX*distanceX;
+	float distY = distanceY*distanceY;
+	float distance = sqrt(distX + distY);
+	if (distance < distanceLimit) {
+		Projectile * newProjectile1 = new Projectile("res/Projectiles/enemyProjectile.png", Vector2f(18, 18),
+			Vector2f(this->rect.getPosition().x + (this->rect.getGlobalBounds().width / 2), this->rect.getPosition().y + (this->rect.getGlobalBounds().height / 2))
+			, 0, -1, this->getDirection(), 5);
+		Projectile * newProjectile2 = new Projectile("res/Projectiles/enemyProjectile.png", Vector2f(18, 18),
+			Vector2f(this->rect.getPosition().x + (this->rect.getGlobalBounds().width / 2), this->rect.getPosition().y + (this->rect.getGlobalBounds().height / 2))
+			, 0, 1, this->getDirection(), 5);
+		Projectile * newProjectile3 = new Projectile("res/Projectiles/enemyProjectile.png", Vector2f(18, 18),
+			Vector2f(this->rect.getPosition().x + (this->rect.getGlobalBounds().width / 2), this->rect.getPosition().y + (this->rect.getGlobalBounds().height / 2))
+			, -1, 0, this->getDirection(), 5);
+		Projectile * newProjectile4 = new Projectile("res/Projectiles/enemyProjectile.png", Vector2f(18, 18),
+			Vector2f(this->rect.getPosition().x + (this->rect.getGlobalBounds().width / 2), this->rect.getPosition().y + (this->rect.getGlobalBounds().height / 2))
+			, 1, 0, this->getDirection(), 5);
+		this->addToBullets(newProjectile1);
+		this->addToBullets(newProjectile2);
+		this->addToBullets(newProjectile3);
+		this->addToBullets(newProjectile4);
+	}
+}
