@@ -66,6 +66,8 @@ Enemy::Enemy(std::string file, std::string name, int location, int AI_ID, int ai
 	text.setFont(font);
 	text.setCharacterSize(10);
 	text.setFillColor(Color::White);
+	this->clockCheck = true;
+	this->bossTemp = 0;
 }
 
 Enemy::~Enemy() {
@@ -117,7 +119,7 @@ int Enemy::getShootAI() {
 }
 
 void Enemy::selectShootAI(int aiShoot, Vector2f playerPos) {
-	switch (  4 /*aiShoot*/) {
+	switch (aiShoot) {
 		case 1: this->shootAI1(playerPos);
 			break;
 		case 2: this->shootAI2(playerPos);
@@ -125,6 +127,8 @@ void Enemy::selectShootAI(int aiShoot, Vector2f playerPos) {
 		case 3: this->shootAI3(playerPos);
 			break;
 		case 4: this->shootAI4(playerPos);
+			break;
+		case 5: this->shootAI5(playerPos);
 			break;
 		default:
 			//no ai
@@ -269,3 +273,32 @@ void Enemy::shootAI4(Vector2f playerPos) {
 		}
 	}
 }//end of shootAI4
+
+void Enemy::shootAI5(Vector2f playerPos) {
+	if (this->clockCheck)
+	{
+		std::cout << "starting timer\n";
+		bossClock.restart();
+		this->clockCheck = false;
+	}
+	this->bossTime = bossClock.getElapsedTime();
+	std::cout << "time is " << bossTime.asSeconds() << "\n";
+	if (this->bossTime.asSeconds() > 3) {
+		bossTemp++;
+		bossClock.restart();
+		int i = bossTemp % 2;
+		if (i == 0)
+		{
+			//ai 4
+			std::cout << "starting ai 4\n";
+			this->shootAI4(playerPos);
+		}
+		else
+		{
+			//ai 2
+			std::cout << "starting ai 2\n";
+			this->shootAI2(playerPos);
+		}
+	}
+
+}//end of shootAI5

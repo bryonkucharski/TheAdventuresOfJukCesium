@@ -29,15 +29,14 @@ class Enemy : public Creature {
 		void shootAI2(Vector2f playerPos);
 		void shootAI3(Vector2f playerPos);
 		void shootAI4(Vector2f playerPos);
-
+		void shootAI5(Vector2f playerPos);
 
 	private:
-		bool alive;
-		Clock directionClock;
-		Time directionTime;
+		bool alive, clockCheck;
+		Clock directionClock, bossClock;
+		Time directionTime, bossTime;
 		
-		int shootAI;
-
+		int shootAI, bossTemp;
 
 		//sounds
 		SoundBuffer bOnDeath;//buffer for on death.

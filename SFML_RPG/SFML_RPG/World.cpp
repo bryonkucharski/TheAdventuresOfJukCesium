@@ -229,13 +229,14 @@ void World::setupHome() {
 	createLocationRectangle(Vector2f(4 * PIXEL_SIZE, 16), Vector2f(15 * PIXEL_SIZE, (19 * PIXEL_SIZE) + 16), Color::Transparent, home);
 	
 	//Enemies
-	createTestEnemies();
+	//createTestEnemies();
 
 	//Create Boss
-	this->createBoss("res/Creatures/bigRedMonster.png", "A Femenist", /*AI_ID*/ 7, 3, 360, 5, Vector2f(24 * PIXEL_SIZE, 11 * PIXEL_SIZE), home, Vector2f(80,80));
+	// int AI_ID, int aiShoot, int health, int level,
+	//this->createBoss("res/Creatures/bigRedMonster.png", "A Femenist", /*AI_ID*/ 7, /*aiShoot*/ 3, /*Health*/ 360, /*Level*/ 5, /*Location*/ Vector2f(24 * PIXEL_SIZE, 11 * PIXEL_SIZE), home, /*PixelSize*/ Vector2f(80,80));
 
 	//NPC's
-	this->createNPC("res/Creatures/oldMan.png", "Old Man Jensen", "Kill The Monsters!", /*AI_ID*/7, Vector2f(17 * PIXEL_SIZE, 5 * PIXEL_SIZE), home);
+	this->createNPC("res/Creatures/oldMan.png", "Old Man Jensen", "Kill The Monsters!", /*AI_ID*/2, Vector2f(17 * PIXEL_SIZE, 5 * PIXEL_SIZE), home);
 
 }//end of home
 
@@ -664,6 +665,7 @@ void World::setupWFbossRoom() {
 	createLocationRectangle(Vector2f(1 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(12 * PIXEL_SIZE, 0 * PIXEL_SIZE), Color::Transparent, WFbossRoom);
 	
 	//Enemies
+	this->createBoss("res/Creatures/bigRedMonster.png", "A Femenist", /*AI_ID*/ 7, /*aiShoot*/ 5, /*Health*/ 360, /*Level*/ 5, /*Location*/ Vector2f(12 * PIXEL_SIZE, 12 * PIXEL_SIZE), WFbossRoom, /*PixelSize*/ Vector2f(80, 80));
 
 	//NPCs
 

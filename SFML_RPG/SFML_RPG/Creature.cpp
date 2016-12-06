@@ -497,7 +497,7 @@ void Creature::ai7() {
 	int timeToWalk = 1;//how many seconds you want the ai to move.
 
 	if (animationTime.asSeconds() > animationCounter) {
-		this->sprite.setTextureRect(IntRect(this->getWalkingCounter() * 32, 32 * 2, 32, 32));//changing png right
+		this->sprite.setTextureRect(IntRect(this->getWalkingCounter() * 80, 0, 80, 80));//changing png right
 		animationClock.restart();
 	}
 
