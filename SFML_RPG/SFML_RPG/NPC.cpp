@@ -1,6 +1,5 @@
 #include "NPC.h"
-#include <stdlib.h>     /* srand, rand */
-#include <time.h>       /* time */
+
 #define PIXEL_SIZE 32
 
 NPC::NPC(std::string file, std::string name, std::string intersectionText, int location, int AI_ID,Vector2f startingPosition, std::vector<RectangleShape> &obstacles) : Creature(name, file) {
@@ -17,11 +16,11 @@ NPC::NPC(std::string file, std::string name, std::string intersectionText, int l
 
 	this->currentObstacles = obstacles;
 	
-	/*
-	this->bOnHit.loadFromFile("res/Sounds/Cancel2.ogg");
-	this->soundOnHit.setBuffer(bOnHit);
-	this->soundOnHit.setPitch(.55);
-	*/
+	
+	//this->bOnHit.loadFromFile("res/Sounds/Bow1.ogg");
+	//this->soundOnHit.setBuffer(bOnHit);
+	//this->soundOnHit.setPitch(.55);
+	
 
 	this->setAI_ID(AI_ID);
 	intText = intersectionText;

@@ -116,8 +116,7 @@ bool Creature::checkForIntersect(std::vector<RectangleShape> &obs, RectangleShap
 
 	//iterate through obstacles in current location and check for intersect 
 	int counter = 0;
-	for (std::vector<RectangleShape>::iterator obsIter = obs.begin(); obsIter != obs.end(); ++obsIter)
-	{
+	for (std::vector<RectangleShape>::iterator obsIter = obs.begin(); obsIter != obs.end(); ++obsIter){
 		if (rect.getGlobalBounds().intersects(obs[counter].getGlobalBounds())) {
 			return true;
 		}
@@ -132,6 +131,7 @@ void Creature::setAllWalk(bool val) {
 	this->setCanWalkLeft(val);
 	this->setCanWalkRight(val);
 }
+
 void Creature::updateAnimationCounter() {
 
 	//increment walking counter for animation 
@@ -151,8 +151,7 @@ void Creature::addToBullets(Projectile *bullet) {
 
 bool Creature::canShoot(int timeForShoot) {
 	bulletTime = bulletClock.getElapsedTime();
-	if((bullets.size() < 3) && (bulletTime.asSeconds() > .3))
-	{
+	if((bullets.size() < 3) && (bulletTime.asSeconds() > .3)){
 		bulletClock.restart();
 		return true;
 	}
@@ -169,28 +168,23 @@ void Creature::removeBullets() {
 	bullets.erase(std::remove_if(bullets.begin(), bullets.end(), [](Projectile *p) { return !p->isActive(); }), bullets.end());
 }
 
-void Creature::onEnemyIntersect()
-{
+void Creature::onEnemyIntersect(){
 
 }
 
-void Creature::onNPCIntersect()
-{
+void Creature::onNPCIntersect(){
 
 }
 
-void Creature::onEnemyBulletIntersect()
-{
+void Creature::onEnemyBulletIntersect(){
 
 }
 
-void Creature::onPlayerBulletIntersect()
-{
+void Creature::onPlayerBulletIntersect(){
 
 }
 
-void Creature::onPlayerIntersect()
-{
+void Creature::onPlayerIntersect(){
 
 }
 

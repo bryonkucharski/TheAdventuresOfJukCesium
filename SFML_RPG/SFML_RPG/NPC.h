@@ -1,8 +1,11 @@
 #ifndef NPC_H
 #define NPC_H
 
+#include "SFML/Audio.hpp"
 #include "Creature.h"
 #include <string>
+#include <stdlib.h>     /* srand, rand */
+#include <time.h>       /* time */
 
 class NPC : public Creature
 {

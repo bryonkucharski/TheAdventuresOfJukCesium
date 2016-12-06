@@ -39,9 +39,11 @@ private:
 	SoundBuffer bOnDeath;//buffer for on death.
 	SoundBuffer bOnHit;//buffer for on hit.
 	SoundBuffer bOnLevel;
+	SoundBuffer bOnShoot;
 	Sound soundOnDeath;
 	Sound soundOnHit;
 	Sound soundOnLevel;
+	Sound soundOnShoot;
 
 };
 #endif // !PLAYER_H

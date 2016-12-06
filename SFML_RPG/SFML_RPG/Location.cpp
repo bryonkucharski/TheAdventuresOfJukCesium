@@ -25,12 +25,8 @@ Location::Location(std::string locationName, std::string file, int locationID, i
 		
 }
 Location::~Location() {
-	/*
-	std::vector<Enemy*> enemies = this->getEnemies();
-	for (std::vector<Enemy*>::iterator enemyIter = enemies.begin(); enemyIter != enemies.end(); ++enemyIter) {
-		std::cout << this->getName() + " Enemy deleted\n";
-		delete *enemyIter;
-	}*/
+	//what if we moved the deleted enemies to a death vector for a location.
+	//they can respawn after time by moving back to the original vector.
 }
 
 //Getting the current locaitons needed information

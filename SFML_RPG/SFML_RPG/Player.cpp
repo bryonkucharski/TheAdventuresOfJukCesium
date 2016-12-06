@@ -22,9 +22,11 @@ Player::Player(std::string playerName, std::string file, World &world) : Creatur
 	this->bOnDeath.loadFromFile("res/Sounds/Gameover2.ogg");//the sound the player makes when he dies.
 	this->bOnHit.loadFromFile("res/Sounds/Blow2.ogg");//the sound the player makes when he is hit
 	this->bOnLevel.loadFromFile("res/Sounds/Chime2.ogg");
+	this->bOnShoot.loadFromFile("res/Sounds/Bow1.ogg");
 	this->soundOnDeath.setBuffer(bOnDeath);
 	this->soundOnHit.setBuffer(bOnHit);
 	this->soundOnLevel.setBuffer(bOnLevel);
+	this->soundOnShoot.setBuffer(bOnShoot);
 	
 	}
 	
@@ -95,29 +97,30 @@ void Player::updatePlayer(RenderWindow &window) {
 			float offX;
 			float offY;
 			switch (this->getDirection()) {
-			case 1:
-				offX = -1;
-				offY = 0;
-				break;
-			case 2:
-				offX = 1;
-				offY = 0;
-				break;
-			case 3:
-				offX = 0;
-				offY = -1;
-				break;
-			case 4:
-				offX = 0;
-				offY = 1;
-				break;
-			}
+				case 1:
+					offX = -1;
+					offY = 0;
+					break;
+				case 2:
+					offX = 1;
+					offY = 0;
+					break;
+				case 3:
+					offX = 0;
+					offY = -1;
+					break;
+				case 4:
+					offX = 0;
+					offY = 1;
+					break;
+			};
 
 			Projectile * newProjectile = new Projectile(this->getBulletPng(), Vector2f(this->getBulletWidth(), this->getBulletHeight()), 
 				Vector2f(this->rect.getPosition().x + (this->rect.getGlobalBounds().width / 2), this->rect.getPosition().y + (this->rect.getGlobalBounds().height / 2))
 				,offX,offY,this->getDirection(), this->getBulletSpeed());
 
 			this->addToBullets(newProjectile);
+			soundOnShoot.play();
 		}
 	}// end of if space was pressed do a projectile
 

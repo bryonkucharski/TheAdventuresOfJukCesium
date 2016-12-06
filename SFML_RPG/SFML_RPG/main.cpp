@@ -340,9 +340,6 @@ int main(){
 			if (Keyboard::isKeyPressed(Keyboard::RAlt) || Keyboard::isKeyPressed(Keyboard::LAlt)){
 				if (Keyboard::isKeyPressed(Keyboard::F2)){
 					temp = 20;
-					mainPlayer.getRect().setRotation(45);
-					mainPlayer.getSprite().setRotation(45);
-			
 					saveGame();
 				}
 				if (Keyboard::isKeyPressed(Keyboard::F3)){
@@ -366,16 +363,7 @@ void saveGame(){
 	//save the file
 	ofstream theFile;
 	theFile.open("saveFile.txt", ios::out);
-	//write stuff
-	/*
-	position
-	location
-	total experience
-	level
-	damage
-	current health
-	max health
-	*/
+	
 	if (theFile.is_open()){
 		theFile << theMainPlayer->getCurrentPosition().x << "\n" <<
 		theMainPlayer->getCurrentPosition().y << "\n" <<
