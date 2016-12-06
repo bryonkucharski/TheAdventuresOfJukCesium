@@ -282,21 +282,23 @@ void Enemy::shootAI5(Vector2f playerPos) {
 		this->clockCheck = false;
 	}
 	this->bossTime = bossClock.getElapsedTime();
-	std::cout << "time is " << bossTime.asSeconds() << "\n";
+	//std::cout << "time is " << bossTime.asSeconds() << "\n";
 	if (this->bossTime.asSeconds() > 3) {
 		bossTemp++;
 		bossClock.restart();
 		int i = bossTemp % 2;
-		if (i == 0)
-		{
+		if (i == 0){
 			//ai 4
-			std::cout << "starting ai 4\n";
-			this->shootAI4(playerPos);
+			//std::cout << "starting ai 4\n";
+			//this 10, will spawn 10 bullets on top of one another.
+			//we should make enemy constructor have a set damage. and get damage.
+			for (int i = 0; i < 10; i++) {
+				this->shootAI4(playerPos);
+			}
 		}
-		else
-		{
+		else{
 			//ai 2
-			std::cout << "starting ai 2\n";
+			//std::cout << "starting ai 2\n";
 			this->shootAI2(playerPos);
 		}
 	}
