@@ -232,7 +232,7 @@ void World::setupHome() {
 	createTestEnemies();
 
 	//NPC's
-	this->createNPC("res/Creatures/oldMan.png", "Old Man Jensen", "Kill The Monsters!", /*AI_ID*/1, Vector2f(17 * PIXEL_SIZE, 5 * PIXEL_SIZE), home);
+	this->createNPC("res/Creatures/oldMan.png", "Old Man Jensen", "Kill The Monsters!", /*AI_ID*/7, Vector2f(17 * PIXEL_SIZE, 5 * PIXEL_SIZE), home);
 
 }//end of home
 
@@ -1080,6 +1080,7 @@ void World::createObstacleRectangle(Vector2f rectSize, Vector2f rectPosition, Co
 	//we should also add this rectangle to the add to obstacles list too.
 	loc.addToObstacles(rectangle);
 }
+
 void World::createBorder(Location &loc) {
 	//left
 	createObstacleRectangle(Vector2f(1, 20 * PIXEL_SIZE), Vector2f(-1, -1), Color::Transparent, loc);
@@ -1098,7 +1099,7 @@ void World::createEnemy(std::string file, std::string name, int AI_ID,int health
 
 void World::createTestEnemies() {
 	for (int i = 0; i < 5; i++) {
-		this->createEnemy("res/Creatures/gargoyle.png", "Test", /*AI_ID*/ 1, /*HP*/10 * i, /*Level*/i, Vector2f((5 + 3 * i) * PIXEL_SIZE, 2 * PIXEL_SIZE), home);
+		this->createEnemy("res/Creatures/gargoyle.png", "Test", /*AI_ID*/ 1, /*HP*/10 * i, /*Level*/10000, Vector2f((5 + 3 * i) * PIXEL_SIZE, 2 * PIXEL_SIZE), home);
 	}
 }
 

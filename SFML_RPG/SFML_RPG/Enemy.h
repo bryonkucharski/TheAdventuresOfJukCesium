@@ -3,6 +3,7 @@
 
 #include "Creature.h"
 #include <string>
+#include <SFML/Audio.hpp>
 
 class Enemy : public Creature {
 	public:
@@ -18,5 +19,11 @@ class Enemy : public Creature {
 		bool alive;
 		Clock directionClock;
 		Time directionTime;
+		
+		//sounds
+		SoundBuffer bOnDeath;//buffer for on death.
+		SoundBuffer bOnHit;//buffer for on hit.
+		Sound soundOnDeath;
+		Sound soundOnHit;
 };
 #endif // !ENEMY_H

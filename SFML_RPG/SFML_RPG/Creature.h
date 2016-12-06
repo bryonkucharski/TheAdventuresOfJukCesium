@@ -5,7 +5,7 @@
 
 #include "Entity.h"
 #include "Projectile.h"
-
+#include "SFML/Audio.hpp"
 
 class Creature : public Entity 
 {
@@ -70,7 +70,7 @@ class Creature : public Entity
 		void onPlayerBulletIntersect();
 		void onPlayerIntersect();
 
-		void selectAI(int aID);
+		void selectMovementAI(int aID);
 		//Stand still.
 		void ai1(); 
 		//random direction
@@ -111,6 +111,8 @@ class Creature : public Entity
 
 		int currentLocation;
 		Vector2f currentPosition;
+
+		
 		
 	protected:
 		bool checkForIntersect(std::vector<RectangleShape> &obs, RectangleShape &rect);

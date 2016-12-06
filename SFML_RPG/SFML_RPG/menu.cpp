@@ -1,8 +1,6 @@
 #include "menu.h"
 
-Menu::Menu() {
-	//nothing is here
-}
+Menu::Menu() {}
 
 Menu::Menu(std::string file, std::string title, std::string music, std::string menuString[MAX_ITEMS], int textSize,Vector2f titlePosition, Vector2f startingPosition) {
 	texture.loadFromFile(file);
@@ -24,8 +22,7 @@ Menu::Menu(std::string file, std::string title, std::string music, std::string m
 
 }//end of menu class
 
-Menu::~Menu() {
-}
+Menu::~Menu() {}
 
 
 void Menu::drawMenu(RenderWindow &window) {
@@ -111,7 +108,7 @@ void Menu::menuMusicStart() {
 int Menu::selectOption() {
 	
 	selectionTime = selectionClock.getElapsedTime();
-	cout << selectionTime.asSeconds() << std::endl;
+	
 	if ( (Keyboard::isKeyPressed(Keyboard::Up)) && (selectionTime.asSeconds() > .18) || (Keyboard::isKeyPressed(Keyboard::W)) && (selectionTime.asSeconds() > .18) ) {
 		menuUP();
 		selectionClock.restart();

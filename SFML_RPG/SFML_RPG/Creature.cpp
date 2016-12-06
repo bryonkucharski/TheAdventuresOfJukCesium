@@ -12,6 +12,8 @@ Creature::Creature(std::string creatureName, std::string file) {
 	this->animationCounter = .05;
 	this->setDirection(4);
 	this->wayToMove = 1;
+
+
 }
 Creature::~Creature() {
 
@@ -207,7 +209,7 @@ void Creature::onPlayerIntersect()
 }
 
 //AI Selector
-void Creature::selectAI(int AI_ID) {
+void Creature::selectMovementAI(int AI_ID) {
 	switch (AI_ID) {
 	case 1:
 		//Stand Still.
@@ -511,7 +513,7 @@ void Creature::ai7() {
 		setDirection(4);//setting it to down
 		animationTime = animationClock.getElapsedTime();
 		if (animationTime.asSeconds() > animationCounter) {
-			this->sprite.setTextureRect(IntRect(this->getWalkingCounter() * 80, 80, 80, 80));//this changes png middle
+			this->sprite.setTextureRect(IntRect(this->getWalkingCounter() * 32, 32 * 0, 32, 32));//this changes png middle
 			animationClock.restart();
 		}
 		this->rect.move(0, this->getSpeed());//going down
@@ -524,7 +526,7 @@ void Creature::ai7() {
 		setDirection(2);//setting direction to right
 		animationTime = animationClock.getElapsedTime();
 		if (animationTime.asSeconds() > animationCounter) {
-			this->sprite.setTextureRect(IntRect(this->getWalkingCounter() * 160, 160, 80, 80));//this changes png left
+			this->sprite.setTextureRect(IntRect(this->getWalkingCounter() * 32, 32 * 2, 32, 32));//this changes png right
 			animationClock.restart();
 		}
 		this->rect.move(this->getSpeed(), 0);//going right
@@ -537,7 +539,7 @@ void Creature::ai7() {
 		setDirection(3);//setting direction to up, this might be a problem later. we might need to make one for Creaturees. this is for character png sheet
 		animationTime = animationClock.getElapsedTime();
 		if (animationTime.asSeconds() > animationCounter) {
-			this->sprite.setTextureRect(IntRect(this->getWalkingCounter() * 80, 80, 80, 80));//this changes png middle
+			this->sprite.setTextureRect(IntRect(this->getWalkingCounter() * 32, 32 * 3, 32, 32));//this changes png middle
 			animationClock.restart();
 		}
 		this->rect.move(0, -this->getSpeed());//going up
@@ -550,7 +552,7 @@ void Creature::ai7() {
 		setDirection(4);//setting it to down
 		animationTime = animationClock.getElapsedTime();
 		if (animationTime.asSeconds() > animationCounter) {
-			this->sprite.setTextureRect(IntRect(this->getWalkingCounter() * 80, 80, 80, 80));//this changes png middle
+			this->sprite.setTextureRect(IntRect(this->getWalkingCounter() * 32, 32 * 0, 32, 32));//this changes png middle
 			animationClock.restart();
 		}
 		this->rect.move(0, this->getSpeed());//going down
@@ -563,7 +565,7 @@ void Creature::ai7() {
 		setDirection(1);//setting direction to left
 		animationTime = animationClock.getElapsedTime();
 		if (animationTime.asSeconds() > animationCounter) {
-			this->sprite.setTextureRect(IntRect(this->getWalkingCounter() * 160, 160, 80, 80));//this changes png left
+			this->sprite.setTextureRect(IntRect(this->getWalkingCounter() * 32, 32 * 1, 32, 32));//this changes png left
 			animationClock.restart();
 		}
 		this->rect.move(-this->getSpeed(), 0);//going left
@@ -576,7 +578,7 @@ void Creature::ai7() {
 		setDirection(3);//setting it to up
 		animationTime = animationClock.getElapsedTime();
 		if (animationTime.asSeconds() > animationCounter) {
-			this->sprite.setTextureRect(IntRect(this->getWalkingCounter() * 80, 80, 80, 80));//this changes png middle
+			this->sprite.setTextureRect(IntRect(this->getWalkingCounter() * 32 , 32 * 3, 32, 32));//this changes png up
 			animationClock.restart();
 		}
 		this->rect.move(0, -this->getSpeed());//going up

@@ -16,6 +16,12 @@ NPC::NPC(std::string file, std::string name, std::string intersectionText, int l
 
 	this->currentObstacles = obstacles;
 	
+	/*
+	this->bOnHit.loadFromFile("res/Sounds/Cancel2.ogg");
+	this->soundOnHit.setBuffer(bOnHit);
+	this->soundOnHit.setPitch(.55);
+	*/
+
 	this->setAI_ID(AI_ID);
 	intText = intersectionText;
 
@@ -38,7 +44,7 @@ void NPC::updateNPC() {
 		this->text.setString(this->getName());
 	}
 
-	selectAI(this->getAI_ID());
+	selectMovementAI(this->getAI_ID());
 }//end of updateNPC()
 
 void NPC::setIntersectionText(std::string s) {
@@ -51,6 +57,7 @@ std::string NPC::getIntersectionText() {
 void NPC::onPlayerBulletIntersect(){
 	this->text.setString("OUCH!!");
 	textClock.restart();
+	//this->soundOnHit.play();
 }
 
 void NPC::onPlayerIntersect(){

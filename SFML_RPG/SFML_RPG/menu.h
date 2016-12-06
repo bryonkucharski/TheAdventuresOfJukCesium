@@ -14,8 +14,8 @@ private:
 	int menuIndex;
 	Text menuText[MAX_ITEMS];
 	Text menuTitle;
-	//	Music menuMusic;
-		//Music screen1Mus;
+	//Music menuMusic;
+	//Music screen1Mus;
 	std::string menuArray[4];
 	Text test;
 

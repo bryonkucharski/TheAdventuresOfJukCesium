@@ -3,6 +3,7 @@
 
 #include "Creature.h"
 #include "World.h"
+#include "SFML/Audio.hpp"
 
 class Player : public Creature
 {
@@ -33,6 +34,14 @@ private:
 	string bulletPng;
 	int bulletWidth = 18;
 	int bulletHeight = 18;
+
+	//sounds
+	SoundBuffer bOnDeath;//buffer for on death.
+	SoundBuffer bOnHit;//buffer for on hit.
+	SoundBuffer bOnLevel;
+	Sound soundOnDeath;
+	Sound soundOnHit;
+	Sound soundOnLevel;
 
 };
 #endif // !PLAYER_H

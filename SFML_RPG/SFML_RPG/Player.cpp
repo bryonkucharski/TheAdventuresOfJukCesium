@@ -16,8 +16,16 @@ Player::Player(std::string playerName, std::string file, World &world) : Creatur
 	this->setTotalExperience(10);
 	this->setDamage(this->getLevel()*2);
 	this->setBulletSpeed(6);
-	this->setBulletPng("res/Projectiles/fireProjectile.png");
 
+	this->setBulletPng("res/Projectiles/fireProjectile.png");
+	
+	this->bOnDeath.loadFromFile("res/Sounds/Gameover2.ogg");//the sound the player makes when he dies.
+	this->bOnHit.loadFromFile("res/Sounds/Blow2.ogg");//the sound the player makes when he is hit
+	this->bOnLevel.loadFromFile("res/Sounds/Chime2.ogg");
+	this->soundOnDeath.setBuffer(bOnDeath);
+	this->soundOnHit.setBuffer(bOnHit);
+	this->soundOnLevel.setBuffer(bOnLevel);
+	
 	}
 	
 Player::~Player() {
@@ -173,6 +181,7 @@ void Player::onEnemyIntersect(){
 void Player::onEnemyBulletIntersect(){
 	//decrease the health
 	this->setCurrentHealth(this->getCurrentHealth() - 1);
+	this->soundOnHit.play();
 }
 
 //what happens when experience is gained.
@@ -199,6 +208,7 @@ void Player::onIncreaseXPEvent(int amount){
 bool Player::didPlayerLevel() {
 	int expNeeded = 100;//exp needed to level up
 	if (this->getTotalExperience() / expNeeded > this->getLevel() || this->getTotalExperience() % expNeeded == 0) {
+		this->soundOnLevel.play();
 		return true;
 	}
 	else {
@@ -252,8 +262,16 @@ void Player::checkForUpgrades() {
 		this->setBulletPng("res/Projectiles/fire2.png");
 		break;
 	case 9:
+		std::cout << "Bullet speed has been increased." << std::endl;
+		std::cout << "You have learned Stone Hurl." << std::endl;
+		this->setBulletSpeed(this->getBulletSpeed() + 1);
+		this->setBulletPng("res/Projectiles/stone1.png");
 		break;
 	case 12:
+		std::cout << "Bullet speed has been increased." << std::endl;
+		std::cout << "You have learned Rocket Spin." << std::endl;
+		this->setBulletSpeed(this->getBulletSpeed() + 1);
+		this->setBulletPng("res/Projectiles/fire3.png");
 		break;
 	case 15:
 		break;
