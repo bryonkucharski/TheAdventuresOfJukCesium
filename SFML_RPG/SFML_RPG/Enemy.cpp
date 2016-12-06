@@ -82,7 +82,7 @@ int Enemy::getShootAI() {
 }
 
 void Enemy::selectShootAI(int aiShoot, Vector2f playerPos) {
-	switch (  1 /*aiShoot*/) {
+	switch (  3 /*aiShoot*/) {
 		case 1: this->shootAI1(playerPos);
 			break;
 		case 2: this->shootAI2(playerPos);
@@ -168,7 +168,22 @@ void Enemy::shootAI2(Vector2f playerPos) {
 
 void Enemy::shootAI3(Vector2f playerPos) {
 	if (canShoot()) {
-		
+		float distanceX = (playerPos.x) - (this->rect.getPosition().x);
+		float distanceY = (playerPos.y) - (this->rect.getPosition().y);
+		float distX = distanceX*distanceX;
+		float distY = distanceY*distanceY;
+		float distance = sqrt(distX + distY);
+		if (distance < 150) {
+			float pi = 3.1415926;
+			float theta = atan2f(distanceY, distanceX)*(180 / pi);
+			float thetaRad = (theta*(pi / 180));
+			float shootX = cosf(thetaRad);
+			float shootY = sinf(thetaRad);
+			Projectile * newProjectile = new Projectile("res/Projectiles/enemyProjectile.png", Vector2f(18, 18),
+				Vector2f(this->rect.getPosition().x + (this->rect.getGlobalBounds().width / 2), this->rect.getPosition().y + (this->rect.getGlobalBounds().height / 2))
+				,shootX,shootY, this->getDirection(), 5);
+			this->addToBullets(newProjectile);
+		}
 	}
 }//end of shootAI3
 
