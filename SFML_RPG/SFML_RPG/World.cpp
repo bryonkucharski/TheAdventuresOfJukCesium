@@ -1080,6 +1080,7 @@ void World::createObstacleRectangle(Vector2f rectSize, Vector2f rectPosition, Co
 	//we should also add this rectangle to the add to obstacles list too.
 	loc.addToObstacles(rectangle);
 }
+
 void World::createBorder(Location &loc) {
 	//left
 	createObstacleRectangle(Vector2f(1, 20 * PIXEL_SIZE), Vector2f(-1, -1), Color::Transparent, loc);
