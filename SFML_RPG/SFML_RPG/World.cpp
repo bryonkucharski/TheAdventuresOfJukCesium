@@ -1098,7 +1098,7 @@ void World::createEnemy(std::string file, std::string name, int AI_ID, int aiSho
 }
 
 void World::createTestEnemies() {
-	for (int i = 0; i < 5; i++) {
+	for (int i = 0; i < 2; i++) {
 		this->createEnemy("res/Creatures/gargoyle.png", "Test", /*AI_ID*/ 1, /*aiShootID*/ 1,/*HP*/10 * i, /*Level*/10000, Vector2f((5 + 3 * i) * PIXEL_SIZE, 2 * PIXEL_SIZE), home);
 	}
 }
