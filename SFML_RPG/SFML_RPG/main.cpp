@@ -34,7 +34,7 @@ int main(){
 	std::string menuString[4] = { "New Game", "Load Game","About", "Exit" };
 	std::string dummyString[4] = { "","","","" };
 	Menu mainMenu("res/Menus/GameMap.png","Supreme Agent Juk\n", "res/Sounds/Town3.ogg", menuString, 50 ,Vector2f(100,100),Vector2f(400,400));
-	Menu gameOverMenu("res/Menus/GameOver.png","Game Over", "res/Sounds/Town3.ogg",menuString, 50, Vector2f(100, 100), Vector2f(-400, -400));
+	Menu gameOverMenu("res/Menus/GameOver.png","Game Over", "res/Sounds/Town3.ogg",menuString, 50, Vector2f(100, 100), Vector2f(400, 400));
 	
 	Menu pausedMenu("res/Menus/pauseMenu.png", "Game Paused\n--Controls--\nWASD or Arrows: Move\nShift: Run\nSpace: Shoot\nCtrl + Alt + F2: Save\nCtrl + Alt + F3: Load\nCtrl + Alt + F5: Pause (duh)", "res/Sounds/Town3.ogg", dummyString, 15, Vector2f(10*PIXEL_SIZE, 6*PIXEL_SIZE), Vector2f(-400, -400));
 	pausedMenu.getSprite().setPosition(Vector2f(5 * PIXEL_SIZE, 5 * PIXEL_SIZE));
