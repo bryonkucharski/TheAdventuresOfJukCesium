@@ -12,6 +12,7 @@ NPC::NPC(std::string file, std::string name, std::string intersectionText, int l
 	this->setSpeed(1);
 	this->text.setString("");
 	this->text.setPosition(this->rect.getPosition().x, this->rect.getPosition().y - text.getCharacterSize());
+	this->text.setFillColor(Color::Black);
 	this->setWalkingCounter(0);
 
 	this->currentObstacles = obstacles;
@@ -28,8 +29,8 @@ NPC::NPC(std::string file, std::string name, std::string intersectionText, int l
 	srand(time(NULL));
 	font.loadFromFile("res/Fonts/Vecna.otf");
 	text.setFont(font);
-	text.setCharacterSize(10);
-	text.setFillColor(Color::Yellow);
+	text.setCharacterSize(15);
+	text.setFillColor(Color::Black);
 }//end of NPC constructor
 
 NPC::~NPC() {

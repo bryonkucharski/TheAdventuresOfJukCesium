@@ -32,9 +32,13 @@ int main(){
 	World world(window);
 	Player mainPlayer("Juk Caesium", "res/Creatures/main.png",world);
 	std::string menuString[4] = { "New Game", "Load Game","About", "Exit" };
-	Menu mainMenu("res/Locations/GameMap.png","Supreme Agent Juk\n", "res/Sounds/Town3.ogg", menuString, 50 ,Vector2f(100,100),Vector2f(400,400));
-	Menu gameOverMenu("res/System/GameOver.png","Game Over", "res/Sounds/Town3.ogg",menuString, 50, Vector2f(100, 100), Vector2f(400, 400));
-
+	std::string dummyString[4] = { "","","","" };
+	Menu mainMenu("res/Menus/GameMap.png","Supreme Agent Juk\n", "res/Sounds/Town3.ogg", menuString, 50 ,Vector2f(100,100),Vector2f(400,400));
+	Menu gameOverMenu("res/Menus/GameOver.png","Game Over", "res/Sounds/Town3.ogg",menuString, 50, Vector2f(100, 100), Vector2f(-400, -400));
+	
+	Menu pausedMenu("res/Menus/pauseMenu.png", "Game Paused\n--Controls--\nWASD or Arrows: Move\nShift: Run\nSpace: Shoot\nCtrl + Alt + F2: Save\nCtrl + Alt + F3: Load\nCtrl + Alt + F5: Pause (duh)", "res/Sounds/Town3.ogg", dummyString, 15, Vector2f(10*PIXEL_SIZE, 6*PIXEL_SIZE), Vector2f(-400, -400));
+	pausedMenu.getSprite().setPosition(Vector2f(5 * PIXEL_SIZE, 5 * PIXEL_SIZE));
+	
 	std::vector<Enemy*> currentEnemies;
 	std::vector<NPC*> currentNPCs;
 	std::vector<Projectile*> currentPlayerBullets;
@@ -45,6 +49,7 @@ int main(){
 	bool gameOver = false;
 	bool menuMain = true;
 	bool mainGame = false;
+	bool pausedGame = false;
 	int gameOption = -1;
 	int temp = 0;
 
@@ -222,44 +227,47 @@ int main(){
 
 			//--------------------------------ALL THE UPDATING--------------------------
 
-			//update player
-			mainPlayer.updatePlayer(window);
+			if (!pausedGame) {
 
-			//update enemies in current location
-			int enemyUpdateCounter = 0;
-			for (std::vector<Enemy*>::iterator enemyUpdateIter = currentEnemies.begin(); enemyUpdateIter != currentEnemies.end(); ++enemyUpdateIter) {
-				//update enemy
-				currentEnemies[enemyUpdateCounter]->updateEnemy(mainPlayer.getRect().getPosition());
-				enemyUpdateCounter++;
-			}
+				//update player
+				mainPlayer.updatePlayer(window);
 
-			//update NPCs
-			int NPCUpdateCounter = 0;
-			for (std::vector<NPC*>::iterator NPCUpdateIter = currentNPCs.begin(); NPCUpdateIter != currentNPCs.end(); ++NPCUpdateIter) {
-				//update NPC
-				currentNPCs[NPCUpdateCounter]->updateNPC();
-				NPCUpdateCounter++;
-			}
-
-			//update player Projectiles
-			int playerBulletUpdate = 0;
-			for (std::vector<Projectile *>::iterator playerBulletsUpdateIter = currentPlayerBullets.begin(); playerBulletsUpdateIter != currentPlayerBullets.end(); ++playerBulletsUpdateIter) {
-				currentPlayerBullets[playerBulletUpdate]->update();
-				playerBulletUpdate++;
-			}
-
-			//upate enemy projectiles
-			int updateCounter = 0;
-			for (std::vector<Enemy*>::iterator enemyIntersectIter = currentEnemies.begin(); enemyIntersectIter != currentEnemies.end(); ++enemyIntersectIter) {
-				int updateCounter2 = 0;
-				Enemy *e = currentEnemies[updateCounter];
-				vector<Projectile*> enemyBullets = e->getBullets();
-				for (vector<Projectile*>::iterator bulletIterator = enemyBullets.begin(); bulletIterator != enemyBullets.end(); ++bulletIterator) {
-					Projectile* p = enemyBullets[updateCounter2];
-					p->update();
-					updateCounter2++;
+				//update enemies in current location
+				int enemyUpdateCounter = 0;
+				for (std::vector<Enemy*>::iterator enemyUpdateIter = currentEnemies.begin(); enemyUpdateIter != currentEnemies.end(); ++enemyUpdateIter) {
+					//update enemy
+					currentEnemies[enemyUpdateCounter]->updateEnemy(mainPlayer.getRect().getPosition());
+					enemyUpdateCounter++;
 				}
-				updateCounter++;
+
+				//update NPCs
+				int NPCUpdateCounter = 0;
+				for (std::vector<NPC*>::iterator NPCUpdateIter = currentNPCs.begin(); NPCUpdateIter != currentNPCs.end(); ++NPCUpdateIter) {
+					//update NPC
+					currentNPCs[NPCUpdateCounter]->updateNPC();
+					NPCUpdateCounter++;
+				}
+
+				//update player Projectiles
+				int playerBulletUpdate = 0;
+				for (std::vector<Projectile *>::iterator playerBulletsUpdateIter = currentPlayerBullets.begin(); playerBulletsUpdateIter != currentPlayerBullets.end(); ++playerBulletsUpdateIter) {
+					currentPlayerBullets[playerBulletUpdate]->update();
+					playerBulletUpdate++;
+				}
+
+				//upate enemy projectiles
+				int updateCounter = 0;
+				for (std::vector<Enemy*>::iterator enemyIntersectIter = currentEnemies.begin(); enemyIntersectIter != currentEnemies.end(); ++enemyIntersectIter) {
+					int updateCounter2 = 0;
+					Enemy *e = currentEnemies[updateCounter];
+					vector<Projectile*> enemyBullets = e->getBullets();
+					for (vector<Projectile*>::iterator bulletIterator = enemyBullets.begin(); bulletIterator != enemyBullets.end(); ++bulletIterator) {
+						Projectile* p = enemyBullets[updateCounter2];
+						p->update();
+						updateCounter2++;
+					}
+					updateCounter++;
+				}
 			}
 			//---------------------------------END UPDATING---------------------------
 		}
@@ -267,6 +275,7 @@ int main(){
 		//--------------------------------ALL THE DRAWING-------------------------
 		//draw to screen
 		if (mainGame) {
+
 			//draw world and location
 			world.drawWorld(window, world.getLocation(mainPlayer.getCurrentLocation()));
 
@@ -311,6 +320,10 @@ int main(){
 				}
 				bryonsDrawCounter++;
 			}
+
+			if (pausedGame) {
+				pausedMenu.drawMenu(window);
+			}
 		}
 		else if (gameOver) {
 			window.clear();
@@ -327,11 +340,18 @@ int main(){
 			if (Keyboard::isKeyPressed(Keyboard::RAlt) || Keyboard::isKeyPressed(Keyboard::LAlt)){
 				if (Keyboard::isKeyPressed(Keyboard::F2)){
 					temp = 20;
+					mainPlayer.getRect().setRotation(45);
+					mainPlayer.getSprite().setRotation(45);
+			
 					saveGame();
 				}
 				if (Keyboard::isKeyPressed(Keyboard::F3)){
 					temp = 20;
 					loadGame();
+				}
+				if (Keyboard::isKeyPressed(Keyboard::F5)) {
+					temp = 20;
+					pausedGame = !pausedGame;
 				}
 			}
 		}
