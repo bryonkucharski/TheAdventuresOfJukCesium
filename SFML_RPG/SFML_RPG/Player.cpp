@@ -4,9 +4,9 @@ Player::Player(std::string playerName, std::string file, World &world) : Creatur
 
 	this->setSpeed(3);
 	this->rect.setSize(Vector2f(28, 28));
-	this->setCurrentLocation(1);
+	this->setCurrentLocation(2);
 	this->rect.setSize(Vector2f(28, 28));
-	this->rect.setPosition(Vector2f(5*32, 4*32));
+	this->rect.setPosition(Vector2f(4*32, 6*32));
 	this->setAllWalk(true);
 	this->wrld = world;
 

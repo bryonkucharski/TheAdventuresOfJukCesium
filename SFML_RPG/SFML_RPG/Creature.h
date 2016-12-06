@@ -59,7 +59,7 @@ class Creature : public Entity
 		void addToBullets(Projectile *bullet);
 
 		/*return true if a bullet allowed to be added to the vector */
-		bool canShoot();
+		bool canShoot(int timeForShoot = 3);
 		//create a projectile 
 		
 		

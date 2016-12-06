@@ -175,7 +175,7 @@ void Enemy::shootAI1(Vector2f playerPos) {
 	}
 }//end of shootAI1
 
-void Enemy::shootAI2(Vector2f playerPos) {
+void Enemy::shootAI2(Vector2f playerPos, int distanceLimit) {
 	//shoots at the player, speed of bullet is porportional to distance
 	if (canShoot()) {
 		float pi = 3.14159;
@@ -195,7 +195,7 @@ void Enemy::shootAI2(Vector2f playerPos) {
 		float offX = trackX / 256;
 		float offY = trackY / 256;
 
-		if (distance < 150) {
+		if (distance < distanceLimit) {
 			//create new projectile
 			Projectile * newProjectile = new Projectile("res/Projectiles/enemyProjectile.png", Vector2f(18, 18),
 				Vector2f(this->rect.getPosition().x + (this->rect.getGlobalBounds().width / 2), this->rect.getPosition().y + (this->rect.getGlobalBounds().height / 2))
@@ -206,7 +206,7 @@ void Enemy::shootAI2(Vector2f playerPos) {
 	}
 }//end of shootAI2
 
-void Enemy::shootAI3(Vector2f playerPos) {
+void Enemy::shootAI3(Vector2f playerPos, int distanceLimit) {
 	//shoots at the player, speed of bullet is constant
 	if (canShoot()) {
 		float distanceX = (playerPos.x) - (this->rect.getPosition().x);
@@ -214,7 +214,7 @@ void Enemy::shootAI3(Vector2f playerPos) {
 		float distX = distanceX*distanceX;
 		float distY = distanceY*distanceY;
 		float distance = sqrt(distX + distY);
-		if (distance < 150) {
+		if (distance < distanceLimit) {
 			float pi = 3.1415926;
 			float theta = atan2f(distanceY, distanceX)*(180 / pi);
 			float thetaRad = (theta*(pi / 180));
@@ -229,7 +229,7 @@ void Enemy::shootAI3(Vector2f playerPos) {
 	}
 }//end of shootAI3
 
-void Enemy::shootAI4(Vector2f playerPos) {
+void Enemy::shootAI4(Vector2f playerPos, int distanceLimit) {
 	//the boss AI
 	if (canShoot()) {
 		float distanceX = (playerPos.x) - (this->rect.getPosition().x);
@@ -237,7 +237,7 @@ void Enemy::shootAI4(Vector2f playerPos) {
 		float distX = distanceX*distanceX;
 		float distY = distanceY*distanceY;
 		float distance = sqrt(distX + distY);
-		if (distance < 150) {
+		if (distance < distanceLimit) {
 			Projectile * newProjectile1 = new Projectile("res/Projectiles/enemyProjectile.png", Vector2f(18, 18),
 				Vector2f(this->rect.getPosition().x + (this->rect.getGlobalBounds().width / 2), this->rect.getPosition().y + (this->rect.getGlobalBounds().height / 2))
 				, 0, -1, this->getDirection(), 5);
@@ -274,31 +274,32 @@ void Enemy::shootAI4(Vector2f playerPos) {
 	}
 }//end of shootAI4
 
-void Enemy::shootAI5(Vector2f playerPos) {
+void Enemy::shootAI5(Vector2f playerPos)
+{
 	if (this->clockCheck)
 	{
-		std::cout << "starting timer\n";
+		//std::cout << "starting timer\n";
 		bossClock.restart();
 		this->clockCheck = false;
 	}
 	this->bossTime = bossClock.getElapsedTime();
-	std::cout << "time is " << bossTime.asSeconds() << "\n";
-	if (this->bossTime.asSeconds() > 3) {
+	//std::cout << "time is " << bossTime.asSeconds() << "\n";
+	if (this->bossTime.asSeconds() > 3)
+	{
 		bossTemp++;
 		bossClock.restart();
+	}
 		int i = bossTemp % 2;
 		if (i == 0)
 		{
 			//ai 4
-			std::cout << "starting ai 4\n";
-			this->shootAI4(playerPos);
+			//std::cout << "starting ai 4\n";
+			this->shootAI4(playerPos,250);
 		}
 		else
 		{
 			//ai 2
-			std::cout << "starting ai 2\n";
-			this->shootAI2(playerPos);
+			//std::cout << "starting ai 2\n";
+			this->shootAI2(playerPos,250);
 		}
-	}
-
 }//end of shootAI5

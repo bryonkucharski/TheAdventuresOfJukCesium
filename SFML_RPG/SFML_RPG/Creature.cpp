@@ -149,7 +149,7 @@ void Creature::addToBullets(Projectile *bullet) {
 	this->bullets.push_back(bullet);
 }
 
-bool Creature::canShoot() {
+bool Creature::canShoot(int timeForShoot) {
 	bulletTime = bulletClock.getElapsedTime();
 	if((bullets.size() < 3) && (bulletTime.asSeconds() > .3))
 	{
