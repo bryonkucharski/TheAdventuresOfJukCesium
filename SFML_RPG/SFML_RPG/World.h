@@ -45,7 +45,7 @@ class World
 		void createLocationRectangle(Vector2f rectSize, Vector2f rectPosition, Color rectColor, Location &loc);
 		
 		//Create an instance of an Enemy.
-		void createEnemy(std::string file, std::string name, int AI_ID, int health, int level, Vector2f startingPosition, Location &loc);
+		void createEnemy(std::string file, std::string name, int AI_ID, int aiShoot, int health, int level, Vector2f startingPosition, Location &loc);
 		//Create an instance of an NPC.
 		void createNPC(std::string file, std::string name, std::string intersectionText, int AI_ID, Vector2f startingPosition, Location &loc);
 		//Create 5 test enemies of different levels with AI_ID == 0

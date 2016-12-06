@@ -3,7 +3,7 @@
 #include <time.h>       /* time */
 #include <cmath>
 
-Enemy::Enemy(std::string file, std::string name,int location, int AI_ID, int health, int level,Vector2f startingPosition, std::vector<RectangleShape> &obstacles) : Creature(name, file) {
+Enemy::Enemy(std::string file, std::string name,int location, int AI_ID, int aiShoot, int health, int level,Vector2f startingPosition, std::vector<RectangleShape> &obstacles) : Creature(name, file) {
 
 	this->sprite.setTextureRect(IntRect(0, 0, 32, 32));
 	this->rect.setSize(Vector2f(32, 32));
@@ -24,6 +24,7 @@ Enemy::Enemy(std::string file, std::string name,int location, int AI_ID, int hea
 	this->setAlive(true);
 
 	this->setAI_ID(AI_ID);
+	this->setShootAI(aiShoot);
 
 	this->setMaxHealth(health);
 	this->setCurrentHealth(health);
@@ -45,11 +46,6 @@ void Enemy::updateEnemy(Vector2f playerPos){
 		return;//so you dont update his position.
 	}
 
-
-	if (canShoot()) {
-		this->shootPlayer(playerPos);
-	}
-
 	this->sprite.setPosition(Vector2f(this->rect.getPosition().x + 10, this->rect.getPosition().y + 10));
 
 	//update text above enemy
@@ -57,7 +53,7 @@ void Enemy::updateEnemy(Vector2f playerPos){
 	text.setPosition(this->rect.getPosition().x, this->rect.getPosition().y - text.getCharacterSize());
 
 	this->selectMovementAI(this->getAI_ID());
-
+	this->selectShootAI(this->getShootAI(), playerPos);
 }//end of update enemy
 
 bool Enemy::isAlive() {
@@ -79,4 +75,50 @@ int Enemy::dropExp() {
 	this->soundOnDeath.play();
 	int exp = this->getMaxHealth() / 20 + this->getLevel();
 	return exp;
+}
+
+void Enemy::setShootAI(int aiShoot) {
+	this->shootAI = aiShoot;
+}
+int Enemy::getShootAI() {
+	return this->shootAI;
+}
+
+void Enemy::selectShootAI(int aiShoot, Vector2f playerPos) {
+	switch (aiShoot) {
+		case 1: this->shootAI1(playerPos);
+			break;
+		case 2: this->shootAI2(playerPos);
+			break;
+		case 3: this->shootAI3(playerPos);
+			break;
+		case 4: this->shootAI4(playerPos);
+			break;
+		default:
+			//no ai
+			break;
+	};
+ 
+}
+
+void Enemy::shootAI1(Vector2f playerPos) {
+	if (canShoot()) {
+		this->shootPlayer(playerPos);
+	}
+}
+
+void Enemy::shootAI2(Vector2f playerPos) {
+	if (canShoot()) {
+		
+	}
+}
+void Enemy::shootAI3(Vector2f playerPos) {
+	if (canShoot()) {
+		
+	}
+}
+void Enemy::shootAI4(Vector2f playerPos) {
+	if (canShoot()) {
+		
+	}
 }
