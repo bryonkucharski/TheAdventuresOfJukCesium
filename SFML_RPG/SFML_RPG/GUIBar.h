@@ -31,9 +31,25 @@ class GUIBar : public Entity
 		RectangleShape GUILevelRect;
 		RectangleShape GUIXpRect;
 
+		Texture GUILoadTexture;
+		Texture GUISaveTexture;
+		Texture GUIQuitTexture;
+		Texture GUIPauseTexture;
+
+		Sprite GUILoadSprite;
+		Sprite GUISaveSprite;
+		Sprite GUIQuitSprite;
+		Sprite GUIPauseSprite;
+
+		Text GUILoadText;
+		Text GUISaveText;
+		Text GUIQuitText;
+		Text GUIPauseText;
+
 		void setUpText(Text &input, std::string words, Vector2f pos);
 		void createRect(RectangleShape &rectangle, Vector2f size, Vector2f pos);
 		void setUpAllRect();
+		void setUpAllControls();
 
 		/*USED pass by reference because pass by value caused major performance issues*/
 		void drawHealth(RenderWindow &window, Player &player);

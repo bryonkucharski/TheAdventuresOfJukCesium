@@ -13,6 +13,9 @@ GUIBar::GUIBar(RenderWindow &window, std::string textureFile, std::string fontFi
 	this->fontSize = 14;
 
 	this->setUpAllRect();
+
+	this->setUpAllControls();
+
 }
 /*
 	sets the font, size, color, position, and string to the given input text;
@@ -74,6 +77,16 @@ void GUIBar::drawAll(RenderWindow &window,Player &player, World &world) {
 	this->drawDamage(window, player);
 	this->drawLevel(window, player);
 	this->drawXP(window, player);
+
+	//draw all controls
+	window.draw(this->GUISaveSprite);
+	window.draw(this->GUILoadSprite);
+	window.draw(this->GUIPauseSprite);
+	window.draw(this->GUIQuitSprite);
+	window.draw(this->GUISaveText);
+	window.draw(this->GUILoadText);
+	window.draw(this->GUIQuitText);
+	window.draw(this->GUIPauseText);
 }
 /*
 	draws main player's name text at rectangle's position
@@ -129,4 +142,36 @@ void GUIBar::drawLevel(RenderWindow &window, Player &player) {
 void GUIBar::drawXP(RenderWindow &window, Player &player) {
 	setUpText(GUIXpText, "Experience: " + std::to_string(player.getTotalExperience()), this->GUIXpRect.getPosition());
 	window.draw(GUIXpText);
+}
+void GUIBar::setUpAllControls() {
+	GUISaveTexture.loadFromFile("res/GUIBar/GUISaveIcon.png");
+	GUISaveSprite.setTexture(GUISaveTexture);
+	GUISaveSprite.setPosition(Vector2f((22*32) + 20, (32 * 20) + 10) );
+
+	this->setUpText(GUISaveText, "Ctrl+Atl\n\tF2", Vector2f((22 * 32) + 20, (32 * 20) + 35));
+	GUISaveText.setCharacterSize(8);
+
+	GUILoadTexture.loadFromFile("res/GUIBar/GUILoadIcon.png");
+	GUILoadSprite.setTexture(GUILoadTexture);
+	GUILoadSprite.setPosition(Vector2f((24 * 32) + 20, (32 * 20) + 5) );
+
+	this->setUpText(GUILoadText, "Ctrl+Atl\n\tF3", Vector2f((24 * 32) + 20, (32 * 20) + 35));
+	GUILoadText.setCharacterSize(8);
+
+	GUIQuitTexture.loadFromFile("res/GUIBar/QuitIcon.png");
+	GUIQuitSprite.setTexture(GUIQuitTexture);
+	GUIQuitSprite.setPosition(Vector2f((26 * 32) + 20, (32 * 20) + 10));
+
+	this->setUpText(GUIQuitText, "Ctrl+Atl\n\tF4", Vector2f((26* 32) + 20, (32 * 20) + 35));
+	GUIQuitText.setCharacterSize(8);
+
+	GUIPauseTexture.loadFromFile("res/GUIBar/GUIplayPause.png");
+	GUIPauseSprite.setTexture(GUIPauseTexture);
+	GUIPauseSprite.setPosition(Vector2f((28 * 32) + 20, (32 * 20) + 10));
+
+	this->setUpText(GUIPauseText, "Ctrl+Atl\n\tF5", Vector2f((28 * 32) + 20, (32 * 20) + 35));
+	GUIPauseText.setCharacterSize(8);
+
+
+
 }

@@ -36,7 +36,7 @@ int main(){
 	Menu mainMenu("res/Menus/GameMap.png","Supreme Agent Juk\n", "res/Sounds/Town3.ogg", menuString, 50 ,Vector2f(100,100),Vector2f(400,400));
 	Menu gameOverMenu("res/Menus/GameOver.png","Game Over", "res/Sounds/Town3.ogg",menuString, 50, Vector2f(100, 100), Vector2f(400, 400));
 	
-	Menu pausedMenu("res/Menus/pauseMenu.png", "Game Paused\n--Controls--\nWASD or Arrows: Move\nShift: Run\nSpace: Shoot\nCtrl + Alt + F2: Save\nCtrl + Alt + F3: Load\nCtrl + Alt + F5: Pause (duh)", "res/Sounds/Town3.ogg", dummyString, 15, Vector2f(10*PIXEL_SIZE, 6*PIXEL_SIZE), Vector2f(-400, -400));
+	Menu pausedMenu("res/Menus/pauseMenu.png", "Game Paused\n--Controls--\nWASD or Arrows: Move\nShift: Run\nSpace: Shoot\nCtrl + Alt + F2: Save\nCtrl + Alt + F3: Load\nCtrl + Alt + F5: Pause\n Ctrl + Alt + F6: Quit", "res/Sounds/Town3.ogg", dummyString, 10, Vector2f(10*PIXEL_SIZE, 6*PIXEL_SIZE), Vector2f(-400, -400));
 	pausedMenu.getSprite().setPosition(Vector2f(5 * PIXEL_SIZE, 5 * PIXEL_SIZE));
 	
 	std::vector<Enemy*> currentEnemies;
@@ -44,7 +44,7 @@ int main(){
 	std::vector<Projectile*> currentPlayerBullets;
 	
 	theMainPlayer = &mainPlayer;
-	GUIBar guibar(window, "res/System/GUIbar.png","res/Fonts/Vecna.otf");
+	GUIBar guibar(window, "res/GUIBar/GUIbar.png","res/Fonts/Vecna.otf");
 
 	bool gameOver = false;
 	bool menuMain = true;
@@ -345,6 +345,10 @@ int main(){
 				if (Keyboard::isKeyPressed(Keyboard::F3)){
 					temp = 20;
 					loadGame();
+				}
+				if (Keyboard::isKeyPressed(Keyboard::F4)) {
+					temp = 20;
+					window.close();
 				}
 				if (Keyboard::isKeyPressed(Keyboard::F5)) {
 					temp = 20;
