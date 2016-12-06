@@ -1,9 +1,13 @@
 #ifndef ENEMY_H
 #define ENEMY_H
-
-#include "Creature.h"
-#include <string>
 #include <SFML/Audio.hpp>
+#include <string>
+#include <stdlib.h>     /* srand, rand */
+#include <time.h>       /* time */
+#include <cmath>
+#include <stdio.h>
+#include <math.h>
+#include "Creature.h"
 
 class Enemy : public Creature {
 	public:
@@ -12,6 +16,7 @@ class Enemy : public Creature {
 		void updateEnemy(Vector2f playerPos);
 		bool isAlive();
 		void setAlive(bool a);
+		void shootPlayer(Vector2f playerPos);
 		void onPlayerBulletIntersect(int damage);
 		int dropExp();
 

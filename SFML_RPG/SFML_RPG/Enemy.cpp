@@ -1,7 +1,4 @@
 #include "Enemy.h"
-#include <stdlib.h>     /* srand, rand */
-#include <time.h>       /* time */
-#include <cmath>
 
 Enemy::Enemy(std::string file, std::string name,int location, int AI_ID, int aiShoot, int health, int level,Vector2f startingPosition, std::vector<RectangleShape> &obstacles) : Creature(name, file) {
 
@@ -85,7 +82,7 @@ int Enemy::getShootAI() {
 }
 
 void Enemy::selectShootAI(int aiShoot, Vector2f playerPos) {
-	switch (aiShoot) {
+	switch (  2 /*aiShoot*/) {
 		case 1: this->shootAI1(playerPos);
 			break;
 		case 2: this->shootAI2(playerPos);
@@ -103,22 +100,54 @@ void Enemy::selectShootAI(int aiShoot, Vector2f playerPos) {
 
 void Enemy::shootAI1(Vector2f playerPos) {
 	if (canShoot()) {
-		this->shootPlayer(playerPos);
+		float distX = this->getRect().getPosition().x - playerPos.x;
+		float distY = this->getRect().getPosition().y - playerPos.y;
+		distX = distX*distX;
+		distY = distY*distY;
+		float distance = sqrt(distX + distY);
+		if (distance < 100) {
+			//create new projectile
+			Projectile * newProjectile = new Projectile("res/Projectiles/enemyProjectile.png", Vector2f(18, 18),
+				Vector2f(this->rect.getPosition().x + (this->rect.getGlobalBounds().width / 2), this->rect.getPosition().y + (this->rect.getGlobalBounds().height / 2))
+				, this->getDirection(), 5);
+			this->addToBullets(newProjectile);
+		}
 	}
-}
+}//end of shootAI1
 
 void Enemy::shootAI2(Vector2f playerPos) {
 	if (canShoot()) {
+		float pi = 3.14159;
+		float theta;
+		float distX = this->getRect().getPosition().x - playerPos.x;
+		float distY = this->getRect().getPosition().y - playerPos.y;
+		theta = atan2(distX, distY)*180/pi;
 		
+		distX = distX*distX;
+		distY = distY*distY;
+		float distance = sqrt(distX + distY);
+		if (distance < 100) {
+			//create new projectile
+			Projectile * newProjectile = new Projectile("res/Projectiles/enemyProjectile.png", Vector2f(18, 18),
+				Vector2f(this->rect.getPosition().x + (this->rect.getGlobalBounds().width / 2), this->rect.getPosition().y + (this->rect.getGlobalBounds().height / 2))
+				, this->getDirection(), 5);
+
+			//newProjectile->getRect().setRotation(theta);
+			newProjectile->setOffSetX(cos(theta));
+			newProjectile->setOffSetY(sin(theta));
+			this->addToBullets(newProjectile);
+		}
 	}
-}
+}//end of shootAI2
+
 void Enemy::shootAI3(Vector2f playerPos) {
 	if (canShoot()) {
 		
 	}
-}
+}//end of shootAI3
+
 void Enemy::shootAI4(Vector2f playerPos) {
 	if (canShoot()) {
 		
 	}
-}
+}//end of shootAI4

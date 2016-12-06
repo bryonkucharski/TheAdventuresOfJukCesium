@@ -16,7 +16,9 @@ Projectile::Projectile(std::string file, Vector2f size, Vector2f pos, int dir, i
 	this->setAnimationCounter(0);
 
 }
+
 Projectile::~Projectile() {}
+
 void Projectile::update() {
 
 	this->sprite.setPosition(this->rect.getPosition());
@@ -35,18 +37,8 @@ void Projectile::update() {
 	//move the bullet
 	if (this->isActive())
 	{
-		if (direction == 1){
-			this->rect.move(-speed, 0);
-		}
-		if (direction == 2) {
-			this->rect.move(speed, 0);
-		}
-		if (direction == 3) {
-			this->rect.move(0, -speed);
-		}
-		if (direction == 4){
-			this->rect.move(0, speed);
-		}
+		//this->rect.move(0, speed);
+		this->rect.move(offsetX * speed, offsetY * speed);
 	}
 }
 void Projectile::setActive(bool state) {
@@ -97,4 +89,18 @@ void Projectile::onCollision()
 {
 	//delete it by setting it to inactive
 	this->active = false;
+}
+
+float Projectile::getOffSetX() {
+	return offsetX;
+}
+float Projectile::getOffSetY() {
+	return offsetY;
+}
+
+void Projectile::setOffSetX(float offX) {
+
+}
+void Projectile::setOffSetY(float offY) {
+
 }

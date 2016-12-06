@@ -158,21 +158,7 @@ bool Creature::canShoot() {
 	}
 	return false;
 }
-void Creature::shootPlayer(Vector2f playerPos) {
-	float distX = this->getRect().getPosition().x - playerPos.x;
-	float distY = this->getRect().getPosition().y - playerPos.y;
-	distX = distX*distX;
-	distY = distY*distY;
-	float distance = sqrt(distX + distY);
-	if (distance < 100) {
-		//create new projectile
-		Projectile * newProjectile = new Projectile("res/Projectiles/enemyProjectile.png", Vector2f(18, 18),
-			Vector2f(this->rect.getPosition().x + (this->rect.getGlobalBounds().width/2 ), this->rect.getPosition().y + (this->rect.getGlobalBounds().height / 2) ) 
-			, this->getDirection(), 5);
 
-		this->addToBullets(newProjectile);
-	}
-}
 void Creature::removeBullets() {
 	/*Using a "Remove-Erase Idiom  https://en.wikipedia.org/wiki/Erase%E2%80%93remove_idiom
 	  Used http://stackoverflow.com/questions/22729906/stdremove-if-not-working-properly for help writing a lambda function

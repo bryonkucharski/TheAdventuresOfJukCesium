@@ -61,7 +61,7 @@ class Creature : public Entity
 		/*return true if a bullet allowed to be added to the vector */
 		bool canShoot();
 		//create a projectile 
-		void shootPlayer(Vector2f playerPos);
+		
 		
 		//all intersection handling
 		void onEnemyIntersect();

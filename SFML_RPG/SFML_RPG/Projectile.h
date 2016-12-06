@@ -14,6 +14,13 @@ class Projectile : public Entity
 		void setSpeed(float s);
 		void setAnimationCounter(int a);
 
+		float getOffSetX();
+		float getOffSetY();
+
+		void setOffSetX(float offX);
+		void setOffSetY(float offY);
+
+		
 		int getDirection();
 		int getSpeed();
 		bool isActive();
@@ -30,7 +37,8 @@ class Projectile : public Entity
 		float animationCounter;
 		Clock clock,animationClock;
 		Time time, animationTime;
-
+		float offsetX;
+		float offsetY;
 		
 };
 
