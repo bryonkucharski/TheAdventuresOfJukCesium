@@ -38,7 +38,7 @@ int main(){
 	std::vector<NPC*> currentNPCs;
 	std::vector<Projectile*> currentPlayerBullets;
 
-	//theMainPlayer = &mainPlayer;
+	theMainPlayer = &mainPlayer;
 	GUIBar guibar(window, "res/System/GUIbar.png","res/Fonts/Vecna.otf");
 
 	bool gameOver = false;

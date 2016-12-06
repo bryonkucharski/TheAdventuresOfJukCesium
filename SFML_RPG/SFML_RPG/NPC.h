@@ -24,6 +24,9 @@ private:
 	Clock directionClock;
 	Time directionTime;
 	std::string intText;//intersection text
+	
+	//SoundBuffer bOnHit;//buffer for on hit.
+	//Sound soundOnHit;
 };
 
 #endif // !NPC_H
