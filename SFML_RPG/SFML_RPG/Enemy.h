@@ -30,6 +30,7 @@ class Enemy : public Creature {
 		void shootAI3(Vector2f playerPos, int distanceLimit = 150);
 		void shootAI4(Vector2f playerPos, int distanceLimit = 150);
 		void shootAI5(Vector2f playerPos);
+		void shootAI6(Vector2f playerPos, int distanceLimit = 150);
 
 	private:
 		bool alive, clockCheck;
