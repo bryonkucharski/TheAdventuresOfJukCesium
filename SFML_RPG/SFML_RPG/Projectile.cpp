@@ -99,8 +99,8 @@ float Projectile::getOffSetY() {
 }
 
 void Projectile::setOffSetX(float offX) {
-
+	offsetX = offX;
 }
 void Projectile::setOffSetY(float offY) {
-
+	offsetY = offY;
 }

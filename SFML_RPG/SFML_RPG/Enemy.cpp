@@ -119,22 +119,27 @@ void Enemy::shootAI2(Vector2f playerPos) {
 	if (canShoot()) {
 		float pi = 3.14159;
 		float theta;
-		float distX = this->getRect().getPosition().x - playerPos.x;
-		float distY = this->getRect().getPosition().y - playerPos.y;
-		theta = atan2(distX, distY)*180/pi;
-		
+		float playerX = playerPos.x;
+		float playerY = playerPos.y;
+		float enemyX = this->getRect().getPosition().x;
+		float enemyY = this->getRect().getPosition().y;
+		float distX = playerX - enemyX;
+		float distY = playerY - enemyY;
+		float trackX = distX;
+		float trackY = distY;
 		distX = distX*distX;
 		distY = distY*distY;
 		float distance = sqrt(distX + distY);
-		if (distance < 100) {
+		if (distance < 150) {
 			//create new projectile
 			Projectile * newProjectile = new Projectile("res/Projectiles/enemyProjectile.png", Vector2f(18, 18),
 				Vector2f(this->rect.getPosition().x + (this->rect.getGlobalBounds().width / 2), this->rect.getPosition().y + (this->rect.getGlobalBounds().height / 2))
 				, this->getDirection(), 5);
-
 			//newProjectile->getRect().setRotation(theta);
-			newProjectile->setOffSetX(cos(theta));
-			newProjectile->setOffSetY(sin(theta));
+			float offX = trackX/256;
+			float offY = trackY/256;
+			newProjectile->setOffSetX(offX);
+			newProjectile->setOffSetY(offY);
 			this->addToBullets(newProjectile);
 		}
 	}
