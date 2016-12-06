@@ -12,6 +12,7 @@
 #include <fstream>
 
 using namespace std;
+void newGame();
 void saveGame();
 void loadGame();
 
@@ -37,8 +38,8 @@ int main(){
 	std::vector<Enemy*> currentEnemies;
 	std::vector<NPC*> currentNPCs;
 	std::vector<Projectile*> currentPlayerBullets;
-
-	//theMainPlayer = &mainPlayer;
+	
+	theMainPlayer = &mainPlayer;
 	GUIBar guibar(window, "res/System/GUIbar.png","res/Fonts/Vecna.otf");
 
 	bool gameOver = false;
@@ -58,12 +59,27 @@ int main(){
 		if (menuMain || gameOver) {
 
 			if (menuMain) { gameOption = mainMenu.selectOption(); }
-			else if (gameOver) { gameOption = gameOverMenu.selectOption(); }
+			else if (gameOver) { 
+				
+				gameOption = gameOverMenu.selectOption();
+			
+			}
 
 			if (gameOption == 0) {
+				if (gameOver)
+				{
+					//reset file and load it
+					newGame();
+					loadGame();
+				}
+				else
+				{
+					saveGame();
+				}
 				mainGame = true;
 				menuMain = false;
 				gameOver = false;
+				
 			}
 			else if (gameOption == 1) {
 				loadGame();
@@ -413,3 +429,32 @@ void loadGame(){
 		theMainPlayer->setMaxHealth(maxHealth);
 	}
 }//end of loadGame()
+
+void newGame()
+{
+	//save the file
+	ofstream theFile;
+	theFile.open("saveFile.txt", ios::out);
+	//write stuff
+	/*
+	position
+	location
+	total experience
+	level
+	damage
+	current health
+	max health
+	*/
+	if (theFile.is_open()) {
+		theFile << 0 << "\n" <<
+			0 << "\n" <<
+			1 << "\n" <<
+			10 << "\n" <<
+			1 << "\n" <<
+			2 << "\n" <<
+			300 << "\n" <<
+			300;
+	}
+	theFile.close();
+	cout << "new game created\n";
+}
