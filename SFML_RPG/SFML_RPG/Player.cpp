@@ -12,7 +12,7 @@ Player::Player(std::string playerName, std::string file, World &world) : Creatur
 
 	this->setCurrentHealth(300);
 	this->setMaxHealth(300);
-	this->setLevel(21);
+	this->setLevel(1);
 	this->setTotalExperience(10);
 	this->setDamage(this->getLevel()*2);
 	this->setBulletSpeed(6);
@@ -125,72 +125,29 @@ void Player::updatePlayer(RenderWindow &window) {
 				Projectile *newProjectile3 = new Projectile(this->getBulletPng(), Vector2f(this->getBulletWidth(), this->getBulletHeight()),
 					Vector2f(this->rect.getPosition().x + (this->rect.getGlobalBounds().width / 2) + 10, this->rect.getPosition().y + (this->rect.getGlobalBounds().height / 2) + 10)
 					, offX, offY, this->getDirection(), this->getBulletSpeed());
+
+				//Position the three bullets to look nice
 				switch(this->getDirection()){
 					case 1://left
 						newProjectile1->getRect().setPosition(Vector2f(this->rect.getPosition().x + (this->rect.getGlobalBounds().width / 2) + 10, this->rect.getPosition().y + (this->rect.getGlobalBounds().height / 2) + 10));
 						newProjectile2->getRect().setPosition(Vector2f(this->rect.getPosition().x + (this->rect.getGlobalBounds().width / 2), this->rect.getPosition().y + (this->rect.getGlobalBounds().height / 2)));
 						newProjectile3->getRect().setPosition(Vector2f(this->rect.getPosition().x + (this->rect.getGlobalBounds().width / 2) + 10, this->rect.getPosition().y + (this->rect.getGlobalBounds().height / 2) - 10));
-						/*
-						newProjectile1 = new Projectile(this->getBulletPng(), Vector2f(this->getBulletWidth(), this->getBulletHeight()),
-							Vector2f(this->rect.getPosition().x + (this->rect.getGlobalBounds().width / 2) + 10, this->rect.getPosition().y + (this->rect.getGlobalBounds().height / 2) + 10)
-							, offX, offY, this->getDirection(), this->getBulletSpeed());
-						newProjectile2 = new Projectile(this->getBulletPng(), Vector2f(this->getBulletWidth(), this->getBulletHeight()),
-							Vector2f(this->rect.getPosition().x + (this->rect.getGlobalBounds().width / 2), this->rect.getPosition().y + (this->rect.getGlobalBounds().height / 2))
-							, offX, offY, this->getDirection(), this->getBulletSpeed());
-						newProjectile3 = new Projectile(this->getBulletPng(), Vector2f(this->getBulletWidth(), this->getBulletHeight()),
-							Vector2f(this->rect.getPosition().x + (this->rect.getGlobalBounds().width / 2) + 10, this->rect.getPosition().y + (this->rect.getGlobalBounds().height / 2) - 10)
-							, offX, offY, this->getDirection(), this->getBulletSpeed());*/
 						break;
 
 					case 2://right
 						newProjectile1->getRect().setPosition(Vector2f(this->rect.getPosition().x + (this->rect.getGlobalBounds().width / 2) - 10, this->rect.getPosition().y + (this->rect.getGlobalBounds().height / 2) + 10));
 						newProjectile2->getRect().setPosition(Vector2f(this->rect.getPosition().x + (this->rect.getGlobalBounds().width / 2), this->rect.getPosition().y + (this->rect.getGlobalBounds().height / 2)));
 						newProjectile3->getRect().setPosition(Vector2f(this->rect.getPosition().x + (this->rect.getGlobalBounds().width / 2) - 10, this->rect.getPosition().y + (this->rect.getGlobalBounds().height / 2) - 10));
-						/*
-						newProjectile1 = new Projectile(this->getBulletPng(), Vector2f(this->getBulletWidth(), this->getBulletHeight()),
-							Vector2f(this->rect.getPosition().x + (this->rect.getGlobalBounds().width / 2) - 10, this->rect.getPosition().y + (this->rect.getGlobalBounds().height / 2) + 10)
-							, offX, offY, this->getDirection(), this->getBulletSpeed());
-						newProjectile2 = new Projectile(this->getBulletPng(), Vector2f(this->getBulletWidth(), this->getBulletHeight()),
-							Vector2f(this->rect.getPosition().x + (this->rect.getGlobalBounds().width / 2), this->rect.getPosition().y + (this->rect.getGlobalBounds().height / 2))
-							, offX, offY, this->getDirection(), this->getBulletSpeed());
-						newProjectile3 = new Projectile(this->getBulletPng(), Vector2f(this->getBulletWidth(), this->getBulletHeight()),
-							Vector2f(this->rect.getPosition().x + (this->rect.getGlobalBounds().width / 2) - 10, this->rect.getPosition().y + (this->rect.getGlobalBounds().height / 2) - 10)
-							, offX, offY, this->getDirection(), this->getBulletSpeed());*/
 						break;
-
 					case 3://up
-						
 						newProjectile1->getRect().setPosition(Vector2f(this->rect.getPosition().x + (this->rect.getGlobalBounds().width / 2) + 10, this->rect.getPosition().y + (this->rect.getGlobalBounds().height / 2) + 10));
 						newProjectile2->getRect().setPosition(Vector2f(this->rect.getPosition().x + (this->rect.getGlobalBounds().width / 2), this->rect.getPosition().y + (this->rect.getGlobalBounds().height / 2)));
 						newProjectile3->getRect().setPosition(Vector2f(this->rect.getPosition().x + (this->rect.getGlobalBounds().width / 2) - 10, this->rect.getPosition().y + (this->rect.getGlobalBounds().height / 2) + 10));
-						/*
-						newProjectile1 = new Projectile(this->getBulletPng(), Vector2f(this->getBulletWidth(), this->getBulletHeight()),
-							Vector2f(this->rect.getPosition().x + (this->rect.getGlobalBounds().width / 2) + 10, this->rect.getPosition().y + (this->rect.getGlobalBounds().height / 2) + 10)
-							, offX, offY, this->getDirection(), this->getBulletSpeed());
-						newProjectile2 = new Projectile(this->getBulletPng(), Vector2f(this->getBulletWidth(), this->getBulletHeight()),
-							Vector2f(this->rect.getPosition().x + (this->rect.getGlobalBounds().width / 2), this->rect.getPosition().y + (this->rect.getGlobalBounds().height / 2))
-							, offX, offY, this->getDirection(), this->getBulletSpeed());
-						newProjectile3 = new Projectile(this->getBulletPng(), Vector2f(this->getBulletWidth(), this->getBulletHeight()),
-							Vector2f(this->rect.getPosition().x + (this->rect.getGlobalBounds().width / 2) - 10, this->rect.getPosition().y + (this->rect.getGlobalBounds().height / 2) + 10)
-							, offX, offY, this->getDirection(), this->getBulletSpeed());*/
 						break;
-
 					case 4://down
-
 						newProjectile1->getRect().setPosition(Vector2f(this->rect.getPosition().x + (this->rect.getGlobalBounds().width / 2) + 10, this->rect.getPosition().y + (this->rect.getGlobalBounds().height / 2) - 10));
 						newProjectile2->getRect().setPosition(Vector2f(this->rect.getPosition().x + (this->rect.getGlobalBounds().width / 2), this->rect.getPosition().y + (this->rect.getGlobalBounds().height / 2)));
 						newProjectile3->getRect().setPosition(Vector2f(this->rect.getPosition().x + (this->rect.getGlobalBounds().width / 2) - 10, this->rect.getPosition().y + (this->rect.getGlobalBounds().height / 2) - 10));
-						
-						/*
-						newProjectile1 = new Projectile(this->getBulletPng(), Vector2f(this->getBulletWidth(), this->getBulletHeight()),
-							Vector2f(this->rect.getPosition().x + (this->rect.getGlobalBounds().width / 2) + 10, this->rect.getPosition().y + (this->rect.getGlobalBounds().height / 2) - 10)
-							, offX, offY, this->getDirection(), this->getBulletSpeed());
-						newProjectile2 = new Projectile(this->getBulletPng(), Vector2f(this->getBulletWidth(), this->getBulletHeight()),
-							Vector2f(this->rect.getPosition().x + (this->rect.getGlobalBounds().width / 2), this->rect.getPosition().y + (this->rect.getGlobalBounds().height / 2))
-							, offX, offY, this->getDirection(), this->getBulletSpeed());
-						newProjectile3 = new Projectile(this->getBulletPng(), Vector2f(this->getBulletWidth(), this->getBulletHeight()),
-							Vector2f(this->rect.getPosition().x + (this->rect.getGlobalBounds().width / 2) - 10, this->rect.getPosition().y + (this->rect.getGlobalBounds().height / 2) - 10)
-							, offX, offY, this->getDirection(), this->getBulletSpeed());*/
 						break;
 				};
 				this->addToBullets(newProjectile1);
@@ -198,7 +155,6 @@ void Player::updatePlayer(RenderWindow &window) {
 				this->addToBullets(newProjectile3);
 				soundOnShoot.play();
 			}
-			//if level is < 20
 			else {
 				Projectile * newProjectile = new Projectile(this->getBulletPng(), Vector2f(this->getBulletWidth(), this->getBulletHeight()),
 					Vector2f(this->rect.getPosition().x + (this->rect.getGlobalBounds().width / 2), this->rect.getPosition().y + (this->rect.getGlobalBounds().height / 2))
@@ -285,7 +241,7 @@ void Player::updatePlayer(RenderWindow &window) {
 //what happends to the player on intersection with an enemy
 void Player::onEnemyIntersect(){
 	//decrease the health
-	this->setCurrentHealth(this->getCurrentHealth() - 10);
+	this->setCurrentHealth(this->getCurrentHealth() - 1);
 }
 
 //what happends to the player on the intersection with an enemy projecetile
