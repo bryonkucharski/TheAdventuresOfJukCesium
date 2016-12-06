@@ -115,7 +115,7 @@ void Player::updatePlayer(RenderWindow &window) {
 					break;
 			};
 
-			if (this->getLevel() > 20) {
+			if (this->getLevel() >= 20) {
 				Projectile *newProjectile1 = new Projectile(this->getBulletPng(), Vector2f(this->getBulletWidth(), this->getBulletHeight()),
 					Vector2f(this->rect.getPosition().x + (this->rect.getGlobalBounds().width / 2) + 10, this->rect.getPosition().y + (this->rect.getGlobalBounds().height / 2) + 10)
 					, offX, offY, this->getDirection(), this->getBulletSpeed());

@@ -229,7 +229,7 @@ void World::setupHome() {
 	createLocationRectangle(Vector2f(4 * PIXEL_SIZE, 16), Vector2f(15 * PIXEL_SIZE, (19 * PIXEL_SIZE) + 16), Color::Transparent, home);
 	
 	//Enemies
-	createTestEnemies();
+	//createTestEnemies();
 
 	//Create Boss
 	// int AI_ID, int aiShoot, int health, int level,
