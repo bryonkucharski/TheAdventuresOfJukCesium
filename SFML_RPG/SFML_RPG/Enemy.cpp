@@ -137,6 +137,7 @@ void Enemy::shootAI1(Vector2f playerPos) {
 }//end of shootAI1
 
 void Enemy::shootAI2(Vector2f playerPos) {
+	//shoots at the player, speed of bullet is porportional to distance
 	if (canShoot()) {
 		float pi = 3.14159;
 		float theta;
@@ -167,6 +168,7 @@ void Enemy::shootAI2(Vector2f playerPos) {
 }//end of shootAI2
 
 void Enemy::shootAI3(Vector2f playerPos) {
+	//shoots at the player, speed of bullet is constant
 	if (canShoot()) {
 		float distanceX = (playerPos.x) - (this->rect.getPosition().x);
 		float distanceY = (playerPos.y) - (this->rect.getPosition().y);
