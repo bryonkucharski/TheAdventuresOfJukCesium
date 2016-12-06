@@ -232,7 +232,7 @@ void World::setupHome() {
 	createTestEnemies();
 
 	//NPC's
-	this->createNPC("res/Creatures/oldMan.png", "Old Man Jensen", "Kill The Monsters!", /*AI_ID*/1, Vector2f(17 * PIXEL_SIZE, 5 * PIXEL_SIZE), home);
+	this->createNPC("res/Creatures/oldMan.png", "Old Man Jensen", "Kill The Monsters!", /*AI_ID*/7, Vector2f(17 * PIXEL_SIZE, 5 * PIXEL_SIZE), home);
 
 }//end of home
 

@@ -279,7 +279,6 @@ int main(){
 			//draw enemies
 			int enemyDrawCounter = 0;
 			for (std::vector<Enemy*>::iterator enemyDrawIter = currentEnemies.begin(); enemyDrawIter != currentEnemies.end(); ++enemyDrawIter) {
-			
 				window.draw(currentEnemies[enemyDrawCounter]->getSprite());
 				window.draw(currentEnemies[enemyDrawCounter]->getText());
 				enemyDrawCounter++;
