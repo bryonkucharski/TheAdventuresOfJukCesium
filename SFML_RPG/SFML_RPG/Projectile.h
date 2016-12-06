@@ -6,7 +6,7 @@
 class Projectile : public Entity
 {
 	public:
-		Projectile(std::string file, Vector2f size, Vector2f pos, int dir, int speed);
+		Projectile(std::string file, Vector2f size, Vector2f pos, float offX, float offY, int dir, float speed);
 		~Projectile();
 		void setActive(bool state);
 		void update();
@@ -22,7 +22,7 @@ class Projectile : public Entity
 
 		
 		int getDirection();
-		int getSpeed();
+		float getSpeed();
 		bool isActive();
 		int getAnimationCounter();
 
@@ -31,7 +31,7 @@ class Projectile : public Entity
 	private:
 		void updateAnimation();
 		bool active;
-		int speed;
+		float speed;
 		int direction;
 
 		float animationCounter;

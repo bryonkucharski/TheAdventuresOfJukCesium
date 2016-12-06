@@ -82,7 +82,7 @@ int Enemy::getShootAI() {
 }
 
 void Enemy::selectShootAI(int aiShoot, Vector2f playerPos) {
-	switch (  2 /*aiShoot*/) {
+	switch (  1 /*aiShoot*/) {
 		case 1: this->shootAI1(playerPos);
 			break;
 		case 2: this->shootAI2(playerPos);
@@ -106,10 +106,31 @@ void Enemy::shootAI1(Vector2f playerPos) {
 		distY = distY*distY;
 		float distance = sqrt(distX + distY);
 		if (distance < 100) {
+			float offX;
+			float offY;
+			switch (this->getDirection()) {
+				case 1:
+					offX = -1;
+					offY = 0;
+					break;
+				case 2:
+					offX = 1;
+					offY = 0;
+					break;
+				case 3:
+					offX = 0;
+					offY = -1;
+					break;
+				case 4:
+					offX = 0;
+					offY = 1;
+					break;
+			}
+
 			//create new projectile
 			Projectile * newProjectile = new Projectile("res/Projectiles/enemyProjectile.png", Vector2f(18, 18),
 				Vector2f(this->rect.getPosition().x + (this->rect.getGlobalBounds().width / 2), this->rect.getPosition().y + (this->rect.getGlobalBounds().height / 2))
-				, this->getDirection(), 5);
+				,offX,offY, this->getDirection(), 5);
 			this->addToBullets(newProjectile);
 		}
 	}
@@ -130,16 +151,16 @@ void Enemy::shootAI2(Vector2f playerPos) {
 		distX = distX*distX;
 		distY = distY*distY;
 		float distance = sqrt(distX + distY);
+
+		float offX = trackX / 256;
+		float offY = trackY / 256;
+
 		if (distance < 150) {
 			//create new projectile
 			Projectile * newProjectile = new Projectile("res/Projectiles/enemyProjectile.png", Vector2f(18, 18),
 				Vector2f(this->rect.getPosition().x + (this->rect.getGlobalBounds().width / 2), this->rect.getPosition().y + (this->rect.getGlobalBounds().height / 2))
-				, this->getDirection(), 5);
-			//newProjectile->getRect().setRotation(theta);
-			float offX = trackX/256;
-			float offY = trackY/256;
-			newProjectile->setOffSetX(offX);
-			newProjectile->setOffSetY(offY);
+				,offX,offY, this->getDirection(), 5);
+
 			this->addToBullets(newProjectile);
 		}
 	}

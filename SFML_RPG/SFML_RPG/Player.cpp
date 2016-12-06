@@ -92,9 +92,31 @@ void Player::updatePlayer(RenderWindow &window) {
 	
 	if (Keyboard::isKeyPressed(Keyboard::Space)) {
 		if (this->canShoot()) {
+			float offX;
+			float offY;
+			switch (this->getDirection()) {
+			case 1:
+				offX = -1;
+				offY = 0;
+				break;
+			case 2:
+				offX = 1;
+				offY = 0;
+				break;
+			case 3:
+				offX = 0;
+				offY = -1;
+				break;
+			case 4:
+				offX = 0;
+				offY = 1;
+				break;
+			}
+
 			Projectile * newProjectile = new Projectile(this->getBulletPng(), Vector2f(this->getBulletWidth(), this->getBulletHeight()), 
 				Vector2f(this->rect.getPosition().x + (this->rect.getGlobalBounds().width / 2), this->rect.getPosition().y + (this->rect.getGlobalBounds().height / 2))
-				,this->getDirection(), this->getBulletSpeed());
+				,offX,offY,this->getDirection(), this->getBulletSpeed());
+
 			this->addToBullets(newProjectile);
 		}
 	}// end of if space was pressed do a projectile

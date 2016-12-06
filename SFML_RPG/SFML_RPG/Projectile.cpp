@@ -1,7 +1,7 @@
 #include "Projectile.h"
 #include "Player.h"
 
-Projectile::Projectile(std::string file, Vector2f size, Vector2f pos, int dir, int speed) {
+Projectile::Projectile(std::string file, Vector2f size, Vector2f pos, float offX, float offY, int dir, float speed) {
 
 	texture.loadFromFile(file);
 	this->sprite.setTexture(this->texture);
@@ -14,7 +14,8 @@ Projectile::Projectile(std::string file, Vector2f size, Vector2f pos, int dir, i
 	this->setActive(true);
 
 	this->setAnimationCounter(0);
-
+	this->setOffSetX(offX);
+	this->setOffSetY(offY);
 }
 
 Projectile::~Projectile() {}
@@ -55,7 +56,7 @@ void Projectile::setSpeed(float s){
 int Projectile::getDirection() {
 	return direction;
 }
-int Projectile::getSpeed() {
+float Projectile::getSpeed() {
 	return speed;
 }
 bool Projectile::isActive() {
