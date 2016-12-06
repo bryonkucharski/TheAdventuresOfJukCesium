@@ -12,6 +12,7 @@
 class Enemy : public Creature {
 	public:
 		Enemy(std::string file, std::string name, int location, int AI_ID, int aiShoot, int health, int level, Vector2f startingPosition, std::vector<RectangleShape> &obstacles);
+		Enemy(std::string file, std::string name, int location, int AI_ID, int aiShoot, int health, int level, Vector2f startingPosition, std::vector<RectangleShape> &obstacles, Vector2f pixelSize);
 		~Enemy();
 		void updateEnemy(Vector2f playerPos);
 		bool isAlive();

@@ -231,6 +231,9 @@ void World::setupHome() {
 	//Enemies
 	createTestEnemies();
 
+	//Create Boss
+	this->createBoss("res/Creatures/bigRedMonster.png", "A Femenist", /*AI_ID*/ 7, 3, 360, 5, Vector2f(24 * PIXEL_SIZE, 11 * PIXEL_SIZE), home, Vector2f(80,80));
+
 	//NPC's
 	this->createNPC("res/Creatures/oldMan.png", "Old Man Jensen", "Kill The Monsters!", /*AI_ID*/7, Vector2f(17 * PIXEL_SIZE, 5 * PIXEL_SIZE), home);
 
@@ -1106,4 +1109,9 @@ void World::createTestEnemies() {
 void World::createNPC(std::string file, std::string name, std::string intersectionText, int AI_ID, Vector2f startingPosition, Location &loc) {
 	NPC *npc1 = new NPC(file, name, intersectionText, loc.getLocationID(), AI_ID, startingPosition, loc.getObstacles());
 	loc.addToNPCs(npc1);
+}
+
+void World::createBoss(std::string file, std::string name, int AI_ID, int aiShoot, int health, int level, Vector2f startingPosition, Location &loc, Vector2f pixelSize) {
+	Enemy * enemy = new Enemy(file, name, loc.getLocationID(), AI_ID, aiShoot, health, level, startingPosition, loc.getObstacles(), pixelSize);
+	loc.addToEnemies(enemy);
 }

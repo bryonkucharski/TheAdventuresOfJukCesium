@@ -33,6 +33,41 @@ Enemy::Enemy(std::string file, std::string name,int location, int AI_ID, int aiS
 	text.setCharacterSize(10);
 	text.setFillColor(Color::White);
 }
+
+Enemy::Enemy(std::string file, std::string name, int location, int AI_ID, int aiShoot, int health, int level, Vector2f startingPosition, std::vector<RectangleShape> &obstacles, Vector2f pixelSize) : Creature(name, file) {
+
+	this->sprite.setTextureRect(IntRect(0, 0, 80, 80));
+	this->rect.setSize(pixelSize);
+
+	this->bOnDeath.loadFromFile("res/Sounds/Attack3.ogg");
+	this->bOnHit.loadFromFile("res/Sounds/Attack2.ogg");
+	this->soundOnDeath.setBuffer(bOnDeath);
+	this->soundOnHit.setBuffer(bOnHit);
+
+	srand(time(NULL));
+
+	this->setCurrentLocation(location);
+	this->rect.setPosition(startingPosition);
+
+	this->currentObstacles = obstacles;
+
+	this->setSpeed(1);
+	this->setAlive(true);
+
+	this->setAI_ID(AI_ID);
+	this->setShootAI(aiShoot);
+
+	this->setMaxHealth(health);
+	this->setCurrentHealth(health);
+	this->setLevel(level);
+	this->setDamage(level * 2);
+
+	font.loadFromFile("res/Fonts/Vecna.otf");
+	text.setFont(font);
+	text.setCharacterSize(10);
+	text.setFillColor(Color::White);
+}
+
 Enemy::~Enemy() {
 
 }

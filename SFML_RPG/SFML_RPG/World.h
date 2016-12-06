@@ -50,6 +50,8 @@ class World
 		void createNPC(std::string file, std::string name, std::string intersectionText, int AI_ID, Vector2f startingPosition, Location &loc);
 		//Create 5 test enemies of different levels with AI_ID == 0
 		void createTestEnemies();
+		//Creating a Boss
+		void createBoss(std::string file, std::string name, int AI_ID, int aiShoot, int health, int level, Vector2f startingPosition, Location &loc, Vector2f pixelSize);
 		//Create a border around the map so enemies and NPCs do not walk off the screen.
 		void createBorder(Location &loc);
 		
