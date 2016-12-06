@@ -665,7 +665,7 @@ void World::setupWFbossRoom() {
 	createLocationRectangle(Vector2f(1 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(12 * PIXEL_SIZE, 0 * PIXEL_SIZE), Color::Transparent, WFbossRoom);
 	
 	//Enemies
-	this->createBoss("res/Creatures/bigRedMonster.png", "Sliske The Void", /*AI_ID*/ 7, /*aiShoot*/ 5, /*Health*/ 360, /*Level*/ 5, /*Location*/ Vector2f(12 * PIXEL_SIZE, 12 * PIXEL_SIZE), WFbossRoom, /*PixelSize*/ Vector2f(80, 80));
+	this->createBoss("res/Creatures/bigRedMonster.png", "Sliske The Void", /*AI_ID*/ 7, /*aiShoot*/ 5, /*Health*/ 1260, /*Level*/ 35, /*Location*/ Vector2f(12 * PIXEL_SIZE, 12 * PIXEL_SIZE), WFbossRoom, /*PixelSize*/ Vector2f(80, 80));
 
 	//NPCs
 
@@ -952,9 +952,14 @@ void World::setupGhostShed() {
 	createLocationRectangle(Vector2f(3 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(17 * PIXEL_SIZE, 18 * PIXEL_SIZE), Color::Transparent, ghostShed);
 
 	//creating enemies
-	this->createEnemy("res/Creatures/gargoyle.png", "Gargoyle", 5, 1, 100, 3, Vector2f(8 * PIXEL_SIZE, 9 * PIXEL_SIZE), ghostShed);
-	this->createEnemy("res/Creatures/gargoyle.png", "Gargoyle", 3, 3, 100, 3, Vector2f(18 * PIXEL_SIZE, 12 * PIXEL_SIZE), ghostShed);
-	this->createEnemy("res/Creatures/gargoyle.png", "Gargoyle", 4, 2, 100, 3, Vector2f(21 * PIXEL_SIZE, 4 * PIXEL_SIZE), ghostShed);
+	this->createEnemy("res/Creatures/greendragon.png", "Green Dragon", 5, 2, 500, 12, Vector2f(8 * PIXEL_SIZE, 9 * PIXEL_SIZE), ghostShed);
+	this->createEnemy("res/Creatures/greendragon.png", "Green Dragon", 3, 3, 500, 12, Vector2f(18 * PIXEL_SIZE, 12 * PIXEL_SIZE), ghostShed);
+	this->createEnemy("res/Creatures/greendragon.png", "Green Dragon", 4, 2, 500, 12, Vector2f(21 * PIXEL_SIZE, 4 * PIXEL_SIZE), ghostShed);
+
+	//creating bosses
+	
+	this->createBoss("res/Creatures/GreenBossDragon.png", "Elrag The Bone Picker", /*AI_ID*/ 7, /*aiShoot*/ 6, /*Health*/ 1000, /*Level*/ 30, /*Location*/ Vector2f(10 * PIXEL_SIZE, 7 * PIXEL_SIZE), ghostShed, /*PixelSize*/ Vector2f(80, 80));
+
 }//end of ghostShed
 
 void World::setupWFcorridor(){
