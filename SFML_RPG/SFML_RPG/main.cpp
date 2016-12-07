@@ -129,7 +129,12 @@ int main(){
 
 			//-------------------------------END VECTORS-----------------------
 
+			//-----------------------------RECREATED ENEMIES IF ALL DEAD
+			if ((currentEnemies.size() == 0) && (world.getLocation(mainPlayer.getCurrentLocation()).hasEnemies())) {
+				world.selectEnemyCreation(mainPlayer.getCurrentLocation());
+			}
 
+		//---------------------------------------------------------------------
 
 			//--------------------------------ALL REMOVALS------------------------
 			//remove inactive player bullets

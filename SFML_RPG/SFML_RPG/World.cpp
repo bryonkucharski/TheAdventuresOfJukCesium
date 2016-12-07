@@ -608,18 +608,7 @@ void World::setupBeach() {
 	createLocationRectangle(Vector2f(1 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(24 * PIXEL_SIZE, 9 * PIXEL_SIZE), Color::Transparent, beach);
 
 	//Enemies
-	this->createEnemy("res/Creatures/jellyfish.png", "Jellyfish", 2, 2, 100, 2, Vector2f(18 * PIXEL_SIZE, 17 * PIXEL_SIZE), beach);
-	this->createEnemy("res/Creatures/jellyfish.png", "Jellyfish", 3, 2, 100, 2, Vector2f(20 * PIXEL_SIZE, 17 * PIXEL_SIZE), beach);
-	this->createEnemy("res/Creatures/jellyfish.png", "Jellyfish", 4, 2, 100, 2, Vector2f(29 * PIXEL_SIZE, 8 * PIXEL_SIZE), beach);
-	this->createEnemy("res/Creatures/jellyfish.png", "Jellyfish", 2, 2, 100, 2, Vector2f(25 * PIXEL_SIZE, 12 * PIXEL_SIZE), beach);
-	this->createEnemy("res/Creatures/mudkip.png", "Mudkip", 2, 3, 100, 2, Vector2f(6 * PIXEL_SIZE, 16 * PIXEL_SIZE), beach);
-	this->createEnemy("res/Creatures/mudkip.png", "Mudkip", 4, 2, 100, 2, Vector2f(2 * PIXEL_SIZE, 7 * PIXEL_SIZE), beach);
-	this->createEnemy("res/Creatures/mudkip.png", "Mudkip", 6, 1, 100, 2, Vector2f(19 * PIXEL_SIZE, 1 * PIXEL_SIZE), beach);
-	this->createEnemy("res/Creatures/mudkip.png", "Mudkip", 2, 1, 100, 2, Vector2f(7 * PIXEL_SIZE, 2 * PIXEL_SIZE), beach);
-	this->createEnemy("res/Creatures/scorpion.png", "Scorpion", 2, 1, 100, 2, Vector2f(28 * PIXEL_SIZE, 1 * PIXEL_SIZE), beach);
-	this->createEnemy("res/Creatures/scorpion.png", "Scorpion", 4, 2, 100, 2, Vector2f(22 * PIXEL_SIZE, 6 * PIXEL_SIZE), beach);
-	this->createEnemy("res/Creatures/scorpion.png", "Scorpion", 3, 1, 100, 2, Vector2f(1 * PIXEL_SIZE, 1 * PIXEL_SIZE), beach);
-
+	this->createBeachEnemies();
 	//NPCs
 
 }//end of beach
@@ -654,11 +643,7 @@ void World::setupWaterfall() {
 	createLocationRectangle(Vector2f(1 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(26 * PIXEL_SIZE, 3 * PIXEL_SIZE + 1), Color::Transparent, waterfall);
 
 	//creating enemies
-	this->createEnemy("res/Creatures/scorpion.png", "Scorpion", 4, 2, 200, 2, Vector2f(11 * PIXEL_SIZE, 5 * PIXEL_SIZE), waterfall);
-	this->createEnemy("res/Creatures/scorpion.png", "Scorpion", 2, 1, 200, 2, Vector2f(4 * PIXEL_SIZE, 7 * PIXEL_SIZE), waterfall);
-	this->createEnemy("res/Creatures/bat.png", "Bat", 2, 3, 200, 2, Vector2f(12 * PIXEL_SIZE, 14 * PIXEL_SIZE), waterfall);
-	this->createEnemy("res/Creatures/mudkip.png", "Mudkip", 3, 1, 200, 2, Vector2f(5 * PIXEL_SIZE, 14 * PIXEL_SIZE), waterfall);
-
+	this->createWaterfallEnemies();
 	//NPCs
 
 }//end of waterfall
@@ -691,8 +676,7 @@ void World::setupWFbossRoom() {
 	createLocationRectangle(Vector2f(1 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(12 * PIXEL_SIZE, 0 * PIXEL_SIZE), Color::Transparent, WFbossRoom);
 
 	//Enemies
-	this->createBoss("res/Creatures/bigRedMonster.png", "Sliske The Void", /*AI_ID*/ 7, /*aiShoot*/ 5, /*Health*/ 1260, /*Level*/ 35, /*Location*/ Vector2f(12 * PIXEL_SIZE, 12 * PIXEL_SIZE), WFbossRoom, /*PixelSize*/ Vector2f(80, 80));
-
+	this->createWFBossRoomEnemies();
 	//NPCs
 
 }//end of WFbossRoom
@@ -943,14 +927,7 @@ void World::setupGraveyard() {
 	createObstacleRectangle(Vector2f(1 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(0 * PIXEL_SIZE, 18 * PIXEL_SIZE), Color::Transparent, graveyard);
 
 	//adding enemies
-	this->createEnemy("res/Creatures/nun.png", "Crazy Nun", 2, 2, 300, 4, Vector2f(25 * PIXEL_SIZE, 11 * PIXEL_SIZE), graveyard);
-	this->createEnemy("res/Creatures/skeleton.png", "Skeleton", 4, 21, 00, 2, Vector2f(26 * PIXEL_SIZE, 2 * PIXEL_SIZE), graveyard);
-	this->createEnemy("res/Creatures/skeleton.png", "Withered Skeleton", 4, 2, 400, 6, Vector2f(17 * PIXEL_SIZE, 15 * PIXEL_SIZE), graveyard);
-	this->createEnemy("res/Creatures/skeleton.png", "Skeleton", 5, 1, 200, 5, Vector2f(7 * PIXEL_SIZE, 11 * PIXEL_SIZE), graveyard);
-	this->createEnemy("res/Creatures/gargoyle.png", "Gargoyle", 3, 1, 200, 4, Vector2f(9 * PIXEL_SIZE, 3 * PIXEL_SIZE), graveyard);
-	this->createEnemy("res/Creatures/bat.png", "Decaying Bat", 2, 3, 75, 2, Vector2f(4 * PIXEL_SIZE, 2 * PIXEL_SIZE), graveyard);
-	this->createEnemy("res/Creatures/bat.png", "Bat", 2, 1, 50, 2, Vector2f(15 * PIXEL_SIZE, 7 * PIXEL_SIZE), graveyard);
-	this->createEnemy("res/Creatures/bat.png", "Vampire Bat", 2, 2, 200, 2, Vector2f(9 * PIXEL_SIZE, 17 * PIXEL_SIZE), graveyard);
+	this->createGraveyardEnemies();
 
 	//location change
 	createLocationRectangle(Vector2f(2 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(14 * PIXEL_SIZE, 0 * PIXEL_SIZE), Color::Transparent, graveyard);
@@ -978,14 +955,7 @@ void World::setupGhostShed() {
 	createLocationRectangle(Vector2f(3 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(17 * PIXEL_SIZE, 18 * PIXEL_SIZE), Color::Transparent, ghostShed);
 
 	//creating enemies
-	this->createEnemy("res/Creatures/greendragon.png", "Green Dragon", 5, 2, 500, 12, Vector2f(8 * PIXEL_SIZE, 9 * PIXEL_SIZE), ghostShed);
-	this->createEnemy("res/Creatures/greendragon.png", "Green Dragon", 3, 3, 500, 12, Vector2f(18 * PIXEL_SIZE, 12 * PIXEL_SIZE), ghostShed);
-	this->createEnemy("res/Creatures/greendragon.png", "Green Dragon", 4, 2, 500, 12, Vector2f(21 * PIXEL_SIZE, 4 * PIXEL_SIZE), ghostShed);
-
-	//creating bosses
-
-	this->createBoss("res/Creatures/GreenBossDragon.png", "Elrag The Bone Picker", /*AI_ID*/ 7, /*aiShoot*/ 6, /*Health*/ 1000, /*Level*/ 30, /*Location*/ Vector2f(10 * PIXEL_SIZE, 7 * PIXEL_SIZE), ghostShed, /*PixelSize*/ Vector2f(80, 80));
-
+	this->createGhostShedEnemies();
 }//end of ghostShed
 
 void World::setupWFcorridor() {
@@ -1011,9 +981,7 @@ void World::setupWFcorridor() {
 	createLocationRectangle(Vector2f(1 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(19 * PIXEL_SIZE, 19 * PIXEL_SIZE), Color::Transparent, WFcorridor);
 
 	//making enemies
-	this->createEnemy("res/Creatures/bat.png", "Bat", 2, 2, 50, 2, Vector2f(3 * PIXEL_SIZE, 12 * PIXEL_SIZE), WFcorridor);
-	this->createEnemy("res/Creatures/bat.png", "Bat", 2, 3, 50, 2, Vector2f(12 * PIXEL_SIZE, 4 * PIXEL_SIZE), WFcorridor);
-	this->createEnemy("res/Creatures/bat.png", "Bat", 2, 2, 50, 2, Vector2f(20 * PIXEL_SIZE, 4 * PIXEL_SIZE), WFcorridor);
+	this->createPortEnemies();
 
 	//adding NPC
 	this->createNPC("res/Creatures/oldMan.png", "Old Man", "There is a big monster down there.", /*AI*/4, Vector2f(19 * PIXEL_SIZE, 4 * PIXEL_SIZE), WFcorridor);
@@ -1069,12 +1037,7 @@ void World::setupPort() {
 	this->createLocationRectangle(Vector2f(1 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(8 * PIXEL_SIZE, 6 * PIXEL_SIZE), Color::Transparent, port);
 
 	//enemies
-	for (int i = 0; i < 35; i++) {
-		this->createEnemy("res/Creatures/sheep.png", "Escaping Sheep", 2, 2, 50, 2, Vector2f(18 * PIXEL_SIZE, 4 * PIXEL_SIZE), port);
-	}
-	for (int i = 0; i < 35; i++) {
-		this->createEnemy("res/Creatures/sheep.png", "Escaping Sheep", 2, 3, 50, 2, Vector2f(7 * PIXEL_SIZE, 2 * PIXEL_SIZE), port);
-	}
+	this->createPortEnemies();
 
 	//npcs
 	this->createNPC("res/Creatures/oldMan.png", "Really Bad Animal Merchant", "Please slaughter any sheep that tries to escape.", /*AI*/1, Vector2f(9 * PIXEL_SIZE, 7 * PIXEL_SIZE), port);
@@ -1149,7 +1112,6 @@ void World::createBoss(std::string file, std::string name, int AI_ID, int aiShoo
 	loc.addToEnemies(enemy);
 }
 void World::createForestEnemies() {
-
 	this->createEnemy("res/Creatures/flower.png", "flower", /*AI_ID*/ 1, 2, 125, 3, Vector2f(22 * PIXEL_SIZE, 8 * PIXEL_SIZE), forest);
 	this->createEnemy("res/Creatures/flower.png", "flower", /*AI_ID*/ 1, 2, 100, 2, Vector2f(6 * PIXEL_SIZE, 12 * PIXEL_SIZE), forest);
 	this->createEnemy("res/Creatures/flower.png", "flower", /*AI_ID*/ 1, 2, 175, 3, Vector2f(8 * PIXEL_SIZE, 6 * PIXEL_SIZE), forest);
@@ -1165,23 +1127,55 @@ void World::createForest2Enemies() {
 	this->createEnemy("res/Creatures/flower.png", "Poison Flower", 1, 2, 200, 4, Vector2f(7 * PIXEL_SIZE, 5 * PIXEL_SIZE), forest2);
 }
 void World::createBeachEnemies() {
-
+	this->createEnemy("res/Creatures/jellyfish.png", "Jellyfish", 2, 2, 100, 2, Vector2f(18 * PIXEL_SIZE, 17 * PIXEL_SIZE), beach);
+	this->createEnemy("res/Creatures/jellyfish.png", "Jellyfish", 3, 2, 100, 2, Vector2f(20 * PIXEL_SIZE, 17 * PIXEL_SIZE), beach);
+	this->createEnemy("res/Creatures/jellyfish.png", "Jellyfish", 4, 2, 100, 2, Vector2f(29 * PIXEL_SIZE, 8 * PIXEL_SIZE), beach);
+	this->createEnemy("res/Creatures/jellyfish.png", "Jellyfish", 2, 2, 100, 2, Vector2f(25 * PIXEL_SIZE, 12 * PIXEL_SIZE), beach);
+	this->createEnemy("res/Creatures/mudkip.png", "Mudkip", 2, 3, 100, 2, Vector2f(6 * PIXEL_SIZE, 16 * PIXEL_SIZE), beach);
+	this->createEnemy("res/Creatures/mudkip.png", "Mudkip", 4, 2, 100, 2, Vector2f(2 * PIXEL_SIZE, 7 * PIXEL_SIZE), beach);
+	this->createEnemy("res/Creatures/mudkip.png", "Mudkip", 6, 1, 100, 2, Vector2f(19 * PIXEL_SIZE, 1 * PIXEL_SIZE), beach);
+	this->createEnemy("res/Creatures/mudkip.png", "Mudkip", 2, 1, 100, 2, Vector2f(7 * PIXEL_SIZE, 2 * PIXEL_SIZE), beach);
+	this->createEnemy("res/Creatures/scorpion.png", "Scorpion", 2, 1, 100, 2, Vector2f(28 * PIXEL_SIZE, 1 * PIXEL_SIZE), beach);
+	this->createEnemy("res/Creatures/scorpion.png", "Scorpion", 4, 2, 100, 2, Vector2f(22 * PIXEL_SIZE, 6 * PIXEL_SIZE), beach);
+	this->createEnemy("res/Creatures/scorpion.png", "Scorpion", 3, 1, 100, 2, Vector2f(1 * PIXEL_SIZE, 1 * PIXEL_SIZE), beach);
 }
 void World::createWaterfallEnemies() {
-
+	this->createEnemy("res/Creatures/scorpion.png", "Scorpion", 4, 2, 200, 2, Vector2f(11 * PIXEL_SIZE, 5 * PIXEL_SIZE), waterfall);
+	this->createEnemy("res/Creatures/scorpion.png", "Scorpion", 2, 1, 200, 2, Vector2f(4 * PIXEL_SIZE, 7 * PIXEL_SIZE), waterfall);
+	this->createEnemy("res/Creatures/bat.png", "Bat", 2, 3, 200, 2, Vector2f(12 * PIXEL_SIZE, 14 * PIXEL_SIZE), waterfall);
+	this->createEnemy("res/Creatures/mudkip.png", "Mudkip", 3, 1, 200, 2, Vector2f(5 * PIXEL_SIZE, 14 * PIXEL_SIZE), waterfall);
 }
 void World::createWFBossRoomEnemies() {
+	this->createBoss("res/Creatures/bigRedMonster.png", "Sliske The Void", /*AI_ID*/ 7, /*aiShoot*/ 5, /*Health*/ 1260, /*Level*/ 35, /*Location*/ Vector2f(12 * PIXEL_SIZE, 12 * PIXEL_SIZE), WFbossRoom, /*PixelSize*/ Vector2f(80, 80));
 
 }
 void World::createGraveyardEnemies() {
-
+	this->createEnemy("res/Creatures/nun.png", "Crazy Nun", 2, 2, 300, 4, Vector2f(25 * PIXEL_SIZE, 11 * PIXEL_SIZE), graveyard);
+	this->createEnemy("res/Creatures/skeleton.png", "Skeleton", 4, 21, 00, 2, Vector2f(26 * PIXEL_SIZE, 2 * PIXEL_SIZE), graveyard);
+	this->createEnemy("res/Creatures/skeleton.png", "Withered Skeleton", 4, 2, 400, 6, Vector2f(17 * PIXEL_SIZE, 15 * PIXEL_SIZE), graveyard);
+	this->createEnemy("res/Creatures/skeleton.png", "Skeleton", 5, 1, 200, 5, Vector2f(7 * PIXEL_SIZE, 11 * PIXEL_SIZE), graveyard);
+	this->createEnemy("res/Creatures/gargoyle.png", "Gargoyle", 3, 1, 200, 4, Vector2f(9 * PIXEL_SIZE, 3 * PIXEL_SIZE), graveyard);
+	this->createEnemy("res/Creatures/bat.png", "Decaying Bat", 2, 3, 75, 2, Vector2f(4 * PIXEL_SIZE, 2 * PIXEL_SIZE), graveyard);
+	this->createEnemy("res/Creatures/bat.png", "Bat", 2, 1, 50, 2, Vector2f(15 * PIXEL_SIZE, 7 * PIXEL_SIZE), graveyard);
+	this->createEnemy("res/Creatures/bat.png", "Vampire Bat", 2, 2, 200, 2, Vector2f(9 * PIXEL_SIZE, 17 * PIXEL_SIZE), graveyard);
 }
 void World::createGhostShedEnemies() {
+	this->createEnemy("res/Creatures/greendragon.png", "Green Dragon", 5, 2, 500, 12, Vector2f(8 * PIXEL_SIZE, 9 * PIXEL_SIZE), ghostShed);
+	this->createEnemy("res/Creatures/greendragon.png", "Green Dragon", 3, 3, 500, 12, Vector2f(18 * PIXEL_SIZE, 12 * PIXEL_SIZE), ghostShed);
+	this->createEnemy("res/Creatures/greendragon.png", "Green Dragon", 4, 2, 500, 12, Vector2f(21 * PIXEL_SIZE, 4 * PIXEL_SIZE), ghostShed);
+	this->createBoss("res/Creatures/GreenBossDragon.png", "Elrag The Bone Picker", /*AI_ID*/ 7, /*aiShoot*/ 6, /*Health*/ 1000, /*Level*/ 30, /*Location*/ Vector2f(10 * PIXEL_SIZE, 7 * PIXEL_SIZE), ghostShed, /*PixelSize*/ Vector2f(80, 80));
 
 }
 void World::createWFCorridorEnemies() {
-
+	this->createEnemy("res/Creatures/bat.png", "Bat", 2, 2, 50, 2, Vector2f(3 * PIXEL_SIZE, 12 * PIXEL_SIZE), WFcorridor);
+	this->createEnemy("res/Creatures/bat.png", "Bat", 2, 3, 50, 2, Vector2f(12 * PIXEL_SIZE, 4 * PIXEL_SIZE), WFcorridor);
+	this->createEnemy("res/Creatures/bat.png", "Bat", 2, 2, 50, 2, Vector2f(20 * PIXEL_SIZE, 4 * PIXEL_SIZE), WFcorridor);
 }
 void World::createPortEnemies() {
-
+	for (int i = 0; i < 35; i++) {
+		this->createEnemy("res/Creatures/sheep.png", "Escaping Sheep", 2, 2, 50, 2, Vector2f(18 * PIXEL_SIZE, 4 * PIXEL_SIZE), port);
+	}
+	for (int i = 0; i < 35; i++) {
+		this->createEnemy("res/Creatures/sheep.png", "Escaping Sheep", 2, 3, 50, 2, Vector2f(7 * PIXEL_SIZE, 2 * PIXEL_SIZE), port);
+	}
 }
