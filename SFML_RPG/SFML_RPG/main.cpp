@@ -31,7 +31,7 @@ int main(){
 
 	World world(window);
 	Player mainPlayer("Juk Cesium", "res/Creatures/main.png",world);
-	std::string menuString[4] = { "New Game", "Load Game","About", "Exit" };
+	std::string menuString[4] = { "New Game", "Load Game","Another New Game", "Exit" };
 	std::string dummyString[4] = { "","","","" };
 	Menu mainMenu("res/Menus/GameMap.png","The Adventures\n\tof\nJuk Cesium", "res/Sounds/Town3.ogg", menuString, 50 ,Vector2f(100,100),Vector2f(100,450));
 	Menu gameOverMenu("res/Menus/GameOver.png","Game Over", "res/Sounds/Town3.ogg",menuString, 50, Vector2f(100, 100), Vector2f(100, 450));
@@ -90,6 +90,13 @@ int main(){
 			}
 			else if (gameOption == 2) {
 				//some credit screen
+				if (gameOver)
+				{
+					newGame();
+					loadGame();
+				}
+				newGame();
+				mainGame = true;
 				menuMain = false;
 				gameOver = false;
 			}
