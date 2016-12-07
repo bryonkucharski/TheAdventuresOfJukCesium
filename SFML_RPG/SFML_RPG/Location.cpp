@@ -1,10 +1,10 @@
 #include "Location.h"
 
-Location::Location(){
+Location::Location() {
 	//nothing
 }
-Location::Location(std::string locationName, std::string file, int locationID, int next1, int next2, int next3, int next4, Vector2f nextPos1, Vector2f nextPos2, Vector2f nextPos3, Vector2f nextPos4){
-	
+Location::Location(std::string locationName, std::string file, bool hasEnemies, int locationID, int next1, int next2, int next3, int next4, Vector2f nextPos1, Vector2f nextPos2, Vector2f nextPos3, Vector2f nextPos4) {
+
 	this->setFileName(file);
 	this->setName(locationName);
 	this->texture.loadFromFile(fileName);
@@ -12,6 +12,8 @@ Location::Location(std::string locationName, std::string file, int locationID, i
 	this->sprite.setPosition(Vector2f(0, 0));//this is setting the player to the 0, 0 area.
 
 	this->setLocationID(locationID);
+
+	this->setHasEnemies(hasEnemies);
 
 	this->setLocation1(next1);
 	this->setLocation2(next2);
@@ -22,7 +24,7 @@ Location::Location(std::string locationName, std::string file, int locationID, i
 	this->setNext2Position(nextPos2);
 	this->setNext3Position(nextPos3);
 	this->setNext4Position(nextPos4);
-		
+
 }
 Location::~Location() {
 	//what if we moved the deleted enemies to a death vector for a location.
@@ -138,4 +140,11 @@ void Location::addToNPCs(NPC *NPCToAdd) {
 }
 std::vector<NPC*> Location::getNPCs() {
 	return NPCs;
+}
+
+void Location::setHasEnemies(bool h) {
+	this->enemiesInLocation = h;
+}
+bool Location::hasEnemies() {
+	return enemiesInLocation;
 }

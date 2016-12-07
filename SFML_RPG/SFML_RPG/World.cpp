@@ -7,21 +7,21 @@ World::World() {}
 World::~World() {}
 
 World::World(RenderWindow &window) {
-	beach = *new Location("Beach", "res/Locations/beach.png", 5, 4, 6, 15, 0, Vector2f(11 * PIXEL_SIZE, 18 * PIXEL_SIZE), Vector2f(1 * PIXEL_SIZE, 4 * PIXEL_SIZE), Vector2f(9 * PIXEL_SIZE, 6 * PIXEL_SIZE), Vector2f(0 * PIXEL_SIZE, 0 * PIXEL_SIZE));
-	bigHouseInterior = *new Location("Home Sweet Home", "res/Locations/BigHouseInterior.png", 2, 1, 0, 0, 0, Vector2f(17 * PIXEL_SIZE, 17 * PIXEL_SIZE), Vector2f(0 * PIXEL_SIZE, 0 * PIXEL_SIZE), Vector2f(0 * PIXEL_SIZE, 0 * PIXEL_SIZE), Vector2f(0 * PIXEL_SIZE, 0 * PIXEL_SIZE));
-	castle = *new Location("Royal Palace", "res/Locations/castle.png", 10, 8, 0, 0, 0, Vector2f(14 * PIXEL_SIZE, 11 * PIXEL_SIZE), Vector2f(0 * PIXEL_SIZE, 0 * PIXEL_SIZE), Vector2f(0 * PIXEL_SIZE, 0 * PIXEL_SIZE), Vector2f(0 * PIXEL_SIZE, 0 * PIXEL_SIZE));
-	forest = *new Location("Hollow Forest", "res/Locations/Forest1.png", 3, 4, 8, 1, 0, Vector2f(28 * PIXEL_SIZE, 8 * PIXEL_SIZE), Vector2f(14 * PIXEL_SIZE, 18 * PIXEL_SIZE), Vector2f(1 * PIXEL_SIZE, 9 * PIXEL_SIZE), Vector2f(0 * PIXEL_SIZE, 0 * PIXEL_SIZE));
-	forest2 = *new Location("Klowers Grove", "res/Locations/forest2.png", 4, 5, 3, 0, 0, Vector2f(14 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(1 * PIXEL_SIZE, 7 * PIXEL_SIZE), Vector2f(0 * PIXEL_SIZE, 0 * PIXEL_SIZE), Vector2f(0 * PIXEL_SIZE, 0 * PIXEL_SIZE));
-	ghostShed = *new Location("Abandoned Shed", "res/Locations/ghostShed.png", 13, 12, 0, 0, 0, Vector2f(27 * PIXEL_SIZE, 11 * PIXEL_SIZE+6), Vector2f(0 * PIXEL_SIZE, 0 * PIXEL_SIZE), Vector2f(0 * PIXEL_SIZE, 0 * PIXEL_SIZE), Vector2f(0 * PIXEL_SIZE, 0 * PIXEL_SIZE));
-	graveyard = *new Location("Graveyard", "res/Locations/Graveyard.png", 12, 11, 13, 0, 0, Vector2f(12 * PIXEL_SIZE, 18 * PIXEL_SIZE), Vector2f(18 * PIXEL_SIZE, 17 * PIXEL_SIZE), Vector2f(0 * PIXEL_SIZE, 0 * PIXEL_SIZE), Vector2f(0 * PIXEL_SIZE, 0 * PIXEL_SIZE));
-	home = *new Location("Home Neighborhood", "res/Locations/home.png", 1, 3, 2, 11, 0, Vector2f(28 * PIXEL_SIZE, 11 * PIXEL_SIZE), Vector2f(14 * PIXEL_SIZE, 13 * PIXEL_SIZE), Vector2f(2 * PIXEL_SIZE, 2 * PIXEL_SIZE), Vector2f(0 * PIXEL_SIZE, 0 * PIXEL_SIZE));
-	market = *new Location("Central Square", "res/Locations/market.png", 11, 1, 12, 0, 0, Vector2f(17 * PIXEL_SIZE, 18 * PIXEL_SIZE), Vector2f(14 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(0 * PIXEL_SIZE, 0 * PIXEL_SIZE), Vector2f(0 * PIXEL_SIZE, 0 * PIXEL_SIZE));
-	pub = *new Location("Hunter's Pub", "res/Locations/pub.png", 9, 8, 0, 0, 0, Vector2f(3 * PIXEL_SIZE, 10 * PIXEL_SIZE), Vector2f(0 * PIXEL_SIZE, 0 * PIXEL_SIZE), Vector2f(0 * PIXEL_SIZE, 0 * PIXEL_SIZE), Vector2f(0 * PIXEL_SIZE, 0 * PIXEL_SIZE));
-	townAroundCastle = *new Location("Warthford", "res/Locations/townAroundCastle.png", 8, 3, 9, 10, 0, Vector2f(18 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(9 * PIXEL_SIZE, 17 * PIXEL_SIZE), Vector2f(14 * PIXEL_SIZE, 16 * PIXEL_SIZE), Vector2f(0 * PIXEL_SIZE, 0 * PIXEL_SIZE));
-	waterfall = *new Location("Mine Falls", "res/Locations/waterfall.png", 6, 5, 14, 14, 0, Vector2f(6 * PIXEL_SIZE, 2 * PIXEL_SIZE), Vector2f(7 * PIXEL_SIZE, 15 * PIXEL_SIZE), Vector2f(26 * PIXEL_SIZE, 9 * PIXEL_SIZE), Vector2f(0 * PIXEL_SIZE, 0 * PIXEL_SIZE));
-	WFbossRoom = *new Location("Shadow's Lair", "res/Locations/WFbossRoom.png", 7, 14, 0, 0, 0, Vector2f(19 * PIXEL_SIZE, 18 * PIXEL_SIZE), Vector2f(0 * PIXEL_SIZE, 0 * PIXEL_SIZE), Vector2f(0 * PIXEL_SIZE, 0 * PIXEL_SIZE), Vector2f(0 * PIXEL_SIZE, 0 * PIXEL_SIZE));
-	WFcorridor = *new Location("Shadow's Corfidor", "res/Locations/WFcorridor.png", 14, 6, 6, 7, 0, Vector2f(4 * PIXEL_SIZE, 14 * PIXEL_SIZE), Vector2f(26 * PIXEL_SIZE, 5 * PIXEL_SIZE), Vector2f(12 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(0 * PIXEL_SIZE, 0 * PIXEL_SIZE));
-	port = *new Location("Port Sarim", "res/Locations/port.png", 15, 5, 0, 0, 0, Vector2f(24 * PIXEL_SIZE, 8 * PIXEL_SIZE), Vector2f(0 * PIXEL_SIZE, 0 * PIXEL_SIZE), Vector2f(0 * PIXEL_SIZE, 0 * PIXEL_SIZE), Vector2f(0 * PIXEL_SIZE, 0 * PIXEL_SIZE));
+	beach = *new Location("Beach", "res/Locations/beach.png", true, 5, 4, 6, 15, 0, Vector2f(11 * PIXEL_SIZE, 18 * PIXEL_SIZE), Vector2f(1 * PIXEL_SIZE, 4 * PIXEL_SIZE), Vector2f(9 * PIXEL_SIZE, 6 * PIXEL_SIZE), Vector2f(0 * PIXEL_SIZE, 0 * PIXEL_SIZE));
+	bigHouseInterior = *new Location("Home Sweet Home", "res/Locations/BigHouseInterior.png", false, 2, 1, 0, 0, 0, Vector2f(17 * PIXEL_SIZE, 17 * PIXEL_SIZE), Vector2f(0 * PIXEL_SIZE, 0 * PIXEL_SIZE), Vector2f(0 * PIXEL_SIZE, 0 * PIXEL_SIZE), Vector2f(0 * PIXEL_SIZE, 0 * PIXEL_SIZE));
+	castle = *new Location("Royal Palace", "res/Locations/castle.png", false, 10, 8, 0, 0, 0, Vector2f(14 * PIXEL_SIZE, 11 * PIXEL_SIZE), Vector2f(0 * PIXEL_SIZE, 0 * PIXEL_SIZE), Vector2f(0 * PIXEL_SIZE, 0 * PIXEL_SIZE), Vector2f(0 * PIXEL_SIZE, 0 * PIXEL_SIZE));
+	forest = *new Location("Hollow Forest", "res/Locations/Forest1.png", true, 3, 4, 8, 1, 0, Vector2f(28 * PIXEL_SIZE, 8 * PIXEL_SIZE), Vector2f(14 * PIXEL_SIZE, 18 * PIXEL_SIZE), Vector2f(1 * PIXEL_SIZE, 9 * PIXEL_SIZE), Vector2f(0 * PIXEL_SIZE, 0 * PIXEL_SIZE));
+	forest2 = *new Location("Klowers Grove", "res/Locations/forest2.png", true, 4, 5, 3, 0, 0, Vector2f(14 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(1 * PIXEL_SIZE, 7 * PIXEL_SIZE), Vector2f(0 * PIXEL_SIZE, 0 * PIXEL_SIZE), Vector2f(0 * PIXEL_SIZE, 0 * PIXEL_SIZE));
+	ghostShed = *new Location("Abandoned Shed", "res/Locations/ghostShed.png", true, 13, 12, 0, 0, 0, Vector2f(27 * PIXEL_SIZE, 11 * PIXEL_SIZE + 6), Vector2f(0 * PIXEL_SIZE, 0 * PIXEL_SIZE), Vector2f(0 * PIXEL_SIZE, 0 * PIXEL_SIZE), Vector2f(0 * PIXEL_SIZE, 0 * PIXEL_SIZE));
+	graveyard = *new Location("Graveyard", "res/Locations/Graveyard.png", true, 12, 11, 13, 0, 0, Vector2f(12 * PIXEL_SIZE, 18 * PIXEL_SIZE), Vector2f(18 * PIXEL_SIZE, 17 * PIXEL_SIZE), Vector2f(0 * PIXEL_SIZE, 0 * PIXEL_SIZE), Vector2f(0 * PIXEL_SIZE, 0 * PIXEL_SIZE));
+	home = *new Location("Home Neighborhood", "res/Locations/home.png", true, 1, 3, 2, 11, 0, Vector2f(28 * PIXEL_SIZE, 11 * PIXEL_SIZE), Vector2f(14 * PIXEL_SIZE, 13 * PIXEL_SIZE), Vector2f(2 * PIXEL_SIZE, 2 * PIXEL_SIZE), Vector2f(0 * PIXEL_SIZE, 0 * PIXEL_SIZE));
+	market = *new Location("Central Square", "res/Locations/market.png", false, 11, 1, 12, 0, 0, Vector2f(17 * PIXEL_SIZE, 18 * PIXEL_SIZE), Vector2f(14 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(0 * PIXEL_SIZE, 0 * PIXEL_SIZE), Vector2f(0 * PIXEL_SIZE, 0 * PIXEL_SIZE));
+	pub = *new Location("Hunter's Pub", "res/Locations/pub.png", false, 9, 8, 0, 0, 0, Vector2f(3 * PIXEL_SIZE, 10 * PIXEL_SIZE), Vector2f(0 * PIXEL_SIZE, 0 * PIXEL_SIZE), Vector2f(0 * PIXEL_SIZE, 0 * PIXEL_SIZE), Vector2f(0 * PIXEL_SIZE, 0 * PIXEL_SIZE));
+	townAroundCastle = *new Location("Warthford", "res/Locations/townAroundCastle.png", false, 8, 3, 9, 10, 0, Vector2f(18 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(9 * PIXEL_SIZE, 17 * PIXEL_SIZE), Vector2f(14 * PIXEL_SIZE, 16 * PIXEL_SIZE), Vector2f(0 * PIXEL_SIZE, 0 * PIXEL_SIZE));
+	waterfall = *new Location("Mine Falls", "res/Locations/waterfall.png", true, 6, 5, 14, 14, 0, Vector2f(6 * PIXEL_SIZE, 2 * PIXEL_SIZE), Vector2f(7 * PIXEL_SIZE, 15 * PIXEL_SIZE), Vector2f(26 * PIXEL_SIZE, 9 * PIXEL_SIZE), Vector2f(0 * PIXEL_SIZE, 0 * PIXEL_SIZE));
+	WFbossRoom = *new Location("Shadow's Lair", "res/Locations/WFbossRoom.png", true, 7, 14, 0, 0, 0, Vector2f(19 * PIXEL_SIZE, 18 * PIXEL_SIZE), Vector2f(0 * PIXEL_SIZE, 0 * PIXEL_SIZE), Vector2f(0 * PIXEL_SIZE, 0 * PIXEL_SIZE), Vector2f(0 * PIXEL_SIZE, 0 * PIXEL_SIZE));
+	WFcorridor = *new Location("Shadow's Corfidor", "res/Locations/WFcorridor.png", true, 14, 6, 6, 7, 0, Vector2f(4 * PIXEL_SIZE, 14 * PIXEL_SIZE), Vector2f(26 * PIXEL_SIZE, 5 * PIXEL_SIZE), Vector2f(12 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(0 * PIXEL_SIZE, 0 * PIXEL_SIZE));
+	port = *new Location("Port Sarim", "res/Locations/port.png", true, 15, 5, 0, 0, 0, Vector2f(24 * PIXEL_SIZE, 8 * PIXEL_SIZE), Vector2f(0 * PIXEL_SIZE, 0 * PIXEL_SIZE), Vector2f(0 * PIXEL_SIZE, 0 * PIXEL_SIZE), Vector2f(0 * PIXEL_SIZE, 0 * PIXEL_SIZE));
 
 	this->setupHome();
 	this->setupBigHouse();
@@ -42,38 +42,38 @@ World::World(RenderWindow &window) {
 
 Location & World::getLocation(int requested) {
 	switch (requested) {
-		case 1:
-			return home;
-		case 2:
-			return bigHouseInterior;
-		case 3:
-			return forest;
-		case 4:
-			return forest2;
-		case 5:
-			return beach;
-		case 6:
-			return waterfall;
-		case 7:
-			return WFbossRoom;
-		case 8:
-			return townAroundCastle;
-		case 9:
-			return pub;
-		case 10:
-			return castle;
-		case 11:
-			return market;
-		case 12:
-			return graveyard;
-		case 13:
-			return ghostShed;
-		case 14:
-			return WFcorridor;
-		case 15:
-			return port;
-		default:
-			return home;
+	case 1:
+		return home;
+	case 2:
+		return bigHouseInterior;
+	case 3:
+		return forest;
+	case 4:
+		return forest2;
+	case 5:
+		return beach;
+	case 6:
+		return waterfall;
+	case 7:
+		return WFbossRoom;
+	case 8:
+		return townAroundCastle;
+	case 9:
+		return pub;
+	case 10:
+		return castle;
+	case 11:
+		return market;
+	case 12:
+		return graveyard;
+	case 13:
+		return ghostShed;
+	case 14:
+		return WFcorridor;
+	case 15:
+		return port;
+	default:
+		return home;
 	};
 }//end of getLocation()
 
@@ -115,26 +115,63 @@ string World::getLocationString(int requested) {
 	};
 }//end of getLocationString()
 
+void World::selectEnemyCreation(int location) {
+	switch (location) {
+	case 1:
+		this->createTestEnemies();
+		break;
+	case 3:
+		this->createForestEnemies();
+		break;
+	case 4:
+		this->createForest2Enemies();
+		break;
+	case 5:
+		this->createBeachEnemies();
+		break;
+	case 6:
+		this->createWaterfallEnemies();
+		break;
+	case 7:
+		this->createWFBossRoomEnemies();
+		break;
+	case 12:
+		this->createGraveyardEnemies();
+		break;
+	case 13:
+		this->createGhostShedEnemies();
+		break;
+	case 14:
+		this->createWaterfallEnemies();
+		break;
+	case 15:
+		this->createPortEnemies();
+		break;
+	default:
+		return;
+	}
+}
+
 void World::drawWorld(RenderWindow &window, Location &toDraw) {
 	window.clear();
 	window.draw(toDraw.getSprite());
 
 	//draw all obstacles
 	int counter = 0;
-	for (std::vector<RectangleShape>::iterator obsIter = toDraw.getObstacles().begin(); obsIter != toDraw.getObstacles().end(); ++obsIter){
+	for (std::vector<RectangleShape>::iterator obsIter = toDraw.getObstacles().begin(); obsIter != toDraw.getObstacles().end(); ++obsIter) {
 		window.draw(toDraw.getObstacles()[counter]);
 		counter++;
 	}
 
 	//draw all location changes
 	int counter2 = 0;
-	for (std::vector<RectangleShape>::iterator locIter = toDraw.getLocationChanges().begin(); locIter != toDraw.getLocationChanges().end(); ++locIter){
+	for (std::vector<RectangleShape>::iterator locIter = toDraw.getLocationChanges().begin(); locIter != toDraw.getLocationChanges().end(); ++locIter) {
 		window.draw(toDraw.getLocationChanges()[counter2]);
 		counter2++;
 	}
 }//end of drawWorld
 
-void World::setupHome() {	
+void World::setupHome() {
 	//obstacles
 	this->createBorder(home);
 
@@ -224,10 +261,10 @@ void World::setupHome() {
 	home.addToObstacles(fence2);
 	home.addToObstacles(fence3);
 
-	createLocationRectangle(Vector2f(1*PIXEL_SIZE, 4* PIXEL_SIZE), Vector2f(0*PIXEL_SIZE,8*PIXEL_SIZE), Color::Transparent, home);
+	createLocationRectangle(Vector2f(1 * PIXEL_SIZE, 4 * PIXEL_SIZE), Vector2f(0 * PIXEL_SIZE, 8 * PIXEL_SIZE), Color::Transparent, home);
 	createLocationRectangle(Vector2f(1 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(17 * PIXEL_SIZE, 15 * PIXEL_SIZE), Color::Transparent, home);
 	createLocationRectangle(Vector2f(4 * PIXEL_SIZE, 16), Vector2f(15 * PIXEL_SIZE, (19 * PIXEL_SIZE) + 16), Color::Transparent, home);
-	
+
 	//Enemies
 	//createTestEnemies();
 
@@ -375,7 +412,7 @@ void World::setupBigHouse() {
 	bigHouseInterior.addToObstacles(i22);
 	bigHouseInterior.addToObstacles(i23);
 	bigHouseInterior.addToObstacles(i24);
-	
+
 	//Location Change
 	RectangleShape next1(Vector2f(PIXEL_SIZE * 2, PIXEL_SIZE * 1));
 	next1.setPosition(Vector2f(PIXEL_SIZE * 14, PIXEL_SIZE * 14));
@@ -448,23 +485,15 @@ void World::setupForest() {
 	createObstacleRectangle(RectangleShape(), Vector2f(2 * PIXEL_SIZE, 3 * PIXEL_SIZE), Vector2f(25 * PIXEL_SIZE, 17 * PIXEL_SIZE), Color::Transparent, forest);
 	createObstacleRectangle(RectangleShape(), Vector2f(1 * PIXEL_SIZE, 3 * PIXEL_SIZE), Vector2f(27 * PIXEL_SIZE, 16 * PIXEL_SIZE), Color::Transparent, forest);
 	createObstacleRectangle(RectangleShape(), Vector2f(2 * PIXEL_SIZE, 2 * PIXEL_SIZE), Vector2f(18 * PIXEL_SIZE, 17 * PIXEL_SIZE), Color::Transparent, forest);
-	
+
 	//location change rectangles
 	createLocationRectangle(Vector2f(1 * PIXEL_SIZE, 2 * PIXEL_SIZE), Vector2f(0 * PIXEL_SIZE, 7 * PIXEL_SIZE), Color::Transparent, forest);
 	createLocationRectangle(Vector2f(3 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(17 * PIXEL_SIZE, 0 * PIXEL_SIZE), Color::Transparent, forest);
 	createLocationRectangle(Vector2f(1 * PIXEL_SIZE, 3 * PIXEL_SIZE), Vector2f(29 * PIXEL_SIZE, 11 * PIXEL_SIZE), Color::Transparent, forest);
 
 	//Enemies
-	this->createEnemy("res/Creatures/flower.png", "flower", /*AI_ID*/ 1, 2, 125, 3, Vector2f(22 * PIXEL_SIZE, 8 * PIXEL_SIZE), forest);
-	this->createEnemy("res/Creatures/flower.png", "flower", /*AI_ID*/ 1, 2, 100, 2, Vector2f(6 * PIXEL_SIZE, 12 * PIXEL_SIZE), forest);
-	this->createEnemy("res/Creatures/flower.png", "flower", /*AI_ID*/ 1, 2, 175, 3, Vector2f(8 * PIXEL_SIZE, 6 * PIXEL_SIZE), forest);
-	this->createEnemy("res/Creatures/flower.png", "flower", /*AI_ID*/ 1, 2, 200, 4, Vector2f(3 * PIXEL_SIZE, 18 * PIXEL_SIZE), forest);
-	this->createEnemy("res/Creatures/bat.png", "bat", /*AI_ID*/ 5, 1, 50, 1, Vector2f(10 * PIXEL_SIZE, 4 * PIXEL_SIZE), forest);
-	this->createEnemy("res/Creatures/bat.png", "Infected Bat", /*AI_ID*/ 3, 3, 80, 3, Vector2f(4 * PIXEL_SIZE, 1 * PIXEL_SIZE), forest);
-	this->createEnemy("res/Creatures/bat.png", "bat", /*AI_ID*/ 2, 1, 50, 1, Vector2f(26 * PIXEL_SIZE, 16 * PIXEL_SIZE), forest);
-	this->createEnemy("res/Creatures/sheep.png", "Rabid Sheep", /*AI_ID*/ 3, 1, 360, 5, Vector2f(24 * PIXEL_SIZE, 11 * PIXEL_SIZE), forest);
+	this->createForestEnemies();
 
-	//NPCs
 
 }//end of forest
 
@@ -502,15 +531,13 @@ void World::setupForest2() {
 	createObstacleRectangle(Vector2f(1 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(13 * PIXEL_SIZE, 15 * PIXEL_SIZE), Color::Transparent, forest2);
 	createObstacleRectangle(Vector2f(1 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(14 * PIXEL_SIZE, 16 * PIXEL_SIZE), Color::Transparent, forest2);
 	createObstacleRectangle(Vector2f(1 * PIXEL_SIZE, 3 * PIXEL_SIZE), Vector2f(15 * PIXEL_SIZE, 17 * PIXEL_SIZE), Color::Transparent, forest2);
-	
+
 	//Locations changes
 	createLocationRectangle(Vector2f(4 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(10 * PIXEL_SIZE, 19 * PIXEL_SIZE), Color::Transparent, forest2);
 	createLocationRectangle(Vector2f(1 * PIXEL_SIZE, 3 * PIXEL_SIZE), Vector2f(29 * PIXEL_SIZE, 8 * PIXEL_SIZE), Color::Transparent, forest2);
 
 	//Enemies
-	this->createEnemy("res/Creatures/flower.png", "Killer Flower", 1, 2, 175, 3, Vector2f(21 * PIXEL_SIZE, 8 * PIXEL_SIZE), forest2);
-	this->createEnemy("res/Creatures/flower.png", "Killer Flower", 1, 3, 175, 3, Vector2f(10 * PIXEL_SIZE, 13 * PIXEL_SIZE), forest2);
-	this->createEnemy("res/Creatures/flower.png", "Poison Flower", 1, 2, 200, 4, Vector2f(7 * PIXEL_SIZE, 5 * PIXEL_SIZE), forest2);
+	this->createForest2Enemies();
 
 	//NPCs
 
@@ -533,7 +560,7 @@ void World::setupBeach() {
 	createObstacleRectangle(Vector2f(1 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(8 * PIXEL_SIZE, 2 * PIXEL_SIZE), Color::Transparent, beach);
 	createObstacleRectangle(Vector2f(1 * PIXEL_SIZE, 2 * PIXEL_SIZE), Vector2f(12 * PIXEL_SIZE, 2 * PIXEL_SIZE), Color::Transparent, beach);
 	createObstacleRectangle(Vector2f(1 * PIXEL_SIZE, 3 * PIXEL_SIZE), Vector2f(25 * PIXEL_SIZE, 1 * PIXEL_SIZE), Color::Transparent, beach);
-	createObstacleRectangle(Vector2f(1 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(24 * PIXEL_SIZE, 2* PIXEL_SIZE), Color::Transparent, beach);
+	createObstacleRectangle(Vector2f(1 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(24 * PIXEL_SIZE, 2 * PIXEL_SIZE), Color::Transparent, beach);
 	createObstacleRectangle(Vector2f(1 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(26 * PIXEL_SIZE, 3 * PIXEL_SIZE), Color::Transparent, beach);
 	createObstacleRectangle(Vector2f(1 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(22 * PIXEL_SIZE, 3 * PIXEL_SIZE), Color::Transparent, beach);
 	createObstacleRectangle(Vector2f(2 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(20 * PIXEL_SIZE, 4 * PIXEL_SIZE), Color::Transparent, beach);
@@ -576,8 +603,8 @@ void World::setupBeach() {
 	createObstacleRectangle(Vector2f(1 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(27 * PIXEL_SIZE, 12 * PIXEL_SIZE), Color::Transparent, beach);
 
 	//creating location changes
-	createLocationRectangle(Vector2f(2 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(14 * PIXEL_SIZE, 0 * PIXEL_SIZE ), Color::Transparent, beach);
-	createLocationRectangle(Vector2f(1 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(6 * PIXEL_SIZE, 1 * PIXEL_SIZE ), Color::Transparent, beach);
+	createLocationRectangle(Vector2f(2 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(14 * PIXEL_SIZE, 0 * PIXEL_SIZE), Color::Transparent, beach);
+	createLocationRectangle(Vector2f(1 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(6 * PIXEL_SIZE, 1 * PIXEL_SIZE), Color::Transparent, beach);
 	createLocationRectangle(Vector2f(1 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(24 * PIXEL_SIZE, 9 * PIXEL_SIZE), Color::Transparent, beach);
 
 	//Enemies
@@ -662,7 +689,7 @@ void World::setupWFbossRoom() {
 
 	//creating locaiton changes
 	createLocationRectangle(Vector2f(1 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(12 * PIXEL_SIZE, 0 * PIXEL_SIZE), Color::Transparent, WFbossRoom);
-	
+
 	//Enemies
 	this->createBoss("res/Creatures/bigRedMonster.png", "Sliske The Void", /*AI_ID*/ 7, /*aiShoot*/ 5, /*Health*/ 1260, /*Level*/ 35, /*Location*/ Vector2f(12 * PIXEL_SIZE, 12 * PIXEL_SIZE), WFbossRoom, /*PixelSize*/ Vector2f(80, 80));
 
@@ -673,7 +700,7 @@ void World::setupWFbossRoom() {
 void World::setupTownAroundCastle() {
 	//obstacles
 	this->createBorder(townAroundCastle);
-	createObstacleRectangle(Vector2f(1 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(19 * PIXEL_SIZE, 17 * PIXEL_SIZE), Color::Transparent, townAroundCastle);	
+	createObstacleRectangle(Vector2f(1 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(19 * PIXEL_SIZE, 17 * PIXEL_SIZE), Color::Transparent, townAroundCastle);
 	createObstacleRectangle(Vector2f(1 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(7 * PIXEL_SIZE, 17 * PIXEL_SIZE), Color::Transparent, townAroundCastle);
 	createObstacleRectangle(Vector2f(4 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(3 * PIXEL_SIZE, 16 * PIXEL_SIZE), Color::Transparent, townAroundCastle);
 	createObstacleRectangle(Vector2f(2 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(1 * PIXEL_SIZE, 15 * PIXEL_SIZE), Color::Transparent, townAroundCastle);
@@ -698,7 +725,7 @@ void World::setupTownAroundCastle() {
 	createObstacleRectangle(Vector2f(3 * PIXEL_SIZE, 5 * PIXEL_SIZE), Vector2f(26 * PIXEL_SIZE, 11 * PIXEL_SIZE), Color::Transparent, townAroundCastle);
 	createObstacleRectangle(Vector2f(1 * PIXEL_SIZE, 3 * PIXEL_SIZE), Vector2f(29 * PIXEL_SIZE, 16 * PIXEL_SIZE), Color::Transparent, townAroundCastle);
 	createObstacleRectangle(Vector2f(12 * PIXEL_SIZE, 2 * PIXEL_SIZE), Vector2f(17 * PIXEL_SIZE, 18 * PIXEL_SIZE), Color::Transparent, townAroundCastle);
-	
+
 	//location change
 	createLocationRectangle(Vector2f(4 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(13 * PIXEL_SIZE, 19 * PIXEL_SIZE), Color::Transparent, townAroundCastle);
 	createLocationRectangle(Vector2f(1 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(3 * PIXEL_SIZE, 9 * PIXEL_SIZE), Color::Transparent, townAroundCastle);
@@ -744,7 +771,7 @@ void World::setupPub() {
 	//creating NPCs
 	this->createNPC("res/Creatures/greenHairGirl.png", "Velma", "I eat pasta for breakfast.", 1, Vector2f(7 * PIXEL_SIZE, 7 * PIXEL_SIZE), pub);
 	this->createNPC("res/Creatures/blueHairCloakMan.png", "Rick Sanchez", "*Burp* M..Mm.. Morty, we got, we gotta get to the ship Morty.", 1, Vector2f(9 * PIXEL_SIZE, 7 * PIXEL_SIZE), pub);
-	this->createNPC("res/Creatures/merchant.png", "Morty", "Ohh, I don't know Rick...", 1, Vector2f(10* PIXEL_SIZE, 7 * PIXEL_SIZE), pub);
+	this->createNPC("res/Creatures/merchant.png", "Morty", "Ohh, I don't know Rick...", 1, Vector2f(10 * PIXEL_SIZE, 7 * PIXEL_SIZE), pub);
 	this->createNPC("res/Creatures/aipronLady.png", "Deborah", "I serve beer and whiskey.", 4, Vector2f(10 * PIXEL_SIZE, 4 * PIXEL_SIZE), pub);
 	this->createNPC("res/Creatures/oldMan.png", "Old Man Eugine", "I had to walk 5000 miles to school every day.", 1, Vector2f(5 * PIXEL_SIZE, 10 * PIXEL_SIZE), pub);
 	this->createNPC("res/Creatures/blondeGirl.png", "Flower Dancer", "Dance with me!", 3, Vector2f(19 * PIXEL_SIZE, 10 * PIXEL_SIZE), pub);
@@ -771,7 +798,7 @@ void World::setupCastle() {
 	createObstacleRectangle(Vector2f(1 * PIXEL_SIZE, 11 * PIXEL_SIZE), Vector2f(27 * PIXEL_SIZE, 5 * PIXEL_SIZE), Color::Transparent, castle);
 	createObstacleRectangle(Vector2f(2 * PIXEL_SIZE, 6 * PIXEL_SIZE), Vector2f(24 * PIXEL_SIZE, 7 * PIXEL_SIZE), Color::Transparent, castle);
 	createObstacleRectangle(Vector2f(11 * PIXEL_SIZE, 3 * PIXEL_SIZE), Vector2f(17 * PIXEL_SIZE, 15 * PIXEL_SIZE), Color::Transparent, castle);
-	
+
 	//location change
 	createLocationRectangle(Vector2f(4 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(13 * PIXEL_SIZE, 17 * PIXEL_SIZE), Color::Transparent, castle);
 
@@ -833,7 +860,7 @@ void World::setupMarket() {
 	this->createNPC("res/Creatures/merchant.png", "Jerry Thomson", "Hey How Are You?!", /*AI_ID*/5, Vector2f(2 * PIXEL_SIZE, 8 * PIXEL_SIZE), market);
 	this->createNPC("res/Creatures/fireHairGirl.png", "Jenny Thomson", "Watch Out For My Hair, Kid", /*AI_ID*/3, Vector2f(5 * PIXEL_SIZE, 17 * PIXEL_SIZE), market);
 	this->createNPC("res/Creatures/aipronLady.png", "Helga the Baker", "I like pie", /*AI_ID*/4, Vector2f(23 * PIXEL_SIZE, 13 * PIXEL_SIZE), market);
-	this->createNPC("res/Creatures/greenHairSoldier.png", "Dough Roundface", "This Market Serves No Purpose!", /*AI_ID*/1, Vector2f(5* PIXEL_SIZE, 7 * PIXEL_SIZE), market);
+	this->createNPC("res/Creatures/greenHairSoldier.png", "Dough Roundface", "This Market Serves No Purpose!", /*AI_ID*/1, Vector2f(5 * PIXEL_SIZE, 7 * PIXEL_SIZE), market);
 	for (int i = 0; i < 5; i++) {
 		this->createNPC("res/Creatures/Sheep.png", "Sheepy", "BAAAAAAAAAA", /*AI_ID*/2, Vector2f(27 * PIXEL_SIZE, (15 + i) * PIXEL_SIZE), market);
 	}
@@ -845,8 +872,8 @@ void World::setupGraveyard() {
 	this->createBorder(graveyard);
 	createObstacleRectangle(Vector2f(1 * PIXEL_SIZE, 7 * PIXEL_SIZE), Vector2f(0 * PIXEL_SIZE, 0 * PIXEL_SIZE), Color::Transparent, graveyard);
 	createObstacleRectangle(Vector2f(12 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(1 * PIXEL_SIZE, 0 * PIXEL_SIZE), Color::Transparent, graveyard);
-	createObstacleRectangle(Vector2f((5 * PIXEL_SIZE)-10, 1 * PIXEL_SIZE), Vector2f(1 * PIXEL_SIZE, 4 * PIXEL_SIZE), Color::Transparent, graveyard);
-	createObstacleRectangle(Vector2f((6 * PIXEL_SIZE)-10, 1 * PIXEL_SIZE), Vector2f((7 * PIXEL_SIZE)+10, 4 * PIXEL_SIZE), Color::Transparent, graveyard);
+	createObstacleRectangle(Vector2f((5 * PIXEL_SIZE) - 10, 1 * PIXEL_SIZE), Vector2f(1 * PIXEL_SIZE, 4 * PIXEL_SIZE), Color::Transparent, graveyard);
+	createObstacleRectangle(Vector2f((6 * PIXEL_SIZE) - 10, 1 * PIXEL_SIZE), Vector2f((7 * PIXEL_SIZE) + 10, 4 * PIXEL_SIZE), Color::Transparent, graveyard);
 	createObstacleRectangle(Vector2f(1 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(13 * PIXEL_SIZE, 3 * PIXEL_SIZE), Color::Transparent, graveyard);
 	createObstacleRectangle(Vector2f(1 * PIXEL_SIZE, 2 * PIXEL_SIZE), Vector2f(6 * PIXEL_SIZE, 7 * PIXEL_SIZE), Color::Transparent, graveyard);
 	createObstacleRectangle(Vector2f(1 * PIXEL_SIZE, 2 * PIXEL_SIZE), Vector2f(16 * PIXEL_SIZE, 3 * PIXEL_SIZE), Color::Transparent, graveyard);
@@ -914,7 +941,7 @@ void World::setupGraveyard() {
 	createObstacleRectangle(Vector2f(1 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(0 * PIXEL_SIZE, 14 * PIXEL_SIZE), Color::Transparent, graveyard);
 	createObstacleRectangle(Vector2f(1 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(0 * PIXEL_SIZE, 16 * PIXEL_SIZE), Color::Transparent, graveyard);
 	createObstacleRectangle(Vector2f(1 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(0 * PIXEL_SIZE, 18 * PIXEL_SIZE), Color::Transparent, graveyard);
-	
+
 	//adding enemies
 	this->createEnemy("res/Creatures/nun.png", "Crazy Nun", 2, 2, 300, 4, Vector2f(25 * PIXEL_SIZE, 11 * PIXEL_SIZE), graveyard);
 	this->createEnemy("res/Creatures/skeleton.png", "Skeleton", 4, 21, 00, 2, Vector2f(26 * PIXEL_SIZE, 2 * PIXEL_SIZE), graveyard);
@@ -924,13 +951,13 @@ void World::setupGraveyard() {
 	this->createEnemy("res/Creatures/bat.png", "Decaying Bat", 2, 3, 75, 2, Vector2f(4 * PIXEL_SIZE, 2 * PIXEL_SIZE), graveyard);
 	this->createEnemy("res/Creatures/bat.png", "Bat", 2, 1, 50, 2, Vector2f(15 * PIXEL_SIZE, 7 * PIXEL_SIZE), graveyard);
 	this->createEnemy("res/Creatures/bat.png", "Vampire Bat", 2, 2, 200, 2, Vector2f(9 * PIXEL_SIZE, 17 * PIXEL_SIZE), graveyard);
-	
+
 	//location change
 	createLocationRectangle(Vector2f(2 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(14 * PIXEL_SIZE, 0 * PIXEL_SIZE), Color::Transparent, graveyard);
 	createLocationRectangle(Vector2f(1 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(27 * PIXEL_SIZE, 10 * PIXEL_SIZE + 5), Color::Transparent, graveyard);
 
 	//adding NPCs
-	
+
 }//end of graveyard
 
 void World::setupGhostShed() {
@@ -946,7 +973,7 @@ void World::setupGhostShed() {
 	createObstacleRectangle(Vector2f(1 * PIXEL_SIZE, 7 * PIXEL_SIZE), Vector2f(23 * PIXEL_SIZE, 12 * PIXEL_SIZE), Color::Transparent, ghostShed);
 	createObstacleRectangle(Vector2f(2 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(24 * PIXEL_SIZE, 12 * PIXEL_SIZE), Color::Transparent, ghostShed);
 	createObstacleRectangle(Vector2f(1 * PIXEL_SIZE, 2 * PIXEL_SIZE), Vector2f(22 * PIXEL_SIZE, 14 * PIXEL_SIZE), Color::Transparent, ghostShed);
-	
+
 	//location changes
 	createLocationRectangle(Vector2f(3 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(17 * PIXEL_SIZE, 18 * PIXEL_SIZE), Color::Transparent, ghostShed);
 
@@ -956,12 +983,12 @@ void World::setupGhostShed() {
 	this->createEnemy("res/Creatures/greendragon.png", "Green Dragon", 4, 2, 500, 12, Vector2f(21 * PIXEL_SIZE, 4 * PIXEL_SIZE), ghostShed);
 
 	//creating bosses
-	
+
 	this->createBoss("res/Creatures/GreenBossDragon.png", "Elrag The Bone Picker", /*AI_ID*/ 7, /*aiShoot*/ 6, /*Health*/ 1000, /*Level*/ 30, /*Location*/ Vector2f(10 * PIXEL_SIZE, 7 * PIXEL_SIZE), ghostShed, /*PixelSize*/ Vector2f(80, 80));
 
 }//end of ghostShed
 
-void World::setupWFcorridor(){
+void World::setupWFcorridor() {
 	//obstacles
 	this->createBorder(WFcorridor);
 	//createObstacleRectangle(Vector2f(1 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(0 * PIXEL_SIZE, 0 * PIXEL_SIZE), Color::Blue, WFcorridor);
@@ -1040,10 +1067,10 @@ void World::setupPort() {
 
 	//location change
 	this->createLocationRectangle(Vector2f(1 * PIXEL_SIZE, 1 * PIXEL_SIZE), Vector2f(8 * PIXEL_SIZE, 6 * PIXEL_SIZE), Color::Transparent, port);
-	
+
 	//enemies
-	for(int i = 0; i < 35; i++){
-		this->createEnemy("res/Creatures/sheep.png", "Escaping Sheep", 2, 2, 50, 2, Vector2f(18 * PIXEL_SIZE, 4 * PIXEL_SIZE), port);	
+	for (int i = 0; i < 35; i++) {
+		this->createEnemy("res/Creatures/sheep.png", "Escaping Sheep", 2, 2, 50, 2, Vector2f(18 * PIXEL_SIZE, 4 * PIXEL_SIZE), port);
 	}
 	for (int i = 0; i < 35; i++) {
 		this->createEnemy("res/Creatures/sheep.png", "Escaping Sheep", 2, 3, 50, 2, Vector2f(7 * PIXEL_SIZE, 2 * PIXEL_SIZE), port);
@@ -1094,11 +1121,11 @@ void World::createBorder(Location &loc) {
 	//left
 	createObstacleRectangle(Vector2f(1, 20 * PIXEL_SIZE), Vector2f(-1, -1), Color::Transparent, loc);
 	//right
-	createObstacleRectangle(Vector2f(1, 20 * PIXEL_SIZE), Vector2f(30*PIXEL_SIZE, -1), Color::Transparent, loc);
+	createObstacleRectangle(Vector2f(1, 20 * PIXEL_SIZE), Vector2f(30 * PIXEL_SIZE, -1), Color::Transparent, loc);
 	//up
-	createObstacleRectangle(Vector2f(30*PIXEL_SIZE, 1), Vector2f(-1, -1), Color::Transparent, loc);
+	createObstacleRectangle(Vector2f(30 * PIXEL_SIZE, 1), Vector2f(-1, -1), Color::Transparent, loc);
 	//down
-	createObstacleRectangle(Vector2f(30 * PIXEL_SIZE, 1 ), Vector2f(-1, 20*PIXEL_SIZE), Color::Transparent, loc);
+	createObstacleRectangle(Vector2f(30 * PIXEL_SIZE, 1), Vector2f(-1, 20 * PIXEL_SIZE), Color::Transparent, loc);
 }
 
 void World::createEnemy(std::string file, std::string name, int AI_ID, int aiShoot, int health, int level, Vector2f startingPosition, Location &loc) {
@@ -1120,4 +1147,41 @@ void World::createNPC(std::string file, std::string name, std::string intersecti
 void World::createBoss(std::string file, std::string name, int AI_ID, int aiShoot, int health, int level, Vector2f startingPosition, Location &loc, Vector2f pixelSize) {
 	Enemy * enemy = new Enemy(file, name, loc.getLocationID(), AI_ID, aiShoot, health, level, startingPosition, loc.getObstacles(), pixelSize);
 	loc.addToEnemies(enemy);
+}
+void World::createForestEnemies() {
+
+	this->createEnemy("res/Creatures/flower.png", "flower", /*AI_ID*/ 1, 2, 125, 3, Vector2f(22 * PIXEL_SIZE, 8 * PIXEL_SIZE), forest);
+	this->createEnemy("res/Creatures/flower.png", "flower", /*AI_ID*/ 1, 2, 100, 2, Vector2f(6 * PIXEL_SIZE, 12 * PIXEL_SIZE), forest);
+	this->createEnemy("res/Creatures/flower.png", "flower", /*AI_ID*/ 1, 2, 175, 3, Vector2f(8 * PIXEL_SIZE, 6 * PIXEL_SIZE), forest);
+	this->createEnemy("res/Creatures/flower.png", "flower", /*AI_ID*/ 1, 2, 200, 4, Vector2f(3 * PIXEL_SIZE, 18 * PIXEL_SIZE), forest);
+	this->createEnemy("res/Creatures/bat.png", "bat", /*AI_ID*/ 5, 1, 50, 1, Vector2f(10 * PIXEL_SIZE, 4 * PIXEL_SIZE), forest);
+	this->createEnemy("res/Creatures/bat.png", "Infected Bat", /*AI_ID*/ 3, 3, 80, 3, Vector2f(4 * PIXEL_SIZE, 1 * PIXEL_SIZE), forest);
+	this->createEnemy("res/Creatures/bat.png", "bat", /*AI_ID*/ 2, 1, 50, 1, Vector2f(26 * PIXEL_SIZE, 16 * PIXEL_SIZE), forest);
+	this->createEnemy("res/Creatures/sheep.png", "Rabid Sheep", /*AI_ID*/ 3, 1, 360, 5, Vector2f(24 * PIXEL_SIZE, 11 * PIXEL_SIZE), forest);
+}
+void World::createForest2Enemies() {
+	this->createEnemy("res/Creatures/flower.png", "Killer Flower", 1, 2, 175, 3, Vector2f(21 * PIXEL_SIZE, 8 * PIXEL_SIZE), forest2);
+	this->createEnemy("res/Creatures/flower.png", "Killer Flower", 1, 3, 175, 3, Vector2f(10 * PIXEL_SIZE, 13 * PIXEL_SIZE), forest2);
+	this->createEnemy("res/Creatures/flower.png", "Poison Flower", 1, 2, 200, 4, Vector2f(7 * PIXEL_SIZE, 5 * PIXEL_SIZE), forest2);
+}
+void World::createBeachEnemies() {
+
+}
+void World::createWaterfallEnemies() {
+
+}
+void World::createWFBossRoomEnemies() {
+
+}
+void World::createGraveyardEnemies() {
+
+}
+void World::createGhostShedEnemies() {
+
+}
+void World::createWFCorridorEnemies() {
+
+}
+void World::createPortEnemies() {
+
 }
