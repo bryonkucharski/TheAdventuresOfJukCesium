@@ -832,8 +832,8 @@ void World::setupMarket() {
 	this->createNPC("res/Creatures/merchant.png", "Money Bags", "$$$$$$$", /*AI_ID*/1, Vector2f(8 * PIXEL_SIZE, 16 * PIXEL_SIZE), market);
 	this->createNPC("res/Creatures/merchant.png", "Jerry Thomson", "Hey How Are You?!", /*AI_ID*/5, Vector2f(2 * PIXEL_SIZE, 8 * PIXEL_SIZE), market);
 	this->createNPC("res/Creatures/fireHairGirl.png", "Jenny Thomson", "Watch Out For My Hair, Kid", /*AI_ID*/3, Vector2f(5 * PIXEL_SIZE, 17 * PIXEL_SIZE), market);
-	this->createNPC("res/Creatures/aipronLady.png", "Helga the Baker", "Dinner is Served", /*AI_ID*/4, Vector2f(23 * PIXEL_SIZE, 13 * PIXEL_SIZE), market);
-	this->createNPC("res/Creatures/greenHairSoldier.png", "Dough Roundface", "This Market Serves No Purpose!", /*AI_ID*/1, Vector2f(25* PIXEL_SIZE, 4 * PIXEL_SIZE), market);
+	this->createNPC("res/Creatures/aipronLady.png", "Helga the Baker", "I like pie", /*AI_ID*/4, Vector2f(23 * PIXEL_SIZE, 13 * PIXEL_SIZE), market);
+	this->createNPC("res/Creatures/greenHairSoldier.png", "Dough Roundface", "This Market Serves No Purpose!", /*AI_ID*/1, Vector2f(5* PIXEL_SIZE, 7 * PIXEL_SIZE), market);
 	for (int i = 0; i < 5; i++) {
 		this->createNPC("res/Creatures/Sheep.png", "Sheepy", "BAAAAAAAAAA", /*AI_ID*/2, Vector2f(27 * PIXEL_SIZE, (15 + i) * PIXEL_SIZE), market);
 	}

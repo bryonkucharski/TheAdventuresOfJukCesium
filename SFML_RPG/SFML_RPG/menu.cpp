@@ -117,7 +117,7 @@ int Menu::selectOption() {
 		menuDN();
 		selectionClock.restart();
 	}
-	else if ((Keyboard::isKeyPressed(Keyboard::Return)) && (selectionTime.asSeconds() > .18) || (Keyboard::isKeyPressed(Keyboard::LShift)) && (selectionTime.asSeconds() > .18)) {
+	else if ((Keyboard::isKeyPressed(Keyboard::Return)) && (selectionTime.asSeconds() > .18)) {
 		return menuIndex;
 	}
 	return -1;
