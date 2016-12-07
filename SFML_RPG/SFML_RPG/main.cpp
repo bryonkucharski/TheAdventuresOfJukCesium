@@ -73,14 +73,10 @@ int main(){
 			if (gameOption == 0) {
 				if (gameOver)
 				{
-					//reset file and load it
 					newGame();
 					loadGame();
 				}
-				else
-				{
-					saveGame();
-				}
+				newGame();
 				mainGame = true;
 				menuMain = false;
 				gameOver = false;
@@ -457,9 +453,9 @@ void newGame()
 	max health
 	*/
 	if (theFile.is_open()) {
-		theFile << 0 << "\n" <<
-			0 << "\n" <<
-			1 << "\n" <<
+		theFile << 4*PIXEL_SIZE << "\n" <<
+			6*PIXEL_SIZE << "\n" <<
+			2 << "\n" <<
 			10 << "\n" <<
 			1 << "\n" <<
 			2 << "\n" <<
