@@ -1,23 +1,26 @@
 # The Adventures Of Juk Cesium
 The Adventures of Juk Cesium is an Two-Dimensional Role Playing Game created in C++ using the Simple and Fast Multimedia Library (SFML). The main goal of the game is travel with Juk Cesium, the main player, across the world to interact with non player characters (NPC), monsters, and boss monsters. Shoot at enemies to increase your total experience, level, and damage. Travel to the Waterfall Corridor or Graveyard shed to fight a boss monster. 
 
-# How to play
-To play The Adventures of Juk Cesium, navigate to the "release" folder and download the res folder, the exe, and all the ddls
+## How to play
+To play The Adventures of Juk Cesium, you need to download the following Visual C++ 2015 package:
+ - https://www.microsoft.com/en-us/download/details.aspx?id=52685
 
-# How to develop
+After you install that, navigate to the "release" folder and download the res folder, the exe, and all the ddls
+
+## How to develop
 This game was developed in Visual Studio 2015 using the SFML libraries. For instructions and on how to develop in SFML using Visual Studio, visit the following link. http://www.sfml-dev.org/tutorials/2.4/start-vc.php
 
-# Gameplay Screenshots
+## Gameplay Screenshots
 ![Fighting](https://raw.githubusercontent.com/bryonkucharski/TheAdventuresOfJukCesium/master/SFML_RPG/SFML_RPG/res/GitHubPictures/Fighting%20General%20Enemies.PNG "Battle Scene")
 
 ![Fighting 2](https://raw.githubusercontent.com/bryonkucharski/TheAdventuresOfJukCesium/master/SFML_RPG/SFML_RPG/res/GitHubPictures/enemy%20shooting%20at%20an%20angle.PNG "Battle Scene 2")
 
 ![Market](https://raw.githubusercontent.com/bryonkucharski/TheAdventuresOfJukCesium/master/SFML_RPG/SFML_RPG/res/GitHubPictures/Hanging%20out%20with%20the%20sheep.PNG "Market")
 
-# World Map
+## World Map
 ![World Map](https://raw.githubusercontent.com/bryonkucharski/TheAdventuresOfJukCesium/master/SFML_RPG/SFML_RPG/res/GitHubPictures/World%20Map.png "World Map")
 
-# Class Outline
+## Class Outline
 <b>Main</b> - Handles all game logic including menu screens, updating, drawing, and intersections that happen during the game. <br>
 <b>Entity</b> - Parent class for most other classes. Contains the Texture, Sprite, Rectangle, and Text objects from the SFML Library. <br>
 <b>Creature</b> - Anything that walks, shoots, speaks, moves, updates, etc. Parent class for Player, NPC, and Enemy. Contains the AI for Creature movement.<br>
