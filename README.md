@@ -8,7 +8,8 @@ To play The Adventures of Juk Cesium, you need to download the following Visual 
 After you install that, navigate to the "release" folder and download the res folder, the exe, and all the ddls
 
 ## How to develop
-This game was developed in Visual Studio 2015 using the SFML libraries. For instructions and on how to develop in SFML using Visual Studio, visit the following link. http://www.sfml-dev.org/tutorials/2.4/start-vc.php
+This game was developed in Visual Studio 2015 using the SFML libraries. For instructions and on how to develop in SFML using Visual Studio, visit the following link:
+ - http://www.sfml-dev.org/tutorials/2.4/start-vc.php
 
 ## Gameplay Screenshots
 ![Fighting](https://raw.githubusercontent.com/bryonkucharski/TheAdventuresOfJukCesium/master/SFML_RPG/SFML_RPG/res/GitHubPictures/Fighting%20General%20Enemies.PNG "Battle Scene")
