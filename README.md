@@ -12,15 +12,15 @@ This game was developed in Visual Studio 2015 using the SFML libraries. For inst
  - http://www.sfml-dev.org/tutorials/2.4/start-vc.php
 
 ## Gameplay Screenshots
-![LoadScreen] (https://raw.githubusercontent.com/bryonkucharski/TheAdventuresOfJukCesium/master/SFML_RPG/SFML_RPG/res/GitHubPictures/Load%20Screen.PNG "Battle Scene")
+![LoadScreen](https://raw.githubusercontent.com/bryonkucharski/TheAdventuresOfJukCesium/master/SFML_RPG/SFML_RPG/res/GitHubPictures/Load%20Screen.PNG "Load Screen")
 
-![Fighting] (https://raw.githubusercontent.com/bryonkucharski/TheAdventuresOfJukCesium/master/SFML_RPG/SFML_RPG/res/GitHubPictures/Fighting%20General%20Enemies.PNG "Battle Scene")
+![Fighting](https://raw.githubusercontent.com/bryonkucharski/TheAdventuresOfJukCesium/master/SFML_RPG/SFML_RPG/res/GitHubPictures/Fighting%20General%20Enemies.PNG "Battle Scene")
 
 ![Fighting 2](https://raw.githubusercontent.com/bryonkucharski/TheAdventuresOfJukCesium/master/SFML_RPG/SFML_RPG/res/GitHubPictures/enemy%20shooting%20at%20an%20angle.PNG "Battle Scene 2")
 
-![BossFight1] (https://raw.githubusercontent.com/bryonkucharski/TheAdventuresOfJukCesium/master/SFML_RPG/SFML_RPG/res/GitHubPictures/Boss%20Fight%201.png "Boss Fight")
+![BossFight1](https://raw.githubusercontent.com/bryonkucharski/TheAdventuresOfJukCesium/master/SFML_RPG/SFML_RPG/res/GitHubPictures/Boss%20Fight%201.png "Boss Fight")
 
-![BossFight2] (https://raw.githubusercontent.com/bryonkucharski/TheAdventuresOfJukCesium/master/SFML_RPG/SFML_RPG/res/GitHubPictures/Boss%20Fight%202.png "Boss Fight 2")
+![BossFight2](https://raw.githubusercontent.com/bryonkucharski/TheAdventuresOfJukCesium/master/SFML_RPG/SFML_RPG/res/GitHubPictures/Boss%20Fight%202.png "Boss Fight 2")
 
 ![Market](https://raw.githubusercontent.com/bryonkucharski/TheAdventuresOfJukCesium/master/SFML_RPG/SFML_RPG/res/GitHubPictures/Hanging%20out%20with%20the%20sheep.PNG "Market")
 
